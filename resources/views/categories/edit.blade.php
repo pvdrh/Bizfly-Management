@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Chỉnh sửa chức vụ
+    Chỉnh sửa danh mục
 @endsection
 
 @section('content')

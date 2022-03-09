@@ -3,10 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,13 +39,19 @@ Route::group(['prefix' => 'products'], function () {
 });
 
 //Quản lý nhân viên
-Route::group(['prefix' => 'employees'], function () {
-    Route::get('/', [EmployeeController::class, 'index'])
-        ->name('employees.index');
-    Route::get('/create', [EmployeeController::class, 'create'])
-        ->name('employees.create');
-    Route::get('/store', [EmployeeController::class, 'store'])
-        ->name('employees.store');
+Route::group(['prefix' => 'users'], function () {
+    Route::get('/', [UserController::class, 'index'])
+        ->name('users.index');
+    Route::get('/create', [UserController::class, 'create'])
+        ->name('users.create');
+    Route::post('/store', [UserController::class, 'store'])
+        ->name('users.store');
+    Route::get('/update/{id}', [UserController::class, 'edit'])
+        ->name('users.edit');
+    Route::post('/update/{id}', [UserController::class, 'update'])
+        ->name('users.update');
+    Route::delete('/delete/{id}', [UserController::class, 'destroy'])
+        ->name('users.destroy');
 });
 
 //Quản lý chức vụ
