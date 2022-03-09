@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,14 @@ Route::group(['prefix' => 'products'], function () {
         ->name('products.index');
     Route::get('/create', [ProductController::class, 'create'])
         ->name('products.create');
-    Route::get('/store', [ProductController::class, 'store'])
+    Route::post('/store', [ProductController::class, 'store'])
         ->name('products.store');
+    Route::get('/update/{id}', [ProductController::class, 'edit'])
+        ->name('products.edit');
+    Route::post('/update/{id}', [ProductController::class, 'update'])
+        ->name('products.update');
+    Route::delete('/delete/{id}', [ProductController::class, 'destroy'])
+        ->name('products.destroy');
 });
 
 //Quản lý nhân viên
@@ -40,7 +47,7 @@ Route::group(['prefix' => 'employees'], function () {
         ->name('employees.store');
 });
 
-//Quản lý quyền
+//Quản lý chức vụ
 Route::group(['prefix' => 'roles'], function () {
     Route::get('/', [RoleController::class, 'index'])
         ->name('roles.index');
@@ -54,4 +61,20 @@ Route::group(['prefix' => 'roles'], function () {
         ->name('roles.update');
     Route::delete('/delete/{id}', [RoleController::class, 'destroy'])
         ->name('roles.destroy');
+});
+
+//Quản lý danh mục
+Route::group(['prefix' => 'categories'], function () {
+    Route::get('/', [CategoryController::class, 'index'])
+        ->name('categories.index');
+    Route::get('/create', [CategoryController::class, 'create'])
+        ->name('categories.create');
+    Route::post('/store', [CategoryController::class, 'store'])
+        ->name('categories.store');
+    Route::get('/edit/{id}', [CategoryController::class, 'edit'])
+        ->name('categories.edit');
+    Route::post('/update/{id}', [CategoryController::class, 'update'])
+        ->name('categories.update');
+    Route::delete('/delete/{id}', [CategoryController::class, 'destroy'])
+        ->name('categories.destroy');
 });
