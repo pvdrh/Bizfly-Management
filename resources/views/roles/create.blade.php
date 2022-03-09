@@ -34,11 +34,11 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên chức vụ</label>
-                                <input name="role_name" type="text" class="form-control">
+                                <input name="name" type="text" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mô tả</label>
-                                <input name="role_description" type="text" class="form-control">
+                                <input name="description" type="text" class="form-control">
                             </div>
                         </div>
                         <!-- /.card-body -->

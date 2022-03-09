@@ -18,7 +18,7 @@ use App\Http\Controllers\RoleController;
 */
 
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 //Quản lý sản phẩm
 Route::group(['prefix' => 'products'], function () {
@@ -48,4 +48,10 @@ Route::group(['prefix' => 'roles'], function () {
         ->name('roles.create');
     Route::post('/store', [RoleController::class, 'store'])
         ->name('roles.store');
+    Route::get('/update/{id}', [RoleController::class, 'edit'])
+        ->name('roles.edit');
+    Route::post('/update/{id}', [RoleController::class, 'update'])
+        ->name('roles.update');
+    Route::delete('/delete/{id}', [RoleController::class, 'destroy'])
+        ->name('roles.destroy');
 });
