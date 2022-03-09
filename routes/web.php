@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,4 +78,20 @@ Route::group(['prefix' => 'categories'], function () {
         ->name('categories.update');
     Route::delete('/delete/{id}', [CategoryController::class, 'destroy'])
         ->name('categories.destroy');
+});
+
+//Quản lý công ty
+Route::group(['prefix' => 'companies'], function () {
+    Route::get('/', [CompanyController::class, 'index'])
+        ->name('companies.index');
+    Route::get('/create', [CompanyController::class, 'create'])
+        ->name('companies.create');
+    Route::post('/store', [CompanyController::class, 'store'])
+        ->name('companies.store');
+    Route::get('/edit/{id}', [CompanyController::class, 'edit'])
+        ->name('companies.edit');
+    Route::post('/update/{id}', [CompanyController::class, 'update'])
+        ->name('companies.update');
+    Route::delete('/delete/{id}', [CompanyController::class, 'destroy'])
+        ->name('companies.destroy');
 });
