@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 
 class RoleController extends Controller
 {
@@ -26,18 +28,19 @@ class RoleController extends Controller
         return view('roles.edit')->with('role', $role);
     }
 
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
         $role = new Role();
 
         $role->name = $request->name;
         $role->description = $request->description;
+        $role->is_protected = false;
         $role->save();
 
         return redirect()->route('roles.index');
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateRoleRequest $request, $id)
     {
         $role = Role::find($id);
         $role->name = $request->name;

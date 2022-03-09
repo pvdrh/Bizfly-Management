@@ -35,6 +35,9 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên chức vụ</label>
                                 <input name="name" type="text" class="form-control">
+                                @error('name')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mô tả</label>
