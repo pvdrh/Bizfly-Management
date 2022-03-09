@@ -35,14 +35,23 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên công ty</label>
                                 <input name="name" type="text" class="form-control">
+                                @error('name')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số điện thoại</label>
                                 <input name="phone" type="text" class="form-control">
+                                @error('phone')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Địa chỉ</label>
                                 <input name="address" type="text" class="form-control">
+                                @error('address')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->
