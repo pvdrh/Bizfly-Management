@@ -35,10 +35,16 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên danh mục</label>
                                 <input type="text" name="name" value="{{$category->name}}" class="form-control" id="">
+                                @error('name')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mô tả</label>
                                 <input type="text" name="description" value="{{$category->description}}" class="form-control" id="">
+                                @error('description')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->
