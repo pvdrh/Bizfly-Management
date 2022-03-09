@@ -43,42 +43,20 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
                                 <th>Email</th>
                                 <th>Tên</th>
-                                <th>Thời gian</th>
-                                <th>Status</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>183</td>
-                                <td>hoannc@gmail.com</td>
-                                <td>John Doe</td>
-                                <td>11-7-2014</td>
+                            @foreach($roles as $role)
+                                <tr>
+                                <td>{{$loop->index}}</td>
+                                <td>{{$role->name}}</td>
+                                <td>{{$role->description}}</td>
                                 <td><span class="tag tag-success">Approved</span></td>
                             </tr>
-                            <tr>
-                                <td>219</td>
-                                <td>hoannc@gmail.com</td>
-                                <td>Alexander Pierce</td>
-                                <td>11-7-2014</td>
-                                <td><span class="tag tag-warning">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>657</td>
-                                <td>hoannc@gmail.com</td>
-                                <td>Bob Doe</td>
-                                <td>11-7-2014</td>
-                                <td><span class="tag tag-primary">Approved</span></td>
-                            </tr>
-                            <tr>
-                                <td>175</td>
-                                <td>hoannc@gmail.com</td>
-                                <td>Mike Doe</td>
-                                <td>11-7-2014</td>
-                                <td><span class="tag tag-danger">Denied</span></td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
