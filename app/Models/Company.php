@@ -12,7 +12,7 @@ class Company extends Model
         'phone'
     ];
 
-//    public function customers(){
-//        return $this->hasMany(Customer::class);
-//    }
+    public function customers(){
+        return $this->hasMany(Customer::class);
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,4 +101,20 @@ Route::group(['prefix' => 'companies'], function () {
         ->name('companies.update');
     Route::delete('/delete/{id}', [CompanyController::class, 'destroy'])
         ->name('companies.destroy');
+});
+
+//Quản lý khách hàng
+Route::group(['prefix' => 'customers'], function () {
+    Route::get('/', [CustomerController::class, 'index'])
+        ->name('customers.index');
+    Route::get('/create', [CustomerController::class, 'create'])
+        ->name('customers.create');
+    Route::post('/store', [CustomerController::class, 'store'])
+        ->name('customers.store');
+    Route::get('/edit/{id}', [CustomerController::class, 'edit'])
+        ->name('customers.edit');
+    Route::post('/update/{id}', [CustomerController::class, 'update'])
+        ->name('customers.update');
+    Route::delete('/delete/{id}', [CustomerController::class, 'destroy'])
+        ->name('customers.destroy');
 });
