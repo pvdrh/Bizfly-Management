@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Danh sách quyền
+    Danh sách chức vụ
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Danh sách quyền</h1>
+                <h1 class="m-0 text-dark">Danh sách chức vụ</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -96,4 +96,13 @@
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
+@section('script')
+    <script>
+        @if(Session::has('success'))
+        toastr.success('{{ Session::get('success') }}');
+        @elseif(Session::has('error'))
+        toastr.error('{{ Session::get('error') }}');
+        @endif
+    </script>
+@endsection
 @endsection

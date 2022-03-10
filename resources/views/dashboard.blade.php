@@ -72,7 +72,7 @@
                     <div class="small-box bg-danger">
                         <div class="inner">
 
-                            <p>Bài Viết</p>
+                            <p>Sản phẩm</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
@@ -84,10 +84,10 @@
                 <!-- ./col -->
             </div>
             <!-- /.row -->
-    </section>
-    <!-- right col -->
-    </div>
-    <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
+        {{--    </section>--}}
+        <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
     </section>
 @endsection

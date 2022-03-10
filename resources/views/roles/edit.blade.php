@@ -13,7 +13,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Chức vụ</a></li>
                     <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
@@ -43,6 +43,9 @@
                                 <label for="exampleInputEmail1">Mô tả</label>
                                 <input type="text" name="description" value="{{$role->description}}"
                                        class="form-control" id="">
+                                @error('description')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->

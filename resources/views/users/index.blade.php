@@ -13,8 +13,8 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Người dùng</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Nhân viên</a></li>
                     <li class="breadcrumb-item active">Danh sách</li>
                 </ol>
             </div><!-- /.col -->
@@ -30,7 +30,6 @@
                     <div class="card-header">
                         <a href="{{route('users.create')}}" type="submit" style="text-decoration: none; color: white"
                            class="btn btn-success">Tạo mới</a>
-
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right"
@@ -98,4 +97,13 @@
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
+@section('script')
+    <script>
+        @if(Session::has('success'))
+        toastr.success('{{ Session::get('success') }}');
+        @elseif(Session::has('error'))
+        toastr.error('{{ Session::get('error') }}');
+        @endif
+    </script>
+@endsection
 @endsection

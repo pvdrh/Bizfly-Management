@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Session;
+use Illuminate\Support\Facades\Log;
+use Exception;
 
 class UserController extends Controller
 {
@@ -45,19 +50,30 @@ class UserController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $user = new User();
+        try {
+            $user = new User();
 
-        $user->name = $request->name;
-        $user->phone = $request->phone;
-        $user->email = $request->email;
-        $user->gender = (int)$request->gender;
-        $user->address = $request->address;
-        $user->role_id = $request->role_id;
-        $user->password = Hash::make($request->password);
-        $user->save();
+            $user->name = $request->name;
+            $user->phone = $request->phone;
+            $user->email = $request->email;
+            $user->gender = (int)$request->gender;
+            $user->address = $request->address;
+            $user->role_id = $request->role_id;
+            $user->password = Hash::make($request->password);
+            $user->save();
 
+            Session::flash('success', 'Tạo mới thành công!');
+        } catch (Exception $e) {
+            Log::error('Error store user', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Tạo mới thất bại!');
+        }
         return redirect()->route('users.index');
     }
 
@@ -95,18 +111,29 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        $user = User::find($id);
+        try {
+            $user = User::find($id);
 
-        $user->name = $request->name;
-        $user->phone = $request->phone;
-        $user->email = $request->email;
-        $user->gender = (int)$request->gender;
-        $user->address = $request->address;
-        $user->role_id = $request->role_id;
-        $user->save();
+            $user->name = $request->name;
+            $user->phone = $request->phone;
+            $user->email = $request->email;
+            $user->gender = (int)$request->gender;
+            $user->address = $request->address;
+            $user->role_id = $request->role_id;
+            $user->save();
 
+            Session::flash('success', 'Cập nhật thành công!');
+        } catch (Exception $e) {
+            Log::error('Error update user', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Cập nhật thất bại!');
+        }
         return redirect()->route('users.index');
     }
 
@@ -118,9 +145,20 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
+        try {
+            $user = User::find($id);
+            $user->delete();
 
+            Session::flash('success', 'Xóa thành công!');
+        } catch (Exception $e) {
+            Log::error('Error delete user', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Xóa thất bại!');
+        }
         return redirect()->route('users.index');
     }
 }

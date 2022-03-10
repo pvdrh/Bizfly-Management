@@ -24,8 +24,8 @@ class StoreRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'is_protected' => 'required'
+            'name' => 'required|max:30',
+            'description' => 'max:50'
         ];
     }
 
@@ -33,6 +33,7 @@ class StoreRoleRequest extends FormRequest
     {
         return [
             'required' => ':attribute không được để trống',
+            'max' => ':attribute không được lớn hơn :max ký tự',
         ];
     }
 
@@ -40,6 +41,7 @@ class StoreRoleRequest extends FormRequest
     {
         return [
             'name' => 'Tên chức vụ',
+            'description' => 'Mô tả'
         ];
     }
 }

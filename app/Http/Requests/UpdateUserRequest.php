@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRoleRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,11 @@ class UpdateRoleRequest extends FormRequest
     {
         return [
             'name' => 'required|max:30',
-            'description' => 'max:50'
+            'email' => 'email|required',
+            'phone' => 'numeric|required',
+            'address' => 'max:100',
+            'gender' => 'boolean',
+            'role_id' => 'required'
         ];
     }
 
@@ -34,6 +38,10 @@ class UpdateRoleRequest extends FormRequest
         return [
             'required' => ':attribute không được để trống',
             'max' => ':attribute không được lớn hơn :max ký tự',
+            'min' => ':attribute không được nhở hơn :min ký tự',
+            'numeric' => ':attribute phải là kiểu số',
+            'unique' => ':attribute đã tồn tại',
+            'email' => ':attribute chưa đúng định dạng'
         ];
     }
 
@@ -41,7 +49,11 @@ class UpdateRoleRequest extends FormRequest
     {
         return [
             'name' => 'Tên chức vụ',
-            'description' => 'Mô tả'
+            'email' => 'Email',
+            'phone' => 'Số điện thoại',
+            'address' => 'Địa chỉ',
+            'gender' => 'Giới tính',
+            'role_id' => 'Chức vụ'
         ];
     }
 }
