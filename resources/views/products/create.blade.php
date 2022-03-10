@@ -36,7 +36,8 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                <input type="text" name="name" class="form-control" id="" placeholder="Điền tên sản phẩm ">
+                                <input type="text" name="name" class="form-control" id=""
+                                       placeholder="Điền tên sản phẩm ">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
