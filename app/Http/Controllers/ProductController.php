@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Session;
+use Illuminate\Support\Facades\Log;
+use Exception;
+
 
 class ProductController extends Controller
 {
@@ -46,22 +51,33 @@ class ProductController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $product = new Product();
+        try {
+            $product = new Product();
 
-        $product->name = $request->name;
-        $product->category_id = $request->category_id;
-        $product->price = (int)$request->price;
-        $product->quantity = (int)$request->quantity;
-        $product->description = $request->description;
-        $product->total_sold = 0;
-        if ($request->hasFile('image')) {
-            $path = Storage::disk('public')->putFile('images/products', $request->file('image'));
-            $product->image = $path;
+            $product->name = $request->name;
+            $product->category_id = $request->category_id;
+            $product->price = (int)$request->price;
+            $product->quantity = (int)$request->quantity;
+            $product->description = $request->description;
+            $product->total_sold = 0;
+            if ($request->hasFile('image')) {
+                $path = Storage::disk('public')->putFile('images/products', $request->file('image'));
+                $product->image = $path;
+            }
+            $product->save();
+
+            Session::flash('success', 'Tạo mới thành công!');
+        } catch (Exception $e) {
+            Log::error('Error store product', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Tạo mới thất bại!');
         }
-        $product->save();
-
         return redirect()->route('products.index');
     }
 
@@ -101,19 +117,31 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->name = $request->name;
-        $product->category_id = $request->category_id;
-        $product->price = (int)$request->price;
-        $product->quantity = (int)$request->quantity;
-        $product->description = $request->description;
-        $product->total_sold = 0;
-        if ($request->hasFile('image')) {
-            $path = Storage::disk('public')->putFile('images/products', $request->file('image'));
-            $product->image = $path;
-        }
-        $product->save();
+        try {
+            $product = Product::find($id);
 
+            $product->name = $request->name;
+            $product->category_id = $request->category_id;
+            $product->price = (int)$request->price;
+            $product->quantity = (int)$request->quantity;
+            $product->description = $request->description;
+            $product->total_sold = 0;
+            if ($request->hasFile('image')) {
+                $path = Storage::disk('public')->putFile('images/products', $request->file('image'));
+                $product->image = $path;
+            }
+            $product->save();
+
+            Session::flash('success', 'Cập nhật thành công!');
+        } catch (Exception $e) {
+            Log::error('Error update product', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Cập nhật thất bại!');
+        }
         return redirect()->route('products.index');
 
     }
@@ -126,9 +154,20 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
+        try {
+            $product = Product::find($id);
+            $product->delete();
 
+            Session::flash('success', 'Xóa thành công!');
+        } catch (Exception $e) {
+            Log::error('Error delete product', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Xóa thất bại!');
+        }
         return redirect()->route('products.index');
     }
 }

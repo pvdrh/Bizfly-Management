@@ -58,7 +58,7 @@
                             <tbody>
                             @foreach($products as $product)
                                 <tr>
-                                    <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width: 150px;text-align: center">{{ $product->name }}</td>
+                                    <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width: 200px;text-align: center">{{ $product->name }}</td>
                                     <td style="text-align: center">
                                         @if($product->image)
                                             <img
@@ -69,7 +69,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $product->category_id }}</td>
-                                    <td>{{ number_format($product->price) }}</td>
+                                    <td>{{ number_format($product->price) }} VND</td>
                                     <td style="text-align: center">{!! $product->quantity !!}</td>
                                     <td style="text-align: center">{!! $product->total_sold !!}</td>
                                     <td>
@@ -101,4 +101,13 @@
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
+@section('script')
+    <script>
+        @if(Session::has('success'))
+        toastr.success('{{ Session::get('success') }}');
+        @elseif(Session::has('error'))
+        toastr.error('{{ Session::get('error') }}');
+        @endif
+    </script>
+@endsection
 @endsection

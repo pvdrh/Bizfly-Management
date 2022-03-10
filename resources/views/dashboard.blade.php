@@ -13,7 +13,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Trang Chủ</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang Chủ</a></li>
                         <li class="breadcrumb-item active">Thống Kê</li>
                     </ol>
                 </div><!-- /.col -->
@@ -29,7 +29,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-
+                            <h3>{{$categories}}</h3>
                             <p>Danh Mục</p>
                         </div>
                         <div class="icon">
@@ -43,7 +43,7 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-
+<h3>9</h3>
                             <p>Đơn Hàng</p>
                         </div>
                         <div class="icon">
@@ -57,7 +57,7 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-
+<h3>5</h3>
                             <p>Nguời Dùng</p>
                         </div>
                         <div class="icon">
@@ -71,7 +71,7 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-
+                            <h3>{{$products}}</h3>
                             <p>Sản phẩm</p>
                         </div>
                         <div class="icon">

@@ -90,12 +90,12 @@
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2()({
-                multiple: true,
-                ...
-            });
-        });
-    </script>
+{{--    <script>--}}
+{{--        $(document).ready(function() {--}}
+{{--            $('.js-example-basic-multiple').select2()({--}}
+{{--                multiple: true,--}}
+{{--                ...--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection
