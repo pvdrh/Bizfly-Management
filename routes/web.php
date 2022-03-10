@@ -59,22 +59,6 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('users.destroy');
     });
 
-//Quản lý chức vụ
-    Route::group(['prefix' => 'roles'], function () {
-        Route::get('/', [RoleController::class, 'index'])
-            ->name('roles.index');
-        Route::get('/create', [RoleController::class, 'create'])
-            ->name('roles.create');
-        Route::post('/store', [RoleController::class, 'store'])
-            ->name('roles.store');
-        Route::get('/update/{id}', [RoleController::class, 'edit'])
-            ->name('roles.edit');
-        Route::post('/update/{id}', [RoleController::class, 'update'])
-            ->name('roles.update');
-        Route::delete('/delete/{id}', [RoleController::class, 'destroy'])
-            ->name('roles.destroy');
-    });
-
 //Quản lý danh mục
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', [CategoryController::class, 'index'])

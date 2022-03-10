@@ -163,29 +163,6 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>
-                            Quản lý chức vụ
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('roles.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tạo mới</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('roles.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <form role="form" class="row" action="{{ route('logout') }}" method="post">
                     @csrf
                     <div class="col-md-4">
