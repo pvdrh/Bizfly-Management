@@ -27,7 +27,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{route('companies.create')}}" type="submit" style="text-decoration: none; color: white"
+                        <a href="{{route('companies.create')}}" type="submit"
+                           style="text-decoration: none; color: white"
                            class="btn btn-success">Tạo mới</a>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
@@ -87,4 +88,13 @@
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
+@section('script')
+    <script>
+        @if(Session::has('success'))
+        toastr.success('{{ Session::get('success') }}');
+        @elseif(Session::has('error'))
+        toastr.error('{{ Session::get('error') }}');
+        @endif
+    </script>
+@endsection
 @endsection

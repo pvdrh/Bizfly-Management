@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateCompanyRequest;
 use App\Http\Requests\StoreCompanyRequest;
+use Session;
+use Illuminate\Support\Facades\Log;
+use Exception;
 
 class CompanyController extends Controller
 {
@@ -40,12 +44,24 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        $company = new Company();
+        try {
+            $company = new Company();
 
-        $company->name = $request->name;
-        $company->phone = $request->phone;
-        $company->address = $request->address;
-        $company->save();
+            $company->name = $request->name;
+            $company->phone = $request->phone;
+            $company->address = $request->address;
+            $company->save();
+
+            Session::flash('success', 'Tạo mới thành công!');
+        } catch (Exception $e) {
+            Log::error('Error store company', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Tạo mới thất bại!');
+        }
 
         return redirect()->route('companies.index');
     }
@@ -80,13 +96,25 @@ class CompanyController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCompanyRequest $request, $id)
     {
-        $company = Company::find($id);
-        $company->name = $request->name;
-        $company->phone = $request->phone;
-        $company->address = $request->address;
-        $company->save();
+        try {
+            $company = Company::find($id);
+            $company->name = $request->name;
+            $company->phone = $request->phone;
+            $company->address = $request->address;
+            $company->save();
+
+            Session::flash('success', 'Cập nhật thành công!');
+        } catch (Exception $e) {
+            Log::error('Error update company', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Cập nhật thất bại!');
+        }
 
         return redirect()->route('companies.index');
     }
@@ -99,9 +127,19 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        $company = Company::find($id);
-        $company->delete();
+        try {
+            $company = Company::find($id);
+            $company->delete();
+            Session::flash('success', 'Xóa thành công!');
+        } catch (Exception $e) {
+            Log::error('Error delete company', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
 
+            Session::flash('error', 'Xóa thất bại!');
+        }
         return redirect()->route('companies.index');
     }
 }

@@ -6,6 +6,10 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Session;
+use Illuminate\Support\Facades\Log;
+use Exception;
+
 
 class CategoryController extends Controller
 {
@@ -40,11 +44,23 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $category = new Category();
+        try {
+            $category = new Category();
 
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $category->save();
+            $category->name = $request->name;
+            $category->description = $request->description;
+            $category->save();
+
+            Session::flash('success', 'Tạo mới thành công!');
+        } catch (Exception $e) {
+            Log::error('Error store category', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Tạo mới thất bại!');
+        }
 
         return redirect()->route('categories.index');
     }
@@ -81,11 +97,22 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, $id)
     {
-        $category = Category::find($id);
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $category->save();
+        try {
+            $category = Category::find($id);
+            $category->name = $request->name;
+            $category->description = $request->description;
+            $category->save();
 
+            Session::flash('success', 'Cập nhật thành công!');
+        } catch (Exception $e) {
+            Log::error('Error update category', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Cập nhật thất bại!');
+        }
         return redirect()->route('categories.index');
     }
 
@@ -97,9 +124,20 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
+        try {
+            $category = Category::find($id);
+            $category->delete();
 
+            Session::flash('success', 'Xóa thành công!');
+        } catch (Exception $e) {
+            Log::error('Error delete category', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Xóa thất bại!');
+        }
         return redirect()->route('categories.index');
     }
 }
