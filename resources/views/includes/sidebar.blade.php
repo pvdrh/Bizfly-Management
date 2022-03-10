@@ -104,13 +104,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('customers.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tạo mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('customers.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
@@ -186,12 +186,12 @@
                         </li>
                     </ul>
                 </li>
-                    <form class="row" action="" method="post">
-                        @csrf
-                        <div class="col-md-4">
-                        </div>
-                        <button type="submit" class="btn btn-outline-primary">Đăng Xuất</button>
-                    </form>
+                <form class="row" action="" method="post">
+                    @csrf
+                    <div class="col-md-4">
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary">Đăng Xuất</button>
+                </form>
                 </li>
                 </li>
             </ul>
