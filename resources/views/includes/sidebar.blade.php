@@ -14,7 +14,7 @@
                 <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Phạm Văn Duy</a>
+                <a href="#" class="d-block">Admin</a>
             </div>
         </div>
 
@@ -186,7 +186,7 @@
                         </li>
                     </ul>
                 </li>
-                <form class="row" action="" method="post">
+                <form role="form" class="row" action="{{ route('logout') }}" method="post">
                     @csrf
                     <div class="col-md-4">
                     </div>

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Session;
@@ -54,15 +55,18 @@ class UserController extends Controller
     {
         try {
             $user = new User();
-
-            $user->name = $request->name;
-            $user->phone = $request->phone;
-            $user->email = $request->email;
-            $user->gender = (int)$request->gender;
-            $user->address = $request->address;
-            $user->role_id = $request->role_id;
-            $user->password = Hash::make($request->password);
+            $user->email = $request->get('email');
+            $user->password = Hash::make($request->get('password'));
             $user->save();
+
+            $info = new UserInfo();
+            $info->user_id = $user->id;
+            $info->name = ucwords($request->get('name'));
+            $info->gender = $request->get('gender');
+            $info->phone = $request->get('phone');
+            $info->address = $request->get('address');
+            $info->role_id = $request->get('role_id');
+            $info->save();
 
             Session::flash('success', 'Tạo mới thành công!');
         } catch (Exception $e) {

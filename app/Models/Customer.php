@@ -17,4 +17,8 @@ class Customer extends Model
         'customer_type',
         'user_id'
     ];
+
+    public function orders(){
+        $this->belongsToMany(Order::class);
+    }
 }
