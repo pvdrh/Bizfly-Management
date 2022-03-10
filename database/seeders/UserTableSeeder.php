@@ -18,7 +18,14 @@ class UserTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'email' => 'admin@bizfly.vn',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('000000'),
+            ]
+        ]);
+
+        DB::table('users')->insert([
+            [
+                'email' => 'employee@gmail.com',
                 'password' => Hash::make('000000'),
             ]
         ]);
