@@ -57,7 +57,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>Giá bán</label>
-                                        <input type="text" name="price" min="1" class="form-control"
+                                        <input type="text" name="price" min="1" class="form-control input-element"
                                                placeholder="Điền giá bán">
                                         @error('price')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -110,4 +110,12 @@
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
+@section('script')
+<script>
+    var cleave = new Cleave('.input-element', {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+    });
+</script>
+@endsection
 @endsection

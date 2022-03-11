@@ -25,12 +25,12 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:30',
-            'email' => 'email|required|unique:users',
+            'email' => 'email|required|unique:user_info',
             'password' => 'required|min:6:max:20',
-            'phone' => 'numeric|required|unique:users',
+            'phone' => 'numeric|required|unique:user_info',
             'address' => 'max:100',
             'gender' => 'boolean',
-            'role_id' => 'required'
+            'role' => 'required|numeric'
         ];
     }
 
@@ -55,7 +55,7 @@ class StoreUserRequest extends FormRequest
             'phone' => 'Số điện thoại',
             'address' => 'Địa chỉ',
             'gender' => 'Giới tính',
-            'role_id' => 'Chức vụ'
+            'role' => 'Chức vụ'
         ];
     }
 }

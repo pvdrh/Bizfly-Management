@@ -22,11 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
-        foreach ($users as $user) {
-            $role = Role::find($user->role_id);
-            $user->role_id = $role ? $role->name : "Đang cập nhật";
-        }
+        $users = User::with('info')->get();
         return view('users.index')->with([
             'users' => $users
         ]);
@@ -39,10 +35,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::get();
-        return view('users.create')->with([
-            'roles' => $roles,
-        ]);
+        return view('users.create');
     }
 
     /**
@@ -62,10 +55,11 @@ class UserController extends Controller
             $info = new UserInfo();
             $info->user_id = $user->id;
             $info->name = ucwords($request->get('name'));
-            $info->gender = $request->get('gender');
-            $info->phone = $request->get('phone');
+            $info->gender = (int)$request->get('gender');
+            $info->phone = (int)$request->get('phone');
             $info->address = $request->get('address');
-            $info->role_id = $request->get('role_id');
+            $info->role = $request->get('role');
+            $info->is_protected = false;
             $info->save();
 
             Session::flash('success', 'Tạo mới thành công!');
@@ -101,10 +95,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $role = Role::get();
         return view('users.edit')->with([
             'user' => $user,
-            'role' => $role
         ]);
     }
 
@@ -118,14 +110,13 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, $id)
     {
         try {
-            $user = User::find($id);
+            $user = UserInfo::where('user_id', $id)->first();
 
             $user->name = $request->name;
             $user->phone = $request->phone;
-            $user->email = $request->email;
             $user->gender = (int)$request->gender;
             $user->address = $request->address;
-            $user->role_id = $request->role_id;
+            $user->role = $request->role;
             $user->save();
 
             Session::flash('success', 'Cập nhật thành công!');

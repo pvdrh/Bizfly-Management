@@ -12,6 +12,11 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
     protected $redirectTo = RouteServiceProvider::HOME;
 
     public function showLoginForm()

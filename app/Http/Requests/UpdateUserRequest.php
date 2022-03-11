@@ -24,12 +24,10 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:30',
-            'email' => 'email|required',
-            'phone' => 'numeric|required',
+            'phone' => 'numeric',
             'address' => 'max:100',
             'gender' => 'boolean',
-            'role_id' => 'required'
+            'role' => 'numeric'
         ];
     }
 
@@ -41,7 +39,6 @@ class UpdateUserRequest extends FormRequest
             'min' => ':attribute không được nhở hơn :min ký tự',
             'numeric' => ':attribute phải là kiểu số',
             'unique' => ':attribute đã tồn tại',
-            'email' => ':attribute chưa đúng định dạng'
         ];
     }
 
@@ -49,11 +46,10 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'Tên chức vụ',
-            'email' => 'Email',
             'phone' => 'Số điện thoại',
             'address' => 'Địa chỉ',
             'gender' => 'Giới tính',
-            'role_id' => 'Chức vụ'
+            'role' => 'Chức vụ'
         ];
     }
 }

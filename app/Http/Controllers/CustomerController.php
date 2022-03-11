@@ -31,10 +31,8 @@ class CustomerController extends Controller
     public function create()
     {
         $companies = Company::get();
-        $roles = Role::get();
         $users = User::get();
         return view('customers.create')->with([
-            'roles' => $roles,
             'companies' => $companies,
             'users' => $users
         ]);

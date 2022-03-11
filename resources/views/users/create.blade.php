@@ -49,14 +49,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mật khẩu</label>
-                                <input type="password" min="6" max="20" class="form-control" id="">
+                                <input name="password" type="password" min="6" max="20" class="form-control" id="">
                                 @error('password')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số điện thoại</label>
-                                <input type="text" name="phone" class="form-control" id="" placeholder="Nhập số điện thoại">
+                                <input type="text" name="phone" class="form-control" id="intTextBox" placeholder="Nhập số điện thoại">
                                 @error('phone')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
@@ -80,12 +80,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Chức vụ</label>
-                                <select name="role_id" class="form-control select2" style="width: 100%;">
-                                    @foreach($roles as $role)
-                                        <option value="{{ $role->_id }}">{{ $role->name }}</option>
-                                    @endforeach
+                                <select name="role" class="form-control select2" style="width: 100%;">
+                                        <option value="0">Admin</option>
+                                        <option value="1">Nhân viên</option>
                                 </select>
-                                @error('role_id')
+                                @error('role')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -102,4 +101,29 @@
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
+    @section('script')
+        <script>
+            (function($) {
+                $.fn.inputFilter = function(inputFilter) {
+                    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+                        if (inputFilter(this.value)) {
+                            this.oldValue = this.value;
+                            this.oldSelectionStart = this.selectionStart;
+                            this.oldSelectionEnd = this.selectionEnd;
+                        } else if (this.hasOwnProperty("oldValue")) {
+                            this.value = this.oldValue;
+                            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                        } else {
+                            this.value = "";
+                        }
+                    });
+                };
+            }(jQuery));
+
+
+            // Install input filters.
+            $("#intTextBox").inputFilter(function(value) {
+                return /^-?\d*$/.test(value); });
+        </script>
+@endsection
 @endsection

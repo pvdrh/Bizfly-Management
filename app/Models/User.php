@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
+use Jenssegers\Mongodb\Eloquent\Model;
+use Moloquent\Eloquent\Model as Eloquent;
+use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -40,6 +42,6 @@ class User extends Authenticatable
 
     public function info()
     {
-        return $this->hasOne(UserInfo::class);
+        return $this->hasOne(UserInfo::class,'user_id');
     }
 }

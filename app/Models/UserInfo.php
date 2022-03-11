@@ -18,9 +18,11 @@ class UserInfo extends Model
         'gender',
         'user_id',
         'role',
+        'is_protected'
     ];
 
-    public function user(){
-        return $this->hasOne(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

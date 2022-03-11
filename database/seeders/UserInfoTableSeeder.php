@@ -21,9 +21,11 @@ class UserInfoTableSeeder extends Seeder
             [
                 'role' => UserInfo::ROLE['admin'],
                 'gender' => 1,
-                'name' => 'Phạm Văn Duy',
+                'name' => 'Admin',
                 'address' => 'Thanh Xuân, Hà Nội',
-                'user_id' => $admin
+                'phone' => '0835904783',
+                'user_id' => $admin,
+                'is_protected' => true
             ]
         ]);
 
@@ -31,10 +33,12 @@ class UserInfoTableSeeder extends Seeder
         DB::table('user_info')->insert([
             [
                 'role' => UserInfo::ROLE['employee'],
-                'gender' => 1,
-                'name' => 'Phạm Văn Duy',
-                'address' => 'Thanh Xuân, Hà Nội',
-                'user_id' => $employee
+                'gender' => 0,
+                'name' => 'Employee',
+                'phone' => '0931884553',
+                'address' => 'Hai Bà Trưng, Hà Nội',
+                'user_id' => $employee,
+                'is_protected' => false
             ]
         ]);
     }
