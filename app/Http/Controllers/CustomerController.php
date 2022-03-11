@@ -7,6 +7,9 @@ use App\Models\Customer;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Session;
+use Illuminate\Support\Facades\Log;
+use Exception;
 
 class CustomerController extends Controller
 {
@@ -31,7 +34,7 @@ class CustomerController extends Controller
     public function create()
     {
         $companies = Company::get();
-        $users = User::get();
+        $users = User::with('info')->get();
         return view('customers.create')->with([
             'companies' => $companies,
             'users' => $users
@@ -46,7 +49,33 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $customer = new Customer();
+
+            $customer->name = $request->name;
+            $customer->email = $request->email;
+            $customer->phone = $request->phone;
+            $customer->age = (int)$request->age;
+            $customer->job = $request->job;
+            $customer->address = $request->address;
+            $customer->gender = $request->gender;
+            $customer->customer_type = $request->customer_type;
+            $customer->company_id = $request->company_id;
+            $customer->employee_id = $request->employee_id;
+            $customer->save();
+
+            Session::flash('success', 'Tạo mới thành công!');
+        } catch (Exception $e) {
+            Log::error('Error store customer', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Tạo mới thất bại!');
+        }
+
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -57,7 +86,21 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $customer = Customer::find($id);
+        $a = $customer->pluck('employee_id');
+        dd($a);
+
+        $employee_ids = [];
+        foreach ($customer_employees as $data) {
+            foreach ($data->employees as $key => $value) {
+                $employees = $key;
+            }
+        }
+        $company = Company::find($customer->company_id);
+        return view('customers.show')->with([
+            'customer' => $customer,
+            'company' => $company
+        ]);
     }
 
     /**

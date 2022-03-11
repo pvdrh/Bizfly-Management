@@ -68,7 +68,7 @@
                                     <div class="form-group">
                                         <label>Số lượng</label>
                                         <input type="number" name="quantity" min="1" class="form-control"
-                                               placeholder="Điền số lượng">
+                                               placeholder="Điền số lượng   ">
                                         @error('quantity')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
                                         @enderror

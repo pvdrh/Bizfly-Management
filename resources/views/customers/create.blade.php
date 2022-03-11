@@ -32,53 +32,91 @@
                     <form role="form" method="post" action="{{ route('customers.store') }}">
                         @csrf
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tên khách hàng</label>
-                                <input type="text" name="name" class="form-control" id=""
-                                       placeholder="Nhập tên khách hàng">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tên khách hàng</label>
+                                        <input type="text" name="name" class="form-control" id=""
+                                               placeholder="Nhập tên khách hàng">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input type="email" name="email" class="form-control" id="" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Số điện thoại</label>
+                                        <input type="text" name="phone" class="form-control" id="inBox"
+                                               placeholder="Nhập số điện thoại">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" name="email" class="form-control" id="" placeholder="Email">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tuổi</label>
+                                        <input min="18" type="number" name="age" class="form-control" id=""
+                                               placeholder="Nhập tuổi">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Nghề nghiệp</label>
+                                        <input type="text" name="job" class="form-control" id=""
+                                               placeholder="Nhập địa chỉ">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Địa chỉ</label>
+                                        <input type="text" name="address" class="form-control" id=""
+                                               placeholder="Nhập địa chỉ">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Mật khẩu</label>
-                                <input type="text" class="form-control" id="">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Số điện thoại</label>
-                                <input type="text" name="phone" class="form-control" id="inBox"
-                                       placeholder="Nhập số điện thoại">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Địa chỉ</label>
-                                <input type="text" name="address" class="form-control" id="" placeholder="Nhập địa chỉ">
-                            </div>
-                            <div class="form-group">
-                                <label>Giới tính</label>
-                                <select name="gender" class="form-control select2" style="width: 100%;">
-                                    <option value="0">Nữ</option>
-                                    <option value="1">Nam</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Đơn vị công tác</label>
-                                <select name="company_id" class="form-control select2" style="width: 100%;">
-                                    @foreach($companies as $company)
-                                        <option value="{{ $company->_id }}">{{ $company->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Nhân viên hỗ trợ</label>
-                                <select id="languages" class="form-control multi_select" multiple name="employee_id">
-                                    <option value="JavaScript">JavaScript</option>
-                                    <option value="C++">C++</option>
-                                    <option value="Python">Python</option>
-                                    <option value="Ruby">Ruby</option>
-                                    <option value="PHO">PHP</option>
-                                    <option value="Pascal">Pascal</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="form-group">
+                                        <label>Giới tính</label>
+                                        <select name="gender" class="form-control select2" style="width: 100%;">
+                                            <option value="0">Nữ</option>
+                                            <option value="1">Nam</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label>Phân loại</label>
+                                        <select name="customer_type" class="form-control select2" style="width: 100%;">
+                                            <option value="0">Khách mới</option>
+                                            <option value="1">Khách hàng thân thiết</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>Đơn vị công tác</label>
+                                        <select name="company_id" class="form-control select2" style="width: 100%;">
+                                            @foreach($companies as $company)
+                                                <option value="{{ $company->_id }}">{{ $company->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>Nhân viên hỗ trợ</label>
+                                        <select id="languages" class="form-control multi_select" multiple
+                                                name="employee_id[]">
+                                            @foreach($users as $user)
+                                                <option value="{{$user->_id}}">{{$user->info->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -111,7 +149,6 @@
                 });
             };
         }(jQuery));
-
 
         // Install input filters.
         $("#inBox").inputFilter(function (value) {

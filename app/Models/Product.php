@@ -16,19 +16,6 @@ class Product extends Model
         'category_id',
     ];
 
-//    protected $appends = ['image_src'];
-//
-//    public function getImageSrcAttribute()
-//    {
-//        $link = '';
-//
-//        if ($this->image) {
-//            $link = env('APP_URL') . '/storage/' . $this->image;
-//        }
-//
-//        return $link;
-//    }
-
     public function orders()
     {
         $this->belongsToMany(Order::class);

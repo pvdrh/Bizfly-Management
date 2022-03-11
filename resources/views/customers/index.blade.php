@@ -28,7 +28,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{route('customers.create')}}" type="submit" style="text-decoration: none; color: white"
+                        <a href="{{route('customers.create')}}" type="submit"
+                           style="text-decoration: none; color: white"
                            class="btn btn-success">Tạo mới</a>
 
                         <div class="card-tools">
@@ -51,25 +52,29 @@
                                 <th>Email</th>
                                 <th>Số điện thoại</th>
                                 <th>Địa chỉ</th>
-                                <th>Giới tính</th>
-                                <th>Chức vụ</th>
+                                <th>Phân loại</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($customers as $customer)
                                 <tr>
-                                    <td>{{$customer->name}}</td>
+                                    <td><span
+                                            class="d-inline-block" tabindex="0" data-bs-toggle="tooltip"
+                                            title="Chi tiết khách hàng">
+  <a style="font-weight: bold; color: cornflowerblue" href="{{route('customers.show', $customer->_id)}}">{{$customer->name}}</a>
+</span>
+                                    </td>
                                     <td>{{$customer->email}}</td>
                                     <td>{{$customer->phone}}</td>
                                     <td>{{$customer->address}}</td>
-                                    @if($customer->gender == 1)
-                                        <td>Nam</td>
+                                    @if($customer->customer_type == 0)
+                                        <td>Khách lạ</td>
                                     @else
-                                        <td>Nữ</td>
+                                        <td>Khách hàng thân thiết</td>
                                     @endif
                                     <td>{{$customer->role_id}}</td>
                                     <td>
-                                        <a href="{{ route('customer.edit',$customer['_id']) }}" type="submit"
+                                        <a href="{{ route('customers.edit',$customer['_id']) }}" type="submit"
                                            class="btn btn-info">
                                             <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                         </a>
@@ -98,4 +103,13 @@
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
+@section('script')
+    <script>
+        @if(Session::has('success'))
+        toastr.success('{{ Session::get('success') }}');
+        @elseif(Session::has('error'))
+        toastr.error('{{ Session::get('error') }}');
+        @endif
+    </script>
+@endsection
 @endsection

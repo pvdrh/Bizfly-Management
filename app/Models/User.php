@@ -44,4 +44,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserInfo::class,'user_id');
     }
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
+    }
 }
