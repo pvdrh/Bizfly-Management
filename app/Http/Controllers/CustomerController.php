@@ -87,19 +87,13 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::find($id);
-        $a = $customer->pluck('employee_id');
-        dd($a);
-
-        $employee_ids = [];
-        foreach ($customer_employees as $data) {
-            foreach ($data->employees as $key => $value) {
-                $employees = $key;
-            }
-        }
+        $customer_employees = $customer->employee_id;
+        $users = User::whereIn('_id', $customer_employees)->get();
         $company = Company::find($customer->company_id);
         return view('customers.show')->with([
             'customer' => $customer,
-            'company' => $company
+            'company' => $company,
+            'users' => $users
         ]);
     }
 
@@ -111,7 +105,15 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::find($id);
+        $customer_employees = $customer->employee_id;
+        $users = User::whereIn('_id', $customer_employees)->get();
+        $company = Company::find($customer->company_id);
+        return view('customers.edit')->with([
+            'customer' => $customer,
+            'company' => $company,
+            'users' => $users
+        ]);
     }
 
     /**
@@ -123,7 +125,33 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $customer = Customer::find($id);
+
+            $customer->name = $request->name;
+            $customer->email = $request->email;
+            $customer->phone = $request->phone;
+            $customer->age = (int)$request->age;
+            $customer->job = $request->job;
+            $customer->address = $request->address;
+            $customer->gender = $request->gender;
+            $customer->customer_type = $request->customer_type;
+            $customer->company_id = $request->company_id;
+            $customer->employee_id = $request->employee_id;
+            $customer->save();
+
+            Session::flash('success', 'Cập nhật thành công!');
+        } catch (Exception $e) {
+            Log::error('Error update customer', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Cập nhật thất bại!');
+        }
+
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -134,6 +162,20 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $customer = Customer::find($id);
+            $customer->delete();
+
+            Session::flash('success', 'Xóa thành công!');
+        } catch (Exception $e) {
+            Log::error('Error delete customer', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Xóa thất bại!');
+        }
+        return redirect()->route('customers.index');
     }
 }

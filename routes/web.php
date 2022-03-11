@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\RoleController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
@@ -22,7 +22,7 @@ use App\Http\Controllers\Auth\LoginController;
 */
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('login', [LoginController::class, 'login'])->name('login.store');
-Route::post('logout',  [LoginController::class, 'logout'])->name('logout');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -93,6 +93,24 @@ Route::group(['middleware' => 'auth'], function () {
 
 //Quản lý khách hàng
     Route::group(['prefix' => 'customers'], function () {
+        Route::get('/', [CustomerController::class, 'index'])
+            ->name('customers.index');
+        Route::get('/create', [CustomerController::class, 'create'])
+            ->name('customers.create');
+        Route::post('/store', [CustomerController::class, 'store'])
+            ->name('customers.store');
+        Route::get('/show/{id}', [CustomerController::class, 'show'])
+            ->name('customers.show');
+        Route::get('/edit/{id}', [CustomerController::class, 'edit'])
+            ->name('customers.edit');
+        Route::post('/update/{id}', [CustomerController::class, 'update'])
+            ->name('customers.update');
+        Route::delete('/delete/{id}', [CustomerController::class, 'destroy'])
+            ->name('customers.destroy');
+    });
+
+    //Quản lý đơn hàng
+    Route::group(['prefix' => 'orders'], function () {
         Route::get('/', [CustomerController::class, 'index'])
             ->name('customers.index');
         Route::get('/create', [CustomerController::class, 'create'])
