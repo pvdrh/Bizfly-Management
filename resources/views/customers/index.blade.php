@@ -31,6 +31,10 @@
                         <a href="{{route('customers.create')}}" type="submit"
                            style="text-decoration: none; color: white"
                            class="btn btn-success">Tạo mới</a>
+                        <a href="{{route('customers.export')}}" type="submit"
+                           style="text-decoration: none; color: white"
+                           class="btn btn-secondary">Xuất excel
+                        </a>
 
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">

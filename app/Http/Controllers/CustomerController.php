@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CustomersExport;
 use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Role;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CustomerController extends Controller
 {
@@ -22,21 +24,7 @@ class CustomerController extends Controller
     public function index()
     {
         $user_id = Auth::user()->_id;
-        $query = Customer::query();
-        if ($user_id) {
-            $query->where(function ($query) use ($user_id) {
-                $query->where('employee_id', '=' . $user_id);
-            });
-        }
-        dd($query->get());
-        $customers = [];
-//        foreach ($as as $a) {
-//            $cust
-//        }
-//        $customers = Customer::get();
-//        $users->contains(User::find(1));
-//        $query = Customer::query()->where('employee_id', '=', $user_id);
-//        dd($query);
+        $customers = Customer::get();
         return view('customers.index')->with([
             'customers' => $customers,
         ]);
@@ -193,5 +181,10 @@ class CustomerController extends Controller
             Session::flash('error', 'Xóa thất bại!');
         }
         return redirect()->route('customers.index');
+    }
+
+    public function exportExcel(){
+        $customers = Customer::get();
+        return Excel::download(new CustomersExport($customers), 'customers.xlsx');
     }
 }
