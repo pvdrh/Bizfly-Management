@@ -24,7 +24,8 @@ class CustomerController extends Controller
     public function index()
     {
         $user_id = Auth::user()->_id;
-        $customers = Customer::get();
+fi        $customers = Customer::where(['employee_id' => '622bff3f4b220000990019d4'])->get();
+        dd($customers);
         return view('customers.index')->with([
             'customers' => $customers,
         ]);
