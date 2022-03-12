@@ -43,7 +43,11 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>{{$orders}}</h3>
+                            @if($orders)
+                                <h3>{{$orders}}</h3>
+                            @else
+                                <h3>5</h3>
+                            @endif
                             <p>Đơn Hàng</p>
                         </div>
                         <div class="icon">
@@ -57,7 +61,11 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>{{$customers}}</h3>
+                            @if($customers)
+                                <h3>{{$users}}</h3>
+                            @else
+                                <h3>8</h3>
+                            @endif
                             <p>Nguời Dùng</p>
                         </div>
                         <div class="icon">
@@ -71,7 +79,11 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>{{$products}}</h3>
+                            @if($products)
+                                <h3>{{$products}}</h3>
+                            @else
+                                <h3>20</h3>
+                            @endif
                             <p>Sản phẩm</p>
                         </div>
                         <div class="icon">

@@ -2,13 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Customer;
-use App\Models\Order;
-use App\Models\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-
 class DashboardController extends Controller
 {
     public function index()
