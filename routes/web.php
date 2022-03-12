@@ -111,19 +111,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Quản lý đơn hàng
     Route::group(['prefix' => 'orders'], function () {
-        Route::get('/', [CustomerController::class, 'index'])
-            ->name('customers.index');
-        Route::get('/create', [CustomerController::class, 'create'])
-            ->name('customers.create');
-        Route::post('/store', [CustomerController::class, 'store'])
-            ->name('customers.store');
-        Route::get('/show/{id}', [CustomerController::class, 'show'])
-            ->name('customers.show');
-        Route::get('/edit/{id}', [CustomerController::class, 'edit'])
-            ->name('customers.edit');
-        Route::post('/update/{id}', [CustomerController::class, 'update'])
-            ->name('customers.update');
-        Route::delete('/delete/{id}', [CustomerController::class, 'destroy'])
-            ->name('customers.destroy');
+        Route::get('/', [OrderController::class, 'index'])
+            ->name('orders.index');
+        Route::get('/create', [OrderController::class, 'create'])
+            ->name('orders.create');
+        Route::post('/store', [OrderController::class, 'store'])
+            ->name('orders.store');
+        Route::get('/show/{id}', [OrderController::class, 'show'])
+            ->name('orders.show');
+        Route::delete('/delete/{id}', [OrderController::class, 'destroy'])
+            ->name('orders.destroy');
     });
 });

@@ -2,10 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
+    protected $table = 'orders';
+
+    const STATUS = [
+        'pending' => 0,
+        'approved' => 1,
+    ];
+
+    protected $fillable = [
+        'code',
+        'status',
+        'product_id',
+        'created_at',
+        'note',
+        'total'
+    ];
+
+    public function customers()
+    {
+        return $this->hasOne(Customer::class, '_id', 'customer_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

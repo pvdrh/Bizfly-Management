@@ -109,7 +109,7 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label>Nhân viên hỗ trợ</label>
-                                        <select id="languages" class="form-control multi_select" multiple
+                                        <select class="form-control multi_select" multiple
                                                 name="employee_id[]">
                                             @foreach($users as $user)
                                                 <option value="{{$user->_id}}">{{$user->info->name}}</option>
@@ -131,6 +131,11 @@
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
+    <style>
+        .select2-selection__choice__display{
+            padding-left: 10px !important;
+        }
+    </style>
 @section('script')
     <script>
         (function ($) {
@@ -155,8 +160,7 @@
             return /^-?\d*$/.test(value);
         });
         $(document).ready(function () {
-            $('.multi_select').selectpicker();
-
+            $('.multi_select').select2();
         });
     </script>
 @endsection

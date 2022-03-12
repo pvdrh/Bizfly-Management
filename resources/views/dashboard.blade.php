@@ -43,7 +43,7 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-<h3>9</h3>
+                            <h3>{{$orders}}</h3>
                             <p>Đơn Hàng</p>
                         </div>
                         <div class="icon">
@@ -57,7 +57,7 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-<h3>5</h3>
+                            <h3>{{$customers}}</h3>
                             <p>Nguời Dùng</p>
                         </div>
                         <div class="icon">

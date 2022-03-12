@@ -14,12 +14,34 @@ class CompanyTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i < 10; $i++) {
-            DB::table('companies')->insert([
-                [
-                    'name' => 'Công ty '.$i,
-                ]
-            ]);
-        }
+        DB::table('companies')->insert([
+            [
+                'name' => 'Công ty một thành viên',
+            ]
+        ]);
+
+        DB::table('companies')->insert([
+            [
+                'name' => 'Công ty hai thành viên',
+            ]
+        ]);
+
+        DB::table('companies')->insert([
+            [
+                'name' => 'Công ty ba thành viên',
+            ]
+        ]);
+
+        DB::table('companies')->insert([
+            [
+                'name' => 'Công ty bốn thành viên',
+            ]
+        ]);
+
+        DB::table('companies')->insert([
+            [
+                'name' => 'Công ty năm thành viên',
+            ]
+        ]);
     }
 }

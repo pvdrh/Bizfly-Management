@@ -16,12 +16,12 @@ class UserInfoTableSeeder extends Seeder
      */
     public function run()
     {
-        $admin = User::where('email','admin@gmail.com')->first()->_id;
+        $admin = User::where('email', 'admin@gmail.com')->first()->_id;
         DB::table('user_info')->insert([
             [
                 'role' => UserInfo::ROLE['admin'],
                 'gender' => 1,
-                'name' => 'Admin',
+                'name' => 'Quản trị viên',
                 'address' => 'Thanh Xuân, Hà Nội',
                 'phone' => '0835904783',
                 'user_id' => $admin,
@@ -29,16 +29,16 @@ class UserInfoTableSeeder extends Seeder
             ]
         ]);
 
-        $employee = User::where('email','employee@gmail.com')->first()->_id;
+        $employee = User::where('email', 'employee@gmail.com')->first()->_id;
         DB::table('user_info')->insert([
             [
                 'role' => UserInfo::ROLE['employee'],
                 'gender' => 0,
-                'name' => 'Employee',
+                'name' => 'Nhân viên',
                 'phone' => '0931884553',
                 'address' => 'Hai Bà Trưng, Hà Nội',
                 'user_id' => $employee,
-                'is_protected' => false
+                'is_protected' => true
             ]
         ]);
     }
