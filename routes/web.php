@@ -119,6 +119,12 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('orders.store');
         Route::get('/show/{id}', [OrderController::class, 'show'])
             ->name('orders.show');
+        Route::get('/accept/{id}', [OrderController::class, 'acceptOrder'])
+            ->name('orders.accept');
+        Route::get('/return/{id}', [OrderController::class, 'returnOrder'])
+            ->name('orders.return');
+        Route::get('/cancel/{id}', [OrderController::class, 'cancelOrder'])
+            ->name('orders.cancel');
         Route::delete('/delete/{id}', [OrderController::class, 'destroy'])
             ->name('orders.destroy');
     });

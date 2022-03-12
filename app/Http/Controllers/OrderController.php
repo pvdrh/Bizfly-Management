@@ -124,22 +124,65 @@ class OrderController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function acceptOrder($id)
     {
         try {
             $order = Order::find($id);
-            $order->delete();
 
-            Session::flash('success', 'Xóa thành công!');
+            $order->status = Order::STATUS['approved'];
+            $order->save();
+
+            Session::flash('success', 'Duyệt đơn thành công!');
         } catch (Exception $e) {
-            Log::error('Error delete order', [
+            Log::error('Error accept order', [
                 'method' => __METHOD__,
                 'message' => $e->getMessage(),
                 'line' => __LINE__
             ]);
 
-            Session::flash('error', 'Xóa thất bại!');
+            Session::flash('error', 'Duyệt đơn thất bại!');
         }
-        return redirect()->route('categories.index');
+        return view('orders.index');
+    }
+
+    public function cancelOrder($id)
+    {
+        try {
+            $order = Order::find($id);
+            $order->delete();
+
+            Session::flash('success', 'Hủy đơn thành công!');
+        } catch (Exception $e) {
+            Log::error('Error cancel order', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Hủy thất bại!');
+        }
+        return redirect()->route('orders.index');
+    }
+
+    public function returnOrder($id)
+    {
+        try {
+            $order = Order::find($id);
+
+            $order->status = Order::STATUS['return'];
+            $order->save();
+
+            Session::flash('success', 'Hoàn đơn thành công!');
+        } catch (Exception $e) {
+            Log::error('Error return order', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Duyệt đơn thất bại!');
+        }
+        return view('orders.index');
     }
 }

@@ -60,31 +60,31 @@
                                 <tr>
                                     <td style="font-weight: bold">{{$order->code}}</td>
                                     @if($order->customers)
-                                    <td>{{$order->customers->name}}</td>
-                                    <td>{{$order->customers->phone}}</td>
+                                        <td>{{$order->customers->name}}</td>
+                                        <td>{{$order->customers->phone}}</td>
                                     @endif
                                     <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width: 150px;">{{$order->customers->address}}</td>
                                     <td>{{$order->note}}</td>
                                     <td>{{number_format($order->total) }} VND</td>
                                     <td>{{$order->created_at->format('d-m-Y')}}</td>
-                                {{--                                    <td>--}}
-                                {{--                                        <a href="{{ route('users.edit',$order['_id']) }}" type="submit"--}}
-                                {{--                                           class="btn btn-info">--}}
-                                {{--                                            <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa--}}
-                                {{--                                        </a>--}}
-                                {{--                                    </td>--}}
+                                    <td>
+                                        <a href="" type="submit"
+                                           class="btn btn-success">
+                                            <i class="fa fa-btn fa-edit"></i>Duyệt đơn
+                                        </a>
+                                    </td>
 
-                                <!-- //Nút xóa-->
-                                    {{--                                    <td>--}}
-                                    {{--                                        <form action="{{ route('users.destroy',$order['_id']) }}"--}}
-                                    {{--                                              method="POST">--}}
-                                    {{--                                            {{ csrf_field() }}--}}
-                                    {{--                                            {{ method_field('DELETE') }}--}}
-                                    {{--                                            <button type="submit" class="btn btn-danger">--}}
-                                    {{--                                                <i class="fa fa-btn fa-trash"></i>Xoá--}}
-                                    {{--                                            </button>--}}
-                                    {{--                                        </form>--}}
-                                    {{--                                    </td>--}}
+                                    <!-- //Nút xóa-->
+                                    <td>
+                                        <form action=""
+                                              method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-btn fa-trash"></i>Hủy đơn
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
