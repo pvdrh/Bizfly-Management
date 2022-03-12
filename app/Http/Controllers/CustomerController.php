@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Session;
 use Illuminate\Support\Facades\Log;
 use Exception;
@@ -20,7 +21,22 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::get();
+        $user_id = Auth::user()->_id;
+        $query = Customer::query();
+        if ($user_id) {
+            $query->where(function ($query) use ($user_id) {
+                $query->where('employee_id', '=' . $user_id);
+            });
+        }
+        dd($query->get());
+        $customers = [];
+//        foreach ($as as $a) {
+//            $cust
+//        }
+//        $customers = Customer::get();
+//        $users->contains(User::find(1));
+//        $query = Customer::query()->where('employee_id', '=', $user_id);
+//        dd($query);
         return view('customers.index')->with([
             'customers' => $customers,
         ]);

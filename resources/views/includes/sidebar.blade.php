@@ -140,6 +140,7 @@
                         </li>
                     </ul>
                 </li>
+                @if(\Illuminate\Support\Facades\Auth::user()->info->role == 0)
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-user-circle"></i>
@@ -163,6 +164,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
                 <form role="form" class="row" action="{{ route('logout') }}" method="post">
                     @csrf
                     <div class="col-md-4">

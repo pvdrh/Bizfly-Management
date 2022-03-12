@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\Role;
 use App\Models\User;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use Illuminate\Support\Facades\Log;
@@ -22,10 +23,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('info')->get();
-        return view('users.index')->with([
-            'users' => $users
-        ]);
+        $user = Auth::user();
+        if (Gate::allows('get-user', $user)) {
+            $users = User::with('info')->get();
+            return view('users.index')->with([
+                'users' => $users
+            ]);
+        } else {
+            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+
+            return redirect()->back();
+        }
     }
 
     /**
@@ -35,7 +43,14 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $user = Auth::user();
+        if (Gate::allows('create-user', $user)) {
+            return view('users.create');
+        } else {
+            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+
+            return redirect()->back();
+        }
     }
 
     /**
@@ -46,33 +61,41 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        try {
-            $user = new User();
-            $user->email = $request->get('email');
-            $user->password = Hash::make($request->get('password'));
-            $user->save();
+        $user = Auth::user();
+        if (Gate::allows('create-user', $user)) {
+            try {
 
-            $info = new UserInfo();
-            $info->user_id = $user->id;
-            $info->name = ucwords($request->get('name'));
-            $info->gender = (int)$request->get('gender');
-            $info->phone = (int)$request->get('phone');
-            $info->address = $request->get('address');
-            $info->role = $request->get('role');
-            $info->is_protected = false;
-            $info->save();
+                $user = new User();
+                $user->email = $request->get('email');
+                $user->password = Hash::make($request->get('password'));
+                $user->save();
 
-            Session::flash('success', 'Tạo mới thành công!');
-        } catch (Exception $e) {
-            Log::error('Error store user', [
-                'method' => __METHOD__,
-                'message' => $e->getMessage(),
-                'line' => __LINE__
-            ]);
+                $info = new UserInfo();
+                $info->user_id = $user->id;
+                $info->name = ucwords($request->get('name'));
+                $info->gender = (int)$request->get('gender');
+                $info->phone = (int)$request->get('phone');
+                $info->address = $request->get('address');
+                $info->role = $request->get('role');
+                $info->is_protected = false;
+                $info->save();
 
-            Session::flash('error', 'Tạo mới thất bại!');
+                Session::flash('success', 'Tạo mới thành công!');
+            } catch (Exception $e) {
+                Log::error('Error store user', [
+                    'method' => __METHOD__,
+                    'message' => $e->getMessage(),
+                    'line' => __LINE__
+                ]);
+
+                Session::flash('error', 'Tạo mới thất bại!');
+            }
+            return redirect()->route('users.index');
+        } else {
+            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+
+            return redirect()->back();
         }
-        return redirect()->route('users.index');
     }
 
     /**
@@ -94,10 +117,17 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('users.edit')->with([
-            'user' => $user,
-        ]);
+        $user = Auth::user();
+        if (Gate::allows('update-user', $user)) {
+            $user = User::find($id);
+            return view('users.edit')->with([
+                'user' => $user,
+            ]);
+        } else {
+            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+
+            return redirect()->back();
+        }
     }
 
     /**
@@ -109,27 +139,34 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
-        try {
-            $user = UserInfo::where('user_id', $id)->first();
+        $user = Auth::user();
+        if (Gate::allows('update-user', $user)) {
+            try {
+                $user = UserInfo::where('user_id', $id)->first();
 
-            $user->name = $request->name;
-            $user->phone = $request->phone;
-            $user->gender = (int)$request->gender;
-            $user->address = $request->address;
-            $user->role = $request->role;
-            $user->save();
+                $user->name = $request->name;
+                $user->phone = $request->phone;
+                $user->gender = (int)$request->gender;
+                $user->address = $request->address;
+                $user->role = $request->role;
+                $user->save();
 
-            Session::flash('success', 'Cập nhật thành công!');
-        } catch (Exception $e) {
-            Log::error('Error update user', [
-                'method' => __METHOD__,
-                'message' => $e->getMessage(),
-                'line' => __LINE__
-            ]);
+                Session::flash('success', 'Cập nhật thành công!');
+            } catch (Exception $e) {
+                Log::error('Error update user', [
+                    'method' => __METHOD__,
+                    'message' => $e->getMessage(),
+                    'line' => __LINE__
+                ]);
 
-            Session::flash('error', 'Cập nhật thất bại!');
+                Session::flash('error', 'Cập nhật thất bại!');
+            }
+            return redirect()->route('users.index');
+        } else {
+            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+
+            return redirect()->back();
         }
-        return redirect()->route('users.index');
     }
 
     /**
@@ -140,20 +177,27 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $user = User::find($id);
-            $user->delete();
+        $user = Auth::user();
+        if (Gate::allows('delete-user', $user)) {
+            try {
+                $user = User::find($id);
+                $user->delete();
 
-            Session::flash('success', 'Xóa thành công!');
-        } catch (Exception $e) {
-            Log::error('Error delete user', [
-                'method' => __METHOD__,
-                'message' => $e->getMessage(),
-                'line' => __LINE__
-            ]);
+                Session::flash('success', 'Xóa thành công!');
+            } catch (Exception $e) {
+                Log::error('Error delete user', [
+                    'method' => __METHOD__,
+                    'message' => $e->getMessage(),
+                    'line' => __LINE__
+                ]);
 
-            Session::flash('error', 'Xóa thất bại!');
+                Session::flash('error', 'Xóa thất bại!');
+            }
+            return redirect()->route('users.index');
+        } else {
+            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+
+            return redirect()->back();
         }
-        return redirect()->route('users.index');
     }
 }
