@@ -72,10 +72,11 @@ class UserController extends Controller
 
                 $info = new UserInfo();
                 $info->user_id = $user->id;
-                $info->name = ucwords($request->get('name'));
+                $info->name = $request->get('name');
                 $info->gender = (int)$request->get('gender');
                 $info->phone = (int)$request->get('phone');
                 $info->address = $request->get('address');
+                $info->code = rand(100000, 999999);
                 $info->role = $request->get('role');
                 $info->is_protected = false;
                 $info->save();

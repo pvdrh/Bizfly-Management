@@ -20,7 +20,8 @@ class UserInfo extends Model
         'gender',
         'user_id',
         'role',
-        'is_protected'
+        'is_protected',
+        'code'
     ];
 
     public function user()
