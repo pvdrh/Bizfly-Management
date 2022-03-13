@@ -99,6 +99,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('customers.create');
         Route::get('/export-excel', [CustomerController::class, 'exportExcel'])
             ->name('customers.export');
+        Route::post('/import-excel', [CustomerController::class, 'importExcel'])
+            ->name('customers.import');
         Route::post('/store', [CustomerController::class, 'store'])
             ->name('customers.store');
         Route::get('/show/{id}', [CustomerController::class, 'show'])
@@ -119,6 +121,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('orders.create');
         Route::post('/store', [OrderController::class, 'store'])
             ->name('orders.store');
+        Route::get('/export-excel', [OrderController::class, 'exportExcel'])
+            ->name('orders.export');
         Route::get('/show/{id}', [OrderController::class, 'show'])
             ->name('orders.show');
         Route::get('/accept/{id}', [OrderController::class, 'acceptOrder'])

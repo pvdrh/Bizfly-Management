@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Exports\CustomersExport;
+use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\UpdateCustomerRequest;
+use App\Imports\CustomersImport;
 use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Support\Facades\Log;
 use Exception;
@@ -24,8 +28,7 @@ class CustomerController extends Controller
     public function index()
     {
         $user_id = Auth::user()->_id;
-fi        $customers = Customer::where(['employee_id' => '622bff3f4b220000990019d4'])->get();
-        dd($customers);
+        $customers = Customer::where(['employee_id' => $user_id])->get();
         return view('customers.index')->with([
             'customers' => $customers,
         ]);
@@ -52,7 +55,7 @@ fi        $customers = Customer::where(['employee_id' => '622bff3f4b220000990019
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCustomerRequest $request)
     {
         try {
             $customer = new Customer();
@@ -111,12 +114,11 @@ fi        $customers = Customer::where(['employee_id' => '622bff3f4b220000990019
     public function edit($id)
     {
         $customer = Customer::find($id);
-        $customer_employees = $customer->employee_id;
-        $users = User::whereIn('_id', $customer_employees)->get();
-        $company = Company::find($customer->company_id);
+        $users = User::get();
+        $companies = Company::get();
         return view('customers.edit')->with([
             'customer' => $customer,
-            'company' => $company,
+            'companies' => $companies,
             'users' => $users
         ]);
     }
@@ -128,7 +130,7 @@ fi        $customers = Customer::where(['employee_id' => '622bff3f4b220000990019
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCustomerRequest $request, $id)
     {
         try {
             $customer = Customer::find($id);
@@ -184,8 +186,34 @@ fi        $customers = Customer::where(['employee_id' => '622bff3f4b220000990019
         return redirect()->route('customers.index');
     }
 
-    public function exportExcel(){
-        $customers = Customer::get();
+    public function exportExcel()
+    {
+        $user_id = Auth::user()->_id;
+        $customers = Customer::where(['employee_id' => $user_id])->get();
         return Excel::download(new CustomersExport($customers), 'customers.xlsx');
+    }
+
+    public function importExcel(Request $request)
+    {
+        $customers = Excel::toArray(new CustomersImport(), $request->file('file'));
+        $customers = $customers[0];
+
+        if (count($customers)) {
+            foreach ($customers as $key => $customer) {
+                $newCustomer = new Customer();
+                $newCustomer->name = $customer[0];
+                $newCustomer->email = $customer[1];
+                $newCustomer->phone = $customer[2];
+                $newCustomer->age = $customer[3];
+                $newCustomer->job = $customer[4];
+                $newCustomer->address = $customer[5];
+                $newCustomer->gender = $customer[6];
+                $newCustomer->customer_type = $customer[7];
+                $newCustomer->employee_id = $customer[8];
+                $newCustomer->save();
+            }
+        }
+
+        return redirect()->route('customers.index');
     }
 }

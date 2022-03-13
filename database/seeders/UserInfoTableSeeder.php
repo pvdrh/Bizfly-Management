@@ -25,7 +25,8 @@ class UserInfoTableSeeder extends Seeder
                 'address' => 'Thanh Xuân, Hà Nội',
                 'phone' => '0835904783',
                 'user_id' => $admin,
-                'is_protected' => true
+                'is_protected' => true,
+                'code' => rand(1000, 9999)
             ]
         ]);
 
@@ -38,7 +39,8 @@ class UserInfoTableSeeder extends Seeder
                 'phone' => '0931884553',
                 'address' => 'Hai Bà Trưng, Hà Nội',
                 'user_id' => $employee,
-                'is_protected' => true
+                'is_protected' => true,
+                'code' => rand(1000, 9999)
             ]
         ]);
     }

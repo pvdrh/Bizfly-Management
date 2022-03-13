@@ -62,7 +62,7 @@
                     <div class="small-box bg-warning">
                         <div class="inner">
                             @if($customers)
-                                <h3>{{$users}}</h3>
+                                <h3>{{$customers}}</h3>
                             @else
                                 <h3>8</h3>
                             @endif
@@ -102,4 +102,11 @@
         <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
     </section>
+@section('script')
+    <script>
+        @if(Session::has('warning'))
+        toastr.warning('{{ Session::get('warning') }}');
+        @endif
+    </script>
+@endsection
 @endsection

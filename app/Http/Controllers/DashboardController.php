@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Customer;
+use App\Models\Order;
+use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
+
 class DashboardController extends Controller
 {
     public function index()
@@ -19,7 +25,7 @@ class DashboardController extends Controller
         });
 
         $orders = Cache::remember('orders', 1000, function () {
-            return Order::count();
+            return  Order::count();
         });
 
         return view('dashboard')->with([

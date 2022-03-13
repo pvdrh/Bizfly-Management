@@ -46,6 +46,7 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
+                                <th>Mã NV</th>
                                 <th>Họ tên</th>
                                 <th>Email</th>
                                 <th>Số điện thoại</th>
@@ -57,39 +58,44 @@
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
+                                    @if($user->info)
+                                        <td style="font-weight: bold">{{$user->info->code}}</td>
+                                    @endif
                                     <td>{{$user->info->name}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->info->phone}}</td>
-                                    <td>{{$user->info->address}}</td>
-                                    @if($user->info->gender == 1)
-                                        <td>Nam</td>
-                                    @else
-                                        <td>Nữ</td>
-                                    @endif
-                                    @if($user->info->role == 1)
-                                        <td>Nhân viên</td>
-                                    @else
-                                        <td>Admin</td>
+                                    @if($user->info)
+                                        <td>{{$user->info->phone}}</td>
+                                        <td>{{$user->info->address}}</td>
+                                        @if($user->info->gender == 1)
+                                            <td>Nam</td>
+                                        @else
+                                            <td>Nữ</td>
+                                        @endif
+                                        @if($user->info->role == 1)
+                                            <td>Nhân viên</td>
+                                        @else
+                                            <td>Admin</td>
+                                        @endif
                                     @endif
                                     @if(!$user->info->is_protected)
-                                    <td>
-                                        <a href="{{ route('users.edit',$user['_id']) }}" type="submit"
-                                           class="btn btn-info">
-                                            <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                        </a>
-                                    </td>
+                                        <td>
+                                            <a href="{{ route('users.edit',$user['_id']) }}" type="submit"
+                                               class="btn btn-info">
+                                                <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                            </a>
+                                        </td>
 
-                                    <!-- //Nút xóa-->
-                                    <td>
-                                        <form action="{{ route('users.destroy',$user['_id']) }}"
-                                              method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-btn fa-trash"></i>Xoá
-                                            </button>
-                                        </form>
-                                    </td>
+                                        <!-- //Nút xóa-->
+                                        <td>
+                                            <form action="{{ route('users.destroy',$user['_id']) }}"
+                                                  method="POST">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa fa-btn fa-trash"></i>Xoá
+                                                </button>
+                                            </form>
+                                        </td>
                                     @endif
                                 </tr>
                             @endforeach

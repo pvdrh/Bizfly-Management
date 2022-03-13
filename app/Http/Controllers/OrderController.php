@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrdersExport;
+use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\StoreOrderRequest;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Session;
 use Illuminate\Support\Facades\Log;
 use Exception;
@@ -19,7 +24,13 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('customers')->get();
+        $user_id = Auth::user()->_id;
+        $customers = Customer::where(['employee_id' => $user_id])->get();
+        $customer_id = [];
+        foreach ($customers as $customer) {
+            $customer_id[] = $customer->_id;
+        }
+        $orders = Order::whereIn('customer_id', $customer_id)->get();
         return view('orders.index')->with([
             'orders' => $orders
         ]);
@@ -33,7 +44,8 @@ class OrderController extends Controller
     public function create()
     {
         $products = Product::get();
-        $customers = Customer::get();
+        $user_id = Auth::user()->_id;
+        $customers = Customer::where(['employee_id' => $user_id])->get();
         return view('orders.create')->with([
             'products' => $products,
             'customers' => $customers
@@ -46,7 +58,7 @@ class OrderController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
         try {
             $order = new Order();
@@ -63,6 +75,7 @@ class OrderController extends Controller
                 $total += $product->price;
                 $product->total_sold += 1;
                 $product->quantity -= 1;
+                $product->save();
             }
             $order->total = $total;
             $order->save();
@@ -184,5 +197,18 @@ class OrderController extends Controller
             Session::flash('error', 'Duyệt đơn thất bại!');
         }
         return view('orders.index');
+    }
+
+    public function exportExcel()
+    {
+        $user_id = Auth::user()->_id;
+        $customers = Customer::where(['employee_id' => $user_id])->get();
+        $customer_id = [];
+        foreach ($customers as $customer) {
+            $customer_id[] = $customer->_id;
+        }
+        $orders = Order::whereIn('customer_id', $customer_id)->get();
+
+        return Excel::download(new OrdersExport($orders), 'orders.xlsx');
     }
 }

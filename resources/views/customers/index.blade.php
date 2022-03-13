@@ -33,9 +33,12 @@
                            class="btn btn-success">Tạo mới</a>
                         <a href="{{route('customers.export')}}" type="submit"
                            style="text-decoration: none; color: white"
-                           class="btn btn-secondary">Xuất excel
+                           class="btn btn-info">Xuất file excel
                         </a>
-
+                        <button type="button" class="btn btn-secondary" data-toggle="modal"
+                                data-target="#exampleModalCenter">
+                            Nhập file excel
+                        </button>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right"
@@ -65,7 +68,8 @@
                                     <td><span
                                             class="d-inline-block" tabindex="0" data-bs-toggle="tooltip"
                                             title="Chi tiết khách hàng">
-  <a style="font-weight: bold; color: cornflowerblue" href="{{route('customers.show', $customer->_id)}}">{{$customer->name}}</a>
+  <a style="font-weight: bold; color: cornflowerblue"
+     href="{{route('customers.show', $customer->_id)}}">{{$customer->name}}</a>
 </span>
                                     </td>
                                     <td>{{$customer->email}}</td>
@@ -106,6 +110,35 @@
             </div>
         </div>
         <!-- /.row (main row) -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <form role="form" method="post" enctype="multipart/form-data"
+                  action="{{ route('customers.import') }}">
+                @csrf
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Tải lên file excel</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" name="file" class="custom-file-input" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Chọn file</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-success">Tải lên</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div><!-- /.container-fluid -->
 @section('script')
     <script>

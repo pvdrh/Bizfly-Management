@@ -33,28 +33,34 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên nhân viên</label>
-                                <input type="text" max="30" name="name" value="{{$user->info->name}}" class="form-control" id=""
-                                       placeholder="Nhập tên nhân viên">
+                                <label for="exampleInputEmail1">Mã nhân viên</label>
+                                <input disabled type="text" max="30" name="name" value="{{$user->info->code}}"
+                                       class="form-control" id="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
-                                <input type="email" disabled name="email" value="{{$user->email}}" class="form-control" id=""
+                                <input type="email" disabled name="email" value="{{$user->email}}" class="form-control"
+                                       id=""
                                        placeholder="Email">
-                                @error('email')
-                                <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tên nhân viên</label>
+                                <input type="text" max="30" name="name" value="{{$user->info->name}}"
+                                       class="form-control" id=""
+                                       placeholder="Nhập tên nhân viên">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số điện thoại</label>
-                                <input type="text" name="phone" id="intTextBox" value="{{$user->info->phone}}" class="form-control" id="">
+                                <input type="text" name="phone" id="intTextBox" value="{{$user->info->phone}}"
+                                       class="form-control" id="">
                                 @error('phone')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Địa chỉ</label>
-                                <input type="text" name="address" value="{{$user->info->address}}" class="form-control" id="" placeholder="Nhập địa chỉ">
+                                <input type="text" name="address" value="{{$user->info->address}}" class="form-control"
+                                       id="" placeholder="Nhập địa chỉ">
                                 @error('address')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
@@ -72,8 +78,8 @@
                             <div class="form-group">
                                 <label>Chức vụ</label>
                                 <select class="form-control  select2" name="role_id" style="width: 100%;">
-                                        <option value="0" @if(0 == $user->info->role) selected @endif>Admin</option>
-                                        <option value="1" @if(1 == $user->info->role) selected @endif>Nhân viên</option>
+                                    <option value="0" @if(0 == $user->info->role) selected @endif>Admin</option>
+                                    <option value="1" @if(1 == $user->info->role) selected @endif>Nhân viên</option>
                                 </select>
                                 @error('role_id')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -94,9 +100,9 @@
     </div><!-- /.container-fluid -->
 @section('script')
     <script>
-        (function($) {
-            $.fn.inputFilter = function(inputFilter) {
-                return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+        (function ($) {
+            $.fn.inputFilter = function (inputFilter) {
+                return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
                     if (inputFilter(this.value)) {
                         this.oldValue = this.value;
                         this.oldSelectionStart = this.selectionStart;
@@ -113,8 +119,9 @@
 
 
         // Install input filters.
-        $("#intTextBox").inputFilter(function(value) {
-            return /^-?\d*$/.test(value); });
+        $("#intTextBox").inputFilter(function (value) {
+            return /^-?\d*$/.test(value);
+        });
     </script>
 @endsection
 @endsection

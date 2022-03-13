@@ -30,9 +30,9 @@ class UserController extends Controller
                 'users' => $users
             ]);
         } else {
-            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+            Session::flash('warning', 'Bạn không có quyền sử dụng chức năng này!');
 
-            return redirect()->back();
+            return redirect()->route('dashboard');
         }
     }
 
@@ -47,9 +47,9 @@ class UserController extends Controller
         if (Gate::allows('create-user', $user)) {
             return view('users.create');
         } else {
-            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+            Session::flash('warning', 'Bạn không có quyền sử dụng chức năng này!');
 
-            return redirect()->back();
+            return redirect()->route('dashboard');
         }
     }
 
@@ -76,7 +76,7 @@ class UserController extends Controller
                 $info->gender = (int)$request->get('gender');
                 $info->phone = (int)$request->get('phone');
                 $info->address = $request->get('address');
-                $info->code = rand(100000, 999999);
+                $info->code = rand(1000, 9999);
                 $info->role = $request->get('role');
                 $info->is_protected = false;
                 $info->save();
@@ -93,9 +93,9 @@ class UserController extends Controller
             }
             return redirect()->route('users.index');
         } else {
-            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+            Session::flash('warning', 'Bạn không có quyền sử dụng chức năng này!');
 
-            return redirect()->back();
+            return redirect()->route('dashboard');
         }
     }
 
@@ -125,9 +125,9 @@ class UserController extends Controller
                 'user' => $user,
             ]);
         } else {
-            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+            Session::flash('warning', 'Bạn không có quyền sử dụng chức năng này!');
 
-            return redirect()->back();
+            return redirect()->route('dashboard');
         }
     }
 
@@ -164,9 +164,9 @@ class UserController extends Controller
             }
             return redirect()->route('users.index');
         } else {
-            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+            Session::flash('warning', 'Bạn không có quyền sử dụng chức năng này!');
 
-            return redirect()->back();
+            return redirect()->route('dashboard');
         }
     }
 
@@ -196,9 +196,9 @@ class UserController extends Controller
             }
             return redirect()->route('users.index');
         } else {
-            Session::flash('error', 'Bạn không có quyền sử dụng chức năng này!');
+            Session::flash('warning', 'Bạn không có quyền sử dụng chức năng này!');
 
-            return redirect()->back();
+            return redirect()->route('dashboard');
         }
     }
 }

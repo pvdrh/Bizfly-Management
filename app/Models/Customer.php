@@ -6,11 +6,6 @@ use Jenssegers\Mongodb\Eloquent\Model;
 
 class Customer extends Model
 {
-    const CUSTOMER_TYPE = [
-        'guest' => 0,
-        'loyal' => 1,
-    ];
-
     protected $fillable = [
         'name',
         'gender',
@@ -23,11 +18,13 @@ class Customer extends Model
         'user_id'
     ];
 
-    public function orders(){
-        $this->belongsToMany(Order::class);
+    public function orders()
+    {
+        $this->hasMany(Order::class);
     }
 
-    public function users(){
+    public function users()
+    {
         $this->belongsToMany(User::class);
     }
 }

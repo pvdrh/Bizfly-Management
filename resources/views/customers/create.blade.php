@@ -38,12 +38,18 @@
                                         <label for="exampleInputEmail1">Tên khách hàng</label>
                                         <input type="text" name="name" class="form-control" id=""
                                                placeholder="Nhập tên khách hàng">
+                                        @error('name')
+                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
                                         <input type="email" name="email" class="form-control" id="" placeholder="Email">
+                                        @error('email')
+                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -51,6 +57,9 @@
                                         <label for="exampleInputEmail1">Số điện thoại</label>
                                         <input type="text" name="phone" class="form-control" id="inBox"
                                                placeholder="Nhập số điện thoại">
+                                        @error('phone')
+                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -60,6 +69,9 @@
                                         <label for="exampleInputEmail1">Tuổi</label>
                                         <input min="18" type="number" name="age" class="form-control" id=""
                                                placeholder="Nhập tuổi">
+                                        @error('age')
+                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -67,6 +79,9 @@
                                         <label for="exampleInputEmail1">Nghề nghiệp</label>
                                         <input type="text" name="job" class="form-control" id=""
                                                placeholder="Nhập địa chỉ">
+                                        @error('job')
+                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -74,6 +89,9 @@
                                         <label for="exampleInputEmail1">Địa chỉ</label>
                                         <input type="text" name="address" class="form-control" id=""
                                                placeholder="Nhập địa chỉ">
+                                        @error('address')
+                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -85,15 +103,20 @@
                                             <option value="0">Nữ</option>
                                             <option value="1">Nam</option>
                                         </select>
+                                        @error('gender')
+                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <label>Phân loại</label>
-                                        <select name="customer_type" class="form-control select2" style="width: 100%;">
-                                            <option value="0">Khách mới</option>
-                                            <option value="1">Khách hàng thân thiết</option>
-                                        </select>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Phân loại</label>
+                                            <input type="text" name="customer_type" class="form-control">
+                                            @error('customer_type')
+                                            <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -104,17 +127,23 @@
                                                 <option value="{{ $company->_id }}">{{ $company->name }}</option>
                                             @endforeach
                                         </select>
+                                        @error('company_id')
+                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label>Nhân viên hỗ trợ</label>
-                                        <select class="form-control multi_select" multiple
+                                        <select class="form-control multi_select" multiple="multiple"
                                                 name="employee_id[]">
                                             @foreach($users as $user)
                                                 <option value="{{$user->_id}}">{{$user->info->name}}</option>
                                             @endforeach
                                         </select>
+                                        @error('employee_id')
+                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +161,7 @@
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
     <style>
-        .select2-selection__choice__display{
+        .select2-selection__choice__display {
             padding-left: 10px !important;
         }
     </style>

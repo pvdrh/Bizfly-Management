@@ -25,7 +25,7 @@ class Order extends Model
 
     public function customers()
     {
-        return $this->hasOne(Customer::class, '_id', 'customer_id');
+        return $this->belongsTo(Customer::class, 'customer_id', '_id');
     }
 
     public function products()
