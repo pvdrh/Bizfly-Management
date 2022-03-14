@@ -22,6 +22,8 @@ use App\Http\Controllers\Auth\LoginController;
 */
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('login', [LoginController::class, 'login'])->name('login.store');
+Route::get('/auth/redirect', [LoginController::class, 'redirect'])->name('login.social');
+Route::get('/callback', [LoginController::class, 'callback'])->name('login.callback');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {
