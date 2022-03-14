@@ -31,14 +31,15 @@
                         <a href="{{route('orders.export')}}" type="submit" style="text-decoration: none; color: white"
                            class="btn btn-secondary">Xuất excel</a>
                         <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right"
-                                       placeholder="Search">
-
+                            <form role="search" method="get" action="{{route('orders.index')}}">
+                            <div class="input-group input-group-sm">
+                                <input type="text" name="search" class="form-control float-right"
+                                       placeholder="Nhập mã đơn hàng">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                     <!-- /.card-header -->

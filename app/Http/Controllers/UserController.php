@@ -21,11 +21,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
         if (Gate::allows('get-user', $user)) {
-            $users = User::with('info')->get();
+            $query = User::query();
+            if ($request->has('search') && strlen($request->input('search')) > 0) {
+                $query->whereHas('info', function ($qr) use ($request) {
+                    $qr->where('code', 'LIKE', "%" . $request->input('search') . "%");
+                });
+            }
+            $users = $query->with('info')->get();
             return view('users.index')->with([
                 'users' => $users
             ]);

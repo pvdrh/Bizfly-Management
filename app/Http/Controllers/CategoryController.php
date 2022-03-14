@@ -20,7 +20,11 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::get();
+        $query = Category::query();
+        if ($request->has('search') && strlen($request->input('search')) > 0) {
+            $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
+        }
+        $categories = $query->get();
         return view('categories.index')->with([
             'categories' => $categories
         ]);

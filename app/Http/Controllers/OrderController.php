@@ -22,7 +22,7 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user_code = Auth::user()->info->code;
         $customers = Customer::where(['employee_code' => $user_code])->get();
@@ -30,7 +30,11 @@ class OrderController extends Controller
         foreach ($customers as $customer) {
             $customer_id[] = $customer->_id;
         }
-        $orders = Order::whereIn('customer_id', $customer_id)->get();
+        if ($request->search) {
+            $orders = Order::whereIn('customer_id', $customer_id)->where('code', $request->search)->get();
+        } else {
+            $orders = Order::whereIn('customer_id', $customer_id)->get();
+        }
         return view('orders.index')->with([
             'orders' => $orders
         ]);
@@ -222,7 +226,7 @@ class OrderController extends Controller
         }
         $orders = Order::whereIn('customer_id', $customer_id)->get();
 
-        return Excel::download(new OrdersExport($orders), 'orders.xlsx');
+        return Excel::download(new OrdersExport($orders), 'Danh sách đơn hàng.xlsx');
     }
 
     public function getListOrder(Request $request, $id)

@@ -24,10 +24,14 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user_code = Auth::user()->info->code;
-        $customers = Customer::Where(['employee_code' => $user_code])->get();
+        $query = Customer::Where(['employee_code' => $user_code]);
+        if ($request->has('search') && strlen($request->input('search')) > 0) {
+            $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
+        }
+        $customers = $query->get();
         return view('customers.index')->with([
             'customers' => $customers,
         ]);
@@ -195,27 +199,39 @@ class CustomerController extends Controller
     {
         $user_code = Auth::user()->info->code;
         $customers = Customer::Where(['employee_code' => $user_code])->get();
-        return Excel::download(new CustomersExport($customers), 'customers.xlsx');
+        return Excel::download(new CustomersExport($customers), 'Danh sách khách hàng.xlsx');
     }
 
     public function importExcel(Request $request)
     {
-        $customers = Excel::toArray(new CustomersImport(), $request->file('file'));
-        $customers = $customers[0];
-        if (count($customers)) {
-            foreach ($customers as $key => $customer) {
-                $newCustomer = new Customer();
-                $newCustomer->name = $customer[0];
-                $newCustomer->email = $customer[1];
-                $newCustomer->phone = $customer[2];
-                $newCustomer->age = $customer[3];
-                $newCustomer->job = $customer[4];
-                $newCustomer->address = $customer[5];
-                $newCustomer->gender = $customer[6];
-                $newCustomer->customer_type = $customer[7];
-                $newCustomer->employee_code = (string)$customer[8];
-                $newCustomer->save();
+        try {
+            $customers = Excel::toArray(new CustomersImport(), $request->file('file'));
+            $customers = $customers[0];
+            if (count($customers)) {
+                foreach ($customers as $key => $customer) {
+                    $newCustomer = new Customer();
+                    $newCustomer->name = $customer[0];
+                    $newCustomer->email = $customer[1];
+                    $newCustomer->phone = $customer[2];
+                    $newCustomer->age = $customer[3];
+                    $newCustomer->job = $customer[4];
+                    $newCustomer->address = $customer[5];
+                    $newCustomer->gender = $customer[6];
+                    $newCustomer->customer_type = $customer[7];
+                    $newCustomer->employee_code = (string)$customer[8];
+                    $newCustomer->save();
+                }
             }
+
+            Session::flash('success', 'Thêm mới thành công!');
+        } catch (Exception $e) {
+            Log::error('Error import customer from file excel', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Thêm mới thất bại!');
         }
 
         return redirect()->route('customers.index');

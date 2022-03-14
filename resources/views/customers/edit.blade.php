@@ -143,8 +143,8 @@
                                         <select class="form-control multi_select" multiple
                                                 name="employee_code[]">
                                             @foreach($users as $user)
-                                                <option value="{{ $user->_id }}"
-                                                        @if($user->info->code == $customer->employee_id) selected @endif>{{ $user->info->name }}</option>
+                                                <option value="{{ $user->info->code }}"
+                                                        @if($user->info->code == $customer->employee_code) selected @endif>{{ $user->info->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('employee_code')

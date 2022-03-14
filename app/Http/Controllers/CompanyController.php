@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateCompanyRequest;
@@ -18,9 +17,13 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $companies = Company::get();
+        $query = Company::query();
+        if ($request->has('search') && strlen($request->input('search')) > 0) {
+            $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
+        }
+        $companies = $query->get();
         return view('companies.index')->with([
             'companies' => $companies
         ]);
