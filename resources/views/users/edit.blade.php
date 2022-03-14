@@ -77,7 +77,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Chức vụ</label>
-                                <select class="form-control  select2" name="role_id" style="width: 100%;">
+                                <select class="form-control  select2" name="role" style="width: 100%;">
                                     <option value="0" @if(0 == $user->info->role) selected @endif>Admin</option>
                                     <option value="1" @if(1 == $user->info->role) selected @endif>Nhân viên</option>
                                 </select>
