@@ -25,7 +25,8 @@ class OrderController extends Controller
     public function index()
     {
         $user_id = Auth::user()->_id;
-        $customers = Customer::where(['employee_id' => $user_id])->get();
+        $user_code = Auth::user()->info->code;
+        $customers = Customer::where(['employee_id' => $user_id])->orWhere(['employee_id' => $user_code])->get();
         $customer_id = [];
         foreach ($customers as $customer) {
             $customer_id[] = $customer->_id;
@@ -210,5 +211,14 @@ class OrderController extends Controller
         $orders = Order::whereIn('customer_id', $customer_id)->get();
 
         return Excel::download(new OrdersExport($orders), 'orders.xlsx');
+    }
+
+    public function getListOrder(Request $request, $id)
+    {
+        $orders = Order::where('customer_id', $id)->get();
+
+        return view('orders.index')->with([
+            'orders' => $orders
+        ]);
     }
 }

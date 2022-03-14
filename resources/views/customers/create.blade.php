@@ -136,9 +136,9 @@
                                     <div class="form-group">
                                         <label>Nhân viên hỗ trợ</label>
                                         <select class="form-control multi_select" multiple="multiple"
-                                                name="employee_id[]">
+                                                name="employee_code[]">
                                             @foreach($users as $user)
-                                                <option value="{{$user->_id}}">{{$user->info->name}}</option>
+                                                <option value="{{$user->info->code}}">{{$user->info->name}}</option>
                                             @endforeach
                                         </select>
                                         @error('employee_id')

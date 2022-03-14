@@ -12,7 +12,6 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Support\Facades\Log;
 use Exception;
@@ -27,8 +26,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->_id;
-        $customers = Customer::where(['employee_id' => $user_id])->get();
+        $user_code = Auth::user()->info->code;
+        $customers = Customer::Where(['employee_code' => $user_code])->get();
         return view('customers.index')->with([
             'customers' => $customers,
         ]);
@@ -69,7 +68,7 @@ class CustomerController extends Controller
             $customer->gender = $request->gender;
             $customer->customer_type = $request->customer_type;
             $customer->company_id = $request->company_id;
-            $customer->employee_id = $request->employee_id;
+            $customer->employee_code = $request->employee_code;
             $customer->save();
 
             Session::flash('success', 'Tạo mới thành công!');
@@ -95,8 +94,14 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::find($id);
-        $customer_employees = $customer->employee_id;
-        $users = User::whereIn('_id', $customer_employees)->get();
+        $customer_employees = $customer->employee_code;
+        $query = User::query();
+        if ($customer_employees && strlen($customer_employees) > 0) {
+            $query->whereHas('info', function ($qr) use ($customer_employees) {
+                $qr->where(['code' => $customer_employees]);
+            });
+        }
+        $users = $query->get();
         $company = Company::find($customer->company_id);
         return view('customers.show')->with([
             'customer' => $customer,
@@ -144,7 +149,7 @@ class CustomerController extends Controller
             $customer->gender = $request->gender;
             $customer->customer_type = $request->customer_type;
             $customer->company_id = $request->company_id;
-            $customer->employee_id = $request->employee_id;
+            $customer->employee_code = $request->employee_code;
             $customer->save();
 
             Session::flash('success', 'Cập nhật thành công!');
@@ -188,8 +193,8 @@ class CustomerController extends Controller
 
     public function exportExcel()
     {
-        $user_id = Auth::user()->_id;
-        $customers = Customer::where(['employee_id' => $user_id])->get();
+        $user_code = Auth::user()->info->code;
+        $customers = Customer::Where(['employee_code' => $user_code])->get();
         return Excel::download(new CustomersExport($customers), 'customers.xlsx');
     }
 
@@ -209,7 +214,7 @@ class CustomerController extends Controller
                 $newCustomer->address = $customer[5];
                 $newCustomer->gender = $customer[6];
                 $newCustomer->customer_type = $customer[7];
-                $newCustomer->employee_id = $customer[8];
+                $newCustomer->employee_id = (string)$customer[8];
                 $newCustomer->save();
             }
         }
