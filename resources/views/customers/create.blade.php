@@ -141,7 +141,7 @@
                                                 <option value="{{$user->info->code}}">{{$user->info->name}}</option>
                                             @endforeach
                                         </select>
-                                        @error('employee_id')
+                                        @error('employee_code')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
                                         @enderror
                                     </div>

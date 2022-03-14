@@ -148,7 +148,7 @@
                                                         @if($user->info->code == $customer->employee_id) selected @endif>{{ $user->info->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('employee_id')
+                                        @error('employee_code')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
                                         @enderror
                                     </div>

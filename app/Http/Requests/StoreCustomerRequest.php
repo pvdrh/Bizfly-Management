@@ -31,7 +31,7 @@ class StoreCustomerRequest extends FormRequest
             'job' => 'max:50',
             'address' => 'max:100',
             'gender' => 'boolean',
-            'employee_id' => 'required'
+            'employee_code' => 'required'
         ];
     }
 
@@ -57,7 +57,7 @@ class StoreCustomerRequest extends FormRequest
             'gender' => 'Giới tính',
             'job' => 'Nghề nghiệp',
             'age' => 'Tuổi',
-            'employee_id' => 'Nhân viên hỗ trợ'
+            'employee_code' => 'Nhân viên hỗ trợ'
         ];
     }
 }

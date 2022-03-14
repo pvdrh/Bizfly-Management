@@ -9,7 +9,6 @@ use App\Imports\CustomersImport;
 use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Order;
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -203,7 +202,6 @@ class CustomerController extends Controller
     {
         $customers = Excel::toArray(new CustomersImport(), $request->file('file'));
         $customers = $customers[0];
-
         if (count($customers)) {
             foreach ($customers as $key => $customer) {
                 $newCustomer = new Customer();
@@ -215,7 +213,7 @@ class CustomerController extends Controller
                 $newCustomer->address = $customer[5];
                 $newCustomer->gender = $customer[6];
                 $newCustomer->customer_type = $customer[7];
-                $newCustomer->employee_id = (string)$customer[8];
+                $newCustomer->employee_code = $customer[8];
                 $newCustomer->save();
             }
         }
