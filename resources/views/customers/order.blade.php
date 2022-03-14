@@ -9,7 +9,6 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 style="font-size: 26px" class="m-0 text-dark">Danh sách đơn hàng của {{$customer->name}}</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">

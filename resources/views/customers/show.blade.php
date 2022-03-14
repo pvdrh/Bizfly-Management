@@ -27,10 +27,6 @@
 
             <div class="col-12">
                 <div class="card">
-
-                    <div class="px-4 py-5 sm:px-6">
-                        <h2 class="text-lg leading-6 font-large text-gray-900">Chi Tiết Khách Hàng</h2>
-                    </div>
                     <!-- /.card-header -->
                     <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                         <div class="card-header">
@@ -86,7 +82,7 @@
                                     <dt class="text-sm font-medium text-gray-500">Nhân viên hỗ trợ</dt>
                                     @foreach($users as $user)
                                         @if($user->info)
-                                            {{$user->info->name .','}}
+                                            {{$user->info->name}}<br>
                                         @endif
                                     @endforeach
                                 </div>

@@ -10,9 +10,7 @@ use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\User;
-use App\Models\UserInfo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Illuminate\Support\Facades\Log;
@@ -215,7 +213,7 @@ class CustomerController extends Controller
                 $newCustomer->address = $customer[5];
                 $newCustomer->gender = $customer[6];
                 $newCustomer->customer_type = $customer[7];
-                $newCustomer->employee_code = (int)$customer[8];
+                $newCustomer->employee_code = (string)$customer[8];
                 $newCustomer->save();
             }
         }
