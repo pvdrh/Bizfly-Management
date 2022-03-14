@@ -24,7 +24,7 @@
         <!-- Main row -->
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card" style="height: 78vh">
                     <div class="card-header">
                         <a href="{{route('categories.create')}}" type="submit"
                            style="text-decoration: none; color: white"
@@ -35,7 +35,8 @@
                                     <input type="text" name="search" class="form-control float-right"
                                            placeholder="Nhập tên danh mục">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -79,7 +80,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
+                {!! $categories->links() !!}
+                <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
             </div>
