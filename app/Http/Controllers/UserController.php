@@ -31,7 +31,7 @@ class UserController extends Controller
                     $qr->where('code', 'LIKE', "%" . $request->input('search') . "%");
                 });
             }
-            $users = $query->with('info')->get();
+            $users = $query->with('info')->paginate(10);
             return view('users.index')->with([
                 'users' => $users
             ]);

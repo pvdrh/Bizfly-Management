@@ -107,6 +107,7 @@
                             </tbody>
                         </table>
                     </div>
+                {!! $orders->links() !!}
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->

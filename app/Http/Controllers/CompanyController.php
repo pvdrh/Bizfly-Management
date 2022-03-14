@@ -23,7 +23,7 @@ class CompanyController extends Controller
         if ($request->has('search') && strlen($request->input('search')) > 0) {
             $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
         }
-        $companies = $query->get();
+        $companies = $query->paginate(10);
         return view('companies.index')->with([
             'companies' => $companies
         ]);

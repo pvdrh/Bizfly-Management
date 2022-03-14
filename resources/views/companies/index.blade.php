@@ -81,6 +81,7 @@
                             </tbody>
                         </table>
                     </div>
+                {!! $companies->links() !!}
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->

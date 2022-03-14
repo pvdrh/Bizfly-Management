@@ -102,6 +102,7 @@
                             </tbody>
                         </table>
                     </div>
+                {!! $users->links() !!}
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->

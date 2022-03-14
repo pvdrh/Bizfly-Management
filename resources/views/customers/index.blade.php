@@ -105,6 +105,7 @@
                             </tbody>
                         </table>
                     </div>
+                {!! $customers->links() !!}
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->

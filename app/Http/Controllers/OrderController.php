@@ -31,10 +31,11 @@ class OrderController extends Controller
             $customer_id[] = $customer->_id;
         }
         if ($request->search) {
-            $orders = Order::whereIn('customer_id', $customer_id)->where('code', $request->search)->get();
+            $orders = Order::whereIn('customer_id', $customer_id)->where('code', $request->search);
         } else {
-            $orders = Order::whereIn('customer_id', $customer_id)->get();
+            $orders = Order::whereIn('customer_id', $customer_id);
         }
+        $orders = $orders->paginate(10);
         return view('orders.index')->with([
             'orders' => $orders
         ]);
