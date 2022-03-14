@@ -28,15 +28,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{route('orders.create')}}" type="submit" style="text-decoration: none; color: white"
-                           class="btn btn-success">Tạo mới</a>
-                        <a href="{{route('orders.export')}}" type="submit" style="text-decoration: none; color: white"
-                           class="btn btn-secondary">Xuất excel</a>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right"
                                        placeholder="Search">
-
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                                 </div>
@@ -69,40 +64,24 @@
                                     <td>{{$order->note}}</td>
                                     <td>{{number_format($order->total) }} VND</td>
                                     <td>{{$order->created_at->format('d-m-Y')}}</td>
-                                    @if($order->status == 0)
-                                        <td>
-                                            <a href="{{route('orders.accept', $order->_id)}}" type="submit"
-                                               class="btn btn-success">
-                                                <i class="fa fa-btn fa-edit"></i> Duyệt đơn
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="{{route('orders.cancel', $order->_id)}}" type="submit"
-                                               class="btn btn-danger">
-                                                <i class="fa fa-btn fa-trash"></i> Huỷ đơn
-                                            </a>
-                                        </td>
-                                    @endif
-                                    @if($order->status == 1)
-                                        <td>
-                                            <a href="{{route('orders.return', $order->_id)}}" type="submit"
-                                               class="btn btn-warning">
-                                                <i class="fa fa-btn fa-circle-o-notch" aria-hidden="true"></i>Hoàn đơn
-                                            </a>
-                                        </td>
-                                    @endif
-                                    @if($order->status == 2)
-                                        <td style="text-align: center">
-                                            <span
-                                                style="padding: 5px; font-weight: bold; background: #f97316;color: white">Đã hoàn</span>
-                                        </td>
-                                    @endif
-                                    @if($order->status == 3)
-                                        <td style="text-align: center">
-                                            <span
-                                                style="padding: 5px; font-weight: bold; background: #ef4444;color: white">Đã hủy</span>
-                                        </td>
-                                    @endif
+                                    <td>
+                                        <a href="" type="submit"
+                                           class="btn btn-success">
+                                            <i class="fa fa-btn fa-edit"></i>Duyệt đơn
+                                        </a>
+                                    </td>
+
+                                    <!-- //Nút xóa-->
+                                    <td>
+                                        <form action=""
+                                              method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-btn fa-trash"></i>Hủy đơn
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

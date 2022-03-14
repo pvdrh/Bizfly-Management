@@ -99,6 +99,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('customers.create');
         Route::get('/export-excel', [CustomerController::class, 'exportExcel'])
             ->name('customers.export');
+        Route::get('/get-list-orders/{id}', [CustomerController::class, 'getListOrders'])
+            ->name('customers.get-list-orders');
         Route::post('/import-excel', [CustomerController::class, 'importExcel'])
             ->name('customers.import');
         Route::post('/store', [CustomerController::class, 'store'])
@@ -131,7 +133,5 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('orders.return');
         Route::get('/cancel/{id}', [OrderController::class, 'cancelOrder'])
             ->name('orders.cancel');
-        Route::delete('/delete/{id}', [OrderController::class, 'destroy'])
-            ->name('orders.destroy');
     });
 });

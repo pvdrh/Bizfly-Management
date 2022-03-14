@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCustomerRequest;
 use App\Imports\CustomersImport;
 use App\Models\Company;
 use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -220,5 +221,13 @@ class CustomerController extends Controller
         }
 
         return redirect()->route('customers.index');
+    }
+
+    public function getListOrders(Request $request, $id)
+    {
+        $orders = Order::where('customer_id', $id)->get();
+        return view('customers.order')->with([
+            'orders' => $orders,
+        ]);
     }
 }

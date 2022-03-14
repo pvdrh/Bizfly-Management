@@ -11,7 +11,8 @@ class Order extends Model
     const STATUS = [
         'pending' => 0,
         'approved' => 1,
-        'return' => 2
+        'return' => 2,
+        'cancel' => 3
     ];
 
     protected $fillable = [

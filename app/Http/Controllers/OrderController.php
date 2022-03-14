@@ -24,9 +24,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->_id;
         $user_code = Auth::user()->info->code;
-        $customers = Customer::where(['employee_id' => $user_id])->orWhere(['employee_id' => $user_code])->get();
+        $customers = Customer::where(['employee_code' => $user_code])->get();
         $customer_id = [];
         foreach ($customers as $customer) {
             $customer_id[] = $customer->_id;
@@ -45,8 +44,8 @@ class OrderController extends Controller
     public function create()
     {
         $products = Product::get();
-        $user_id = Auth::user()->_id;
-        $customers = Customer::where(['employee_id' => $user_id])->get();
+        $user_code = Auth::user()->info->code;
+        $customers = Customer::where(['employee_code' => $user_code])->get();
         return view('orders.create')->with([
             'products' => $products,
             'customers' => $customers
@@ -143,7 +142,6 @@ class OrderController extends Controller
     {
         try {
             $order = Order::find($id);
-
             $order->status = Order::STATUS['approved'];
             $order->save();
 
@@ -157,14 +155,15 @@ class OrderController extends Controller
 
             Session::flash('error', 'Duyệt đơn thất bại!');
         }
-        return view('orders.index');
+        return redirect()->route('orders.index');
     }
 
     public function cancelOrder($id)
     {
         try {
             $order = Order::find($id);
-            $order->delete();
+            $order->status = Order::STATUS['cancel'];
+            $order->save();
 
             Session::flash('success', 'Hủy đơn thành công!');
         } catch (Exception $e) {
@@ -183,7 +182,6 @@ class OrderController extends Controller
     {
         try {
             $order = Order::find($id);
-
             $order->status = Order::STATUS['return'];
             $order->save();
 
@@ -197,7 +195,7 @@ class OrderController extends Controller
 
             Session::flash('error', 'Duyệt đơn thất bại!');
         }
-        return view('orders.index');
+        return redirect()->route('orders.index');
     }
 
     public function exportExcel()

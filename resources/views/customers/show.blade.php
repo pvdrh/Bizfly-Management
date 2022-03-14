@@ -34,7 +34,7 @@
                     <!-- /.card-header -->
                     <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                         <div class="card-header">
-                            <a href="#" type="submit"
+                            <a href="{{route('customers.get-list-orders', $customer->_id)}}" type="submit"
                                style="text-decoration: none; color: white"
                                class="btn btn-success">Đơn hàng</a>
                         </div>
@@ -73,10 +73,10 @@
                                     </dd>
                                 </div>
                                 @if($company)
-                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium text-gray-500">Công ty</dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$company->name}}</dd>
-                                </div>
+                                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <dt class="text-sm font-medium text-gray-500">Công ty</dt>
+                                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$company->name}}</dd>
+                                    </div>
                                 @endif
                                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500">Nghề nghiệp</dt>
@@ -86,7 +86,7 @@
                                     <dt class="text-sm font-medium text-gray-500">Nhân viên hỗ trợ</dt>
                                     @foreach($users as $user)
                                         @if($user->info)
-                                          {{$user->info->name .','}}
+                                            {{$user->info->name .','}}
                                         @endif
                                     @endforeach
                                 </div>
