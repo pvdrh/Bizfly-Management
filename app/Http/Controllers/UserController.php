@@ -76,7 +76,7 @@ class UserController extends Controller
                 $info->gender = (int)$request->get('gender');
                 $info->phone = (int)$request->get('phone');
                 $info->address = $request->get('address');
-                $info->code = rand(1000, 9999);
+                $info->code = (string)rand(1000, 9999);
                 $info->role = $request->get('role');
                 $info->is_protected = false;
                 $info->save();
@@ -182,6 +182,7 @@ class UserController extends Controller
         if (Gate::allows('delete-user', $user)) {
             try {
                 $user = User::find($id);
+                $user_info = UserInfo::where('user_id', $user->_id)->delete();
                 $user->delete();
 
                 Session::flash('success', 'Xóa thành công!');

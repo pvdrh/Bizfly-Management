@@ -26,7 +26,7 @@ class UserInfoTableSeeder extends Seeder
                 'phone' => '0835904783',
                 'user_id' => $admin,
                 'is_protected' => true,
-                'code' => rand(1000, 9999)
+                'code' => (string)rand(1000, 9999)
             ]
         ]);
 
@@ -40,7 +40,7 @@ class UserInfoTableSeeder extends Seeder
                 'address' => 'Hai Bà Trưng, Hà Nội',
                 'user_id' => $employee,
                 'is_protected' => true,
-                'code' => rand(1000, 9999)
+                'code' => (string)rand(1000, 9999)
             ]
         ]);
     }

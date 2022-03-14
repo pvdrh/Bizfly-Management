@@ -213,7 +213,7 @@ class CustomerController extends Controller
                 $newCustomer->address = $customer[5];
                 $newCustomer->gender = $customer[6];
                 $newCustomer->customer_type = $customer[7];
-                $newCustomer->employee_code = $customer[8];
+                $newCustomer->employee_code = (int)$customer[8];
                 $newCustomer->save();
             }
         }
