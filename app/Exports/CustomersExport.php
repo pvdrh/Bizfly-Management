@@ -30,6 +30,7 @@ class CustomersExport implements FromCollection, WithMapping, WithHeadings, With
             'Số điện thoại',
             'Địa chỉ',
             'Tuổi',
+            'Giới tính',
             'Nghề nghiệp',
             'Phân loại',
         ];
@@ -43,6 +44,7 @@ class CustomersExport implements FromCollection, WithMapping, WithHeadings, With
             $customer->phone,
             $customer->address,
             $customer->age,
+            $customer->gender == 1 ? 'Nam' : 'Nữ',
             $customer->job,
             $customer->customer_type,
         ];
@@ -54,10 +56,11 @@ class CustomersExport implements FromCollection, WithMapping, WithHeadings, With
             'A' => 25,
             'B' => 25,
             'C' => 15,
-            'D' => 15,
+            'D' => 20,
             'E' => 5,
-            'F' => 15,
+            'F' => 10,
             'G' => 10,
+            'h' => 10,
         ];
     }
 }

@@ -31,6 +31,7 @@ class OrdersExport implements FromCollection, WithMapping, WithHeadings, WithCol
             'Địa chỉ',
             'Ghi chú',
             'Thành tiền',
+            'Trạng thái',
             'Thời gian đặt hàng',
         ];
     }
@@ -44,6 +45,7 @@ class OrdersExport implements FromCollection, WithMapping, WithHeadings, WithCol
             $order->customers->address,
             $order->note,
             number_format($order->total) .' VND',
+            $this->getStatusNameOnExport($order),
             $order->created_at->format('d-m-Y'),
         ];
     }
@@ -58,6 +60,28 @@ class OrdersExport implements FromCollection, WithMapping, WithHeadings, WithCol
             'E' => 15,
             'F' => 15,
             'G' => 15,
+            'H' => 20,
         ];
+    }
+
+    private function getStatusNameOnExport($order) {
+        $status = '';
+
+        switch ($order->status) {
+            case Order::STATUS['pending']:
+                $status = 'Đang chờ duyệt';
+                break;
+            case Order::STATUS['approved']:
+                $status = 'Đã duyệt';
+                break;
+            case Order::STATUS['return']:
+                $status = 'Đã hoàn';
+                break;
+            case Order::STATUS['canceled']:
+                $status = 'Đã hủy';
+                break;
+        }
+
+        return $status;
     }
 }

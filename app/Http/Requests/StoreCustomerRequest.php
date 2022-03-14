@@ -28,7 +28,7 @@ class StoreCustomerRequest extends FormRequest
             'email' => 'email',
             'phone' => 'numeric|required|unique:customers',
             'age' => 'numeric|gte:18',
-            'job' => 'max:30',
+            'job' => 'max:50',
             'address' => 'max:100',
             'gender' => 'boolean',
             'employee_id' => 'required'

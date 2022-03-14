@@ -225,9 +225,11 @@ class CustomerController extends Controller
 
     public function getListOrders(Request $request, $id)
     {
+        $customer = Customer::find($id);
         $orders = Order::where('customer_id', $id)->get();
         return view('customers.order')->with([
             'orders' => $orders,
+            'customer' => $customer
         ]);
     }
 }

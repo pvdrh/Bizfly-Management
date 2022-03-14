@@ -162,7 +162,7 @@ class OrderController extends Controller
     {
         try {
             $order = Order::find($id);
-            $order->status = Order::STATUS['cancel'];
+            $order->status = Order::STATUS['canceled'];
             $order->save();
 
             Session::flash('success', 'Hủy đơn thành công!');
@@ -200,8 +200,8 @@ class OrderController extends Controller
 
     public function exportExcel()
     {
-        $user_id = Auth::user()->_id;
-        $customers = Customer::where(['employee_id' => $user_id])->get();
+        $user_code = Auth::user()->info->code;
+        $customers = Customer::where(['employee_code' => $user_code])->get();
         $customer_id = [];
         foreach ($customers as $customer) {
             $customer_id[] = $customer->_id;

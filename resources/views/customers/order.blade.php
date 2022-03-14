@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Danh sách đơn hàng</h1>
+                <h1 style="font-size: 26px" class="m-0 text-dark">Danh sách đơn hàng của {{$customer->name}}</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -64,24 +64,40 @@
                                     <td>{{$order->note}}</td>
                                     <td>{{number_format($order->total) }} VND</td>
                                     <td>{{$order->created_at->format('d-m-Y')}}</td>
-                                    <td>
-                                        <a href="" type="submit"
-                                           class="btn btn-success">
-                                            <i class="fa fa-btn fa-edit"></i>Duyệt đơn
-                                        </a>
-                                    </td>
-
-                                    <!-- //Nút xóa-->
-                                    <td>
-                                        <form action=""
-                                              method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-btn fa-trash"></i>Hủy đơn
-                                            </button>
-                                        </form>
-                                    </td>
+                                    @if($order->status == 0)
+                                        <td>
+                                            <a href="{{route('orders.accept', $order->_id)}}" type="submit"
+                                               class="btn btn-success">
+                                                <i class="fa fa-btn fa-edit"></i> Duyệt đơn
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{route('orders.cancel', $order->_id)}}" type="submit"
+                                               class="btn btn-danger">
+                                                <i class="fa fa-btn fa-trash"></i> Huỷ đơn
+                                            </a>
+                                        </td>
+                                    @endif
+                                    @if($order->status == 1)
+                                        <td>
+                                            <a href="{{route('orders.return', $order->_id)}}" type="submit"
+                                               class="btn btn-warning">
+                                                <i class="fa fa-btn fa-circle-o-notch" aria-hidden="true"></i>Hoàn đơn
+                                            </a>
+                                        </td>
+                                    @endif
+                                    @if($order->status == 2)
+                                        <td style="text-align: center">
+                                            <span
+                                                style="padding: 5px; font-weight: bold; background: #f97316;color: white">Đã hoàn</span>
+                                        </td>
+                                    @endif
+                                    @if($order->status == 3)
+                                        <td style="text-align: center">
+                                            <span
+                                                style="padding: 5px; font-weight: bold; background: #ef4444;color: white">Đã hủy</span>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>

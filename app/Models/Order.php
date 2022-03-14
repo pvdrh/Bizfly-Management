@@ -12,7 +12,7 @@ class Order extends Model
         'pending' => 0,
         'approved' => 1,
         'return' => 2,
-        'cancel' => 3
+        'canceled' => 3
     ];
 
     protected $fillable = [
