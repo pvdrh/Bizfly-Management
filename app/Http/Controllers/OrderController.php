@@ -43,7 +43,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $products = Product::get();
+        $products = Product::where('quantity', '>', 0)->get();
         $user_code = Auth::user()->info->code;
         $customers = Customer::where(['employee_code' => $user_code])->get();
         return view('orders.create')->with([
@@ -163,6 +163,13 @@ class OrderController extends Controller
         try {
             $order = Order::find($id);
             $order->status = Order::STATUS['canceled'];
+            $product_ids = $order->product_id;
+            $products = Product::whereIn('_id', $product_ids)->get();
+            foreach ($products as $product) {
+                $product->total_sold -= 1;
+                $product->quantity += 1;
+                $product->save();
+            }
             $order->save();
 
             Session::flash('success', 'Hủy đơn thành công!');
@@ -183,6 +190,13 @@ class OrderController extends Controller
         try {
             $order = Order::find($id);
             $order->status = Order::STATUS['return'];
+            $product_ids = $order->product_id;
+            $products = Product::whereIn('_id', $product_ids)->get();
+            foreach ($products as $product) {
+                $product->total_sold -= 1;
+                $product->quantity += 1;
+                $product->save();
+            }
             $order->save();
 
             Session::flash('success', 'Hoàn đơn thành công!');

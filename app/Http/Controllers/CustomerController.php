@@ -10,7 +10,9 @@ use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\UserInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Illuminate\Support\Facades\Log;
@@ -96,9 +98,9 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
         $customer_employees = $customer->employee_code;
         $query = User::query();
-        if ($customer_employees && strlen($customer_employees) > 0) {
+        if ($customer_employees && count($customer_employees) > 0) {
             $query->whereHas('info', function ($qr) use ($customer_employees) {
-                $qr->where(['code' => $customer_employees]);
+                $qr->whereIn('code', $customer_employees);
             });
         }
         $users = $query->get();

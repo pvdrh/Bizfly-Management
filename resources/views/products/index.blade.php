@@ -58,7 +58,7 @@
                             <tbody>
                             @foreach($products as $product)
                                 <tr>
-                                    <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width: 200px;text-align: center">{{ $product->name }}</td>
+                                    <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width: 200px;text-align: center; @if($product->quantity <= 0) color:orangered; font-weight: bold @endif">{{ $product->name }}</td>
                                     <td style="text-align: center">
                                         @if($product->image)
                                             <img
