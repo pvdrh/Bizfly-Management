@@ -16,31 +16,25 @@ class CompanyTableSeeder extends Seeder
     {
         DB::table('companies')->insert([
             [
+                'name' => 'Công ty công nghệ',
+            ]
+        ]);
+
+        DB::table('companies')->insert([
+            [
                 'name' => 'Công ty một thành viên',
             ]
         ]);
 
         DB::table('companies')->insert([
             [
-                'name' => 'Công ty hai thành viên',
+                'name' => 'Công ty Vinamilk',
             ]
         ]);
 
         DB::table('companies')->insert([
             [
-                'name' => 'Công ty ba thành viên',
-            ]
-        ]);
-
-        DB::table('companies')->insert([
-            [
-                'name' => 'Công ty bốn thành viên',
-            ]
-        ]);
-
-        DB::table('companies')->insert([
-            [
-                'name' => 'Công ty năm thành viên',
+                'name' => 'Công ty May 10',
             ]
         ]);
     }

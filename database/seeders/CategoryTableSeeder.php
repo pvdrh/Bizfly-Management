@@ -43,5 +43,17 @@ class CategoryTableSeeder extends Seeder
                 'name' => 'Laptop',
             ]
         ]);
+
+        DB::table('categories')->insert([
+            [
+                'name' => 'PC',
+            ]
+        ]);
+
+        DB::table('categories')->insert([
+            [
+                'name' => 'Máy cũ giá rẻ',
+            ]
+        ]);
     }
 }
