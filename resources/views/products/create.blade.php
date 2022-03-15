@@ -34,7 +34,7 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên sản phẩm</label>
+                                <label for="exampleInputEmail1">Tên sản phẩm <span style="color: red">*</span></label>
                                 <input type="text" name="name" class="form-control" id=""
                                        placeholder="Điền tên sản phẩm ">
                                 @error('name')
@@ -55,7 +55,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Giá bán</label>
+                                        <label>Giá bán  <span style="color: red">*</span></label>
                                         <input type="text" name="price" min="1" class="form-control input-element"
                                                placeholder="Điền giá bán">
                                         @error('price')
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Số lượng</label>
+                                        <label>Số lượng  <span style="color: red">*</span></label>
                                         <input type="number" name="quantity" min="1" class="form-control"
                                                placeholder="Điền số lượng   ">
                                         @error('quantity')
@@ -89,13 +89,10 @@
                                         <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
                                         <label class="custom-file-label" for="exampleInputFile">Chọn file</label>
                                     </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="">Upload</span>
-                                    </div>
-                                    @error('image')
-                                    <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                    @enderror
                                 </div>
+                                @error('image')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->

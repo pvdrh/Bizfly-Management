@@ -32,7 +32,7 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên công ty</label>
+                                <label for="exampleInputEmail1">Tên công ty<span style="color: red">*</span></label>
                                 <input name="name" type="text" class="form-control">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>

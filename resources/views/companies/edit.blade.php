@@ -32,22 +32,22 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên danh mục</label>
+                                <label for="exampleInputEmail1">Tên công ty<span style="color: red">*</span></label>
                                 <input type="text" name="name" value="{{$company->name}}" class="form-control" id="">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Mô tả</label>
+                                <label for="exampleInputEmail1">Số điện thoại</label>
                                 <input type="text" name="phone" value="{{$company->phone}}" class="form-control" id="">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Mô tả</label>
+                                <label for="exampleInputEmail1">Địa chỉ</label>
                                 <input type="text" name="address" value="{{$company->address}}" class="form-control" id="">
                             </div>
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <a type="submit" style="color: white" href="{{ route('categories.index') }}" class="btn btn-danger">Huỷ bỏ</a>
+                            <a type="submit" style="color: white" href="{{ route('companies.index') }}" class="btn btn-danger">Huỷ bỏ</a>
                             <button type="submit" class="btn btn-success">Cập nhật</button>
                         </div>
                     </form>

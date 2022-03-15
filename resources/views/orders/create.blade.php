@@ -32,7 +32,7 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Khách hàng</label>
+                                <label>Khách hàng<span style="color: red">*</span></label>
                                 <select class="form-control"
                                         name="customer_id">
                                     @foreach($customers as $customer)
@@ -41,7 +41,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Sản phẩm</label>
+                                <label for="exampleInputEmail1">Sản phẩm<span style="color: red">*</span></label>
                                 <select class="form-control multi_select_product" multiple
                                         name="product_id[]">
                                     @foreach($products as $product)

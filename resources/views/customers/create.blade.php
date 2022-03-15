@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Tên khách hàng</label>
+                                        <label for="exampleInputEmail1">Tên khách hàng<span style="color: red">*</span></label>
                                         <input type="text" name="name" class="form-control" id=""
                                                placeholder="Nhập tên khách hàng">
                                         @error('name')
@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <label>Nhân viên hỗ trợ</label>
+                                        <label>Nhân viên hỗ trợ<span style="color: red">*</span></label>
                                         <select class="form-control multi_select" multiple="multiple"
                                                 name="employee_code[]">
                                             @foreach($users as $user)

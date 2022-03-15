@@ -32,7 +32,7 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên nhân viên</label>
+                                <label for="exampleInputEmail1">Tên nhân viên<span style="color: red">*</span></label>
                                 <input type="text" name="name" class="form-control" id=""
                                        placeholder="Nhập tên nhân viên">
                                 @error('name')
@@ -40,14 +40,14 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
+                                <label for="exampleInputEmail1">Email<span style="color: red">*</span></label>
                                 <input type="email" name="email" class="form-control" id="" placeholder="Email">
                                 @error('email')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Mật khẩu</label>
+                                <label for="exampleInputEmail1">Mật khẩu<span style="color: red">*</span></label>
                                 <input name="password" type="password" min="6" max="20" class="form-control" id="">
                                 @error('password')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -78,7 +78,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Chức vụ</label>
+                                <label>Chức vụ<span style="color: red">*</span></label>
                                 <select name="role" class="form-control select2" style="width: 100%;">
                                         <option value="0">Admin</option>
                                         <option value="1">Nhân viên</option>

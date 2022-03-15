@@ -141,37 +141,46 @@
                     </ul>
                 </li>
                 @if(\Illuminate\Support\Facades\Auth::user()->info->role == 0)
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-user-circle"></i>
+                            <p>
+                                Quản lý nhân viên
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('users.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Tạo mới</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('users.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-user-circle"></i>
+                        <i class="nav-icon fa   fa-user"></i>
                         <p>
-                            Quản lý nhân viên
+                            Tài khoản
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('users.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tạo mới</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('users.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách</p>
-                            </a>
-                        </li>
+                        <form role="form" class="row" action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <div class="col-md-4">
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary">Đăng Xuất</button>
+                        </form>
                     </ul>
-                </li>
-                @endif
-                <form role="form" class="row" action="{{ route('logout') }}" method="post">
-                    @csrf
-                    <div class="col-md-4">
-                    </div>
-                    <button type="submit" class="btn btn-outline-primary">Đăng Xuất</button>
-                </form>
-                </li>
                 </li>
             </ul>
         </nav>

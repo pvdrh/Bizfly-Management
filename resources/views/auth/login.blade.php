@@ -30,15 +30,13 @@
 <body class="hold-transition login-page">
 
 
-
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b>Admin</b>LTE</a>
+        <a href="#"><b>Quản Lý Bán Hàng</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
 
             <form role="form" action="{{route('login.store')}}" method="post">
                 @csrf
@@ -50,6 +48,9 @@
                         </div>
                     </div>
                 </div>
+                @error('email')
+                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                @enderror
                 <div class="input-group mb-3">
                     <input type="password" name="password" class="form-control" placeholder="Password">
                     <div class="input-group-append">
@@ -58,37 +59,33 @@
                         </div>
                     </div>
                 </div>
+                @error('password')
+                <div>
+                    <span style="color: red; font-size: 14px">{{ $message }}</span></div>
+                @enderror
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-7">
                         <div class="icheck-primary">
                             <input type="checkbox" id="remember">
                             <label for="remember">
-                                Remember Me
+                                Nhớ mật khẩu
                             </label>
                         </div>
                     </div>
                     <!-- /.col -->
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign in</button>
+                    <div class="col-5">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
 
             <div class="social-auth-links text-center mb-3">
-                <p>- OR -</p>
+                <p>- HOẶC -</p>
                 <a href="{{route('login.social')}}" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    <i class="fab fa-google-plus mr-2"></i> Đăng nhập bằng Google+
                 </a>
             </div>
-            <!-- /.social-auth-links -->
-
-            <p class="mb-1">
-                <a href="#">I forgot my password</a>
-            </p>
-            <p class="mb-0">
-                <a href="register.html" class="text-center">Register a new membership</a>
-            </p>
         </div>
         <!-- /.login-card-body -->
     </div>

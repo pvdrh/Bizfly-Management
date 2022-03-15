@@ -43,7 +43,7 @@
                                        placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên nhân viên</label>
+                                <label for="exampleInputEmail1">Tên nhân viên<span style="color: red">*</span></label>
                                 <input type="text" max="30" name="name" value="{{$user->info->name}}"
                                        class="form-control" id=""
                                        placeholder="Nhập tên nhân viên">
@@ -75,7 +75,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Chức vụ</label>
+                                <label>Chức vụ<span style="color: red">*</span></label>
                                 <select class="form-control  select2" name="role" style="width: 100%;">
                                     <option value="0" @if(0 == $user->info->role) selected @endif>Admin</option>
                                     <option value="1" @if(1 == $user->info->role) selected @endif>Nhân viên</option>
