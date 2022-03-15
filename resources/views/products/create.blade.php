@@ -76,7 +76,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mô tả sản phẩm</label>
-                                <textarea name="description" class="textarea"
+                                <textarea name="description"
                                           style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                 @error('description')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>

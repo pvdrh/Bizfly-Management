@@ -35,7 +35,8 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên sản phẩm <span style="color: red">*</span></label>
-                                <input type="text" name="name" value="{{$product->name}}" class="form-control" id="" placeholder="Điền tên sản phẩm ">
+                                <input type="text" name="name" value="{{$product->name}}" class="form-control" id=""
+                                       placeholder="Điền tên sản phẩm ">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
@@ -44,7 +45,8 @@
                                 <label>Danh mục sản phẩm</label>
                                 <select class="form-control select2" name="category_id" style="width: 100%;">
                                     @foreach($category as $category)
-                                        <option value="{{ $category->id }}" @if($category->id == $product->category_id) selected @endif>{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}"
+                                                @if($category->id == $product->category_id) selected @endif>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -52,7 +54,8 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>Giá bán<span style="color: red">*</span></label>
-                                        <input value="{{$product->price}}" type="text" name="price" min="1" class="form-control"
+                                        <input value="{{$product->price}}" type="text" name="price" min="1"
+                                               class="form-control"
                                                placeholder="Điền giá bán">
                                         @error('price')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -62,7 +65,8 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>Số lượng<span style="color: red">*</span></label>
-                                        <input value="{{$product->quantity}}" type="number" name="quantity" min="1" class="form-control"
+                                        <input value="{{$product->quantity}}" type="number" name="quantity" min="1"
+                                               class="form-control"
                                                placeholder="Điền số lượng">
                                         @error('quantity')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -72,8 +76,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mô tả sản phẩm</label>
-                                <textarea name="description" value="{{$product->description}}" class="textarea"
-                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                <textarea name="description"
+                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $product->description !!}</textarea>
                                 @error('description')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
@@ -82,17 +86,15 @@
                                 <label for="exampleInputFile">Hình ảnh sản phẩm</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" value="{{$product->image}}" name="image" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Chọn file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="">Upload</span>
+                                        <input type="file" value="{{$product->image}}" multiple id="files"
+                                               name="image  ">
+                                        <div id="list_file"></div>
                                     </div>
                                 </div>
-                                @error('image')
-                                <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                @enderror
                             </div>
+                            @error('image')
+                            <span style="color: red; font-size: 14px">{{ $message }}</span>
+                            @enderror
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
