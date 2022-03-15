@@ -21,8 +21,8 @@ class UserInfoTableSeeder extends Seeder
             [
                 'role' => UserInfo::ROLE['admin'],
                 'gender' => 1,
-                'name' => 'Quản trị viên',
-                'address' => 'Thanh Xuân, Hà Nội',
+                'name' => 'Quan Tri Vien',
+                'address' => 'Ha Noi',
                 'phone' => '0835904783',
                 'user_id' => $admin,
                 'is_protected' => true,
@@ -35,9 +35,9 @@ class UserInfoTableSeeder extends Seeder
             [
                 'role' => UserInfo::ROLE['employee'],
                 'gender' => 0,
-                'name' => 'Nhân viên',
+                'name' => 'Nhan Vien',
                 'phone' => '0931884553',
-                'address' => 'Hai Bà Trưng, Hà Nội',
+                'address' => 'Ha Noi',
                 'user_id' => $employee,
                 'is_protected' => true,
                 'code' => (string)rand(1000, 9999)
