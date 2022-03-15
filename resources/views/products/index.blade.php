@@ -61,13 +61,6 @@
                                     <td>{{ number_format($product->price) }} VND</td>
                                     <td style="text-align: center">{!! $product->quantity !!}</td>
                                     <td style="text-align: center">{!! $product->total_sold !!}</td>
-                                    <td>
-                                        <a href="{{route('products.edit',$product->id)}}" type="submit"
-                                           class="btn btn-info">
-                                            <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                        </a>
-                                    </td>
-
                                     <!-- //Nút xóa-->
                                     <td>
                                         <form action="{{ route('products.destroy',$product['id']) }}" method="POST">

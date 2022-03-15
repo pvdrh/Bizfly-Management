@@ -131,12 +131,29 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $customer = Customer::find($id);
-        $users = User::get();
+        $customer_employees = $customer->employee_code;
+        $query = User::query();
+        if (is_array($customer_employees)) {
+            if ($customer_employees && count($customer_employees) > 0) {
+                $query->whereHas('info', function ($qr) use ($customer_employees) {
+                    $qr->whereIn('code', $customer_employees);
+                });
+            }
+        } else {
+            if ($customer_employees) {
+                $query->whereHas('info', function ($qr) use ($customer_employees) {
+                    $qr->where(['code' => $customer_employees]);
+                });
+            }
+        }
+        $user = $query->get();
         $companies = Company::get();
+        $users = User::get();
         return view('customers.edit')->with([
             'customer' => $customer,
             'companies' => $companies,
-            'users' => $users
+            'user' => $user,
+            'users' => $users,
         ]);
     }
 

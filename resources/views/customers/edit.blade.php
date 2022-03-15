@@ -137,28 +137,27 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label>Nhân viên hỗ trợ<span style="color: red">*</span></label>
-                                        <select class="form-control multi_select" multiple
-                                                name="employee_code[]">
-                                            @foreach($users as $user)
-                                                <option value="{{ $user->info->code }}"
-                                                        @if($user->info->code == $customer->employee_code) selected @endif>{{ $user->info->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('employee_code')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
+{{--                                <div class="col-4">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label>Nhân viên hỗ trợ<span style="color: red">*</span></label>--}}
+{{--                                        <select class="form-control multi_select" multiple--}}
+{{--                                                name="employee_code[]">--}}
+{{--                                            @foreach($users as $user)--}}
+{{--                                                <option value="{{ $user->info->code }}">{{ $user->info->name }}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                        @error('employee_code')--}}
+{{--                                        <span style="color: red; font-size: 14px">{{ $message }}</span>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
                             <a href="{{ route('customers.index') }}" class="btn btn-danger">Huỷ bỏ</a>
-                            <button type="submit" class="btn btn-success">Tạo mới</button>
+                            <button type="submit" class="btn btn-success">Cập nhật</button>
                         </div>
                     </form>
                 </div>
@@ -197,6 +196,10 @@
         $(document).ready(function () {
             $('.multi_select').select2();
         });
+        // let selectedValuesTest = ["8126", "2420", "5428", "1948"];
+        // $(function () {
+        //     $(".multi_select").select2().val(selectedValuesTest).trigger('change.select2');
+        // });
     </script>
 @endsection
 @endsection
