@@ -86,8 +86,8 @@
                                 <label for="exampleInputFile">Hình ảnh sản phẩm</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Chọn file</label>
+                                        <input type="file" multiple id="files" name="image  ">
+                                        <div id="list_file"></div>
                                     </div>
                                 </div>
                                 @error('image')
@@ -112,6 +112,15 @@
         numeral: true,
         numeralThousandsGroupStyle: 'thousand'
     });
+
+    var fileInput = document.getElementById('exampleInputFile');
+    var listFile = document.getElementById('list_file');
+
+    fileInput.onchange = function () {
+        var files = Array.from(this.files);
+        files = files.map(file => file.name);
+        listFile.innerHTML = files.join('<br/>');
+    }
 </script>
 @endsection
 @endsection
