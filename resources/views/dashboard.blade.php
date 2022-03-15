@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Quản Lý
+    Quản Lý Bán Hàng
 @endsection
 
 @section('content')
