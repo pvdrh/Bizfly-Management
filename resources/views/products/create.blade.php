@@ -86,7 +86,7 @@
                                 <label for="exampleInputFile">Hình ảnh sản phẩm</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" multiple id="files" name="image  ">
+                                        <input type="file" multiple id="files" name="image">
                                         <div id="list_file"></div>
                                     </div>
                                 </div>
