@@ -24,7 +24,7 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => 'numeric',
+            'phone' => 'numeric|required|unique:user_info|nullable',
             'address' => 'max:100',
             'gender' => 'boolean',
             'role' => 'numeric'
