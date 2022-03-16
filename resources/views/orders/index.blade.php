@@ -67,8 +67,8 @@
                                     @if($order->customers)
                                         <td>{{$order->customers->name}}</td>
                                         <td>{{$order->customers->phone}}</td>
-                                    @endif
                                     <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width: 150px;">{{$order->customers->address}}</td>
+                                    @endif
                                     <td>{{$order->note}}</td>
                                     <td>{{number_format($order->total) }} VND</td>
                                     <td>{{$order->created_at->format('d-m-Y')}}</td>
