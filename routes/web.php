@@ -37,10 +37,10 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('products.create');
         Route::post('/store', [ProductController::class, 'store'])
             ->name('products.store');
-//        Route::get('/update/{id}', [ProductController::class, 'edit'])
-//            ->name('products.edit');
-//        Route::post('/update/{id}', [ProductController::class, 'update'])
-//            ->name('products.update');
+        Route::get('/update/{id}', [ProductController::class, 'edit'])
+            ->name('products.edit');
+        Route::post('/update/{id}', [ProductController::class, 'update'])
+            ->name('products.update');
         Route::delete('/delete/{id}', [ProductController::class, 'destroy'])
             ->name('products.destroy');
     });

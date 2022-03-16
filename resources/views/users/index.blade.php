@@ -13,7 +13,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="#">Nhân viên</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('users.index')}}">Nhân viên</a></li>
                     <li class="breadcrumb-item active">Danh sách</li>
                 </ol>
             </div><!-- /.col -->
@@ -35,7 +35,8 @@
                                     <input type="text" name="search" class="form-control float-right"
                                            placeholder="Nhập mã nhân viên">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -60,7 +61,7 @@
                                 <tr>
                                     @if($user->info)
                                         <td style="font-weight: bold">{{$user->info->code}}</td>
-                                    <td>{{$user->info->name}}</td>
+                                        <td>{{$user->info->name}}</td>
                                     @endif
                                     <td>{{$user->email}}</td>
                                     @if($user->info)
@@ -103,7 +104,7 @@
                         </table>
                     </div>
                 {!! $users->links() !!}
-                    <!-- /.card-body -->
+                <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
             </div>

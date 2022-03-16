@@ -14,7 +14,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('products.index')}}">Sản phẩm</a></li>
                     <li class="breadcrumb-item active">Danh sách</li>
                 </ol>
             </div><!-- /.col -->
@@ -61,6 +61,12 @@
                                     <td>{{ number_format($product->price) }} VND</td>
                                     <td style="text-align: center">{!! $product->quantity !!}</td>
                                     <td style="text-align: center">{!! $product->total_sold !!}</td>
+                                    <td>
+                                        <a href="{{ route('products.edit',$product['_id']) }}" type="submit"
+                                           class="btn btn-info">
+                                            <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                        </a>
+                                    </td>
                                     <!-- //Nút xóa-->
                                     <td>
                                         <form action="{{ route('products.destroy',$product['id']) }}" method="POST">

@@ -14,7 +14,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('products.index')}}">Sản phẩm</a></li>
                     <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
             </div><!-- /.col -->
@@ -82,19 +82,19 @@
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Hình ảnh sản phẩm</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" multiple id="files"
-                                               name="image">
-                                        <div id="list_file"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            @error('image')
-                            <span style="color: red; font-size: 14px">{{ $message }}</span>
-                            @enderror
+{{--                            <div class="form-group">--}}
+{{--                                <label for="exampleInputFile">Hình ảnh sản phẩm</label>--}}
+{{--                                <div class="input-group">--}}
+{{--                                    <div class="custom-file">--}}
+{{--                                        <input type="file" multiple id="files"--}}
+{{--                                               name="image">--}}
+{{--                                        <div id="list_file"></div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            @error('image')--}}
+{{--                            <span style="color: red; font-size: 14px">{{ $message }}</span>--}}
+{{--                            @enderror--}}
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
