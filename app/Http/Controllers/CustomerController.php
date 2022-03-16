@@ -17,6 +17,7 @@ use Session;
 use Illuminate\Support\Facades\Log;
 use Exception;
 use Maatwebsite\Excel\Facades\Excel;
+use function PHPUnit\Framework\isEmpty;
 
 class CustomerController extends Controller
 {
@@ -243,21 +244,47 @@ class CustomerController extends Controller
             $customers = $customers[0];
             if (count($customers)) {
                 foreach ($customers as $key => $customer) {
-                    $newCustomer = new Customer();
-                    $newCustomer->name = $customer[0];
-                    $newCustomer->email = $customer[1];
-                    $newCustomer->phone = $customer[2];
-                    $newCustomer->age = $customer[3];
-                    $newCustomer->job = $customer[4];
-                    $newCustomer->address = $customer[5];
-                    $newCustomer->gender = $customer[6];
-                    $newCustomer->customer_type = $customer[7];
-                    $newCustomer->employee_code = (string)$customer[8];
-                    $newCustomer->save();
+                    $query = User::query();
+                    $cus = (string)$customer[8];
+                    if (($cus) && strlen($cus) > 0) {
+                        if (is_array($customer[8])) {
+                            if (!empty($cus) && count($cus) > 0) {
+                                $query->whereHas('info', function ($qr) use ($cus) {
+                                    $qr->whereIn('code', $cus);
+                                });
+                            }
+                        } else {
+                            if ($cus) {
+                                $query->whereHas('info', function ($qr) use ($cus) {
+                                    $qr->where(['code' => $cus]);
+                                });
+                            }
+                        }
+                        $user = $query->get();
+                        if (count($user) > 0) {
+                            $newCustomer = new Customer();
+                            $newCustomer->name = $customer[0];
+                            $newCustomer->email = $customer[1];
+                            $newCustomer->phone = $customer[2];
+                            $newCustomer->age = $customer[3];
+                            $newCustomer->job = $customer[4];
+                            $newCustomer->address = $customer[5];
+                            $newCustomer->gender = $customer[6];
+                            $newCustomer->customer_type = $customer[7];
+                            $newCustomer->employee_code = (string)$customer[8];
+                            $newCustomer->save();
+
+                            Session::flash('success', 'Thêm mới thành công!');
+                        } else {
+                            Session::flash('error', 'Mã nhân viên không tồn tại!');
+                        }
+                    } else {
+                        Session::flash('error', 'Mã nhân viên không được để trống!');
+                    }
                 }
             }
 
-            Session::flash('success', 'Thêm mới thành công!');
+
         } catch (Exception $e) {
             Log::error('Error import customer from file excel', [
                 'method' => __METHOD__,

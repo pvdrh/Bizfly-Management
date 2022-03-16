@@ -31,6 +31,7 @@ class StoreUserRequest extends FormRequest
             'address' => 'max:100',
             'gender' => 'boolean',
             'role' => 'required|numeric',
+            'code' => 'unique:user_info'
         ];
     }
 

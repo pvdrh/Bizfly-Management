@@ -128,8 +128,8 @@
                         <div class="modal-body">
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="file" class="custom-file-input" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">Chọn file</label>
+                                    <input type="file" id="files" name="file">
+                                    <div id="list_file"></div>
                                 </div>
                             </div>
                         </div>
@@ -149,6 +149,17 @@
         @elseif(Session::has('error'))
         toastr.error('{{ Session::get('error') }}');
         @endif
+    </script>
+
+    <script>
+        var fileInput = document.getElementById('exampleInputFile');
+        var listFile = document.getElementById('list_file');
+
+        fileInput.onchange = function () {
+            var files = Array.from(this.files);
+            files = files.map(file => file.name);
+            listFile.innerHTML = files.join('<br/>');
+        }
     </script>
 @endsection
 @endsection
