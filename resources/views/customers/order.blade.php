@@ -63,39 +63,43 @@
                                     <td>{{$order->note}}</td>
                                     <td>{{number_format($order->total) }} VND</td>
                                     <td>{{$order->created_at->format('d-m-Y')}}</td>
-                                    @if($order->status == 0)
-                                        <td>
-                                            <a href="{{route('orders.accept', $order->_id)}}" type="submit"
-                                               class="btn btn-success">
-                                                <i class="fa fa-btn fa-edit"></i> Duyệt đơn
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="{{route('orders.cancel', $order->_id)}}" type="submit"
-                                               class="btn btn-danger">
-                                                <i class="fa fa-btn fa-trash"></i> Huỷ đơn
-                                            </a>
-                                        </td>
-                                    @endif
-                                    @if($order->status == 1)
-                                        <td>
-                                            <a href="{{route('orders.return', $order->_id)}}" type="submit"
-                                               class="btn btn-warning">
-                                                <i class="fa fa-btn fa-circle-o-notch" aria-hidden="true"></i>Hoàn đơn
-                                            </a>
-                                        </td>
-                                    @endif
-                                    @if($order->status == 2)
-                                        <td style="text-align: center">
+                                    @if($order->product_id)
+                                        {{--                                    Chuyển trạng thái đơn hàng--}}
+                                        @if($order->status == 0)
+                                            <td>
+                                                <a href="{{route('orders.accept', $order->_id)}}" type="submit"
+                                                   class="btn btn-success">
+                                                    <i class="fa fa-btn fa-edit"></i> Duyệt đơn
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{route('orders.cancel', $order->_id)}}" type="submit"
+                                                   class="btn btn-danger">
+                                                    <i class="fa fa-btn fa-trash"></i> Huỷ đơn
+                                                </a>
+                                            </td>
+                                        @endif
+                                        @if($order->status == 1)
+                                            <td>
+                                                <a href="{{route('orders.return', $order->_id)}}" type="submit"
+                                                   class="btn btn-warning">
+                                                    <i class="fa fa-btn fa-circle-o-notch" aria-hidden="true"></i>Hoàn
+                                                    đơn
+                                                </a>
+                                            </td>
+                                        @endif
+                                        @if($order->status == 2)
+                                            <td style="text-align: center">
                                             <span
                                                 style="padding: 5px; font-weight: bold; background: #f97316;color: white">Đã hoàn</span>
-                                        </td>
-                                    @endif
-                                    @if($order->status == 3)
-                                        <td style="text-align: center">
+                                            </td>
+                                        @endif
+                                        @if($order->status == 3)
+                                            <td style="text-align: center">
                                             <span
                                                 style="padding: 5px; font-weight: bold; background: #ef4444;color: white">Đã hủy</span>
-                                        </td>
+                                            </td>
+                                        @endif
                                     @endif
                                 </tr>
                             @endforeach
