@@ -10,6 +10,7 @@ use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
@@ -26,12 +27,20 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        $user_code = Auth::user()->info->code;
-        $query = Customer::Where(['employee_code' => $user_code]);
-        if ($request->has('search') && strlen($request->input('search')) > 0) {
-            $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
+        if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
+            $query = Customer::query();
+            if ($request->has('search') && strlen($request->input('search')) > 0) {
+                $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
+            }
+            $customers = $query->paginate(10);
+        } else {
+            $user_code = Auth::user()->info->code;
+            $query = Customer::Where(['employee_code' => $user_code]);
+            if ($request->has('search') && strlen($request->input('search')) > 0) {
+                $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
+            }
+            $customers = $query->paginate(10);
         }
-        $customers = $query->paginate(10);
         return view('customers.index')->with([
             'customers' => $customers,
         ]);
