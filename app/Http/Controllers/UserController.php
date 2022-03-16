@@ -80,7 +80,7 @@ class UserController extends Controller
                 $info->user_id = $user->id;
                 $info->name = $request->get('name');
                 $info->gender = (int)$request->get('gender');
-                $info->phone = (int)$request->get('phone');
+                $info->phone = $request->get('phone');
                 $info->address = $request->get('address');
                 $info->code = (string)rand(1000, 9999);
                 $info->role = $request->get('role');

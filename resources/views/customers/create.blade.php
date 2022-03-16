@@ -53,7 +53,8 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Số điện thoại</label>
+                                        <label for="exampleInputEmail1">Số điện thoại<span
+                                                style="color: red">*</span></label>
                                         <input type="text" name="phone" class="form-control" id="inBox"
                                                placeholder="Nhập số điện thoại">
                                         @error('phone')

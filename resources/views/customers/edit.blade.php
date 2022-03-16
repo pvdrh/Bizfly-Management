@@ -55,7 +55,8 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Số điện thoại</label>
+                                        <label for="exampleInputEmail1">Số điện thoại<span
+                                                style="color: red">*</span></label>
                                         <input type="text" value="{{$customer->phone}}" name="phone"
                                                class="form-control" id="inBox"
                                                placeholder="Nhập số điện thoại">
@@ -137,20 +138,23 @@
                                         @enderror
                                     </div>
                                 </div>
-{{--                                <div class="col-4">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>Nhân viên hỗ trợ<span style="color: red">*</span></label>--}}
-{{--                                        <select class="form-control multi_select" multiple--}}
-{{--                                                name="employee_code[]">--}}
-{{--                                            @foreach($users as $user)--}}
-{{--                                                <option value="{{ $user->info->code }}">{{ $user->info->name }}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-{{--                                        @error('employee_code')--}}
-{{--                                        <span style="color: red; font-size: 14px">{{ $message }}</span>--}}
-{{--                                        @enderror--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                @if(count($user) == 0)
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label>Nhân viên hỗ trợ<span style="color: red">*</span></label>
+                                            <select class="form-control multi_select" multiple
+                                                    name="employee_code[]">
+                                                @foreach($users as $user)
+                                                    <option
+                                                        value="{{ $user->info->code }}">{{ $user->info->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('employee_code')
+                                            <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -196,10 +200,10 @@
         $(document).ready(function () {
             $('.multi_select').select2();
         });
-        // let selectedValuesTest = ["8126", "2420", "5428", "1948"];
-        // $(function () {
-        //     $(".multi_select").select2().val(selectedValuesTest).trigger('change.select2');
-        // });
+        let selectedValuesTest = {{\Illuminate\Support\Facades\Auth::user()->info->code}};
+        $(function () {
+            $(".multi_select").select2().val(selectedValuesTest).trigger('change.select2');
+        });
     </script>
 @endsection
 @endsection

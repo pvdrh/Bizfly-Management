@@ -60,8 +60,8 @@
                                 <tr>
                                     @if($user->info)
                                         <td style="font-weight: bold">{{$user->info->code}}</td>
-                                    @endif
                                     <td>{{$user->info->name}}</td>
+                                    @endif
                                     <td>{{$user->email}}</td>
                                     @if($user->info)
                                         <td>{{$user->info->phone}}</td>
