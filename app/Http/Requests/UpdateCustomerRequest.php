@@ -27,7 +27,7 @@ class UpdateCustomerRequest extends FormRequest
             'name' => 'required|max:30',
             'email' => 'email|nullable',
             'phone' => 'numeric|required',
-            'age' => 'numeric|gte:18|nullable',
+            'age' => 'numeric|nullable',
             'job' => 'max:30|nullable',
             'address' => 'max:100',
             'gender' => 'boolean',
