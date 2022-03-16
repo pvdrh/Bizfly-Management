@@ -265,7 +265,11 @@ class OrderController extends Controller
                                 } else {
                                     $newOrder->code = $order[0];
                                 }
-                                $newOrder->status = $order[1];
+                                if (empty($order[1])) {
+                                    $newOrder->status = Order::STATUS['0'];
+                                } else {
+                                    $newOrder->status = $order[1];
+                                }
                                 $newOrder->note = $order[2];
                                 $newOrder->customer_id = $order[3];
                                 $newOrder->total = $order[4];
