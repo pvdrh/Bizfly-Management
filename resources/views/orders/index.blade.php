@@ -29,7 +29,11 @@
                         <a href="{{route('orders.create')}}" type="submit" style="text-decoration: none; color: white"
                            class="btn btn-success">Tạo mới</a>
                         <a href="{{route('orders.export')}}" type="submit" style="text-decoration: none; color: white"
-                           class="btn btn-secondary">Xuất excel</a>
+                           class="btn btn-info">Xuất excel</a>
+                        <button type="button" class="btn btn-secondary" data-toggle="modal"
+                                data-target="#exampleModalCenter">
+                            Nhập file excel
+                        </button>
                         <div class="card-tools">
                             <form role="search" method="get" action="{{route('orders.index')}}">
                                 <div class="input-group input-group-sm">
@@ -146,6 +150,35 @@
                 </div>
                 <!-- /.card -->
             </div>
+        </div>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <form role="form" method="post" enctype="multipart/form-data"
+                  action="{{ route('orders.import') }}">
+                @csrf
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Tải lên file excel</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" id="files" name="file">
+                                    <div id="list_file"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-success">Tải lên</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->

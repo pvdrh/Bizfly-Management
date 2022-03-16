@@ -56,6 +56,7 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Họ tên</th>
                                 <th>Email</th>
                                 <th>Số điện thoại</th>
@@ -66,6 +67,7 @@
                             <tbody>
                             @foreach($customers as $customer)
                                 <tr>
+                                    <td>{{$customer->_id}}</td>
                                     <td><span
                                             class="d-inline-block" tabindex="0" data-bs-toggle="tooltip"
                                             title="Chi tiết khách hàng">

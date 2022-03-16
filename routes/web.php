@@ -127,6 +127,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('orders.store');
         Route::get('/export-excel', [OrderController::class, 'exportExcel'])
             ->name('orders.export');
+        Route::post('/import-excel', [OrderController::class, 'importExcel'])
+            ->name('orders.import');
         Route::get('/show/{id}', [OrderController::class, 'show'])
             ->name('orders.show');
         Route::get('/accept/{id}', [OrderController::class, 'acceptOrder'])

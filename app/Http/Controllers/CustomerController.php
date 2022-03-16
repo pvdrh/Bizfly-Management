@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\CustomersExport;
+use App\Http\Requests\ImportCustomerRequest;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Imports\CustomersImport;
@@ -233,7 +234,7 @@ class CustomerController extends Controller
         return Excel::download(new CustomersExport($customers), 'Danh sách khách hàng.xlsx');
     }
 
-    public function importExcel(Request $request)
+    public function importExcel(ImportCustomerRequest $request)
     {
         try {
             $customers = Excel::toArray(new CustomersImport(), $request->file('file'));
@@ -279,8 +280,6 @@ class CustomerController extends Controller
                     }
                 }
             }
-
-
         } catch (Exception $e) {
             Log::error('Error import customer from file excel', [
                 'method' => __METHOD__,

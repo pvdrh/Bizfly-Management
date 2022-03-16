@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Exports\OrdersExport;
+use App\Http\Requests\ImportOrderRequest;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\StoreOrderRequest;
+use App\Imports\CustomersImport;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -24,18 +27,23 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $user_code = Auth::user()->info->code;
-        $customers = Customer::where(['employee_code' => $user_code])->get();
-        $customer_id = [];
-        foreach ($customers as $customer) {
-            $customer_id[] = $customer->_id;
-        }
-        if ($request->search) {
-            $orders = Order::whereIn('customer_id', $customer_id)->where('code', $request->search);
+        $user_role = Auth::user()->info->role;
+        if ($user_role == UserInfo::ROLE['admin']) {
+            $orders = Order::paginate(10);
         } else {
-            $orders = Order::whereIn('customer_id', $customer_id);
+            $user_code = Auth::user()->info->code;
+            $customers = Customer::where(['employee_code' => $user_code])->get();
+            $customer_id = [];
+            foreach ($customers as $customer) {
+                $customer_id[] = $customer->_id;
+            }
+            if ($request->search) {
+                $orders = Order::whereIn('customer_id', $customer_id)->where('code', $request->search);
+            } else {
+                $orders = Order::whereIn('customer_id', $customer_id);
+            }
+            $orders = $orders->paginate(10);
         }
-        $orders = $orders->paginate(10);
         return view('orders.index')->with([
             'orders' => $orders
         ]);
@@ -237,5 +245,45 @@ class OrderController extends Controller
         return view('orders.index')->with([
             'orders' => $orders
         ]);
+    }
+
+    public function importExcel(ImportOrderRequest $request)
+    {
+        try {
+            $orders = Excel::toArray(new CustomersImport(), $request->file('file'));
+            $orders = $orders[0];
+            if (count($orders)) {
+                foreach ($orders as $key => $order) {
+                    if (strlen($order[3]) > 0) {
+                        $customer = Customer::find($order[3]);
+                        if ($customer) {
+                            $newOrder = new Order();
+                            $newOrder->code = $order[0];
+                            $newOrder->status = $order[1];
+                            $newOrder->note = $order[2];
+                            $newOrder->customer_id = $order[3];
+                            $newOrder->total = $order[4];
+                            $newOrder->save();
+
+                            Session::flash('success', 'Thêm mới thành công!');
+                        } else {
+                            Session::flash('error', 'Mã khách hàng không tồn tại!');
+                        }
+                    } else {
+                        Session::flash('error', 'Mã khách hàng không được để trống!');
+                    }
+                }
+            }
+        } catch (Exception $e) {
+            Log::error('Error import order from file excel', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Thêm mới thất bại!');
+        }
+
+        return redirect()->route('orders.index');
     }
 }
