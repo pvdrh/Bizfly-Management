@@ -24,7 +24,7 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
+            'name' => 'required|max:100|unique:products',
             'price' => 'required|numeric|gte:0',
             'quantity' => 'required|numeric|gte:0',
             'description' => 'max:5000|nullable',
@@ -42,13 +42,14 @@ class UpdateProductRequest extends FormRequest
             'numeric' => ':attribute phải là kiểu số',
             'gte' => ':attribute phải lớn hơn hoặc bằng 0',
             'mimes' => ':attribute không đúng định dạng',
+            'unique' => ':attribute đã tồn tại'
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'Tên chức vụ',
+            'name' => 'Tên sản phẩm',
             'description' => 'Mô tả',
             'image' => 'Ảnh sản phẩm',
             'price' => 'Giá bán',

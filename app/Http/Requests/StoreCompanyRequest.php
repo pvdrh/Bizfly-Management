@@ -24,7 +24,7 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
+            'name' => 'required|max:100|unique:companies',
             'phone' => 'numeric|min:10|nullable',
             'address' => 'max:100'
         ];
@@ -37,7 +37,8 @@ class StoreCompanyRequest extends FormRequest
             'max' => ':attribute không được lớn hơn :max ký tự',
             'min' => ':attribute không được nhở hơn :min ký tự',
             'numeric' => ':attribute phải là kiểu số',
-            'nullable' => ':attribute có thể để trống'
+            'nullable' => ':attribute có thể để trống',
+            'unique' => ':attribute đã tồn tại'
         ];
     }
 

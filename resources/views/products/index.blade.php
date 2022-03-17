@@ -54,7 +54,7 @@
                                                 style="width: 150px; height: 150px; object-fit: cover"
                                                 src="storage/{{ $product->image }}">
                                         @else
-                                            <img    style="width: 150px; height: 150px; object-fit: cover" src="/backend/dist/img/default.jpg">
+                                            <img style="width: 150px; height: 150px; object-fit: cover" src="/backend/dist/img/default.jpg">
                                         @endif
                                     </td>
                                     <td>{{ $product->category_id }}</td>

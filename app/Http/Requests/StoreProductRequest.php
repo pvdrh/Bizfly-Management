@@ -24,7 +24,7 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
+            'name' => 'required|max:100|unique:products',
             'quantity' => 'required|numeric|gte:0',
             'description' => 'max:5000|nullable',
             'image' => 'nullable|mimes:jpeg,png,jpg,gif|max:2000',

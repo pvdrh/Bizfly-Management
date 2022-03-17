@@ -29,7 +29,11 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{$categories}}</h3>
+                            @if($categories)
+                                <h3>{{$categories}}</h3>
+                            @else
+                                <h3>0</h3>
+                            @endif
                             <p>Danh Mục</p>
                         </div>
                         <div class="icon">
@@ -46,7 +50,7 @@
                             @if($orders)
                                 <h3>{{$orders}}</h3>
                             @else
-                                <h3>5</h3>
+                                <h3>0</h3>
                             @endif
                             <p>Đơn Hàng</p>
                         </div>
@@ -64,7 +68,7 @@
                             @if($customers)
                                 <h3>{{$customers}}</h3>
                             @else
-                                <h3>8</h3>
+                                <h3>0</h3>
                             @endif
                             <p>Nguời Dùng</p>
                         </div>
@@ -82,7 +86,7 @@
                             @if($products)
                                 <h3>{{$products}}</h3>
                             @else
-                                <h3>20</h3>
+                                <h3>0</h3>
                             @endif
                             <p>Sản phẩm</p>
                         </div>

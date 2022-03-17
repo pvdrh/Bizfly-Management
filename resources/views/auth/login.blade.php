@@ -79,7 +79,9 @@
                     <!-- /.col -->
                 </div>
             </form>
-
+            @if (Session::has('fail'))
+                <span class="text-danger">{{ Session('fail') }}</span>
+            @endif
             <div class="social-auth-links text-center mb-3">
                 <p>- HOẶC -</p>
                 <a href="{{route('login.social')}}" class="btn btn-block btn-danger">
