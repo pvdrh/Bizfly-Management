@@ -92,7 +92,7 @@
 
                         <div class="card-footer">
                             <a href="{{route('users.index')}}" class="btn btn-danger">Huỷ bỏ</a>
-                            <button type="submit" class="btn btn-success">Tạo mới</button>
+                            <button type="submit" class="btn btn-success">Cập nhật</button>
                         </div>
                     </form>
                 </div>

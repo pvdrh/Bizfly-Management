@@ -47,6 +47,7 @@
                                 <th>Ghi chú</th>
                                 <th>Thành tiền</th>
                                 <th>Thời gian đặt hàng</th>
+                                <th style="text-align: center">Trạng thái</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -65,14 +66,12 @@
                                     @if($order->product_id)
 {{--                                        Chuyển trạng thái đơn hàng--}}
                                         @if($order->status == 0)
-                                            <td>
+                                            <td style="text-align: center">
                                                 <a style="width: 125px" href="{{route('orders.accept', $order->_id)}}"
                                                    type="submit"
                                                    class="btn btn-success">
                                                     <i class="fa fa-btn fa-edit"></i> Duyệt đơn
                                                 </a>
-                                            </td>
-                                            <td>
                                                 <a style="width: 125px" href="{{route('orders.cancel', $order->_id)}}"
                                                    type="submit"
                                                    class="btn btn-danger">
@@ -81,7 +80,7 @@
                                             </td>
                                         @endif
                                         @if($order->status == 1)
-                                            <td>
+                                            <td style="text-align: center">
                                                 <a style="width: 125px; color: white"
                                                    href="{{route('orders.return', $order->_id)}}" type="submit"
                                                    class="btn btn-warning">

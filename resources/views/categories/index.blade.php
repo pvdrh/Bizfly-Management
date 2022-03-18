@@ -49,6 +49,7 @@
                             <tr>
                                 <th>Tên danh mục</th>
                                 <th>Mô tả</th>
+                                <th style="text-align: center">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -56,14 +57,12 @@
                                 <tr>
                                     <td>{{$category->name}}</td>
                                     <td>{{$category->description}}</td>
-                                    <td>
+                                    <td style="text-align: center;">
                                         <a href="{{ route('categories.edit',$category['_id']) }}" type="submit"
                                            class="btn btn-info">
                                             <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                         </a>
-                                    </td>
                                     <!-- //Nút xóa-->
-                                    <td>
                                         <span data-id="{{$category['_id']}}" class="btn btn-danger delete-card"> <i
                                                 class="fa fa-btn fa-trash"></i> Xoá</span>
                                     </td>

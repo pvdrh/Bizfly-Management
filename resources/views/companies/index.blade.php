@@ -51,6 +51,7 @@
                                 <th>Tên công ty</th>
                                 <th>Số điện thoại</th>
                                 <th>Địa chỉ</th>
+                                <th style="text-align: center">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -59,15 +60,13 @@
                                     <td>{{$company->name}}</td>
                                     <td>{{$company->phone}}</td>
                                     <td>{{$company->address}}</td>
-                                    <td>
+                                    <td style="text-align: center">
                                         <a href="{{ route('companies.edit',$company['_id']) }}" type="submit"
                                            class="btn btn-info">
                                             <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                         </a>
-                                    </td>
 
                                     <!-- //Nút xóa-->
-                                    <td>
                                         <span data-id="{{$company['_id']}}"
                                               class="btn btn-danger delete-card"> <i
                                                 class="fa fa-btn fa-trash"></i> Xoá</span>

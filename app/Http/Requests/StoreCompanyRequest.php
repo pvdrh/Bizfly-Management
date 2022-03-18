@@ -45,7 +45,7 @@ class StoreCompanyRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'Tên danh mục',
+            'name' => 'Tên công ty',
             'phone' => 'Số điện thoại',
             'address' => 'Địa chỉ'
         ];

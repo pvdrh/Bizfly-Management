@@ -32,7 +32,8 @@
                         <div class="card-tools">
                             <form role="search" method="get" action="{{route('users.index')}}">
                                 <div class="input-group input-group-sm">
-                                    <input value="{{$em_code}}" type="text" name="search" class="form-control float-right"
+                                    <input value="{{$em_code}}" type="text" name="search"
+                                           class="form-control float-right"
                                            placeholder="Nhập mã nhân viên">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
@@ -54,6 +55,7 @@
                                 <th>Địa chỉ</th>
                                 <th>Giới tính</th>
                                 <th>Chức vụ</th>
+                                <th style="text-align: center">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -79,18 +81,16 @@
                                         @endif
                                     @endif
                                     @if(!$user->info->is_protected)
-                                        <td>
+                                        <td style="text-align: center">
                                             <a href="{{ route('users.edit',$user['_id']) }}" type="submit"
                                                class="btn btn-info">
                                                 <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                             </a>
-                                        </td>
 
-                                        <!-- //Nút xóa-->
-                                        <td>
-                                        <span data-id="{{$user['_id']}}"
-                                              class="btn btn-danger delete-card"> <i
-                                                class="fa fa-btn fa-trash"></i> Xoá</span>
+                                            <!-- //Nút xóa-->
+                                            <span data-id="{{$user['_id']}}"
+                                                  class="btn btn-danger delete-card"> <i
+                                                    class="fa fa-btn fa-trash"></i> Xoá</span>
                                         </td>
                                     @endif
                                 </tr>

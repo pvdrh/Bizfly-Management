@@ -24,7 +24,7 @@ class UpdateCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100|unique:companies',
+            'name' => 'max:100',
             'phone' => 'numeric|min:10|nullable',
             'address' => 'max:100'
         ];
@@ -45,7 +45,7 @@ class UpdateCompanyRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'Tên danh mục',
+            'name' => 'Tên công ty',
             'phone' => 'Số điện thoại',
             'address' => 'Địa chỉ'
         ];

@@ -41,7 +41,8 @@
                         <div class="card-tools">
                             <form role="search" method="get" action="{{route('customers.index')}}">
                                 <div class="input-group input-group-sm">
-                                    <input value="{{$cus_name}}" type="text" name="search" class="form-control float-right"
+                                    <input value="{{$cus_name}}" type="text" name="search"
+                                           class="form-control float-right"
                                            placeholder="Nhập tên khách hàng">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
@@ -62,6 +63,7 @@
                                 <th>Số điện thoại</th>
                                 <th>Địa chỉ</th>
                                 <th>Phân loại</th>
+                                <th style="text-align: center">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -78,21 +80,12 @@
                                     <td>{{$customer->email}}</td>
                                     <td>{{$customer->phone}}</td>
                                     <td>{{$customer->address}}</td>
-                                    @if($customer->customer_type == 0)
-                                        <td>Khách lạ</td>
-                                    @else
-                                        <td>Khách hàng thân thiết</td>
-                                    @endif
-                                    <td>{{$customer->role_id}}</td>
-                                    <td>
+                                    <td>{{$customer->customer_type}} </td>
+                                    <td style="text-align: center">
                                         <a href="{{ route('customers.edit',$customer['_id']) }}" type="submit"
                                            class="btn btn-info">
                                             <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                         </a>
-                                    </td>
-
-                                    <!-- //Nút xóa-->
-                                    <td>
                                         <span data-id="{{$customer['_id']}}"
                                               class="btn btn-danger delete-card"> <i
                                                 class="fa fa-btn fa-trash"></i> Xoá</span>
@@ -123,7 +116,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Tải file excel mẫu <a href="{{route('customers.export-sample')}}"><u style="color: #4974b4">tại đây</u></a></p>
+                            <p>Tải file excel mẫu <a href="{{route('customers.export-sample')}}"><u
+                                        style="color: #4974b4">tại đây</u></a></p>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" id="files" name="file">

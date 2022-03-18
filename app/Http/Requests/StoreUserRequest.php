@@ -25,8 +25,8 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:30',
-            'email' => 'email|required|unique:user_info',
-            'password' => 'required|min:6:max:20',
+            'email' => 'required|email|unique:user_info',
+            'password' => 'required|min:6|max:20',
             'phone' => 'unique:user_info|nullable',
             'address' => 'max:100',
             'gender' => 'boolean',
@@ -50,7 +50,7 @@ class StoreUserRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'Tên chức vụ',
+            'name' => 'Tên nhân viên',
             'email' => 'Email',
             'password' => 'Mật khẩu',
             'phone' => 'Số điện thoại',

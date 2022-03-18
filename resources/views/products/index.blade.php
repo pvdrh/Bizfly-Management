@@ -42,6 +42,7 @@
                                 <th>Giá bán</th>
                                 <th style="text-align: center">Số lượng</th>
                                 <th style="text-align: center">Đã bán</th>
+                                <th style="text-align: center">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -62,14 +63,12 @@
                                     <td>{{ number_format($product->price) }} VND</td>
                                     <td style="text-align: center">{!! $product->quantity !!}</td>
                                     <td style="text-align: center">{!! $product->total_sold !!}</td>
-                                    <td>
+                                    <td style="text-align: center">
                                         <a href="{{ route('products.edit',$product['_id']) }}" type="submit"
                                            class="btn btn-info">
                                             <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                         </a>
-                                    </td>
                                     <!-- //Nút xóa-->
-                                    <td>
                                         <span data-id="{{$product['_id']}}"
                                               class="btn btn-danger delete-card"> <i
                                                 class="fa fa-btn fa-trash"></i> Xoá</span>
