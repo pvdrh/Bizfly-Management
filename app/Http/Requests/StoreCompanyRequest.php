@@ -38,7 +38,7 @@ class StoreCompanyRequest extends FormRequest
             'min' => ':attribute không được nhở hơn :min ký tự',
             'numeric' => ':attribute phải là kiểu số',
             'nullable' => ':attribute có thể để trống',
-            'unique' => ':attribute đã tồn tại'
+            'unique' => ':attribute không được trùng nhau'
         ];
     }
 

@@ -41,7 +41,7 @@ class UpdateProductRequest extends FormRequest
             'numeric' => ':attribute phải là kiểu số',
             'gte' => ':attribute phải lớn hơn hoặc bằng 0',
             'mimes' => ':attribute không đúng định dạng',
-            'unique' => ':attribute đã tồn tại'
+            'unique' => ':attribute không được trùng nhau'
         ];
     }
 
