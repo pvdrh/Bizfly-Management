@@ -129,6 +129,7 @@
                                     <div class="form-group">
                                         <label>Đơn vị công tác</label>
                                         <select name="company_id" class="form-control select2" style="width: 100%;">
+                                            <option>Chọn công ty</option>
                                             @foreach($companies as $company)
                                                 <option value="{{ $company->_id }}">{{ $company->name }}</option>
                                             @endforeach
@@ -179,6 +180,7 @@
         .select2-selection__choice__remove {
             background-color: #d3d1d1;
             color: black !important;
+            margin-left: 0px !important;
         }
 
         .select2-selection__choice__remove span {

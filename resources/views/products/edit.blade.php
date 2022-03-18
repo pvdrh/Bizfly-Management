@@ -44,6 +44,7 @@
                             <div class="form-group">
                                 <label>Danh mục sản phẩm</label>
                                 <select class="form-control select2" name="category_id" style="width: 100%;">
+                                    <option>Chọn danh mục</option>
                                     @foreach($category as $category)
                                         <option value="{{ $category->id }}"
                                                 @if($category->id == $product->category_id) selected @endif>{{ $category->name }}</option>

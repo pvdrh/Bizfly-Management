@@ -84,6 +84,7 @@
         .select2-selection__choice__remove {
             background-color: #d3d1d1;
             color: black !important;
+            margin-left: 0px !important;
         }
 
         .select2-selection__choice__remove span {

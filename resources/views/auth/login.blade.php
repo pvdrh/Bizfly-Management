@@ -41,7 +41,7 @@
             <form role="form" action="{{route('login.store')}}" method="post">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="email" name="email" class="form-control" placeholder="Email">
+                    <input value="{{old('email')}}" type="email" name="email" class="form-control" placeholder="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -64,16 +64,8 @@
                     <span style="color: red; font-size: 14px">{{ $message }}</span></div>
                 @enderror
                 <div class="row">
-                    <div class="col-7">
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">
-                                Nhớ mật khẩu
-                            </label>
-                        </div>
-                    </div>
                     <!-- /.col -->
-                    <div class="col-5">
+                    <div class="col-12">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
                     </div>
                     <!-- /.col -->
