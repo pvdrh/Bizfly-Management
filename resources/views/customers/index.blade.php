@@ -93,14 +93,9 @@
 
                                     <!-- //Nút xóa-->
                                     <td>
-                                        <form action="{{ route('customers.destroy',$customer['_id']) }}"
-                                              method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-btn fa-trash"></i>Xoá
-                                            </button>
-                                        </form>
+                                        <span data-id="{{$customer['_id']}}"
+                                              class="btn btn-danger delete-card"> <i
+                                                class="fa fa-btn fa-trash"></i> Xoá</span>
                                     </td>
                                 </tr>
                             @endforeach
@@ -108,7 +103,7 @@
                         </table>
                     </div>
                 {!! $customers->links() !!}
-                    <!-- /.card-body -->
+                <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
             </div>
@@ -145,6 +140,42 @@
         </div>
     </div><!-- /.container-fluid -->
 @section('script')
+    <script>
+        $(document).ready(function () {
+            $('.delete-card').on('click', function () {
+                swal({
+                    title: "Chú Ý",
+                    text: "Bạn có chắc chắn muốn xóa?",
+                    icon: "warning",
+                    buttons: ["Đóng", "OK"],
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        let seq = $(this).data('id')
+                        $.ajax({
+                            type: 'post',
+                            url: '/customers/delete/' + seq,
+                            success: function (res) {
+                                window.location.reload()
+                            }
+                        });
+                    }
+                }).catch(err => {
+                    if (err) {
+                        swal("Chú Ý!", "Xóa thất bại!", "error");
+                    } else {
+                        swal.stopLoading();
+                        swal.close();
+                    }
+                });
+            })
+        });
+    </script>
     <script>
         @if(Session::has('success'))
         toastr.success('{{ Session::get('success') }}');

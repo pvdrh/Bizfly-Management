@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('products.edit');
         Route::post('/update/{id}', [ProductController::class, 'update'])
             ->name('products.update');
-        Route::delete('/delete/{id}', [ProductController::class, 'destroy'])
+        Route::post('/delete/{id}', [ProductController::class, 'destroy'])
             ->name('products.destroy');
     });
 
@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('users.edit');
         Route::post('/update/{id}', [UserController::class, 'update'])
             ->name('users.update');
-        Route::delete('/delete/{id}', [UserController::class, 'destroy'])
+        Route::any('/delete/{id}', [UserController::class, 'destroy'])
             ->name('users.destroy');
     });
 
@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('categories.edit');
         Route::post('/update/{id}', [CategoryController::class, 'update'])
             ->name('categories.update');
-        Route::delete('/delete/{id}', [CategoryController::class, 'destroy'])
+        Route::post('/delete/{id}', [CategoryController::class, 'destroy'])
             ->name('categories.destroy');
     });
 
@@ -89,7 +89,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('companies.edit');
         Route::post('/update/{id}', [CompanyController::class, 'update'])
             ->name('companies.update');
-        Route::delete('/delete/{id}', [CompanyController::class, 'destroy'])
+        Route::post('/delete/{id}', [CompanyController::class, 'destroy'])
             ->name('companies.destroy');
     });
 
@@ -113,7 +113,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('customers.edit');
         Route::post('/update/{id}', [CustomerController::class, 'update'])
             ->name('customers.update');
-        Route::delete('/delete/{id}', [CustomerController::class, 'destroy'])
+        Route::any('/delete/{id}', [CustomerController::class, 'destroy'])
             ->name('customers.destroy');
     });
 

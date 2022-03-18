@@ -29,7 +29,6 @@ class UpdateProductRequest extends FormRequest
             'quantity' => 'required|numeric|gte:0',
             'description' => 'max:5000|nullable',
             'image' => 'nullable|mimes:jpeg,png,jpg,gif|max:2000',
-            'category_id' => 'required'
         ];
     }
 
@@ -55,7 +54,6 @@ class UpdateProductRequest extends FormRequest
             'price' => 'Giá bán',
             'quantity' => 'Số lượng',
             'total_sold' => 'Số lượng đã bán',
-            'category_id' => 'Danh mục sản phẩm'
         ];
     }
 }

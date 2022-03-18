@@ -29,7 +29,6 @@ class StoreProductRequest extends FormRequest
             'description' => 'max:5000|nullable',
             'image' => 'nullable|mimes:jpeg,png,jpg,gif|max:2000',
             'total_sold' => 'gte:0',
-            'category_id' => 'required',
             'price' => 'required'
         ];
     }
@@ -54,7 +53,6 @@ class StoreProductRequest extends FormRequest
             'image' => 'Ảnh sản phẩm',
             'price' => 'Giá bán',
             'quantity' => 'Số lượng',
-            'category_id' => 'Danh mục sản phẩm'
         ];
     }
 }
