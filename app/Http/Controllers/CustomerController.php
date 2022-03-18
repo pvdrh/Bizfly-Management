@@ -30,9 +30,9 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
+        $cus_name = '';
         if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
             $query = Customer::query();
-            $cus_name = '';
             if ($request->has('search') && strlen($request->input('search')) > 0) {
                 $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
                 $cus_name = $request->input('search');
@@ -81,7 +81,7 @@ class CustomerController extends Controller
             $customer->name = $request->name;
             $customer->email = $request->email;
             $customer->phone = $request->phone;
-            $customer->age = (int)$request->age;
+            $customer->age = $request->age;
             $customer->job = $request->job;
             $customer->address = $request->address;
             $customer->gender = $request->gender;

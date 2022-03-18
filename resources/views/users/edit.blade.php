@@ -47,6 +47,9 @@
                                 <input type="text" max="30" name="name" value="{{$user->info->name}}"
                                        class="form-control" id=""
                                        placeholder="Nhập tên nhân viên">
+                                @error('name')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số điện thoại</label>

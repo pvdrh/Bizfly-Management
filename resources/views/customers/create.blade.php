@@ -35,7 +35,8 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Tên khách hàng<span style="color: red">*</span></label>
-                                        <input value="{{old('name')}}" type="text" name="name" class="form-control" id=""
+                                        <input value="{{old('name')}}" type="text" name="name" class="form-control"
+                                               id=""
                                                placeholder="Nhập tên khách hàng">
                                         @error('name')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -45,7 +46,8 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
-                                        <input type="email" value="{{old('email')}}" name="email" class="form-control" id="" placeholder="Email">
+                                        <input type="email" value="{{old('email')}}" name="email" class="form-control"
+                                               id="" placeholder="Email">
                                         @error('email')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
                                         @enderror
@@ -55,7 +57,8 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Số điện thoại<span
                                                 style="color: red">*</span></label>
-                                        <input type="text" value="{{old('phone')}}" name="phone" class="form-control" id="inBox"
+                                        <input type="text" value="{{old('phone')}}" name="phone" class="form-control"
+                                               id="inBox"
                                                placeholder="Nhập số điện thoại">
                                         @error('phone')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -67,7 +70,8 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Tuổi</label>
-                                        <input min="18" value="{{old('age')}}" type="number" name="age" class="form-control" id=""
+                                        <input min="18" value="{{old('age')}}" type="number" name="age"
+                                               class="form-control" id=""
                                                placeholder="Nhập tuổi">
                                         @error('age')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -87,7 +91,8 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Địa chỉ</label>
-                                        <input value="{{old('address')}}" type="text" name="address" class="form-control" id=""
+                                        <input value="{{old('address')}}" type="text" name="address"
+                                               class="form-control" id=""
                                                placeholder="Nhập địa chỉ">
                                         @error('address')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -112,7 +117,8 @@
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Phân loại</label>
-                                            <input value="{{old('customer_type')}}" type="text" name="customer_type" class="form-control">
+                                            <input value="{{old('customer_type')}}" type="text" name="customer_type"
+                                                   class="form-control">
                                             @error('customer_type')
                                             <span style="color: red; font-size: 14px">{{ $message }}</span>
                                             @enderror
@@ -162,7 +168,39 @@
     </div><!-- /.container-fluid -->
     <style>
         .select2-selection__choice__display {
-            padding-left: 10px !important;
+            padding-left: 15px !important;
+            background-color: #d3d1d1;
+        }
+
+        .selection__choice__display:hover {
+            background-color: #d3d1d1;
+        }
+
+        .select2-selection__choice__remove {
+            background-color: #d3d1d1;
+            color: black !important;
+        }
+
+        .select2-selection__choice__remove span {
+            color: black;
+        }
+
+        .select2-selection__choice__remove:hover {
+            background-color: #a1a1a1 !important;
+        }
+
+        select2-selection__choice__remove span:hover {
+            background-color: #c4c1c1 !important;
+        }
+
+        .select2-selection__choice {
+            background-color: #d3d1d1 !important;
+            font-size: 16px;
+            color: black !important;
+        }
+
+        .select2-search__field {
+            border: none !important;
         }
     </style>
 @section('script')

@@ -73,7 +73,39 @@
     </div><!-- /.container-fluid -->
     <style>
         .select2-selection__choice__display {
-            padding-left: 10px !important;
+            padding-left: 15px !important;
+            background-color: #d3d1d1;
+        }
+
+        .selection__choice__display:hover {
+            background-color: #d3d1d1;
+        }
+
+        .select2-selection__choice__remove {
+            background-color: #d3d1d1;
+            color: black !important;
+        }
+
+        .select2-selection__choice__remove span {
+            color: black;
+        }
+
+        .select2-selection__choice__remove:hover {
+            background-color: #a1a1a1 !important;
+        }
+
+        select2-selection__choice__remove span:hover {
+            background-color: #c4c1c1 !important;
+        }
+
+        .select2-selection__choice {
+            background-color: #d3d1d1 !important;
+            font-size: 16px;
+            color: black !important;
+        }
+
+        .select2-search__field {
+            border: none !important;
         }
     </style>
 @section('script')

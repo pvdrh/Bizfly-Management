@@ -70,7 +70,7 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Tuổi</label>
-                                        <input min="18" type="number" value="{{$customer->age}}" name="age"
+                                        <input type="number" value="{{$customer->age}}" name="age"
                                                class="form-control" id=""
                                                placeholder="Nhập tuổi">
                                         @error('age')
