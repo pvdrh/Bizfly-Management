@@ -21,12 +21,15 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $query = Category::query();
+        $cat = '';
         if ($request->has('search') && strlen($request->input('search')) > 0) {
             $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
+            $cat = $request->input('search');
         }
         $categories = $query->paginate(10);;
         return view('categories.index')->with([
-            'categories' => $categories
+            'categories' => $categories,
+            'cat' => $cat
         ]);
     }
 

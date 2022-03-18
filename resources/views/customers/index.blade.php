@@ -41,7 +41,7 @@
                         <div class="card-tools">
                             <form role="search" method="get" action="{{route('customers.index')}}">
                                 <div class="input-group input-group-sm">
-                                    <input type="text" name="search" class="form-control float-right"
+                                    <input value="{{$cus_name}}" type="text" name="search" class="form-control float-right"
                                            placeholder="Nhập tên khách hàng">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>

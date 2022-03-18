@@ -32,8 +32,10 @@ class CustomerController extends Controller
     {
         if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
             $query = Customer::query();
+            $cus_name = '';
             if ($request->has('search') && strlen($request->input('search')) > 0) {
                 $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
+                $cus_name = $request->input('search');
             }
             $customers = $query->paginate(10);
         } else {
@@ -46,6 +48,7 @@ class CustomerController extends Controller
         }
         return view('customers.index')->with([
             'customers' => $customers,
+            'cus_name' => $cus_name
         ]);
     }
 

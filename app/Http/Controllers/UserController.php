@@ -24,16 +24,19 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+        $em_code = '';
         if (Gate::allows('get-user', $user)) {
             $query = User::query();
             if ($request->has('search') && strlen($request->input('search')) > 0) {
                 $query->whereHas('info', function ($qr) use ($request) {
                     $qr->where('code', 'LIKE', "%" . $request->input('search') . "%");
                 });
+                $em_code = $request->input('search');
             }
             $users = $query->with('info')->paginate(10);
             return view('users.index')->with([
-                'users' => $users
+                'users' => $users,
+                'em_code' => $em_code
             ]);
         } else {
             Session::flash('warning', 'Bạn không có quyền sử dụng chức năng này!');

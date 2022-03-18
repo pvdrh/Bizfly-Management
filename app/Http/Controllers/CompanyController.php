@@ -20,12 +20,15 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $query = Company::query();
+        $com_name = '';
         if ($request->has('search') && strlen($request->input('search')) > 0) {
             $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
+            $com_name = $request->input('search');
         }
         $companies = $query->paginate(10);
         return view('companies.index')->with([
-            'companies' => $companies
+            'companies' => $companies,
+            'com_name' => $com_name
         ]);
     }
 
