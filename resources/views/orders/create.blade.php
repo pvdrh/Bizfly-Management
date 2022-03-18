@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Ghi chú</label>
-                                <input name="note" type="text" class="form-control">
+                                <input value="{{old('note')}}" name="note" type="text" class="form-control">
                                 @error('note')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror

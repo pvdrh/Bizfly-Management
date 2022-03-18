@@ -28,19 +28,19 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('categories.store')}}" method="post">
+                    <form role="form" id="createCategory" action="{{route('categories.store')}}" method="post">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên danh mục<span style="color: red">*</span></label>
-                                <input name="name" type="text" class="form-control">
+                                <label>Tên danh mục<span style="color: red">*</span></label>
+                                <input name="name" value="{{old('name')}}" type="text" class="form-control">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Mô tả</label>
-                                <input name="description" type="text" class="form-control">
+                                <label>Mô tả</label>
+                                <input name="description" value="{{old('description')}}" type="text" class="form-control">
                                 @error('description')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror

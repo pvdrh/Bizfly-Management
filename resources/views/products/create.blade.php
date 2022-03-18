@@ -35,7 +35,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên sản phẩm <span style="color: red">*</span></label>
-                                <input type="text" name="name" class="form-control" id=""
+                                <input value="{{old('name')}}" type="text" name="name" class="form-control" id=""
                                        placeholder="Điền tên sản phẩm ">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -55,8 +55,9 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Giá bán  <span style="color: red">*</span></label>
-                                        <input type="text" name="price" min="1" class="form-control input-element"
+                                        <label>Giá bán <span style="color: red">*</span></label>
+                                        <input type="text" value="{{old('price')}}" name="price" min="1"
+                                               class="form-control input-element"
                                                placeholder="Điền giá bán">
                                         @error('price')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -65,8 +66,9 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Số lượng  <span style="color: red">*</span></label>
-                                        <input type="number" name="quantity" min="1" class="form-control"
+                                        <label>Số lượng <span style="color: red">*</span></label>
+                                        <input value="{{old('quantity')}}" type="number" name="quantity" min="1"
+                                               class="form-control"
                                                placeholder="Điền số lượng   ">
                                         @error('quantity')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -77,7 +79,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mô tả sản phẩm</label>
                                 <textarea name="description"
-                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{old('description')}}</textarea>
                                 @error('description')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
@@ -107,20 +109,20 @@
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
 @section('script')
-<script>
-    var cleave = new Cleave('.input-element', {
-        numeral: true,
-        numeralThousandsGroupStyle: 'thousand'
-    });
+    <script>
+        var cleave = new Cleave('.input-element', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
 
-    var fileInput = document.getElementById('exampleInputFile');
-    var listFile = document.getElementById('list_file');
+        var fileInput = document.getElementById('exampleInputFile');
+        var listFile = document.getElementById('list_file');
 
-    fileInput.onchange = function () {
-        var files = Array.from(this.files);
-        files = files.map(file => file.name);
-        listFile.innerHTML = files.join('<br/>');
-    }
-</script>
+        fileInput.onchange = function () {
+            var files = Array.from(this.files);
+            files = files.map(file => file.name);
+            listFile.innerHTML = files.join('<br/>');
+        }
+    </script>
 @endsection
 @endsection
