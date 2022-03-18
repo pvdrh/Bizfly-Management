@@ -42,6 +42,7 @@ class StoreProductRequest extends FormRequest
             'numeric' => ':attribute phải là kiểu số',
             'gte' => ':attribute phải lớn hơn hoặc bằng 0',
             'mimes' => ':attribute không đúng định dạng',
+            'unique' => ':atrribute đã tồn tại'
         ];
     }
 
