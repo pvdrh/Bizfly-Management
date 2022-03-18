@@ -32,7 +32,7 @@
                            class="btn btn-info">Xuất excel</a>
                         <button type="button" class="btn btn-secondary" data-toggle="modal"
                                 data-target="#exampleModalCenter">
-                            Nhập file excel
+                            Nhập excel
                         </button>
                     </div>
                     <!-- /.card-header -->

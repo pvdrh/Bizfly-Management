@@ -24,14 +24,13 @@ class UpdateCustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:30',
-            'phone' => 'numeric|required',
+            'name' => 'max:30',
+            'phone' => 'numeric',
             'email' => 'email|nullable',
             'age' => 'numeric|nullable',
             'job' => 'max:30|nullable',
             'address' => 'max:100',
             'gender' => 'boolean',
-            'employee_code' => 'required'
         ];
     }
 
@@ -57,7 +56,6 @@ class UpdateCustomerRequest extends FormRequest
             'gender' => 'Giới tính',
             'job' => 'Nghề nghiệp',
             'age' => 'Tuổi',
-            'employee_code' => 'Nhân viên hỗ trợ'
         ];
     }
 }

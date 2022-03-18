@@ -59,8 +59,8 @@ class CustomersExport implements FromCollection, WithMapping, WithHeadings, With
             'D' => 20,
             'E' => 5,
             'F' => 10,
-            'G' => 10,
-            'h' => 10,
+            'G' => 15,
+            'h' => 15,
         ];
     }
 }

@@ -32,11 +32,11 @@
                            class="btn btn-success">Tạo mới</a>
                         <a href="{{route('customers.export')}}" type="submit"
                            style="text-decoration: none; color: white"
-                           class="btn btn-info">Xuất file excel
+                           class="btn btn-info">Xuất excel
                         </a>
                         <button type="button" class="btn btn-secondary" data-toggle="modal"
                                 data-target="#exampleModalCenter">
-                            Nhập file excel
+                            Nhập excel
                         </button>
                         <div class="card-tools">
                             <form role="search" method="get" action="{{route('customers.index')}}">

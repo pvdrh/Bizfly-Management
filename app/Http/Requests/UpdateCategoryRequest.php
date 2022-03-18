@@ -24,7 +24,7 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:30|unique:categories',
+            'name' => 'required|max:30',
             'description' => 'max:50'
         ];
     }
@@ -34,7 +34,6 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'required' => ':attribute không được để trống',
             'max' => ':attribute không được lớn hơn :max ký tự',
-            'unique' => 'attribute không được trùng nhau'
         ];
     }
 

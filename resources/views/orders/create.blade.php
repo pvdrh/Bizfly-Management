@@ -48,7 +48,7 @@
                                         <option value="{{$product->_id}}">{{$product->name}}</option>
                                     @endforeach
                                 </select>
-                                @error('description')
+                                @error('product_id')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
