@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\CustomersExport;
+use App\Exports\CustomersSampleExport;
 use App\Http\Requests\ImportCustomerRequest;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
@@ -301,5 +302,11 @@ class CustomerController extends Controller
             'orders' => $orders,
             'customer' => $customer
         ]);
+    }
+
+    public function exportExcelSample()
+    {
+        $file = public_path() . '/template/import_customer_template.xlsx';
+        return response()->download($file, 'import_customer_template.xlsx');
     }
 }

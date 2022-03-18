@@ -34,21 +34,6 @@
                                 data-target="#exampleModalCenter">
                             Nhập file excel
                         </button>
-                        <div class="card-tools">
-                            <form role="search" method="get" action="{{route('orders.index')}}">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" name="search" class="form-control float-right"
-                                           placeholder="Nhập mã đơn hàng">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="form-group col-2">
-
-                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
@@ -170,6 +155,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <p>Tải file excel mẫu <a href="{{route('orders.export-sample')}}"><u style="color: #4974b4">tại đây</u></a></p>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" id="files" name="file">

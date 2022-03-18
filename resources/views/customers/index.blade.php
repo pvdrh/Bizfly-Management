@@ -123,6 +123,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <p>Tải file excel mẫu <a href="{{route('customers.export-sample')}}"><u style="color: #4974b4">tại đây</u></a></p>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" id="files" name="file">

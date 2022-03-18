@@ -37,11 +37,7 @@ class OrderController extends Controller
             foreach ($customers as $customer) {
                 $customer_id[] = $customer->_id;
             }
-            if ($request->search) {
-                $orders = Order::whereIn('customer_id', $customer_id)->where('code', $request->search);
-            } else {
-                $orders = Order::whereIn('customer_id', $customer_id);
-            }
+            $orders = Order::whereIn('customer_id', $customer_id);
             $orders = $orders->paginate(10);
         }
         return view('orders.index')->with([
@@ -298,5 +294,11 @@ class OrderController extends Controller
         }
 
         return redirect()->route('orders.index');
+    }
+
+    public function exportExcelSample()
+    {
+        $file = public_path() . '/template/import_order_template.xlsx';
+        return response()->download($file, 'import_order_template.xlsx');
     }
 }
