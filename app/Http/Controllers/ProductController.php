@@ -59,7 +59,7 @@ class ProductController extends Controller
 
             $product->name = $request->name;
             $product->category_id = $request->category_id;
-            $product->price = (int)str_replace(',', '', $request->price);
+            $product->price = (int)str_replace(',', '', $request->price) < 0 ? 0 : (int)str_replace(',', '', $request->price);
             $product->quantity = (int)$request->quantity;
             $product->description = $request->description;
             $product->total_sold = 0;
