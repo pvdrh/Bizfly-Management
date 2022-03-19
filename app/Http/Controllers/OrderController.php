@@ -266,7 +266,7 @@ class OrderController extends Controller
                                 } else {
                                     $newOrder->status = $order[1];
                                 }
-                                $newOrder->note = $order[2];
+                                $newOrder->note = $order[2] ? $order[2] : '';
                                 $newOrder->customer_id = $order[3];
                                 $newOrder->total = $order[4];
                                 $newOrder->save();

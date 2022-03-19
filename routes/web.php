@@ -94,7 +94,9 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 //Quản lý khách hàng
-    Route::group(['prefix' => 'customers'], function () {
+    Route::group([
+        'prefix' => 'customers',
+    ], function () {
         Route::get('/', [CustomerController::class, 'index'])
             ->name('customers.index');
         Route::get('/create', [CustomerController::class, 'create'])
