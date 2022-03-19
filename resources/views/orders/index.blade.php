@@ -37,9 +37,9 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover">
+                        <table class="table table-hover table-borderless">
                             <thead>
-                            <tr>
+                            <tr style="border-bottom: 1px black solid">
                                 <th>Code</th>
                                 <th>Tên khách hàng</th>
                                 <th>Số điện thoại</th>
