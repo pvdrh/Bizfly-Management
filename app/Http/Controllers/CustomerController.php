@@ -247,7 +247,7 @@ class CustomerController extends Controller
                 foreach ($customers as $key => $customer) {
                     $query = User::query();
                     $cus = (string)$customer[8];
-                    if (($cus) && strlen($cus) > 0) {
+                    if (($cus) && strlen($cus) > 1) {
                         if (is_array($customer[8])) {
                             if (!empty($cus) && count($cus) > 0) {
                                 $query->whereHas('info', function ($qr) use ($cus) {

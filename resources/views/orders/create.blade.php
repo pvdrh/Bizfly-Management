@@ -39,6 +39,9 @@
                                         <option value="{{$customer->_id}}">{{$customer->name}}</option>
                                     @endforeach
                                 </select>
+                                @error('customer_id')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Sản phẩm<span style="color: red">*</span></label>
