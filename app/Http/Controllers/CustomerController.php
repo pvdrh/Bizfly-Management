@@ -291,7 +291,7 @@ class CustomerController extends Controller
                 'line' => __LINE__
             ]);
 
-            Session::flash('error', 'Thêm mới thất bại!');
+            Session::flash('error', 'File excel không đúng định dạng!');
         }
 
         return redirect()->route('customers.index');
