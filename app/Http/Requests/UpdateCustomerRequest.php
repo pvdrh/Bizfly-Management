@@ -25,10 +25,10 @@ class UpdateCustomerRequest extends FormRequest
     {
         return [
             'name' => 'max:30',
-            'phone' => 'numeric',
-            'email' => 'email|nullable',
-            'age' => 'numeric|nullable',
-            'job' => 'max:30|nullable',
+            'phone' => 'nullable|numeric',
+            'email' => 'nullable|email',
+            'age' => 'nullable|numeric',
+            'job' => 'nullable|max:30',
             'address' => 'max:100',
             'gender' => 'boolean',
         ];

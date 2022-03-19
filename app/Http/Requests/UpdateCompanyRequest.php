@@ -25,7 +25,7 @@ class UpdateCompanyRequest extends FormRequest
     {
         return [
             'name' => 'max:100',
-            'phone' => 'numeric|min:10|nullable',
+            'phone' => 'nullable|numeric|min:10',
             'address' => 'max:100'
         ];
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Quản Lý Bán Hàng</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -31,11 +31,12 @@
 
 
 <div class="login-box">
-    <div class="login-logo">
-        <a href="#"><b>Quản Lý Bán Hàng</b></a>
-    </div>
+
     <!-- /.login-logo -->
-    <div class="card">
+    <div style="padding: 30px" class="card">
+        <div class="login-logo">
+            <p href="#"><b>Đăng Nhập</b></p>
+        </div>
         <div class="card-body login-card-body">
 
             <form role="form" action="{{route('login.store')}}" method="post">
@@ -71,16 +72,18 @@
                     <!-- /.col -->
                 </div>
             </form>
-            @if (Session::has('fail'))
-                <span class="text-danger">{{ Session('fail') }}</span>
-            @endif
-            <div class="social-auth-links text-center mb-3">
-                <p>- HOẶC -</p>
-                <a href="{{route('login.social')}}" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i> Đăng nhập bằng Google+
-                </a>
-            </div>
+            {{--            <div class="social-auth-links text-center mb-3">--}}
+            {{--                <p>- HOẶC -</p>--}}
+            {{--                <a href="{{route('login.social')}}" class="btn btn-block btn-danger">--}}
+            {{--                    <i class="fab fa-google-plus mr-2"></i> Đăng nhập bằng Google+--}}
+            {{--                </a>--}}
+            {{--            </div>--}}
         </div>
+        @if (Session::has('fail'))
+            <div style="top: 10px">
+                <p style="text-align: center;" class="text-danger">{{ Session('fail') }}</p>
+            </div>
+    @endif
         <!-- /.login-card-body -->
     </div>
 </div>

@@ -27,7 +27,6 @@ class UpdateUserRequest extends FormRequest
             'phone' => 'nullable',
             'address' => 'max:100',
             'gender' => 'boolean',
-            'role' => 'numeric'
         ];
     }
 
