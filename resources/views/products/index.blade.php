@@ -78,7 +78,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
+                {!! $products->links() !!}
+                <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
             </div>
