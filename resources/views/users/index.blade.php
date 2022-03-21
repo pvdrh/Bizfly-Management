@@ -107,7 +107,6 @@
                         </table>
                         <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">
-
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -120,14 +119,21 @@
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label>Mật khẩu mới</label>
-                                                <input min="6" type="password" name="new_password" class="form-control">
+                                                <input id="password-field" type="password" class="form-control"
+                                                       name="new_password">
+                                                <span toggle="#password-field"
+                                                      class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                                 @error('new_password')
                                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label>Xác nhận mật khẩu</label>
-                                                <input min="6" type="password" name="confirm_password" class="form-control">
+                                                <input id="password-fieldd" min="6" type="password"
+                                                       name="confirm_password"
+                                                       class="form-control">
+                                                <span toggle="#password-fieldd"
+                                                      class="fa fa-fw fa-eye field-icon toggle-passwordd"></span>
                                                 @error('confirm_password')
                                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                                 @enderror
@@ -152,6 +158,21 @@
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
+    <style>
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            margin-right: 10px;
+            z-index: 2;
+        }
+
+        .container {
+            padding-top: 50px;
+            margin: auto;
+        }
+    </style>
 @section('script')
     <script>
         $(document).ready(function () {
@@ -187,6 +208,28 @@
                     }
                 });
             })
+        });
+    </script>
+    <script>
+        $(".toggle-password").click(function () {
+
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+        $(".toggle-passwordd").click(function () {
+
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
         });
     </script>
     <script>
