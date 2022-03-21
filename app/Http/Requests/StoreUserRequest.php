@@ -25,7 +25,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:30',
-            'email' => 'required|email|unique:user_info',
+            'email' => 'required|email|unique:user_info|regex:/(.+)@(.+)\.(.+)/i',
             'password' => 'required|min:6|max:20',
             'phone' => 'unique:user_info|nullable',
             'address' => 'max:100',
@@ -43,7 +43,8 @@ class StoreUserRequest extends FormRequest
             'min' => ':attribute không được nhở hơn :min ký tự',
             'numeric' => ':attribute phải là kiểu số',
             'unique' => ':attribute đã tồn tại',
-            'email' => ':attribute chưa đúng định dạng'
+            'email' => ':attribute chưa đúng định dạng',
+            'regex' => ':attribute chưa đúng định dạng',
         ];
     }
 

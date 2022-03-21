@@ -22,14 +22,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::get();
-        foreach ($products as $product) {
-            $category = Category::find($product->category_id);
-            $product->category_id = $category ? $category->name : "Đang cập nhật";
-        }
-
+        $products = Product::with('categories')->paginate();
         return view('products.index')->with([
-            'products' => $products
+            'products' => $products,
         ]);
     }
 
@@ -123,7 +118,7 @@ class ProductController extends Controller
 
             $product->name = $request->name;
             $product->category_id = $request->category_id;
-            $product->price = (int)$request->price;
+            $product->price = (int)str_replace(',', '', $request->price) < 0 ? 0 : (int)str_replace(',', '', $request->price);
             $product->quantity = (int)$request->quantity;
             $product->description = $request->description;
             $product->total_sold = 0;

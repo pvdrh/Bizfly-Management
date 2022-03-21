@@ -59,7 +59,7 @@
                                                  src="/backend/dist/img/default.jpg">
                                         @endif
                                     </td>
-                                    <td>{{ $product->category_id }}</td>
+                                    <td>{{ $product->categories ? $product->categories->name : "Đang cập nhật" }}</td>
                                     <td>{{ number_format($product->price) }} VND</td>
                                     <td style="text-align: center">{!! $product->quantity !!}</td>
                                     <td style="text-align: center">{!! $product->total_sold !!}</td>
@@ -68,7 +68,7 @@
                                            class="btn btn-info">
                                             <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                         </a>
-                                    <!-- //Nút xóa-->
+                                        <!-- //Nút xóa-->
                                         <span data-id="{{$product['_id']}}"
                                               class="btn btn-danger delete-card"> <i
                                                 class="fa fa-btn fa-trash"></i> Xoá</span>

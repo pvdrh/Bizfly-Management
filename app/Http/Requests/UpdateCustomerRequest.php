@@ -26,7 +26,7 @@ class UpdateCustomerRequest extends FormRequest
         return [
             'name' => 'max:30',
             'phone' => 'nullable|numeric',
-            'email' => 'nullable|email',
+            'email' => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i',
             'age' => 'nullable|numeric',
             'job' => 'nullable|max:30',
             'address' => 'max:100',
@@ -43,6 +43,7 @@ class UpdateCustomerRequest extends FormRequest
             'unique' => ':attribute đã tồn tại',
             'email' => ':attribute chưa đúng định dạng',
             'gte' => ':attribute phải lớn hơn hoặc bằng 18',
+            'regex' => ':attribute chưa đúng định dạng',
         ];
     }
 

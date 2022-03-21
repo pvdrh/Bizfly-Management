@@ -25,7 +25,7 @@ class StoreCustomerRequest extends FormRequest
     {
         return [
             'name' => 'required|max:30',
-            'email' => 'email|nullable',
+            'email' => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i',
             'phone' => 'required|numeric|unique:customers',
             'age' => 'numeric|nullable',
             'job' => 'max:50',
@@ -44,6 +44,7 @@ class StoreCustomerRequest extends FormRequest
             'unique' => ':attribute đã tồn tại',
             'email' => ':attribute chưa đúng định dạng',
             'gte' => ':attribute phải lớn hơn hoặc bằng 18',
+            'regex' => ':attribute chưa đúng định dạng',
         ];
     }
 

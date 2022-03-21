@@ -62,7 +62,6 @@
                                     <td>{{$order->note}}</td>
                                     <td>{{number_format($order->total) }} VND</td>
                                     <td>{{$order->created_at->format('d-m-Y')}}</td>
-
                                     @if($order->product_id)
 {{--                                        Chuyển trạng thái đơn hàng--}}
                                         @if($order->status == 0)

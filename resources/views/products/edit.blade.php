@@ -56,7 +56,7 @@
                                     <div class="form-group">
                                         <label>Giá bán<span style="color: red">*</span></label>
                                         <input value="{{$product->price}}" type="text" name="price" min="1"
-                                               class="form-control"
+                                               class="form-control input-element"
                                                placeholder="Điền giá bán">
                                         @error('price')
                                         <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -83,19 +83,22 @@
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
-{{--                            <div class="form-group">--}}
-{{--                                <label for="exampleInputFile">Hình ảnh sản phẩm</label>--}}
-{{--                                <div class="input-group">--}}
-{{--                                    <div class="custom-file">--}}
-{{--                                        <input type="file" multiple id="files"--}}
-{{--                                               name="image">--}}
-{{--                                        <div id="list_file"></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            @error('image')--}}
-{{--                            <span style="color: red; font-size: 14px">{{ $message }}</span>--}}
-{{--                            @enderror--}}
+                            <div class="form-group">
+                                <label for="exampleInputFile">Hình ảnh sản phẩm</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input name="image" accept="image/*" type='file' id="imgInp"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img id="blah"
+                                         style="width: 150px; height: 150px; object-fit: cover"
+                                         src="{{ $product->image_src }}">
+                                </div>
+                            </div>
+                            @error('image')
+                            <span style="color: red; font-size: 14px">{{ $message }}</span>
+                            @enderror
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
@@ -111,13 +114,19 @@
 
 @section('script')
     <script>
+        var cleave = new Cleave('.input-element', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand',
+        });
+
         var fileInput = document.getElementById('exampleInputFile');
         var listFile = document.getElementById('list_file');
 
-        fileInput.onchange = function () {
-            var files = Array.from(this.files);
-            files = files.map(file => file.name);
-            listFile.innerHTML = files.join('<br/>');
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
         }
     </script>
 @endsection

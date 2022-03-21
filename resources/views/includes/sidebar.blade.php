@@ -165,23 +165,6 @@
                         </ul>
                     </li>
                 @endif
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa   fa-user"></i>
-                        <p>
-                            Tài khoản
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <form role="form" class="row" action="{{ route('logout') }}" method="post">
-                            @csrf
-                            <div class="col-md-4">
-                            </div>
-                            <button type="submit" class="btn btn-outline-primary">Đăng Xuất</button>
-                        </form>
-                    </ul>
-                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

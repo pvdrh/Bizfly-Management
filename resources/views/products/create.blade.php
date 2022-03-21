@@ -89,14 +89,16 @@
                                 <label for="exampleInputFile">Hình ảnh sản phẩm</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" multiple id="files" name="image">
-                                        <div id="list_file"></div>
+                                        <input name="image" accept="image/*" type='file' id="imgInp"/>
                                     </div>
                                 </div>
-                                @error('image')
-                                <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                @enderror
+                                <div>
+                                    <img id="blah" src="#" alt="your image"/>
+                                </div>
                             </div>
+                            @error('image')
+                            <span style="color: red; font-size: 14px">{{ $message }}</span>
+                            @enderror
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
@@ -116,13 +118,11 @@
             numeralThousandsGroupStyle: 'thousand',
         });
 
-        var fileInput = document.getElementById('exampleInputFile');
-        var listFile = document.getElementById('list_file');
-
-        fileInput.onchange = function () {
-            var files = Array.from(this.files);
-            files = files.map(file => file.name);
-            listFile.innerHTML = files.join('<br/>');
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
         }
     </script>
 @endsection
