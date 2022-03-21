@@ -19,7 +19,6 @@ use Session;
 use Illuminate\Support\Facades\Log;
 use Exception;
 use Maatwebsite\Excel\Facades\Excel;
-use function PHPUnit\Framework\isEmpty;
 
 class CustomerController extends Controller
 {

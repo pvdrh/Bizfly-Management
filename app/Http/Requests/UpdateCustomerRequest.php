@@ -25,7 +25,7 @@ class UpdateCustomerRequest extends FormRequest
     {
         return [
             'name' => 'max:30',
-            'phone' => 'nullable|numeric',
+            'phone' => 'nullable|numeric|regex:/(09|03|07|08|05)[0-9]{8}/',
             'email' => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i',
             'age' => 'nullable|numeric',
             'job' => 'nullable|max:30',

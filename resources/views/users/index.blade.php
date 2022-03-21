@@ -29,6 +29,10 @@
                     <div class="card-header">
                         <a href="{{route('users.create')}}" type="submit" style="text-decoration: none; color: white"
                            class="btn btn-success">Tạo mới</a>
+                        <a href="{{route('users.export')}}" type="submit"
+                           style="text-decoration: none; color: white"
+                           class="btn btn-info">Xuất excel
+                        </a>
                         <div class="card-tools">
                             <form role="search" method="get" action="{{route('users.index')}}">
                                 <div class="input-group input-group-sm">

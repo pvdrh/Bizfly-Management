@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Session;
 use Illuminate\Support\Facades\Log;
 use Exception;
@@ -210,5 +212,11 @@ class UserController extends Controller
 
             return redirect()->route('dashboard');
         }
+    }
+
+    public function exportExcel()
+    {
+        $users = User::get();
+        return Excel::download(new UsersExport($users), 'Danh sách nhân viên.xlsx');
     }
 }

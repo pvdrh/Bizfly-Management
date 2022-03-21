@@ -53,6 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('users.create');
         Route::post('/store', [UserController::class, 'store'])
             ->name('users.store');
+        Route::get('/export-excel', [UserController::class, 'exportExcel'])
+            ->name('users.export');
         Route::get('/update/{id}', [UserController::class, 'edit'])
             ->name('users.edit');
         Route::post('/update/{id}', [UserController::class, 'update'])

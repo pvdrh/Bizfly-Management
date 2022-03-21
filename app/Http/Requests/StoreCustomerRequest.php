@@ -26,7 +26,7 @@ class StoreCustomerRequest extends FormRequest
         return [
             'name' => 'required|max:30',
             'email' => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i',
-            'phone' => 'required|numeric|unique:customers',
+            'phone' => 'required|numeric|unique:customers|regex:/(09|03|07|08|05)[0-9]{8}/',
             'age' => 'numeric|nullable',
             'job' => 'max:50',
             'address' => 'max:100',

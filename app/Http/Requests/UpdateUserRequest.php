@@ -24,7 +24,7 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => 'nullable',
+            'phone' => 'nullable|regex:/(09|03|07|08|05)[0-9]{8}/',
             'address' => 'max:100',
             'gender' => 'boolean',
         ];
