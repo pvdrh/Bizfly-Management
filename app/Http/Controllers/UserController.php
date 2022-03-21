@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\UsersExport;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
@@ -218,5 +219,33 @@ class UserController extends Controller
     {
         $users = User::get();
         return Excel::download(new UsersExport($users), 'Danh sách nhân viên.xlsx');
+    }
+
+    public function changePassword(ChangePasswordRequest $request, $id)
+    {
+        $user = User::find($id);
+        if (Gate::allows('update-user', $user)) {
+            try {
+                $user->password = Hash::make($request->input('new_password'));
+                $user->save();
+
+                Session::flash('success', 'Đặt lại mật khẩu thành công!');
+
+            } catch (Exception $e) {
+                Log::error('Error change password user', [
+                    'method' => __METHOD__,
+                    'message' => $e->getMessage(),
+                    'line' => __LINE__
+                ]);
+
+                Session::flash('error', 'Đặt lại mật khẩu thất bại!');
+            }
+
+            return redirect()->route('users.index');
+        } else {
+            Session::flash('warning', 'Bạn không có quyền sử dụng chức năng này!');
+
+            return redirect()->route('dashboard');
+        }
     }
 }

@@ -29,7 +29,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-//Quản lý sản phẩm
+    //Quản lý sản phẩm
     Route::group(['prefix' => 'products'], function () {
         Route::get('/', [ProductController::class, 'index'])
             ->name('products.index');
@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('products.destroy');
     });
 
-//Quản lý nhân viên
+    //Quản lý nhân viên
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', [UserController::class, 'index'])
             ->name('users.index');
@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('users.store');
         Route::get('/export-excel', [UserController::class, 'exportExcel'])
             ->name('users.export');
+        Route::post('/change-password/{id}', [UserController::class, 'changePassword'])
+            ->name('users.changePass');
         Route::get('/update/{id}', [UserController::class, 'edit'])
             ->name('users.edit');
         Route::post('/update/{id}', [UserController::class, 'update'])
@@ -63,7 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('users.destroy');
     });
 
-//Quản lý danh mục
+    //Quản lý danh mục
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', [CategoryController::class, 'index'])
             ->name('categories.index');
@@ -79,7 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('categories.destroy');
     });
 
-//Quản lý công ty
+    //Quản lý công ty
     Route::group(['prefix' => 'companies'], function () {
         Route::get('/', [CompanyController::class, 'index'])
             ->name('companies.index');
@@ -95,7 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('companies.destroy');
     });
 
-//Quản lý khách hàng
+    //Quản lý khách hàng
     Route::group(['prefix' => 'customers'], function () {
         Route::get('/', [CustomerController::class, 'index'])
             ->name('customers.index');

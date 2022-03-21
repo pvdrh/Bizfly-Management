@@ -52,8 +52,8 @@
                 @error('email')
                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                 @enderror
-                <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="Password">
+                <div style="margin-bottom: 5px !important;" class="input-group mb-3">
+                    <input id="myInput" type="password" name="password" class="form-control" placeholder="Mật khẩu">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -62,9 +62,11 @@
                 </div>
                 @error('password')
                 <div>
-                    <span style="color: red; font-size: 14px">{{ $message }}</span></div>
+                    <span style="color: red; font-size: 14px">{{ $message }}</span>
+                </div>
                 @enderror
-                <div class="row">
+                <input style="margin-bottom: 10px; margin-top: 10px" type="checkbox" onclick="myFunction()"> Hiển thị mật khẩu
+                <div style="margin-top: 25px" class="row">
                     <!-- /.col -->
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
@@ -84,7 +86,7 @@
                 <p style="text-align: center;" class="text-danger">{{ Session('fail') }}</p>
             </div>
     @endif
-        <!-- /.login-card-body -->
+    <!-- /.login-card-body -->
     </div>
 </div>
 
@@ -95,6 +97,16 @@
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
+</script>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
 </script>
 <!-- Bootstrap 4 -->
 <script src="/backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

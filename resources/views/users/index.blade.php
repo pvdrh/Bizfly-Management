@@ -90,7 +90,11 @@
                                                class="btn btn-info">
                                                 <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                             </a>
-
+                                            <button type="button" data-toggle="modal" data-target="#myModal"
+                                                    class="btn btn-secondary"><i class="fa fa-key"
+                                                                                 aria-hidden="true"></i> Đặt lại mật
+                                                khẩu
+                                            </button>
                                             <!-- //Nút xóa-->
                                             <span data-id="{{$user['_id']}}"
                                                   class="btn btn-danger delete-card"> <i
@@ -101,6 +105,44 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 style="font-weight: bold;font-size: 18px" class="modal-title">Đặt lại mật
+                                            khẩu cho {{$user->info->name}}</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <form role="form" method="post" action="{{ route('users.changePass',$user->_id) }}">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Mật khẩu mới</label>
+                                                <input min="6" type="password" name="new_password" class="form-control">
+                                                @error('new_password')
+                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Xác nhận mật khẩu</label>
+                                                <input min="6" type="password" name="confirm_password" class="form-control">
+                                                @error('confirm_password')
+                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 {!! $users->links() !!}
                 <!-- /.card-body -->
