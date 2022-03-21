@@ -96,6 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
 //Quản lý khách hàng
     Route::group([
         'prefix' => 'customers',
+        'middleware' => 'checkRole'
     ], function () {
         Route::get('/', [CustomerController::class, 'index'])
             ->name('customers.index');
