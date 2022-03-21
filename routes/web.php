@@ -96,7 +96,6 @@ Route::group(['middleware' => 'auth'], function () {
 //Quản lý khách hàng
     Route::group([
         'prefix' => 'customers',
-        'middleware' => 'checkRole'
     ], function () {
         Route::get('/', [CustomerController::class, 'index'])
             ->name('customers.index');
@@ -113,13 +112,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/store', [CustomerController::class, 'store'])
             ->name('customers.store');
         Route::get('/show/{id}', [CustomerController::class, 'show'])
-            ->name('customers.show');
+            ->name('customers.show')->middleware('checkRole');
         Route::get('/edit/{id}', [CustomerController::class, 'edit'])
-            ->name('customers.edit');
+            ->name('customers.edit')->middleware('checkRole');
         Route::post('/update/{id}', [CustomerController::class, 'update'])
-            ->name('customers.update');
+            ->name('customers.update')->middleware('checkRole');
         Route::any('/delete/{id}', [CustomerController::class, 'destroy'])
-            ->name('customers.destroy');
+            ->name('customers.destroy')->middleware('checkRole');
     });
 
     //Quản lý đơn hàng
