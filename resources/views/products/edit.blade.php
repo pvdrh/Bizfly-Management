@@ -91,9 +91,14 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <img id="blah"
-                                         style="width: 150px; height: 150px; object-fit: cover"
-                                         src="{{ $product->image_src }}">
+                                    @if(!empty($product->image))
+                                        <img id="blah"
+                                             style="width: 150px; height: 150px; object-fit: cover"
+                                             src="{{ $product->image_src }}">@else
+                                        <img id="blah"
+                                             style="width: 150px; height: 150px; object-fit: cover"
+                                             src="/backend/dist/img/default.jpg">
+                                    @endif
                                 </div>
                             </div>
                             @error('image')
