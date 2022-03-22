@@ -1,173 +1,76 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="{{route('dashboard')}}" class="brand-link">
-        <img src="/backend/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-             style="opacity: .8">
-        <span class="brand-text font-weight-light">Cửa Hàng Của Tôi</span>
-    </a>
+<div class="sidebar sidebar-main">
+    <div class="sidebar-content">
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">{{\Illuminate\Support\Facades\Auth::user()->info->name}}</a>
+        <!-- User menu -->
+        <div class="sidebar-user">
+            <div class="category-content">
+                <div class="media">
+                    <a href="#" class="media-left"><img src="assets/images/placeholder.jpg"
+                                                        class="img-circle img-sm" alt=""></a>
+                    <div class="media-body">
+                        <span class="media-heading text-semibold">Victoria Baker</span>
+                        <div class="text-size-mini text-muted">
+                            <i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
+                        </div>
+                    </div>
+
+                    <div class="media-right media-middle">
+                        <ul class="icons-list">
+                            <li>
+                                <a href="#"><i class="icon-cog3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- /user menu -->
 
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-shopping-basket"></i>
-                        <p>
-                            Quản lý sản phẩm
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('products.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tạo mới</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('products.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách</p>
-                            </a>
-                        </li>
 
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-window-maximize"></i>
-                        <p>
-                            Quản lý danh mục
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('categories.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tạo mới</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('categories.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách</p>
-                            </a>
-                        </li>
+        <!-- Main navigation -->
+        <div class="sidebar-category sidebar-category-visible">
+            <div class="category-content no-padding">
+                <ul class="navigation navigation-main navigation-accordion">
 
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa fa-truck"></i>
-                        <p>
-                            Quản lý đơn hàng
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('orders.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tạo mới</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('orders.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-users  "></i>
-                        <p>
-                            Quản lý khách hàng
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('customers.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tạo mới</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('customers.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-briefcase"></i>
-                        <p>
-                            Quản lý công ty
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('companies.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tạo mới</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('companies.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                @if(\Illuminate\Support\Facades\Auth::user()->info->role == 0)
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-user-circle"></i>
-                            <p>
-                                Quản lý nhân viên
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('users.create') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Tạo mới</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('users.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Danh sách</p>
-                                </a>
+                    <!-- Main -->
+                    <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i>
+                    </li>
+                    <li class="active"><a href="index.html"><i class="icon-home4"></i>
+                            <span>Dashboard</span></a></li>
+                    <li>
+                        <a href="#"><i class="icon-stack2"></i> <span>Page layouts</span></a>
+                        <ul>
+                            <li><a href="layout_navbar_fixed.html">Fixed navbar</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-copy"></i> <span>Layouts</span></a>
+                        <ul>
+                            <li><a href="index.html" id="layout1">Layout 1 <span class="label bg-warning-400">Current</span></a>
                             </li>
                         </ul>
                     </li>
-                @endif
-            </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
+                    <li>
+                        <a href="#"><i class="icon-droplet2"></i> <span>Color system</span></a>
+                        <ul>
+                            <li><a href="colors_primary.html">Primary palette</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-stack"></i> <span>Starter kit</span></a>
+                        <ul>
+                            <li><a href="starters/horizontal_nav.html">Horizontal navigation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="changelog.html"><i class="icon-list-unordered"></i> <span>Changelog</span></a>
+                    </li>
+                    <li><a href="../RTL/index.html"><i class="icon-width"></i> <span>RTL version <span
+                                    class="label bg-success-400">New</span></span></a></li>
+                    <!-- /main -->
+                </ul>
+            </div>
+        </div>
+        <!-- /main navigation -->
+
     </div>
-    <!-- /.sidebar -->
-</aside>
+</div>
