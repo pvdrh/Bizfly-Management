@@ -53,48 +53,57 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-borderless">
-                            <thead>
-                            <tr style="border-bottom: 1px black solid">
-                                <th>ID</th>
-                                <th>Họ tên</th>
-                                <th>Email</th>
-                                <th>Số điện thoại</th>
-                                <th>Địa chỉ</th>
-                                <th>Phân loại</th>
-                                <th style="text-align: center">Hành động</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($customers as $customer)
-                                <tr>
-                                    <td>{{$customer->_id}}</td>
-                                    <td><span
-                                            class="d-inline-block" tabindex="0" data-bs-toggle="tooltip"
-                                            title="Chi tiết khách hàng">
+                    @if(count($customers) > 0)
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover table-borderless">
+                                <thead>
+                                <tr style="border-bottom: 1px black solid">
+                                    <th>ID</th>
+                                    <th>Họ tên</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Phân loại</th>
+                                    <th style="text-align: center">Hành động</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($customers as $customer)
+                                    <tr>
+                                        <td>{{$customer->_id}}</td>
+                                        <td><span
+                                                class="d-inline-block" tabindex="0" data-bs-toggle="tooltip"
+                                                title="Chi tiết khách hàng">
   <a style="font-weight: bold; color: cornflowerblue"
      href="{{route('customers.show', $customer->_id)}}">{{$customer->name}}</a>
 </span>
-                                    </td>
-                                    <td>{{$customer->email}}</td>
-                                    <td>{{$customer->phone}}</td>
-                                    <td>{{$customer->address}}</td>
-                                    <td>{{$customer->customer_type}} </td>
-                                    <td style="text-align: center">
-                                        <a href="{{ route('customers.edit',$customer['_id']) }}" type="submit"
-                                           class="btn btn-info">
-                                            <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                        </a>
-                                        <span data-id="{{$customer['_id']}}"
-                                              class="btn btn-danger delete-card"> <i
-                                                class="fa fa-btn fa-trash"></i> Xoá</span>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                        </td>
+                                        <td>{{$customer->email}}</td>
+                                        <td>{{$customer->phone}}</td>
+                                        <td>{{$customer->address}}</td>
+                                        <td>{{$customer->customer_type}} </td>
+                                        <td style="text-align: center">
+                                            <a href="{{ route('customers.edit',$customer['_id']) }}" type="submit"
+                                               class="btn btn-info">
+                                                <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                            </a>
+                                            <span data-id="{{$customer['_id']}}"
+                                                  class="btn btn-danger delete-card"> <i
+                                                    class="fa fa-btn fa-trash"></i> Xoá</span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <div style="height: 60vh; position: relative">
+                            <img
+                                style="height: 300px; width: 50%; object-fit: cover; top: 50%; left: 50%; margin: 0 auto"
+                                src="/backend/dist/img/social-default.jpg">
+                            <p style="text-align: center; font-size: 20px">Không có dữ liệu</p>
+                        </div>
+                @endif
                 {!! $customers->links() !!}
                 <!-- /.card-body -->
                 </div>

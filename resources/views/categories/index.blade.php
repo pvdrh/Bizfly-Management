@@ -43,35 +43,44 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-borderless">
-                            <thead>
-                            <tr style="border-bottom: 1px black solid">
-                                <th>Tên danh mục</th>
-                                <th>Mô tả</th>
-                                <th style="text-align: center">Hành động</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($categories as $category)
-                                <tr>
-                                    <td>{{$category->name}}</td>
-                                    <td>{{$category->description}}</td>
-                                    <td style="text-align: center;">
-                                        <a href="{{ route('categories.edit',$category['_id']) }}" type="submit"
-                                           class="btn btn-info">
-                                            <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                        </a>
-                                    <!-- //Nút xóa-->
-                                        <span data-id="{{$category['_id']}}" class="btn btn-danger delete-card"> <i
-                                                class="fa fa-btn fa-trash"></i> Xoá</span>
-                                    </td>
+                    @if(count($categories) > 0)
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover table-borderless">
+                                <thead>
+                                <tr style="border-bottom: 1px black solid">
+                                    <th>Tên danh mục</th>
+                                    <th>Mô tả</th>
+                                    <th style="text-align: center">Hành động</th>
                                 </tr>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                @foreach($categories as $category)
+                                    <tr>
+                                        <td>{{$category->name}}</td>
+                                        <td>{{$category->description}}</td>
+                                        <td style="text-align: center;">
+                                            <a href="{{ route('categories.edit',$category['_id']) }}" type="submit"
+                                               class="btn btn-info">
+                                                <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                            </a>
+                                            <!-- //Nút xóa-->
+                                            <span data-id="{{$category['_id']}}" class="btn btn-danger delete-card"> <i
+                                                    class="fa fa-btn fa-trash"></i> Xoá</span>
+                                        </td>
+                                    </tr>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <div style="height: 60vh; position: relative">
+                            <img
+                                style="height: 300px; width: 50%; object-fit: cover; top: 50%; left: 50%; margin: 0 auto"
+                                src="/backend/dist/img/social-default.jpg">
+                            <p style="text-align: center; font-size: 20px">Không có dữ liệu</p>
+                        </div>
+                @endif
                 {!! $categories->links() !!}
                 <!-- /.card-body -->
                 </div>
