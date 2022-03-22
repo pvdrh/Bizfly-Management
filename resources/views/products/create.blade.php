@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <img id="blah" src="#" alt="your image"/>
+                                    <img style="width: 150px; height: 150px; object-fit: cover" id="blah" src="/backend/dist/img/default.jpg" alt="your image"/>
                                 </div>
                             </div>
                             @error('image')

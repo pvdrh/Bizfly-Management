@@ -54,7 +54,11 @@ class OrderController extends Controller
     {
         $products = Product::where('quantity', '>', 0)->get();
         $user_code = Auth::user()->info->code;
-        $customers = Customer::where(['employee_code' => $user_code])->get();
+        if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
+            $customers = Customer::get();
+        } else {
+            $customers = Customer::where(['employee_code' => $user_code])->get();
+        }
         return view('orders.create')->with([
             'products' => $products,
             'customers' => $customers
