@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="/backend/dist/js/jquery-2.2.4.min.js">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- overlayScrollbars -->
-
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"
           integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg=="
@@ -100,6 +100,7 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->

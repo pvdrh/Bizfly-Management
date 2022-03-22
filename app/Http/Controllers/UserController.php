@@ -221,7 +221,7 @@ class UserController extends Controller
         return Excel::download(new UsersExport($users), 'Danh sách nhân viên.xlsx');
     }
 
-    public function changePassword(ChangePasswordRequest $request, $id)
+    public function changePassword(Request $request, $id)
     {
         $user = User::find($id);
         if (Gate::allows('update-user', $user)) {

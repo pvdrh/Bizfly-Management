@@ -114,11 +114,12 @@
                                             khẩu cho {{$user->info->name}}</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
-                                    <form role="form" method="post" action="{{ route('users.changePass',$user->_id) }}">
+                                    <form role="form" method="post" id="change-pass"
+                                          action="{{ route('users.changePass',$user->_id) }}">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Mật khẩu mới</label>
+                                                <label for="new_password">Mật khẩu mới</label>
                                                 <input id="password-field" type="password" class="form-control"
                                                        name="new_password">
                                                 <span toggle="#password-field"
@@ -128,8 +129,8 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label>Xác nhận mật khẩu</label>
-                                                <input id="password-fieldd" min="6" type="password"
+                                                <label for="confirm_password">Xác nhận mật khẩu</label>
+                                                <input id="password-fieldd" type="password"
                                                        name="confirm_password"
                                                        class="form-control">
                                                 <span toggle="#password-fieldd"
@@ -137,12 +138,14 @@
                                                 @error('confirm_password')
                                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                                 @enderror
+                                                <span style="margin-top: 7px;color: red; font-size: 12px"
+                                                      id="CheckPasswordMatch"></span>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng
                                             </button>
-                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                            <button id="btn-sub" type="submit" class="btn btn-primary">Cập nhật</button>
                                         </div>
                                     </form>
                                 </div>
@@ -171,6 +174,12 @@
         .container {
             padding-top: 50px;
             margin: auto;
+        }
+
+        .error {
+            font-size: 12px;
+            color: red;
+            font-weight: 400 !important;
         }
     </style>
 @section('script')
@@ -207,7 +216,43 @@
                         swal.close();
                     }
                 });
-            })
+            });
+
+            var validator = $("#change-pass").validate({
+                onfocusout: false,
+                onkeyup: true,
+                onclick: false,
+                rules: {
+                    "new_password": {
+                        required: true,
+                        maxlength: 20,
+                        minlength: 6
+                    },
+                    "confirm_password": {
+                        required: true,
+                    }
+                },
+                messages: {
+                    "new_password": {
+                        required: "Mật khẩu mới không được để trống.",
+                        minlength: "Mật khẩu phải có ít nhất 6 ký tự."
+                    },
+                    "confirm_password": {
+                        required: "Xác nhận mật khẩu không được để trống.",
+                        equalTo: "Mật khẩu phải có ít nhất 6 ký tự"
+                    },
+                }
+            });
+
+            $("#btn-sub").click(function () {
+                validator.resetForm();
+                var password = $("#password-field").val();
+                var confirmPassword = $("#password-fieldd").val();
+                if (password != confirmPassword) {
+                    $("#CheckPasswordMatch").html("Mật khẩu không trùng nhau!").css("color", "red");
+                    return false;
+                } else return true;
+            });
         });
     </script>
     <script>
