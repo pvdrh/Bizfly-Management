@@ -76,7 +76,7 @@
                     @else
                         <div style="height: 60vh; position: relative">
                             <img
-                                style="height: 300px; width: 50%; object-fit: cover; top: 50%; left: 50%; margin: 0 auto"
+                                style="height: 350px; width: 50%; object-fit: cover; top: 50%; left: 50%; margin: 0 auto;padding: 20px"
                                 src="/backend/dist/img/social-default.jpg">
                             <p style="text-align: center; font-size: 20px">Không có dữ liệu</p>
                         </div>
