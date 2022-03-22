@@ -57,8 +57,18 @@
                                         <td style="font-weight: bold">{{$order->code}}</td>
                                         @if($order->customers)
                                             <td>{{$order->customers->name}}</td>
+                                        @else
+                                            <td>Đang cập nhật</td>
+                                        @endif
+                                        @if($order->customers)
                                             <td>{{$order->customers->phone}}</td>
+                                        @else
+                                            <td>Đang cập nhật</td>
+                                        @endif
+                                        @if($order->customers)
                                             <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width: 150px;">{{$order->customers->address}}</td>
+                                        @else
+                                            <td>Đang cập nhật</td>
                                         @endif
                                         <td>{{$order->note}}</td>
                                         <td>{{number_format($order->total) }} VND</td>
