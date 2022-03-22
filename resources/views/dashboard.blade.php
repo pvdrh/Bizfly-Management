@@ -14,7 +14,6 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang Chủ</a></li>
-                        <li class="breadcrumb-item active">Thống Kê</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -70,7 +69,7 @@
                             @else
                                 <h3>0</h3>
                             @endif
-                            <p>Nguời Dùng</p>
+                            <p>Khách Hàng</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
