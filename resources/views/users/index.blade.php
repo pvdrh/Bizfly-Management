@@ -119,7 +119,7 @@
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="new_password">Mật khẩu mới</label>
+                                                <label for="new_password">Mật khẩu mới<span style="color: red">*</span></label>
                                                 <input id="password-field" type="password" class="form-control"
                                                        name="new_password">
                                                 <span toggle="#password-field"
@@ -129,7 +129,7 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="confirm_password">Xác nhận mật khẩu</label>
+                                                <label for="confirm_password">Xác nhận mật khẩu<span style="color: red">*</span></label>
                                                 <input id="password-fieldd" type="password"
                                                        name="confirm_password"
                                                        class="form-control">
