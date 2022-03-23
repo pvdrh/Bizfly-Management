@@ -5,162 +5,171 @@
 @endsection
 
 @section('content')
-    <!-- Content Header -->
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('users.index')}}">Nhân viên</a></li>
-                    <li class="breadcrumb-item active">Danh sách</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-    <!-- Content -->
-    <div class="container-fluid">
-        <!-- Main row -->
-        <div class="row">
-
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <a href="{{route('users.create')}}" type="submit" style="text-decoration: none; color: white"
-                           class="btn btn-success">Tạo mới</a>
-                        <a href="{{route('users.export')}}" type="submit"
-                           style="text-decoration: none; color: white"
-                           class="btn btn-info">Xuất excel
-                        </a>
-                        <div class="card-tools">
-                            <form role="search" method="get" action="{{route('users.index')}}">
-                                <div class="input-group input-group-sm">
-                                    <input value="{{$em_code}}" type="text" name="search"
-                                           class="form-control float-right"
-                                           placeholder="Nhập mã nhân viên">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+    <div class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title">
+                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard
+                        </h4>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-borderless ">
-                            <thead>
-                            <tr style="border-bottom: 1px black solid">
-                                <th>Mã NV</th>
-                                <th>Họ tên</th>
-                                <th>Email</th>
-                                <th>Số điện thoại</th>
-                                <th>Địa chỉ</th>
-                                <th>Giới tính</th>
-                                <th>Chức vụ</th>
-                                <th style="text-align: center">Hành động</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($users as $user)
-                                <tr>
-                                    @if($user->info)
-                                        <td style="font-weight: bold">{{$user->info->code}}</td>
-                                        <td>{{$user->info->name}}</td>
-                                    @endif
-                                    <td>{{$user->email}}</td>
-                                    @if($user->info)
-                                        <td>{{$user->info->phone}}</td>
-                                        <td>{{$user->info->address}}</td>
-                                        @if($user->info->gender == 1)
-                                            <td>Nam</td>
-                                        @else
-                                            <td>Nữ</td>
-                                        @endif
-                                        @if($user->info->role == 1)
-                                            <td>Nhân viên</td>
-                                        @else
-                                            <td>Admin</td>
-                                        @endif
-                                    @endif
-                                    @if(!$user->info->is_protected)
-                                        <td style="text-align: center">
-                                            <a href="{{ route('users.edit',$user['_id']) }}" type="submit"
-                                               class="btn btn-info">
-                                                <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                            </a>
-                                            <button type="button" data-toggle="modal" data-target="#myModal"
-                                                    class="btn btn-secondary"><i class="fa fa-key"
-                                                                                 aria-hidden="true"></i> Đặt lại mật
-                                                khẩu
-                                            </button>
-                                            <!-- //Nút xóa-->
-                                            <span data-id="{{$user['_id']}}"
-                                                  class="btn btn-danger delete-card"> <i
-                                                    class="fa fa-btn fa-trash"></i> Xoá</span>
-                                        </td>
-                                    @endif
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 style="font-weight: bold;font-size: 18px" class="modal-title">Đặt lại mật
-                                            khẩu cho {{$user->info->name}}</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <form role="form" method="post" id="change-pass"
-                                          action="{{ route('users.changePass',$user->_id) }}">
-                                        @csrf
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="new_password">Mật khẩu mới<span style="color: red">*</span></label>
-                                                <input id="password-field" type="password" class="form-control"
-                                                       name="new_password">
-                                                <span toggle="#password-field"
-                                                      class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                                @error('new_password')
-                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                                @enderror
+                </div>
+
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="{{route('users.index')}}"><i class="icon-home2 position-left"></i> Quản lý nhân viên</a>
+                </li>
+                <li class="active">Danh sách</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <a href="{{route('users.create')}}" type="submit" style="text-decoration: none; color: white"
+                       class="btn btn-success">Tạo mới</a>
+                    <a href="{{route('users.export')}}" type="submit"
+                       style="text-decoration: none; color: white"
+                       class="btn btn-info">Xuất excel
+                    </a>
+                    <div class="heading-elements">
+                        <form class="heading-form" action="#">
+                            <div class="form-group">
+                                <label class="checkbox-inline checkbox-switchery checkbox-right switchery-xs">
+                                    <form role="search" method="get" action="{{route('users.index')}}">
+                                        <div class="input-group input-group-sm">
+                                            <input style="width: 75%" value="{{$em_code}}" type="text" name="search"
+                                                   class="form-control float-right"
+                                                   placeholder="Nhập mã nhân viên">
+                                            <div class="input-group-append">
+                                                <button style="margin-left: 5px" type="submit" class="btn btn-default">
+                                                    <i
+                                                        class="fas fa-search"></i>
+                                                </button>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="confirm_password">Xác nhận mật khẩu<span style="color: red">*</span></label>
-                                                <input id="password-fieldd" type="password"
-                                                       name="confirm_password"
-                                                       class="form-control">
-                                                <span toggle="#password-fieldd"
-                                                      class="fa fa-fw fa-eye field-icon toggle-passwordd"></span>
-                                                @error('confirm_password')
-                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                                @enderror
-                                                <span style="margin-top: 7px;color: red; font-size: 12px"
-                                                      id="CheckPasswordMatch"></span>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng
-                                            </button>
-                                            <button id="btn-sub" type="submit" class="btn btn-primary">Cập nhật</button>
                                         </div>
                                     </form>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table datatable-basic table-hover">
+                        <thead>
+                        <tr>
+                            <th>Mã NV</th>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>SĐT</th>
+                            <th>Địa chỉ</th>
+                            <th>Giới tính</th>
+                            <th>Chức vụ</th>
+                            <th class="text-center">Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($users as $user)
+                            <tr>
+                                @if($user->info)
+                                    <td style="font-weight: bold">{{$user->info->code}}</td>
+                                    <td>{{$user->info->name}}</td>
+                                @endif
+                                <td>{{$user->email}}</td>
+                                @if($user->info)
+                                    <td>{{$user->info->phone}}</td>
+                                    <td>{{$user->info->address}}</td>
+                                    @if($user->info->gender == 1)
+                                        <td>Nam</td>
+                                    @else
+                                        <td>Nữ</td>
+                                    @endif
+                                    @if($user->info->role == 1)
+                                        <td>Nhân viên</td>
+                                    @else
+                                        <td>Admin</td>
+                                    @endif
+                                @endif
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ route('users.edit',$user['_id']) }}" type="submit">
+                                                        <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                                    </a></li>
+                                                <li>
+                                                    <a data-toggle="modal" data-target="#myModal"><i class="fa fa-key"
+                                                                                                     aria-hidden="true"></i>
+                                                        Đặt lại mật khẩu
+                                                    </a>
+                                                </li>
+                                                <li><a style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px;"
+                                                       data-id="{{$user['_id']}}"><i class="fa fa-btn fa-trash"></i> Xoá
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 style="font-weight: bold;font-size: 18px" class="modal-title">Đặt lại mật
+                                        khẩu cho {{$user->info->name}}</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
-
+                                <form role="form" method="post" id="change-pass"
+                                      action="{{ route('users.changePass',$user->_id) }}">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="new_password">Mật khẩu mới<span
+                                                    style="color: red">*</span></label>
+                                            <input id="password-field" type="password" class="form-control"
+                                                   name="new_password">
+                                            <span toggle="#password-field"
+                                                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                            @error('new_password')
+                                            <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirm_password">Xác nhận mật khẩu<span
+                                                    style="color: red">*</span></label>
+                                            <input id="password-fieldd" type="password"
+                                                   name="confirm_password"
+                                                   class="form-control">
+                                            <span toggle="#password-fieldd"
+                                                  class="fa fa-fw fa-eye field-icon toggle-passwordd"></span>
+                                            @error('confirm_password')
+                                            <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                            @enderror
+                                            <span style="margin-top: 7px;color: red; font-size: 12px"
+                                                  id="CheckPasswordMatch"></span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng
+                                        </button>
+                                        <button id="btn-sub" type="submit" class="btn btn-primary">Cập nhật</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                {!! $users->links() !!}
-                <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
             </div>
         </div>
-        <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
+    </div>
+
     <style>
         .field-icon {
             float: right;
@@ -170,12 +179,31 @@
             margin-right: 10px;
             z-index: 2;
         }
-
         .container {
             padding-top: 50px;
             margin: auto;
         }
-
+        .error {
+            font-size: 12px;
+            color: red;
+            font-weight: 400 !important;
+        }
+    </style>
+    <!-- Content Header -->
+    <!-- Content -->
+    <style>
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            margin-right: 10px;
+            z-index: 2;
+        }
+        .container {
+            padding-top: 50px;
+            margin: auto;
+        }
         .error {
             font-size: 12px;
             color: red;
@@ -217,7 +245,6 @@
                     }
                 });
             });
-
             var validator = $("#change-pass").validate({
                 onfocusout: false,
                 onkeyup: true,

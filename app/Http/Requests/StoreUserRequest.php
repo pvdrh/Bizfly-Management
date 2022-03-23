@@ -29,7 +29,7 @@ class StoreUserRequest extends FormRequest
             'password' => 'required|min:6|max:20',
             'phone' => 'unique:user_info|nullable|regex:/(09|03|07|08|05)[0-9]{8}/',
             'address' => 'max:100',
-            'gender' => 'boolean',
+            'gender' => 'nullable',
             'role' => 'required|numeric',
             'code' => 'unique:user_info'
         ];

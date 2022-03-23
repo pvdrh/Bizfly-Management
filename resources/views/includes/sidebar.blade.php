@@ -1,11 +1,11 @@
-<div class="sidebar sidebar-main">
+<div style="font-size: 16px" class="sidebar sidebar-main">
     <div class="sidebar-content">
 
         <!-- User menu -->
         <div class="sidebar-user">
             <div class="category-content">
                 <div class="media">
-                    <a href="#" class="media-left"><img src="assets/images/placeholder.jpg"
+                    <a href="#" class="media-left"><img src="{{ URL::to('assets/images/placeholder.jpg') }}"
                                                         class="img-circle img-sm" alt=""></a>
                     <div class="media-body">
                         <span
@@ -27,7 +27,6 @@
                 <ul class="navigation navigation-main navigation-accordion">
 
                     <!-- Main -->
-                    <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i>
                     </li>
                     <li class="active"><a href="{{route('dashboard')}}"><i class="icon-home4"></i>
                             <span>Trang Chủ</span></a></li>
