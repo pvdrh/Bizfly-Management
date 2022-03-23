@@ -178,51 +178,6 @@
             </div>
         </div>
     </div>
-
-    <style>
-        .field-icon {
-            float: right;
-            margin-left: -25px;
-            margin-top: -25px;
-            position: relative;
-            margin-right: 10px;
-            z-index: 2;
-        }
-
-        .container {
-            padding-top: 50px;
-            margin: auto;
-        }
-
-        .error {
-            font-size: 12px;
-            color: red;
-            font-weight: 400 !important;
-        }
-    </style>
-    <!-- Content Header -->
-    <!-- Content -->
-    <style>
-        .field-icon {
-            float: right;
-            margin-left: -25px;
-            margin-top: -25px;
-            position: relative;
-            margin-right: 10px;
-            z-index: 2;
-        }
-
-        .container {
-            padding-top: 50px;
-            margin: auto;
-        }
-
-        .error {
-            font-size: 12px;
-            color: red;
-            font-weight: 400 !important;
-        }
-    </style>
 @section('script')
     <script>
         $(document).ready(function () {
