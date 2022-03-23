@@ -22,9 +22,12 @@
         </div>
     </div>
     <div class="col-lg-12">
-        <div class="panel panel-flat">
+        <div style="margin-left: 30px; margin-right: 30px;margin-top: 10px;margin-bottom: 20px" class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title">Thông tin nhân viên</h5>
+            </div>
             <div class="panel-body">
-                <form class="form-horizontal" role="form" method="post" action="{{route('users.update',$user->id)}}">
+                <form class="form-horizontal" role="form" method="post" action="{{route('users.update',$user->_id)}}">
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
@@ -100,7 +103,7 @@
                     </fieldset>
                     <div style="float: right">
                         <a style="font-size: 16px" href="{{ route('users.index') }}" class="btn btn-danger">Huỷ bỏ</a>
-                        <button style="font-size: 16px" type="submit" class="btn btn-success">Tạo mới</button>
+                        <button style="font-size: 16px" type="submit" class="btn btn-success">Cập nhật</button>
                     </div>
                 </form>
             </div>

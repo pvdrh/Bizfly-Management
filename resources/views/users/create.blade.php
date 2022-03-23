@@ -22,10 +22,10 @@
         </div>
     </div>
     <div class="col-lg-12">
-        <div class="panel panel-flat">
-{{--            <div class="panel-heading">--}}
-{{--                <h5 class="panel-title">Thông tin nhân viên</h5>--}}
-{{--            </div>--}}
+        <div style="margin-left: 20px; margin-right: 20px;margin-top: 10px;margin-bottom: 20px" class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title">Thông tin nhân viên</h5>
+            </div>
             <div class="panel-body">
                 <form class="form-horizontal" role="form" method="post" action="{{ route('users.store') }}">
                     @csrf

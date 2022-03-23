@@ -5,64 +5,72 @@
 @endsection
 
 @section('content')
-    <!-- Content Header -->
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('companies.index')}}">Công ty</a></li>
-                    <li class="breadcrumb-item active">Tạo mới</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-    <!-- Content -->
-    <div class="container-fluid">
-        <!-- Main row -->
-        <div class="row">
-            <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="card">
-                    <!-- /.card-header -->
-                    <!-- form start -->
-                    <form role="form" action="{{route('companies.store')}}" method="post">
-                        @csrf
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tên công ty<span style="color: red">*</span></label>
-                                <input value="{{old('name')}}" name="name" type="text" class="form-control">
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard
+                </h4>
+            </div>
+        </div>
+
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="{{route('companies.index')}}"><i class="icon-home2 position-left"></i> Quản lý công ty</a>
+                </li>
+                <li class="active">Thêm mới</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="panel panel-flat">
+            {{--            <div class="panel-heading">--}}
+            {{--                <h5 class="panel-title">Thông tin nhân viên</h5>--}}
+            {{--            </div>--}}
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" method="post"
+                      action="{{route('companies.store')}}">
+                    @csrf
+                    <fieldset class="content-group">
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Tên công ty<span style="color: red">*</span></label>
+                            <div class="col-lg-10">
+                                <input value="{{old('name')}}" type="text" name="name" class="form-control"
+                                       placeholder="Nhập tên công ty">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Số điện thoại</label>
-                                <input value="{{old('phone')}}" name="phone" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Số điện thoại</label>
+                            <div class="col-lg-10">
+                                <input value="{{old('phone')}}" type="text" name="phone"
+                                       class="form-control"
+                                       placeholder="Nhập số điện thoại">
                                 @error('phone')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Địa chỉ</label>
-                                <input value="{{old('address')}}" name="address" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Nhập địa chỉ</label>
+                            <div class="col-lg-10">
+                                <input value="{{old('address')}}" type="text" name="address"
+                                       class="form-control"
+                                       placeholder="Nhập địa chỉ">
                                 @error('address')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
-                        <!-- /.card-body -->
-
-                        <div class="card-footer">
-                            <a href="{{ route('companies.index') }}" class="btn btn-danger">Huỷ bỏ</a>
-                            <button type="submit" class="btn btn-success">Tạo mới</button>
-                        </div>
-                    </form>
-                </div>
+                    </fieldset>
+                    <div style="float: right">
+                        <a style="font-size: 16px" href="{{ route('companies.index') }}" class="btn btn-danger">Huỷ
+                            bỏ</a>
+                        <button style="font-size: 16px" type="submit" class="btn btn-success">Tạo mới</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
+    </div>
 @endsection

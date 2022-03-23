@@ -5,90 +5,96 @@
 @endsection
 
 @section('content')
-    <!-- Content Header -->
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('categories.index')}}">Danh mục</a></li>
-                    <li class="breadcrumb-item active">Danh sách</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-    <!-- Content -->
-    <div class="container-fluid">
-        <!-- Main row -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card" style="height: 78vh">
-                    <div class="card-header">
-                        <a href="{{route('categories.create')}}" type="submit"
-                           style="text-decoration: none; color: white"
-                           class="btn btn-success">Tạo mới</a>
-                        <div class="card-tools">
-                            <form role="search" method="get" action="{{route('categories.index')}}">
-                                <div class="input-group input-group-sm">
-                                    <input value="{{$cat}}" type="text" name="search" class="form-control float-right"
-                                           placeholder="Nhập tên danh mục">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    @if(count($categories) > 0)
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover table-borderless">
-                                <thead>
-                                <tr style="border-bottom: 1px black solid">
-                                    <th>Tên danh mục</th>
-                                    <th>Mô tả</th>
-                                    <th style="text-align: center">Hành động</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($categories as $category)
-                                    <tr>
-                                        <td>{{$category->name}}</td>
-                                        <td>{{$category->description}}</td>
-                                        <td style="text-align: center;">
-                                            <a href="{{ route('categories.edit',$category['_id']) }}" type="submit"
-                                               class="btn btn-info">
-                                                <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                            </a>
-                                            <!-- //Nút xóa-->
-                                            <span data-id="{{$category['_id']}}" class="btn btn-danger delete-card"> <i
-                                                    class="fa fa-btn fa-trash"></i> Xoá</span>
-                                        </td>
-                                    </tr>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @else
-                        <div style="height: 60vh; position: relative">
-                            <img
-                                style="height: 350px; width: 50%; object-fit: cover; top: 50%; left: 50%; margin: 0 auto;padding: 20px"
-                                src="/backend/dist/img/social-default.jpg">
-                            <p style="text-align: center; font-size: 20px">Không có dữ liệu</p>
-                        </div>
-                @endif
-                {!! $categories->links() !!}
-                <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard
+                </h4>
             </div>
         </div>
-        <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
+
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="{{route('categories.index')}}"><i class="icon-home2 position-left"></i> Quản lý danh
+                        mục</a>
+                </li>
+                <li class="active">Danh sách</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="margin-left: 30px;margin-right: 30px" class="panel panel-flat">
+                <div class="panel-heading">
+                    <a href="{{route('categories.create')}}" type="submit"
+                       style="text-decoration: none; color: white; font-size: 16px"
+                       class="btn btn-success">Tạo mới</a>
+                    <div class="heading-elements">
+                        <form class="heading-form" action="#">
+                            <div class="form-group">
+                                <label class="checkbox-inline checkbox-switchery checkbox-right switchery-xs">
+                                    <form role="search" method="get" action="{{route('users.index')}}">
+                                        <div class="input-group input-group-sm">
+                                            <input style="width: 75%" value="{{$cat}}" type="text" name="search"
+                                                   class="form-control float-right"
+                                                   placeholder="Nhập tên danh mục">
+                                            <div class="input-group-append">
+                                                <button style="margin-left: 5px" type="submit" class="btn btn-default">
+                                                    <i
+                                                        class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table datatable-basic table-hover">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center">Tên danh mục</th>
+                            <th>Mô tả</th>
+                            <th class="text-center">Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($categories as $category)
+                            <tr>
+                                <td style="text-align: center">{{$category->name}}</td>
+                                <td>{{$category->description}}</td>
+
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ route('categories.edit',$category['_id']) }}" type="submit">
+                                                        <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                                    </a></li>
+                                                <li class="delete-card"><a
+                                                        style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px;"
+                                                        data-id="{{$category['_id']}}"><i
+                                                            class="fa fa-btn fa-trash"></i>
+                                                        Xoá
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @section('script')
     <script>
         $(document).ready(function () {

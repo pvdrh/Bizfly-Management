@@ -5,206 +5,130 @@
 @endsection
 
 @section('content')
-    <!-- Content Header -->
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('customers.index')}}">Khách hàng</a></li>
-                    <li class="breadcrumb-item active">Tạo mới</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-    <!-- Content -->
-    <div class="container-fluid">
-        <!-- Main row -->
-        <div class="row">
-            <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="card">
-                    <!-- /.card-header -->
-                    <!-- form start -->
-                    <form role="form" method="post" action="{{ route('customers.store') }}">
-                        @csrf
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Tên khách hàng<span style="color: red">*</span></label>
-                                        <input value="{{old('name')}}" type="text" name="name" class="form-control"
-                                               id=""
-                                               placeholder="Nhập tên khách hàng">
-                                        @error('name')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email</label>
-                                        <input type="email" value="{{old('email')}}" name="email" class="form-control"
-                                               id="" placeholder="Email">
-                                        @error('email')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Số điện thoại<span
-                                                style="color: red">*</span></label>
-                                        <input type="text" value="{{old('phone')}}" name="phone" class="form-control"
-                                               id="inBox"
-                                               placeholder="Nhập số điện thoại">
-                                        @error('phone')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Tuổi</label>
-                                        <input min="18" value="{{old('age')}}" type="number" name="age"
-                                               class="form-control" id=""
-                                               placeholder="Nhập tuổi">
-                                        @error('age')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Nghề nghiệp</label>
-                                        <input type="text" value="{{old('job')}}" name="job" class="form-control" id=""
-                                               placeholder="Nhập địa chỉ">
-                                        @error('job')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Địa chỉ</label>
-                                        <input value="{{old('address')}}" type="text" name="address"
-                                               class="form-control" id=""
-                                               placeholder="Nhập địa chỉ">
-                                        @error('address')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1">
-                                    <div class="form-group">
-                                        <label>Giới tính</label>
-                                        <select name="gender" class="form-control select2" style="width: 100%;">
-                                            <option value="0">Nữ</option>
-                                            <option value="1">Nam</option>
-                                        </select>
-                                        @error('gender')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Phân loại</label>
-                                            <input value="{{old('customer_type')}}" type="text" name="customer_type"
-                                                   class="form-control">
-                                            @error('customer_type')
-                                            <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label>Đơn vị công tác</label>
-                                        <select name="company_id" class="form-control select2" style="width: 100%;">
-                                            <option>Chọn công ty</option>
-                                            @foreach($companies as $company)
-                                                <option value="{{ $company->_id }}">{{ $company->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('company_id')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label>Nhân viên hỗ trợ<span style="color: red">*</span></label>
-                                        <select class="form-control multi_select" multiple="multiple"
-                                                name="employee_code[]">
-                                            @foreach($users as $user)
-                                                <option value="{{$user->info->code}}">{{$user->info->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('employee_code')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-
-                        <div class="card-footer">
-                            <a href="{{ route('customers.index') }}" class="btn btn-danger">Huỷ bỏ</a>
-                            <button type="submit" class="btn btn-success">Tạo mới</button>
-                        </div>
-                    </form>
-                </div>
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard
+                </h4>
             </div>
         </div>
-        <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
-    <style>
-        .select2-selection__choice__display {
-            padding-left: 15px !important;
-            background-color: #d3d1d1;
-        }
 
-        .selection__choice__display:hover {
-            background-color: #d3d1d1;
-        }
-
-        .select2-selection__choice__remove {
-            background-color: #d3d1d1;
-            color: black !important;
-            margin-left: 0px !important;
-        }
-
-        .select2-selection__choice__remove span {
-            color: black;
-        }
-
-        .select2-selection__choice__remove:hover {
-            background-color: #a1a1a1 !important;
-        }
-
-        select2-selection__choice__remove span:hover {
-            background-color: #c4c1c1 !important;
-        }
-
-        .select2-selection__choice {
-            background-color: #d3d1d1 !important;
-            font-size: 16px;
-            color: black !important;
-        }
-
-        .select2-search__field {
-            border: none !important;
-        }
-    </style>
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="{{route('customers.index')}}"><i class="icon-home2 position-left"></i> Quản lý khách
+                        hàng</a>
+                </li>
+                <li class="active">Thêm mới</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Main row -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <form role="form" method="post" action="{{ route('customers.store') }}" class="form-horizontal">
+                @csrf
+                <div style="margin-left: 30px; margin-right: 30px;margin-top: 10px;margin-bottom: 20px" class="panel panel-flat">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Tên khách hàng:</label>
+                            <div class="col-lg-9">
+                                <input value="{{old('name')}}" type="text" name="name" class="form-control" placeholder="Nhập tên khách hàng">
+                                @error('name')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Email:</label>
+                            <div class="col-lg-9">
+                                <input value="{{old('email')}}" name="email" type="email" class="form-control" placeholder="Nhập email khách hàng">
+                                @error('email')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Số điện thoại:</label>
+                            <div class="col-lg-9">
+                                <input value="{{old('phone')}}" type="text" name="phone" class="form-control" placeholder="Nhập số điện thoại khách hàng">
+                                @error('phone')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Phân loại:</label>
+                            <div class="col-lg-9">
+                                <input value="{{old('customer_type')}}" name="customer_type" type="text" class="form-control">
+                                @error('customer_type')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Tuổi:</label>
+                            <div class="col-lg-9">
+                                <input value="{{old('age')}}" name="age" type="number" class="form-control">
+                                @error('age')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Nghề nghiệp:</label>
+                            <div class="col-lg-9">
+                                <input value="{{old('job')}}" name="job" type="text" class="form-control">
+                                @error('job')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Địa chỉ:</label>
+                            <div class="col-lg-9">
+                                <input value="{{old('address')}}" name="address" type="text" class="form-control">
+                                @error('address')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Giới tính:</label>
+                            <div class="col-lg-9">
+                                <select name="gender" class="form-control select2" style="width: 100%;">
+                                    <option value="1">Nam</option>
+                                    <option value="0">Nữ</option>
+                                </select>
+                                @error('gender')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Nhân viên hỗ trợ<span
+                                    style="color: red"> *</span>:</label>
+                            <div class="col-lg-9">
+                                <select name="employee_code[]" multiple="multiple"
+                                        data-placeholder="Chọn nhân viên hỗ trợ" class="select-icons">
+                                    @foreach($users as $user)
+                                        <option value="{{$user->info->code}}">{{$user->info->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('employee_code')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div style="float: right">
+                            <a style="font-size: 16px" href="{{ route('customers.index') }}" class="btn btn-danger">Huỷ bỏ</a>
+                            <button style="font-size: 16px" type="submit" class="btn btn-success">Tạo mới</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @section('script')
     <script>
         (function ($) {
