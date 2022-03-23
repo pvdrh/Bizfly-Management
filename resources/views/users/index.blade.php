@@ -6,12 +6,12 @@
 
 @section('content')
     <div class="page-header">
-                <div class="page-header-content">
-                    <div class="page-title">
-                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard
-                        </h4>
-                    </div>
-                </div>
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard
+                </h4>
+            </div>
+        </div>
 
         <div class="breadcrumb-line">
             <ul class="breadcrumb">
@@ -25,10 +25,11 @@
         <div class="col-lg-12">
             <div class="panel panel-flat">
                 <div class="panel-heading">
-                    <a href="{{route('users.create')}}" type="submit" style="text-decoration: none; color: white"
+                    <a href="{{route('users.create')}}" type="submit"
+                       style="text-decoration: none; color: white; font-size: 16px"
                        class="btn btn-success">Tạo mới</a>
                     <a href="{{route('users.export')}}" type="submit"
-                       style="text-decoration: none; color: white"
+                       style="text-decoration: none; color: white; font-size: 16px"
                        class="btn btn-info">Xuất excel
                     </a>
                     <div class="heading-elements">
@@ -96,19 +97,27 @@
                                                 <i class="icon-menu9"></i>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="{{ route('users.edit',$user['_id']) }}" type="submit">
-                                                        <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                                    </a></li>
-                                                <li>
-                                                    <a data-toggle="modal" data-target="#myModal"><i class="fa fa-key"
-                                                                                                     aria-hidden="true"></i>
-                                                        Đặt lại mật khẩu
-                                                    </a>
-                                                </li>
-                                                <li><a style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px;"
-                                                       data-id="{{$user['_id']}}"><i class="fa fa-btn fa-trash"></i> Xoá
-                                                    </a>
-                                                </li>
+                                                @if(!$user->info->is_protected)
+                                                    <li><a href="{{ route('users.edit',$user['_id']) }}" type="submit">
+                                                            <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                                        </a></li>
+                                                    <li>
+                                                        @endif
+                                                        <a data-toggle="modal" data-target="#myModal"><i
+                                                                class="fa fa-key"
+                                                                aria-hidden="true"></i>
+                                                            Đặt lại mật khẩu
+                                                        </a>
+                                                    </li>
+                                                    @if(!$user->info->is_protected)
+                                                        <li class="delete-card"><a
+                                                                style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px;"
+                                                                data-id="{{$user['_id']}}"><i
+                                                                    class="fa fa-btn fa-trash"></i>
+                                                                Xoá
+                                                            </a>
+                                                        </li>
+                                                    @endif
                                             </ul>
                                         </li>
                                     </ul>
@@ -179,10 +188,12 @@
             margin-right: 10px;
             z-index: 2;
         }
+
         .container {
             padding-top: 50px;
             margin: auto;
         }
+
         .error {
             font-size: 12px;
             color: red;
@@ -200,10 +211,12 @@
             margin-right: 10px;
             z-index: 2;
         }
+
         .container {
             padding-top: 50px;
             margin: auto;
         }
+
         .error {
             font-size: 12px;
             color: red;

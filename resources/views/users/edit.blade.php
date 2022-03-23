@@ -1,75 +1,82 @@
 @extends('layouts.master')
 
 @section('title')
-    Chỉnh sửa nhân viên
+    Cập nhật thông tin nhân viên
 @endsection
 
 @section('content')
-    <!-- Content Header -->
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('users.index')}}">Nhân viên</a></li>
-                    <li class="breadcrumb-item active">Cập nhật</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-    <!-- Content -->
-    <div class="container-fluid">
-        <!-- Main row -->
-        <div class="row">
-            <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="card">
-                    <!-- /.card-header -->
-                    <!-- form start -->
-                    <form role="form" method="post" action="{{route('users.update',$user->id)}}">
-                        @csrf
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Mã nhân viên</label>
-                                <input disabled type="text" max="30" name="name" value="{{$user->info->code}}"
-                                       class="form-control" id="">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" disabled name="email" value="{{$user->email}}" class="form-control"
-                                       id=""
-                                       placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tên nhân viên<span style="color: red">*</span></label>
-                                <input type="text" max="30" name="name" value="{{$user->info->name}}"
-                                       class="form-control" id=""
-                                       placeholder="Nhập tên nhân viên">
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard
+                </h4>
+            </div>
+        </div>
+
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="{{route('users.index')}}"><i class="icon-home2 position-left"></i> Quản lý nhân viên</a>
+                </li>
+                <li class="active">Cập nhật</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="panel panel-flat">
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" method="post" action="{{route('users.update',$user->id)}}">
+                    @csrf
+                    <fieldset class="content-group">
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Mã nhân viên<span style="color: red">*</span></label>
+                            <div class="col-lg-10">
+                                <input disabled value="{{$user->info->code}}" type="text" name="name" class="form-control" placeholder="Nhập tên nhân viên">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Số điện thoại</label>
-                                <input type="text" name="phone" id="intTextBox" value="{{$user->info->phone}}"
-                                       class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Email<span style="color: red">*</span></label>
+                            <div class="col-lg-10">
+                                <input disabled value="{{$user->email}}" type="email" name="email" class="form-control" placeholder="Email">
+                                @error('email')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Tên nhân viên<span style="color: red">*</span></label>
+                            <div class="col-lg-10">
+                                <input value="{{$user->info->name}}" type="text" name="name" class="form-control" placeholder="Nhập tên nhân viên">
+                                @error('name')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Số điện thoại</label>
+                            <div class="col-lg-10">
+                                <input id="intTextBox" value="{{$user->info->phone}}" type="text" name="phone" placeholder="Nhập số điện thoại" class="form-control"
+                                       placeholder="Enter your username...">
                                 @error('phone')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Địa chỉ</label>
-                                <input type="text" name="address" value="{{$user->info->address}}" class="form-control"
-                                       id="" placeholder="Nhập địa chỉ">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Địa chỉ</label>
+                            <div class="col-lg-10">
+                                <input value="{{$user->info->address}}" type="text" name="address" placeholder="Nhập địa chỉ" class="form-control">
                                 @error('address')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label>Giới tính</label>
-                                <select class="form-control select2" name="gender" style="width: 100%;">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Giới tính</label>
+                            <div class="col-lg-10">
+                                <select name="gender" class="form-control select2" style="width: 100%;">
                                     <option value="1" @if($user->info->gender == 1) selected @endif>Nam</option>
                                     <option value="0" @if($user->info->gender == 0) selected @endif>Nữ</option>
                                 </select>
@@ -77,29 +84,28 @@
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label>Chức vụ<span style="color: red">*</span></label>
-                                <select class="form-control  select2" name="role" style="width: 100%;">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Chức vụ<span style="color: red">*</span></label>
+                            <div class="col-lg-10">
+                                <select name="role" class="form-control select2" style="width: 100%;">
                                     <option value="0" @if(0 == $user->info->role) selected @endif>Admin</option>
                                     <option value="1" @if(1 == $user->info->role) selected @endif>Nhân viên</option>
                                 </select>
-                                @error('role_id')
+                                @error('role')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
-                        <!-- /.card-body -->
-
-                        <div class="card-footer">
-                            <a href="{{route('users.index')}}" class="btn btn-danger">Huỷ bỏ</a>
-                            <button type="submit" class="btn btn-success">Cập nhật</button>
-                        </div>
-                    </form>
-                </div>
+                    </fieldset>
+                    <div style="float: right">
+                        <a style="font-size: 16px" href="{{ route('users.index') }}" class="btn btn-danger">Huỷ bỏ</a>
+                        <button style="font-size: 16px" type="submit" class="btn btn-success">Tạo mới</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
+    </div>
 @section('script')
     <script>
         (function ($) {
@@ -118,8 +124,6 @@
                 });
             };
         }(jQuery));
-
-
         // Install input filters.
         $("#intTextBox").inputFilter(function (value) {
             return /^-?\d*$/.test(value);

@@ -23,6 +23,9 @@
     </div>
     <div class="col-lg-12">
         <div class="panel panel-flat">
+{{--            <div class="panel-heading">--}}
+{{--                <h5 class="panel-title">Thông tin nhân viên</h5>--}}
+{{--            </div>--}}
             <div class="panel-body">
                 <form class="form-horizontal" role="form" method="post" action="{{ route('users.store') }}">
                     @csrf
@@ -30,7 +33,8 @@
                         <div class="form-group">
                             <label class="control-label col-lg-2">Tên nhân viên<span style="color: red">*</span></label>
                             <div class="col-lg-10">
-                                <input type="text" name="name" class="form-control" placeholder="Nhập tên nhân viên">
+                                <input value="{{old('name')}}" type="text" name="name" class="form-control"
+                                       placeholder="Nhập tên nhân viên">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
@@ -39,7 +43,8 @@
                         <div class="form-group">
                             <label class="control-label col-lg-2">Email<span style="color: red">*</span></label>
                             <div class="col-lg-10">
-                                <input type="email" name="email" class="form-control" placeholder="Email">
+                                <input value="{{old('email')}}" type="email" name="email" class="form-control"
+                                       placeholder="Email">
                                 @error('email')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
@@ -57,7 +62,8 @@
                         <div class="form-group">
                             <label class="control-label col-lg-2">Số điện thoại</label>
                             <div class="col-lg-10">
-                                <input id="intTextBox" type="text" name="phone" placeholder="Nhập số điện thoại" class="form-control"
+                                <input id="intTextBox" value="{{old('phone')}}" type="text" name="phone"
+                                       placeholder="Nhập số điện thoại" class="form-control"
                                        placeholder="Enter your username...">
                                 @error('phone')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -67,17 +73,18 @@
                         <div class="form-group">
                             <label class="control-label col-lg-2">Địa chỉ</label>
                             <div class="col-lg-10">
-                                <input type="text" name="address" placeholder="Nhập địa chỉ" class="form-control">
+                                <input value="{{old('address')}}" type="text" name="address" placeholder="Nhập địa chỉ"
+                                       class="form-control">
                                 @error('address')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Giới tính</label>
+                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Giới tính<span
+                                    style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <select name="gender" class="form-control select2" style="width: 100%;">
-                                    <option>Chọn giới tính</option>
                                     <option value="0">Nữ</option>
                                     <option value="1">Nam</option>
                                 </select>
@@ -87,7 +94,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Chức vụ<span style="color: red">*</span></label>
+                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Chức vụ<span
+                                    style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <select name="role" class="form-control select2" style="width: 100%;">
                                     <option value="0">Admin</option>

@@ -25,47 +25,51 @@
         <div class="sidebar-category sidebar-category-visible">
             <div class="category-content no-padding">
                 <ul class="navigation navigation-main navigation-accordion">
-
+{{--                    class="active"--}}
                     <!-- Main -->
                     </li>
-                    <li class="active"><a href="{{route('dashboard')}}"><i class="icon-home4"></i>
+                    <li><a href="{{route('dashboard')}}"><i class="icon-home4"></i>
                             <span>Trang Chủ</span></a></li>
                     <li>
                         <a href="#"><i class="icon-stack2"></i> <span>Sản Phẩm</span></a>
                         <ul>
-                            <li><a href="layout_navbar_fixed.html">Fixed navbar</a></li>
+                            <li><a href="{{route('products.index')}}">Danh sách</a></li>
+                            <li><a href="{{route('products.create')}}">Thêm mới</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-copy"></i> <span>Danh Mục</span></a>
                         <ul>
-                            <li><a href="index.html" id="layout1">Layout 1 <span
-                                        class="label bg-warning-400">Current</span></a>
-                            </li>
+                            <li><a href="{{route('categories.index')}}" id="layout1">Danh sách</a></li>
+                            <li><a href="{{route('categories.create')}}" id="layout1">Thêm mới</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-droplet2"></i> <span>Đơn Hàng</span></a>
                         <ul>
-                            <li><a href="colors_primary.html">Primary palette</a></li>
+                            <li><a href="{{route('orders.index')}}">Danh sách</a></li>
+                            <li><a href="{{route('orders.create')}}">Thêm mới</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-stack"></i> <span>Khách Hàng</span></a>
                         <ul>
-                            <li><a href="starters/horizontal_nav.html">Horizontal navigation</a></li>
+                            <li><a href="{{route('customers.index')}}">Danh sách</a></li>
+                            <li><a href="{{route('customers.create')}}">Thêm mới</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-stack"></i> <span>Công Ty</span></a>
                         <ul>
-                            <li><a href="starters/horizontal_nav.html">Horizontal navigation</a></li>
+                            <li><a href="{{route('companies.index')}}">Danh sách</a></li>
+                            <li><a href="{{route('companies.create')}}">Thêm mới</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-stack"></i> <span>Nhân Viên</span></a>
                         <ul>
-                            <li><a href="starters/horizontal_nav.html">Horizontal navigation</a></li>
+                            <li><a href="{{route('users.index')}}">Danh sách</a></li>
+                            <li><a href="{{route('users.create')}}">Thêm mới</a></li>
                         </ul>
                     </li>
                     <!-- /main -->
