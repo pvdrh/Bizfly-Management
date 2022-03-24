@@ -29,6 +29,17 @@
                     <a href="{{route('categories.create')}}"
                        style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 7px 10px 7px 10px;"
                     >Thêm mới</a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
                     <div class="heading-elements">
                         <form class="heading-form" action="#">
                             <div class="form-group">
@@ -56,6 +67,7 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
+                                <th><input type="checkbox" id="check_all"></th>
                                 <th style="text-align: center">Tên danh mục</th>
                                 <th>Mô tả</th>
                                 <th class="text-center">Hành động</th>
@@ -64,7 +76,10 @@
                             <tbody>
                             @foreach($categories as $category)
                                 <tr>
-                                    <td style="text-align: center">{{$category->name}}</td>
+                                    <td style="text-align: center"><input type="checkbox" name="category_id[]"
+                                                                          class="checkbox"
+                                                                          data-id="{{$category->_id}}">{{$category->name}}
+                                    </td>
                                     <td>{{$category->description}}</td>
 
                                     <td class="text-center">
@@ -138,7 +153,56 @@
                         swal.close();
                     }
                 })
-            })
+            });
+            $('#check_all').on('click', function (e) {
+                if ($(this).is(':checked', true)) {
+                    $(".checkbox").prop('checked', true);
+                    //$( "#export" ).addClass("export-checkbox");
+                } else {
+                    $(".checkbox").prop('checked', false);
+                    //$( "#export" ).removeClass("export-checkbox");
+                }
+
+
+            });
+            {{--$('.delete-all').on('click', function (e) {--}}
+            {{--    var idsArr = [];--}}
+            {{--    $(".checkbox:checked").each(function () {--}}
+            {{--        idsArr.push($(this).attr('data-id'));--}}
+            {{--    });--}}
+            {{--    if (idsArr.length <= 0) {--}}
+            {{--        alert("Vui lòng chọn bản ghi bạn muốn xóa");--}}
+            {{--    } else {--}}
+            {{--        var idss = idsArr.length;--}}
+            {{--        if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {--}}
+            {{--            var strIds = idsArr.join(",");--}}
+            {{--            $.ajax({--}}
+            {{--                url: "{{route('customer.deleteAll')}}",--}}
+            {{--                type: 'POST',--}}
+            {{--                headers: {--}}
+            {{--                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+            {{--                },--}}
+            {{--                data: 'ids=' + strIds,--}}
+            {{--                success: function (data) {--}}
+            {{--                    console.log(data);--}}
+            {{--                    if (data['status'] == true) {--}}
+            {{--                        $(".checkbox:checked").each(function () {--}}
+            {{--                            $(this).parents("tr").remove();--}}
+            {{--                            location.reload();--}}
+            {{--                        });--}}
+            {{--                        alert(data['message']);--}}
+            {{--                    } else {--}}
+            {{--                        alert('Lỗi!!');--}}
+            {{--                    }--}}
+
+            {{--                },--}}
+            {{--                error: function (data) {--}}
+            {{--                    console.log(data);--}}
+            {{--                }--}}
+            {{--            });--}}
+            {{--        }--}}
+            {{--    }--}}
+            {{--});--}}
         });
     </script>
     <script>
