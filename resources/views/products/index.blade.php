@@ -122,7 +122,10 @@
                             type: 'post',
                             url: '/products/delete/' + seq,
                             success: function (res) {
-                                window.location.reload()
+                                swal("Xoá thành công!", "", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
                             }
                         });
                     }

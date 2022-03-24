@@ -143,7 +143,7 @@
                                 swal("Xoá thành công!", "", "success");
                                 setTimeout(function () {
                                     location.reload();
-                                }, 1200);
+                                }, 1000);
                             },
                         });
                     }
@@ -185,13 +185,13 @@
                                 swal("Xoá thành công!", "", "success");
                                 setTimeout(function () {
                                     location.reload();
-                                }, 1200);
+                                }, 1000);
                             },
                             error: function () {
                                 swal("Xoá thất bại!", "", "error");
                                 setTimeout(function () {
                                     location.reload();
-                                }, 1200);
+                                }, 1000);
                             }
                         });
                     }

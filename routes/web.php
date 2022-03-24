@@ -91,6 +91,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('companies.create');
         Route::post('/store', [CompanyController::class, 'store'])
             ->name('companies.store');
+        Route::post('/deleteAll', [CompanyController::class, 'deleteAll'])
+            ->name('companies.deleteAll');
         Route::get('/edit/{id}', [CompanyController::class, 'edit'])
             ->name('companies.edit');
         Route::post('/update/{id}', [CompanyController::class, 'update'])

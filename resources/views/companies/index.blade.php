@@ -28,6 +28,17 @@
                     <a href="{{route('companies.create')}}"
                        style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 7px 10px 7px 10px;"
                     >Thêm mới</a>
+                    <div class="btn-group">
+                        <a style="text-decoration: none; margin-bottom: 5px; color: white; font-size: 16px; background: #666666; padding: 7px 10px 7px 10px;"
+                           type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+                            Tùy chọn
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button class="dropdown-item delete-all">Xóa bản ghi đã chọn</button>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="heading-elements">
                         <form class="heading-form" action="#">
                             <div class="form-group">
@@ -55,6 +66,7 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
+                                <th><input type="checkbox" id="check_all"></th>
                                 <th style="text-align: center">Tên công ty</th>
                                 <th>Số điện thoại</th>
                                 <th>Địa chỉ</th>
@@ -64,6 +76,8 @@
                             <tbody>
                             @foreach($companies as $company)
                                 <tr>
+                                    <td><input type="checkbox" name="category_id[]" class="checkbox"
+                                               data-id="{{$company->_id}}"></td>
                                     <td style="text-align: center">{{$company->name}}</td>
                                     <td>{{$company->phone}}</td>
                                     <td>{{$company->address}}</td>
@@ -127,7 +141,10 @@
                             type: 'post',
                             url: '/companies/delete/' + seq,
                             success: function (res) {
-                                window.location.reload()
+                                swal("Xoá thành công!", "", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
                             }
                         });
                     }
@@ -139,7 +156,48 @@
                         swal.close();
                     }
                 });
-            })
+            });
+            $('#check_all').on('click', function (e) {
+                if ($(this).is(':checked', true)) {
+                    $(".checkbox").prop('checked', true);
+                } else {
+                    $(".checkbox").prop('checked', false);
+                }
+            });
+            $('.delete-all').on('click', function (e) {
+                var idsArr = [];
+                $(".checkbox:checked").each(function () {
+                    idsArr.push($(this).attr('data-id'));
+                });
+                if (idsArr.length <= 0) {
+                    alert("Vui lòng chọn bản ghi bạn muốn xóa");
+                } else {
+                    var idss = idsArr.length;
+                    if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {
+                        var strIds = idsArr.join(",");
+                        $.ajax({
+                            url: "{{route('companies.deleteAll')}}",
+                            type: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: 'ids=' + strIds,
+                            success: function () {
+                                swal("Xoá thành công!", "", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function () {
+                                swal("Xoá thất bại!", "", "error");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            }
+                        });
+                    }
+                }
+            });
         });
     </script>
     <script>
