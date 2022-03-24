@@ -24,7 +24,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div style="margin-left: 30px; margin-right: 30px;margin-top: 10px;margin-bottom: 20px" class="panel panel-flat">
+            <div style="margin-left: 25px;margin-right: 25px;margin-bottom: 50px" class="panel panel-flat">
                 <div class="panel-heading">
                     <a href="{{route('customers.create')}}" type="submit"
                        style="text-decoration: none; color: white"

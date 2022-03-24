@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="col-lg-12">
-        <div style="margin-left: 30px; margin-right: 30px;margin-top: 10px;margin-bottom: 20px" class="panel panel-flat">
+        <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
             <div class="panel-heading">
                 <h5 class="panel-title">Thông tin nhân viên</h5>
             </div>

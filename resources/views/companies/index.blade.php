@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-flat">
+            <div style="margin-left: 25px;margin-right: 25px;margin-bottom: 50px" class="panel panel-flat">
                 <div class="panel-heading">
                     <a href="{{route('companies.create')}}" type="submit"
                        style="text-decoration: none; color: white; font-size: 16px"

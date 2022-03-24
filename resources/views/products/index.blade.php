@@ -5,96 +5,79 @@
 @endsection
 
 @section('content')
-
-    <!-- Content Header -->
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('products.index')}}">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active">Danh sách</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-    <!-- Content -->
-    <div class="container-fluid">
-        <!-- Main row -->
-        <div class="row">
-
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <a href="{{route('products.create')}}" type="submit" style="text-decoration: none; color: white"
-                           class="btn btn-success">Tạo mới</a>
-                    </div>
-                    <!-- /.card-header -->
-                    @if(count($products) > 0)
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr style="border-bottom: 1px black solid">
-                                    <th style="text-align: center">Tên sản phẩm</th>
-                                    <th style="text-align: center">Ảnh</th>
-                                    <th>Danh mục</th>
-                                    <th>Giá bán</th>
-                                    <th style="text-align: center">Số lượng</th>
-                                    <th style="text-align: center">Đã bán</th>
-                                    <th style="text-align: center">Hành động</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($products as $product)
-                                    <tr>
-                                        <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width: 200px;text-align: center; @if($product->quantity <= 0) color:orangered; font-weight: bold @endif">{{ $product->name }}</td>
-                                        <td style="text-align: center">
-                                            @if($product->image)
-                                                <img
-                                                    style="width: 150px; height: 150px; object-fit: cover"
-                                                    src="storage/{{ $product->image }}">
-                                            @else
-                                                <img style="width: 150px; height: 150px; object-fit: cover"
-                                                     src="/backend/dist/img/default.jpg">
-                                            @endif
-                                        </td>
-                                        <td>{{ $product->categories ? $product->categories->name : "Đang cập nhật" }}</td>
-                                        <td>{{ number_format($product->price) }} VND</td>
-                                        <td style="text-align: center">{!! $product->quantity !!}</td>
-                                        <td style="text-align: center">{!! $product->total_sold !!}</td>
-                                        <td style="text-align: center">
-                                            <a href="{{ route('products.edit',$product['_id']) }}" type="submit"
-                                               class="btn btn-info">
-                                                <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                            </a>
-                                            <!-- //Nút xóa-->
-                                            <span data-id="{{$product['_id']}}"
-                                                  class="btn btn-danger delete-card"> <i
-                                                    class="fa fa-btn fa-trash"></i> Xoá</span>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @else
-                        <div style="height: 60vh; position: relative">
-                            <img
-                                style="height: 350px; width: 50%; object-fit: cover; top: 50%; left: 50%; margin: 0 auto;padding: 20px"
-                                src="/backend/dist/img/social-default.jpg">
-                            <p style="text-align: center; font-size: 20px">Không có dữ liệu</p>
-                        </div>
-                @endif
-                {!! $products->links() !!}
-                <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard
+                </h4>
             </div>
         </div>
-        <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
+
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="{{route('products.index')}}"><i class="icon-home2 position-left"></i> Quản lý sản phẩm</a>
+                </li>
+                <li class="active">Danh sách</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="margin-left: 25px;margin-right: 25px;margin-bottom: 50px" class="panel panel-flat">
+                <div class="panel-heading">
+                    <a href="{{route('products.create')}}" type="submit"
+                       style="text-decoration: none; color: white; font-size: 16px"
+                       class="btn btn-success">Tạo mới</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr style="border-bottom: 1px black solid">
+                            <th style="text-align: center">Tên sản phẩm</th>
+                            <th style="text-align: center">Ảnh</th>
+                            <th>Danh mục</th>
+                            <th>Giá bán</th>
+                            <th style="text-align: center">Số lượng</th>
+                            <th style="text-align: center">Đã bán</th>
+                            <th style="text-align: center">Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($products as $product)
+                            <tr>
+                                <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width: 200px;text-align: center; @if($product->quantity <= 0) color:orangered; font-weight: bold @endif">{{ $product->name }}</td>
+                                <td style="text-align: center">
+                                    @if($product->image)
+                                        <img
+                                            style="width: 150px; height: 150px; object-fit: cover"
+                                            src="storage/{{ $product->image }}">
+                                    @else
+                                        <img style="width: 150px; height: 150px; object-fit: cover"
+                                             src="/backend/dist/img/default.jpg">
+                                    @endif
+                                </td>
+                                <td>{{ $product->categories ? $product->categories->name : "Đang cập nhật" }}</td>
+                                <td>{{ number_format($product->price) }} VND</td>
+                                <td style="text-align: center">{!! $product->quantity !!}</td>
+                                <td style="text-align: center">{!! $product->total_sold !!}</td>
+                                <td style="text-align: center">
+                                    <a href="{{ route('products.edit',$product['_id']) }}" type="submit"
+                                       class="btn btn-info">
+                                        <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                    </a>
+                                    <!-- //Nút xóa-->
+                                    <span data-id="{{$product['_id']}}"
+                                          class="btn btn-danger delete-card"> <i
+                                            class="fa fa-btn fa-trash"></i> Xoá</span>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @section('script')
     <script>
         $(document).ready(function () {

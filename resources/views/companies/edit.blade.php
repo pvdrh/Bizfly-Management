@@ -25,7 +25,7 @@
             {{--            <div class="panel-heading">--}}
             {{--                <h5 class="panel-title">Thông tin nhân viên</h5>--}}
             {{--            </div>--}}
-            <div class="panel-body">
+            <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel-body">
                 <form class="form-horizontal" role="form" method="post"
                       action="{{route('companies.update', $company->_id)}}">
                     @csrf

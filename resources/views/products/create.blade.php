@@ -5,46 +5,46 @@
 @endsection
 
 @section('content')
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard
+                </h4>
+            </div>
+        </div>
 
-    <!-- Content Header -->
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('products.index')}}">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active">Tạo mới</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-    <!-- Content -->
-    <div class="container-fluid">
-        <!-- Main row -->
-        <div class="row">
-            <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="card">
-                    <!-- /.card-header -->
-                    <!-- form start -->
-                    <form role="form" method="post" enctype="multipart/form-data"
-                          action="{{ route('products.store') }}">
-                        @csrf
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tên sản phẩm <span style="color: red">*</span></label>
-                                <input value="{{old('name')}}" type="text" name="name" class="form-control" id=""
-                                       placeholder="Điền tên sản phẩm ">
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="{{route('products.index')}}"><i class="icon-home2 position-left"></i> Quản lý sản phẩm</a>
+                </li>
+                <li class="active">Thêm mới</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
+            {{--            <div class="panel-heading">--}}
+            {{--                <h5 class="panel-title">Thông tin nhân viên</h5>--}}
+            {{--            </div>--}}
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" method="post" action="{{ route('products.store') }}">
+                    @csrf
+                    <fieldset class="content-group">
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Tên sản phẩm<span style="color: red">*</span></label>
+                            <div class="col-lg-10">
+                                <input value="{{old('name')}}" type="text" name="name" class="form-control"
+                                       placeholder="Nhập tên sản phẩm">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label>Danh mục sản phẩm</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Danh mục:</label>
+                            <div class="col-lg-10">
                                 <select class="form-control select2" name="category_id" style="width: 100%;">
-                                    <option>Chọn danh mục</option>
+                                    <option>---Chọn danh mục---</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->_id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -53,64 +53,53 @@
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label>Giá bán <span style="color: red">*</span></label>
-                                        <input type="text" value="{{old('price')}}" name="price" min="1"
-                                               class="form-control input-element"
-                                               placeholder="Điền giá bán">
-                                        @error('price')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label>Số lượng <span style="color: red">*</span></label>
-                                        <input value="{{old('quantity')}}" type="number" name="quantity" min="1"
-                                               class="form-control"
-                                               placeholder="Điền số lượng   ">
-                                        @error('quantity')
-                                        <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Mô tả sản phẩm</label>
-                                <textarea name="description"
-                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{old('description')}}</textarea>
-                                @error('description')
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Giá bán:</label>
+                            <div class="col-lg-3">
+                                <input type="text" value="{{old('price')}}" name="price" min="1"
+                                       class="form-control input-element"
+                                       placeholder="Điền giá bán">
+                                @error('price')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Hình ảnh sản phẩm</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input name="image" accept="image/*" type='file' id="imgInp"/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img style="width: 150px; height: 150px; object-fit: cover" id="blah" src="/backend/dist/img/default.jpg" alt="your image"/>
+                            <div class="col-lg-2">
+                            </div>
+                            <label class="col-lg-2 control-label">Số lượng:</label>
+                            <div class="col-lg-3">
+                                <input value="{{old('quantity')}}" type="number" name="quantity" min="1"
+                                       class="form-control"
+                                       placeholder="Điền số lượng   ">
+                                @error('quantity')
+                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2" for="exampleInputFile">Hình ảnh sản phẩm</label>
+                            <div class="input-group">
+                                <div class="custom-file col-lg-10">
+                                    <input name="image" accept="image/*" type='file' id="imgInp"/>
                                 </div>
                             </div>
-                            @error('image')
-                            <span style="color: red; font-size: 14px">{{ $message }}</span>
-                            @enderror
+                            <div class="col-lg-2">
+                            </div>
+                            <div style="margin-top: 20px" class="col-lg-10">
+                                <img style="width: 150px; height: 150px; object-fit: cover" id="blah"
+                                     src="/backend/dist/img/default.jpg" alt="your image"/>
+                            </div>
                         </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <a type="submit" href="{{ route('products.index') }}" class="btn btn-danger">Huỷ bỏ</a>
-                            <button type="submit" class="btn btn-success">Tạo mới</button>
-                        </div>
-                    </form>
-                </div>
+                    </fieldset>
+                    <div style="float: right">
+                        <a style="font-size: 16px" href="{{ route('products.index') }}" class="btn btn-danger">Huỷ
+                            bỏ</a>
+                        <button style="font-size: 16px" type="submit" class="btn btn-success">Tạo mới</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
+    </div>
 @section('script')
     <script>
         var cleave = new Cleave('.input-element', {

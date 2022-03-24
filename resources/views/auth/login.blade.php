@@ -1,138 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Quản Lý Bán Hàng</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="/backend/plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet" href="/backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="/backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="/backend/plugins/jqvmap/jqvmap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="/backend/dist/css/adminlte.min.css">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="/backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="/backend/plugins/daterangepicker/daterangepicker.css">
-    <!-- summernote -->
-    <link rel="stylesheet" href="/backend/plugins/summernote/summernote-bs4.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <title>Quản Lý Bán Hàng</title>
+
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+          type="text/css">
+    <link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/core.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/components.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/colors.min.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+
+    <!-- Core JS files -->
+    <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+
+
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="assets/js/core/app.js"></script>
+    <!-- /theme JS files -->
+
 </head>
-<body class="hold-transition login-page">
 
+<body>
+<!-- Page container -->
+<div class="page-container login-container">
 
-<div class="login-box">
+    <!-- Page content -->
+    <div class="page-content">
 
-    <!-- /.login-logo -->
-    <div style="padding: 30px" class="card">
-        <div class="login-logo">
-            <p href="#"><b>Đăng Nhập</b></p>
-        </div>
-        <div class="card-body login-card-body">
+        <!-- Main content -->
+        <div class="content-wrapper">
 
-            <form role="form" action="{{route('login.store')}}" method="post">
-                @csrf
-                <div class="input-group mb-3">
-                    <input value="{{old('email')}}" type="email" name="email" class="form-control" placeholder="Email">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+            <!-- Content area -->
+            <div class="content">
+
+                <!-- Simple login form -->
+                <form  role="form" action="{{route('login.store')}}" method="post">
+                    @csrf
+                    <div class="panel panel-body login-form">
+                        <div class="text-center">
+                            <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+                            <h5 class="content-group">Đăng nhập vào tài khoản của bạn</h5>
+                        </div>
+                        <div class="form-group has-feedback has-feedback-left">
+                            <input name="email" type="email" class="form-control" placeholder="Email">
+                            <div class="form-control-feedback">
+                                <i class="icon-user text-muted"></i>
+                            </div>
+                            @error('email')
+                            <div>
+                                <span style="color: red; font-size: 12px">{{ $message }}</span>
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group has-feedback has-feedback-left">
+                            <input name="password" type="password" class="form-control" placeholder="Mật khẩu">
+                            <div class="form-control-feedback">
+                                <i class="icon-lock2 text-muted"></i>
+                            </div>
+                            @error('password')
+                            <div>
+                                <span style="color: red; font-size: 12px">{{ $message }}</span>
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Đăng nhập <i
+                                    class="icon-circle-right2 position-right"></i></button>
                         </div>
                     </div>
-                </div>
-                @error('email')
-                <span style="color: red; font-size: 14px">{{ $message }}</span>
-                @enderror
-                <div style="margin-bottom: 5px !important;" class="input-group mb-3">
-                    <input id="myInput" type="password" name="password" class="form-control" placeholder="Mật khẩu">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-                @error('password')
-                <div>
-                    <span style="color: red; font-size: 14px">{{ $message }}</span>
-                </div>
-                @enderror
-                <input style="margin-bottom: 10px; margin-top: 10px" type="checkbox" onclick="myFunction()"> Hiển thị mật khẩu
-                <div style="margin-top: 25px" class="row">
-                    <!-- /.col -->
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
-                    </div>
-                    <!-- /.col -->
-                </div>
-            </form>
-            {{--            <div class="social-auth-links text-center mb-3">--}}
-            {{--                <p>- HOẶC -</p>--}}
-            {{--                <a href="{{route('login.social')}}" class="btn btn-block btn-danger">--}}
-            {{--                    <i class="fab fa-google-plus mr-2"></i> Đăng nhập bằng Google+--}}
-            {{--                </a>--}}
-            {{--            </div>--}}
+                </form>
+                <!-- /simple login form -->
+            </div>
+            <!-- /content area -->
         </div>
+        <!-- /main content -->
         @if (Session::has('fail'))
             <div style="top: 10px">
                 <p style="text-align: center;" class="text-danger">{{ Session('fail') }}</p>
             </div>
-    @endif
-    <!-- /.login-card-body -->
+        @endif
     </div>
+    <!-- /page content -->
+
 </div>
-
-
-<script src="/backend/plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="/backend/plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.widget.bridge('uibutton', $.ui.button)
-</script>
-<script>
-    function myFunction() {
-        var x = document.getElementById("myInput");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
-</script>
-<!-- Bootstrap 4 -->
-<script src="/backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="/backend/plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="/backend/plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="/backend/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="/backend/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="/backend/plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="/backend/plugins/moment/moment.min.js"></script>
-<script src="/backend/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="/backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="/backend/plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="/backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/backend/dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/backend/dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="/backend/dist/js/demo.js"></script>
+<!-- /page container -->
 </body>
 </html>

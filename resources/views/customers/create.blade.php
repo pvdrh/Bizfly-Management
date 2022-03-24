@@ -28,7 +28,7 @@
             <!-- general form elements -->
             <form role="form" method="post" action="{{ route('customers.store') }}" class="form-horizontal">
                 @csrf
-                <div style="margin-left: 30px; margin-right: 30px;margin-top: 10px;margin-bottom: 20px" class="panel panel-flat">
+                <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
                     <div class="panel-body">
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Tên khách hàng:</label>
