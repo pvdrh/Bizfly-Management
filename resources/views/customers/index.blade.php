@@ -109,12 +109,12 @@
                                                 <i class="icon-menu9"></i>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="{{ route('customers.edit',$customer['_id']) }}"
+                                                <li><a style="color: #546E7A" href="{{ route('customers.edit',$customer['_id']) }}"
                                                        type="submit">
                                                         <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                                     </a></li>
                                                 <li class="delete-card"><a
-                                                        style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px;"
+                                                        style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #F4511E"
                                                         data-id="{{$customer['_id']}}"><i
                                                             class="fa fa-btn fa-trash"></i>
                                                         Xoá

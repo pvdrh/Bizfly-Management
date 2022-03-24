@@ -27,9 +27,10 @@
                 <div class="panel-heading">
                     <a href="{{route('users.create')}}"
                        style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 7px 10px 7px 10px;"
-                       >Thêm mới</a>
+                    >Thêm mới</a>
                     <a href="{{route('users.export')}}"
-                       style="text-decoration: none; color: white; font-size: 16px; background: #3949AB; padding: 7px 10px 7px 10px;">Xuất excel
+                       style="text-decoration: none; color: white; font-size: 16px; background: #3949AB; padding: 7px 10px 7px 10px;">Xuất
+                        excel
                     </a>
                     <div class="heading-elements">
                         <form class="heading-form" action="#">
@@ -89,14 +90,16 @@
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                 <i class="icon-menu9"></i>
                                             </a>
-                                            <ul @if($user->info->is_protected) style="padding: 10px" @endif class="dropdown-menu dropdown-menu-right">
+                                            <ul @if($user->info->is_protected) style="padding: 10px"
+                                                @endif class="dropdown-menu dropdown-menu-right">
                                                 @if(!$user->info->is_protected)
-                                                    <li><a href="{{ route('users.edit',$user['_id']) }}" type="submit">
+                                                    <li><a style="color: #546E7A"
+                                                           href="{{ route('users.edit',$user['_id']) }}" type="submit">
                                                             <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                                         </a></li>
                                                     <li>
                                                         @endif
-                                                        <a data-toggle="modal" data-target="#myModal"><i
+                                                        <a style="color: #1E88E5" data-toggle="modal" data-target="#myModal"><i
                                                                 class="fa fa-key"
                                                                 aria-hidden="true"></i>
                                                             Đặt lại mật khẩu
@@ -104,7 +107,7 @@
                                                     </li>
                                                     @if(!$user->info->is_protected)
                                                         <li class="delete-card"><a
-                                                                style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px;"
+                                                                style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #F4511E"
                                                                 data-id="{{$user['_id']}}"><i
                                                                     class="fa fa-btn fa-trash"></i>
                                                                 Xoá

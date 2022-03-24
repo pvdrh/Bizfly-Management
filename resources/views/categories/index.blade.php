@@ -73,11 +73,13 @@
                                                 <i class="icon-menu9"></i>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="{{ route('categories.edit',$category['_id']) }}" type="submit">
+                                                <li><a style="color: #546E7A"
+                                                       href="{{ route('categories.edit',$category['_id']) }}"
+                                                       type="submit">
                                                         <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                                     </a></li>
                                                 <li class="delete-card"><a
-                                                        style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px;"
+                                                        style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #F4511E"
                                                         data-id="{{$category['_id']}}"><i
                                                             class="fa fa-btn fa-trash"></i>
                                                         Xoá

@@ -77,7 +77,7 @@
                                     {{--                                        Chuyển trạng thái đơn hàng--}}
                                     @if($order->status == 0)
                                         <td style="text-align: center">
-                                            <a style="width: 125px"
+                                            <a style="width: 125px; margin-bottom: 10px"
                                                href="{{route('orders.accept', $order->_id)}}"
                                                type="submit"
                                                class="btn btn-success">
@@ -126,7 +126,7 @@
                                     @endif
                                     @if($order->status == 3)
                                         <td style="text-align: center">
-                                            <a style="width: 125px; color: white; cursor: not-allowed" href="#"
+                                            <a style="width: 125px; color: white; cursor: not-allowed; background: #666666" href="#"
                                                class="btn btn-secondary">
                                                 <svg style="display: inline" xmlns="http://www.w3.org/2000/svg"
                                                      width="21" height="21" fill="currentColor"
