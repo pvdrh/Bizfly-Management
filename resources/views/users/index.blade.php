@@ -25,12 +25,11 @@
         <div class="col-lg-12">
             <div style="margin-left: 25px;margin-right: 25px;margin-bottom: 50px" class="panel panel-flat">
                 <div class="panel-heading">
-                    <a href="{{route('users.create')}}" type="submit"
-                       style="text-decoration: none; color: white; font-size: 16px"
-                       class="btn btn-success">Tạo mới</a>
-                    <a href="{{route('users.export')}}" type="submit"
-                       style="text-decoration: none; color: white; font-size: 16px"
-                       class="btn btn-info">Xuất excel
+                    <a href="{{route('users.create')}}"
+                       style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 7px 10px 7px 10px;"
+                       >Thêm mới</a>
+                    <a href="{{route('users.export')}}"
+                       style="text-decoration: none; color: white; font-size: 16px; background: #3949AB; padding: 7px 10px 7px 10px;">Xuất excel
                     </a>
                     <div class="heading-elements">
                         <form class="heading-form" action="#">
@@ -91,7 +90,7 @@
                                     @endif
                                 @endif
                                 <td class="text-center">
-                                    <ul>
+                                    <ul class="icons-list">
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                 <i class="icon-menu9"></i>

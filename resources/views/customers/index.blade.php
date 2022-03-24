@@ -26,16 +26,16 @@
         <div class="col-lg-12">
             <div style="margin-left: 25px;margin-right: 25px;margin-bottom: 50px" class="panel panel-flat">
                 <div class="panel-heading">
-                    <a href="{{route('customers.create')}}" type="submit"
-                       style="text-decoration: none; color: white"
-                       class="btn btn-success">Tạo mới</a>
-                    <a href="{{route('customers.export')}}" type="submit"
-                       style="text-decoration: none; color: white;background: blue; padding: 5px">Xuất excel
-                    </a>
-                    <button type="button" class="btn btn-secondary" data-toggle="modal"
+                    <a href="{{route('customers.create')}}"
+                       style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 7px 10px 7px 10px;"
+                    >Thêm mới</a>
+                    <a href="{{route('customers.export')}}"
+                       style="text-decoration: none; color: white; font-size: 16px; background: #3949AB; padding: 7px 10px 7px 10px;"
+                    >Xuất excel</a>
+                    <a style="text-decoration: none; color: white; font-size: 16px; background: #546E7A; padding: 7px 10px 7px 10px;" data-toggle="modal"
                             data-target="#exampleModalCenter">
                         Nhập excel
-                    </button>
+                    </a>
                     <div class="heading-elements">
                         <form class="heading-form" action="#">
                             <div class="form-group">
@@ -103,7 +103,7 @@
                                     <td></td>
                                 @endif
                                 <td class="text-center">
-                                    <ul>
+                                    <ul class="icons-list">
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                 <i class="icon-menu9"></i>

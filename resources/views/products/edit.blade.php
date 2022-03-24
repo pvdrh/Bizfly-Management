@@ -27,7 +27,8 @@
             {{--                <h5 class="panel-title">Thông tin nhân viên</h5>--}}
             {{--            </div>--}}
             <div class="panel-body">
-                <form class="form-horizontal" role="form" method="post" action="{{ route('products.update', $product->_id) }}">
+                <form class="form-horizontal" role="form" method="post"
+                      action="{{ route('products.update', $product->_id) }}">
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
@@ -90,7 +91,7 @@
                                 @if(!empty($product->image))
                                     <img id="blah"
                                          style="width: 150px; height: 150px; object-fit: cover"
-                                         src="{{ $product->image_src }}">@else
+                                         src="storage/{{ $product->image }}">@else
                                     <img id="blah"
                                          style="width: 150px; height: 150px; object-fit: cover"
                                          src="/backend/dist/img/default.jpg">

@@ -25,9 +25,9 @@
         <div class="col-lg-12">
             <div style="margin-left: 25px;margin-right: 25px;margin-bottom: 50px" class="panel panel-flat">
                 <div class="panel-heading">
-                    <a href="{{route('products.create')}}" type="submit"
-                       style="text-decoration: none; color: white; font-size: 16px"
-                       class="btn btn-success">Tạo mới</a>
+                    <a href="{{route('products.create')}}"
+                       style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 7px 10px 7px 10px;"
+                    >Thêm mới</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -60,15 +60,26 @@
                                 <td>{{ number_format($product->price) }} VND</td>
                                 <td style="text-align: center">{!! $product->quantity !!}</td>
                                 <td style="text-align: center">{!! $product->total_sold !!}</td>
-                                <td style="text-align: center">
-                                    <a href="{{ route('products.edit',$product['_id']) }}" type="submit"
-                                       class="btn btn-info">
-                                        <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                    </a>
-                                    <!-- //Nút xóa-->
-                                    <span data-id="{{$product['_id']}}"
-                                          class="btn btn-danger delete-card"> <i
-                                            class="fa fa-btn fa-trash"></i> Xoá</span>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ route('products.edit',$product['_id']) }}" type="submit">
+                                                        <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                                    </a></li>
+                                                <li class="delete-card"><a
+                                                        style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px;"
+                                                        data-id="{{$product['_id']}}"><i
+                                                            class="fa fa-btn fa-trash"></i>
+                                                        Xoá
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                         @endforeach
