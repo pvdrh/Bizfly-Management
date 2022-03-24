@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="col-lg-12">
-        <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
+        <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px; overflow: auto" class="panel panel-flat">
             <div class="panel-heading">
                 <h5 class="panel-title">Thông tin nhân viên</h5>
             </div>
@@ -108,8 +108,8 @@
                         </div>
                     </fieldset>
                     <div style="float: right">
-                        <a style="font-size: 16px" href="{{ route('users.index') }}" class="btn btn-danger">Huỷ bỏ</a>
-                        <button style="font-size: 16px" type="submit" class="btn btn-success">Tạo mới</button>
+                        <a style="text-decoration: none; color: white; font-size: 16px; background: #E53935; padding: 7px 12px 7px 12px;" href="{{ route('users.index') }}">Huỷ bỏ</a>
+                        <button type="submit" style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 6px 10px 6px 10px;">Thêm mới</button>
                     </div>
                 </form>
             </div>

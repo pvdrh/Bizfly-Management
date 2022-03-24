@@ -92,9 +92,8 @@
                         </div>
                     </fieldset>
                     <div style="float: right">
-                        <a style="font-size: 16px" href="{{ route('products.index') }}" class="btn btn-danger">Huỷ
-                            bỏ</a>
-                        <button style="font-size: 16px" type="submit" class="btn btn-success">Tạo mới</button>
+                        <a style="text-decoration: none; color: white; font-size: 16px; background: #E53935; padding: 7px 12px 7px 12px;" href="{{ route('products.index') }}">Huỷ bỏ</a>
+                        <button type="submit" style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 6px 10px 6px 10px;">Thêm mới</button>
                     </div>
                 </form>
             </div>

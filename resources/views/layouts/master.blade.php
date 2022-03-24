@@ -109,5 +109,10 @@
 </div>
 <!-- /page container -->
 @yield('script')
+<style>
+    body {
+        overflow-x: hidden;
+    }
+</style>
 </body>
 </html>

@@ -227,14 +227,17 @@ class OrderController extends Controller
 
     public function exportExcel()
     {
-        $user_code = Auth::user()->info->code;
-        $customers = Customer::where(['employee_code' => $user_code])->get();
-        $customer_id = [];
-        foreach ($customers as $customer) {
-            $customer_id[] = $customer->_id;
+        if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
+            $orders = Order::get();
+        } else {
+            $user_code = Auth::user()->info->code;
+            $customers = Customer::where(['employee_code' => $user_code])->get();
+            $customer_id = [];
+            foreach ($customers as $customer) {
+                $customer_id[] = $customer->_id;
+            }
+            $orders = Order::whereIn('customer_id', $customer_id)->get();
         }
-        $orders = Order::whereIn('customer_id', $customer_id)->get();
-
         return Excel::download(new OrdersExport($orders), 'Danh sách đơn hàng.xlsx');
     }
 

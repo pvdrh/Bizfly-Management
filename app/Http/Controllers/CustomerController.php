@@ -232,8 +232,12 @@ class CustomerController extends Controller
 
     public function exportExcel()
     {
-        $user_code = Auth::user()->info->code;
-        $customers = Customer::Where(['employee_code' => $user_code])->get();
+        if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
+            $customers = Customer::get();
+        } else {
+            $user_code = Auth::user()->info->code;
+            $customers = Customer::Where(['employee_code' => $user_code])->get();
+        }
         return Excel::download(new CustomersExport($customers), 'Danh sách khách hàng.xlsx');
     }
 

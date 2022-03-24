@@ -5,8 +5,6 @@
         <div class="sidebar-user">
             <div class="category-content">
                 <div class="media">
-                    <a href="#" class="media-left"><img src="{{ URL::to('assets/images/placeholder.jpg') }}"
-                                                        class="img-circle img-sm" alt=""></a>
                     <div class="media-body">
                         <span
                             class="media-heading text-semibold">{{\Illuminate\Support\Facades\Auth::user()->info->name}}</span>
@@ -25,8 +23,8 @@
         <div class="sidebar-category sidebar-category-visible">
             <div class="category-content no-padding">
                 <ul class="navigation navigation-main navigation-accordion">
-{{--                    class="active"--}}
-                    <!-- Main -->
+                {{--                    class="active"--}}
+                <!-- Main -->
                     </li>
                     <li><a href="{{route('dashboard')}}"><i class="icon-home4"></i>
                             <span>Trang Chủ</span></a></li>
