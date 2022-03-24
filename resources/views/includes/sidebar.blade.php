@@ -43,28 +43,28 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="icon-droplet2"></i> <span>Đơn Hàng</span></a>
+                        <a href="#"><i class="icon-truck"></i> <span>Đơn Hàng</span></a>
                         <ul>
                             <li><a href="{{route('orders.index')}}">Danh sách</a></li>
                             <li><a href="{{route('orders.create')}}">Thêm mới</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="icon-stack"></i> <span>Khách Hàng</span></a>
+                        <a href="#"><i class=" icon-users"></i> <span>Khách Hàng</span></a>
                         <ul>
                             <li><a href="{{route('customers.index')}}">Danh sách</a></li>
                             <li><a href="{{route('customers.create')}}">Thêm mới</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="icon-stack"></i> <span>Công Ty</span></a>
+                        <a href="#"><i class=" icon-office"></i> <span>Công Ty</span></a>
                         <ul>
                             <li><a href="{{route('companies.index')}}">Danh sách</a></li>
                             <li><a href="{{route('companies.create')}}">Thêm mới</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="icon-stack"></i> <span>Nhân Viên</span></a>
+                        <a href="#"><i class="icon-user"></i> <span>Nhân Viên</span></a>
                         <ul>
                             <li><a href="{{route('users.index')}}">Danh sách</a></li>
                             <li><a href="{{route('users.create')}}">Thêm mới</a></li>
