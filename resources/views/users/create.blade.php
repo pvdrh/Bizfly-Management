@@ -31,7 +31,7 @@
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Tên nhân viên<span style="color: red">*</span></label>
+                            <label class="control-label col-lg-2">Tên nhân viên<span style="color: red">*</span>:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('name')}}" type="text" name="name" class="form-control"
                                        placeholder="Nhập tên nhân viên">
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Email<span style="color: red">*</span></label>
+                            <label class="control-label col-lg-2">Email<span style="color: red">*</span>:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('email')}}" type="email" name="email" class="form-control"
                                        placeholder="Email">
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Mật khẩu<span style="color: red">*</span></label>
+                            <label class="control-label col-lg-2">Mật khẩu<span style="color: red">*</span>:</label>
                             <div class="col-lg-10">
                                 <input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
                                 @error('password')
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Số điện thoại</label>
+                            <label class="control-label col-lg-2">Số điện thoại:</label>
                             <div class="col-lg-10">
                                 <input id="intTextBox" value="{{old('phone')}}" type="text" name="phone"
                                        placeholder="Nhập số điện thoại" class="form-control"
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Địa chỉ</label>
+                            <label class="control-label col-lg-2">Địa chỉ:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('address')}}" type="text" name="address" placeholder="Nhập địa chỉ"
                                        class="form-control">
@@ -82,7 +82,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Giới tính<span
-                                    style="color: red">*</span></label>
+                                    style="color: red">*</span>:</label>
                             <div class="col-lg-10">
                                 <select name="gender" class="form-control select2" style="width: 100%;">
                                     <option value="0">Nữ</option>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Chức vụ<span
-                                    style="color: red">*</span></label>
+                                    style="color: red">*</span>:</label>
                             <div class="col-lg-10">
                                 <select name="role" class="form-control select2" style="width: 100%;">
                                     <option value="0">Admin</option>
