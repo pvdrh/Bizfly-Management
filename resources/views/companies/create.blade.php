@@ -32,7 +32,7 @@
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Tên công ty<span style="color: red">*</span></label>
+                            <label class="control-label col-lg-2">Tên công ty<span style="color: red">*</span>:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('name')}}" type="text" name="name" class="form-control"
                                        placeholder="Nhập tên công ty">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Số điện thoại</label>
+                            <label class="control-label col-lg-2">Số điện thoại:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('phone')}}" type="text" name="phone"
                                        class="form-control"
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Nhập địa chỉ</label>
+                            <label class="control-label col-lg-2">Địa chỉ:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('address')}}" type="text" name="address"
                                        class="form-control"

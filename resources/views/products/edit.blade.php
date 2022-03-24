@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Giá bán:</label>
+                            <label class="col-lg-2 control-label">Giá bán<span style="color: red">*</span>:</label>
                             <div class="col-lg-3">
                                 <input type="text" value="{{$product->price}}" name="price" min="1"
                                        class="form-control input-element"
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-lg-2">
                             </div>
-                            <label class="col-lg-2 control-label">Số lượng:</label>
+                            <label class="col-lg-2 control-label">Số lượng<span style="color: red">*</span>:</label>
                             <div class="col-lg-3">
                                 <input value="{{$product->quantity}}" type="number" name="quantity" min="1"
                                        class="form-control"
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2" for="exampleInputFile">Hình ảnh sản phẩm</label>
+                            <label class="control-label col-lg-2" for="exampleInputFile">Hình ảnh sản phẩm:</label>
                             <div class="input-group">
                                 <div class="custom-file col-lg-10">
                                     <input name="image" accept="image/*" type='file' id="imgInp"/>

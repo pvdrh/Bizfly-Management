@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Mô tả</label>
+                            <label class="control-label col-lg-2">Mô tả:</label>
                             <div class="col-lg-10">
                                 <input value="{{$category->description}}" type="text" name="description"
                                        class="form-control"

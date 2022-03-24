@@ -31,7 +31,7 @@
                 <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Tên khách hàng:</label>
+                            <label class="col-lg-3 control-label">Tên khách hàng<span style="color: red">*</span>:</label>
                             <div class="col-lg-9">
                                 <input value="{{old('name')}}" type="text" name="name" class="form-control" placeholder="Nhập tên khách hàng">
                                 @error('name')
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Số điện thoại:</label>
+                            <label class="col-lg-3 control-label">Số điện thoại<span style="color: red">*</span>:</label>
                             <div class="col-lg-9">
                                 <input value="{{old('phone')}}" type="text" name="phone" class="form-control" placeholder="Nhập số điện thoại khách hàng">
                                 @error('phone')
@@ -69,7 +69,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Tuổi:</label>
                             <div class="col-lg-9">
-                                <input value="{{old('age')}}" name="age" type="number" class="form-control">
+                                <input value="{{old('age')}}" placeholder="Tuổi" name="age" type="number" class="form-control">
                                 @error('age')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Nghề nghiệp:</label>
                             <div class="col-lg-9">
-                                <input value="{{old('job')}}" name="job" type="text" class="form-control">
+                                <input value="{{old('job')}}" placeholder="Nhập nghề nghiệp" name="job" type="text" class="form-control">
                                 @error('job')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
@@ -87,7 +87,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Địa chỉ:</label>
                             <div class="col-lg-9">
-                                <input value="{{old('address')}}" name="address" type="text" class="form-control">
+                                <input value="{{old('address')}}" name="address" type="text" placeholder="Nhập địa chỉ" class="form-control">
                                 @error('address')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror

@@ -32,7 +32,7 @@
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Tên danh mục<span style="color: red">*</span></label>
+                            <label class="control-label col-lg-2">Tên danh mục<span style="color: red">*</span>:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('name')}}" type="text" name="name" class="form-control"
                                        placeholder="Nhập tên danh mục">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Mô tả</label>
+                            <label class="control-label col-lg-2">Mô tả:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('description')}}" type="text" name="description"
                                        class="form-control"

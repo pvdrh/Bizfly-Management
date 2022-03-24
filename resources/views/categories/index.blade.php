@@ -67,7 +67,7 @@
                                 <td>{{$category->description}}</td>
 
                                 <td class="text-center">
-                                    <ul class="icons-list">
+                                    <ul>
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                 <i class="icon-menu9"></i>

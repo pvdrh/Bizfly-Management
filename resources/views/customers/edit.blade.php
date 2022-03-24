@@ -18,7 +18,7 @@
                 <li><a href="{{route('customers.index')}}"><i class="icon-home2 position-left"></i> Quản lý khách
                         hàng</a>
                 </li>
-                <li class="active">Thêm mới</li>
+                <li class="active">Cập nhật</li>
             </ul>
         </div>
     </div>
@@ -31,7 +31,7 @@
                 <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Tên khách hàng:</label>
+                            <label class="col-lg-3 control-label">Tên khách hàng<span style="color: red">*</span>:</label>
                             <div class="col-lg-9">
                                 <input value="{{$customer->name}}" type="text" name="name" class="form-control" placeholder="Nhập tên khách hàng">
                                 @error('name')
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Số điện thoại:</label>
+                            <label class="col-lg-3 control-label">Số điện thoại<span style="color: red">*</span>:</label>
                             <div class="col-lg-9">
                                 <input value="{{$customer->phone}}" type="text" name="phone" class="form-control" placeholder="Nhập số điện thoại khách hàng">
                                 @error('phone')
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Nghề nghiệp:</label>
                             <div class="col-lg-9">
-                                <input value="{{$customer->job}}" name="job" type="text" class="form-control">
+                                <input value="{{$customer->job}}" placeholder="Nhập nghề nghiệp" name="job" type="text" class="form-control">
                                 @error('job')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
@@ -87,7 +87,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Địa chỉ:</label>
                             <div class="col-lg-9">
-                                <input value="{{$customer->address}}" name="address" type="text" class="form-control">
+                                <input value="{{$customer->address}}" placeholder="Nhập địa chỉ" name="address" type="text" class="form-control">
                                 @error('address')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
@@ -122,7 +122,7 @@
                         </div>
                         <div style="float: right">
                             <a style="font-size: 16px" href="{{ route('customers.index') }}" class="btn btn-danger">Huỷ bỏ</a>
-                            <button style="font-size: 16px" type="submit" class="btn btn-success">Tạo mới</button>
+                            <button style="font-size: 16px" type="submit" class="btn btn-success">Cập nhật</button>
                         </div>
                     </div>
                 </div>

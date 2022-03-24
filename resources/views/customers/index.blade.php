@@ -58,7 +58,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="table-responsive">
+                <div>
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -103,7 +103,7 @@
                                     <td></td>
                                 @endif
                                 <td class="text-center">
-                                    <ul class="icons-list">
+                                    <ul>
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                 <i class="icon-menu9"></i>
