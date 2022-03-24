@@ -31,11 +31,14 @@
                     >Thêm mới</a>
                     <!-- Example single danger button -->
                     <div class="btn-group">
-                        <a  style="text-decoration: none; margin-bottom: 5px; color: white; font-size: 16px; background: #666666; padding: 7px 10px 7px 10px;" type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+                        <a style="text-decoration: none; margin-bottom: 5px; color: white; font-size: 16px; background: #666666; padding: 7px 10px 7px 10px;"
+                           type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
                             Tùy chọn
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Xóa bản ghi đã chọn</a></li>
+                            <li>
+                                <button class="dropdown-item delete-all">Xóa bản ghi đã chọn</button>
+                            </li>
                         </ul>
                     </div>
                     <div class="heading-elements">
@@ -74,7 +77,8 @@
                             <tbody>
                             @foreach($categories as $category)
                                 <tr>
-                                    <td ><input type="checkbox" name="category_id[]" class="checkbox" data-id="{{$category->_id}}"></td>
+                                    <td><input type="checkbox" name="category_id[]" class="checkbox"
+                                               data-id="{{$category->_id}}"></td>
                                     <td>{{$category->name}}</td>
                                     <td>{{$category->description}}</td>
                                     <td class="text-center">
@@ -136,7 +140,10 @@
                             type: 'post',
                             url: '/categories/delete/' + seq,
                             success: function (res) {
-                                window.location.reload()
+                                swal("Xoá thành công!", "", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1200);
                             },
                         });
                     }
@@ -149,20 +156,16 @@
                     }
                 })
             });
-            $('#check_all').on('click', function(e) {
+            $('#check_all').on('click', function (e) {
                 if ($(this).is(':checked', true)) {
                     $(".checkbox").prop('checked', true);
-                    //$( "#export" ).addClass("export-checkbox");
                 } else {
                     $(".checkbox").prop('checked', false);
-                    //$( "#export" ).removeClass("export-checkbox");
                 }
-
-
             });
-            $('.delete-all').on('click', function(e) {
+            $('.delete-all').on('click', function (e) {
                 var idsArr = [];
-                $(".checkbox:checked").each(function() {
+                $(".checkbox:checked").each(function () {
                     idsArr.push($(this).attr('data-id'));
                 });
                 if (idsArr.length <= 0) {
@@ -178,21 +181,17 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             data: 'ids=' + strIds,
-                            success: function(data) {
-                                console.log(data);
-                                if (data['status'] == true) {
-                                    $(".checkbox:checked").each(function() {
-                                        $(this).parents("tr").remove();
-                                        location.reload();
-                                    });
-                                    alert(data['message']);
-                                } else {
-                                    alert('Lỗi!!');
-                                }
-
+                            success: function () {
+                                swal("Xoá thành công!", "", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1200);
                             },
-                            error: function(data) {
-                                console.log(data);
+                            error: function () {
+                                swal("Xoá thất bại!", "", "error");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1200);
                             }
                         });
                     }
