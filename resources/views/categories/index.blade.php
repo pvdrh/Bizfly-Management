@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table datatable-basic table-hover">
+                    <table class="table table-hover">
                         <thead>
                         <tr>
                             <th style="text-align: center">Tên danh mục</th>

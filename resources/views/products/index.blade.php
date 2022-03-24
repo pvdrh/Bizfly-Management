@@ -34,7 +34,7 @@
                     <!-- /.card-header -->
                     @if(count($products) > 0)
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover table-borderless">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr style="border-bottom: 1px black solid">
                                     <th style="text-align: center">Tên sản phẩm</th>

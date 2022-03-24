@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table datatable-basic table-hover">
+                    <table class="table table-hover">
                         <thead>
                         <tr>
                             <th>Mã NV</th>
