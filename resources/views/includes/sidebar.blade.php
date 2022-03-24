@@ -1,4 +1,4 @@
-<div style="font-size: 16px" class="sidebar sidebar-main">
+<div style="font-size: 16px; height: 100vh" class="sidebar sidebar-main">
     <div class="sidebar-content">
 
         <!-- User menu -->

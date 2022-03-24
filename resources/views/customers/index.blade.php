@@ -32,8 +32,9 @@
                     <a href="{{route('customers.export')}}"
                        style="text-decoration: none; color: white; font-size: 16px; background: #3949AB; padding: 7px 10px 7px 10px;"
                     >Xuất excel</a>
-                    <a style="text-decoration: none; color: white; font-size: 16px; background: #546E7A; padding: 7px 10px 7px 10px;" data-toggle="modal"
-                            data-target="#exampleModalCenter">
+                    <a style="text-decoration: none; color: white; font-size: 16px; background: #546E7A; padding: 7px 10px 7px 10px;"
+                       data-toggle="modal"
+                       data-target="#exampleModalCenter">
                         Nhập excel
                     </a>
                     <div class="heading-elements">
@@ -58,77 +59,85 @@
                         </form>
                     </div>
                 </div>
-                <div>
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Họ tên</th>
-                            <th>Email</th>
-                            <th>Số điện thoại</th>
-                            <th>Địa chỉ</th>
-                            <th>Phân loại</th>
-                            <th style="text-align: center">Hành động</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($customers as $customer)
+                @if(count($customers) > 0)
+                    <div>
+                        <table class="table table-hover">
+                            <thead>
                             <tr>
-                                <td>{{$customer->_id}}</td>
-                                <td><span
-                                        class="d-inline-block" tabindex="0" data-bs-toggle="tooltip"
-                                        title="Chi tiết khách hàng">
+                                <th>ID</th>
+                                <th>Họ tên</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Phân loại</th>
+                                <th style="text-align: center">Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($customers as $customer)
+                                <tr>
+                                    <td>{{$customer->_id}}</td>
+                                    <td><span
+                                            class="d-inline-block" tabindex="0" data-bs-toggle="tooltip"
+                                            title="Chi tiết khách hàng">
                                         <a style="font-weight: bold; color: cornflowerblue"
                                            href="{{route('customers.show', $customer->_id)}}">{{$customer->name}}</a>
                                 </span>
-                                </td>
-                                @if($customer->email)
-                                    <td>{{$customer->email}}</td>
-                                @else
-                                    <td></td>
-                                @endif
-                                @if($customer->phone)
-                                    <td>{{$customer->phone}}</td>
-                                @else
-                                    <td></td>
-                                @endif
-                                @if($customer->address)
-                                    <td>{{$customer->address}}</td>
-                                @else
-                                    <td></td>
-                                @endif
-                                @if($customer->customer_type)
-                                    <td>{{$customer->customer_type}}</td>
-                                @else
-                                    <td></td>
-                                @endif
-                                <td class="text-center">
-                                    <ul class="icons-list">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="icon-menu9"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a style="color: #546E7A" href="{{ route('customers.edit',$customer['_id']) }}"
-                                                       type="submit">
-                                                        <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                                    </a></li>
-                                                <li class="delete-card"><a
-                                                        style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #F4511E"
-                                                        data-id="{{$customer['_id']}}"><i
-                                                            class="fa fa-btn fa-trash"></i>
-                                                        Xoá
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                                    </td>
+                                    @if($customer->email)
+                                        <td>{{$customer->email}}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                    @if($customer->phone)
+                                        <td>{{$customer->phone}}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                    @if($customer->address)
+                                        <td>{{$customer->address}}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                    @if($customer->customer_type)
+                                        <td>{{$customer->customer_type}}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a style="color: #546E7A"
+                                                           href="{{ route('customers.edit',$customer['_id']) }}"
+                                                           type="submit">
+                                                            <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                                        </a></li>
+                                                    <li data-id="{{$customer['_id']}}" class="delete-card"><a
+                                                            style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #F4511E"
+                                                            ><i
+                                                                class="fa fa-btn fa-trash"></i>
+                                                            Xoá
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    <div style="display: flex; justify-content: center">
+                        <img style="width: 50%; height: 50%" src="backend/dist/img/social-default.jpg">
+                    </div>
+                    <h4 style="text-align: center; padding-bottom: 50px">Không có dữ liệu</h4>
+                @endif
             </div>
         </div>
     </div>

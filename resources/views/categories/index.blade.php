@@ -51,49 +51,56 @@
                         </form>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th style="text-align: center">Tên danh mục</th>
-                            <th>Mô tả</th>
-                            <th class="text-center">Hành động</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($categories as $category)
+                @if(count($categories) > 0)
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
                             <tr>
-                                <td style="text-align: center">{{$category->name}}</td>
-                                <td>{{$category->description}}</td>
-
-                                <td class="text-center">
-                                    <ul class="icons-list">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="icon-menu9"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a style="color: #546E7A"
-                                                       href="{{ route('categories.edit',$category['_id']) }}"
-                                                       type="submit">
-                                                        <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                                    </a></li>
-                                                <li class="delete-card"><a
-                                                        style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #F4511E"
-                                                        data-id="{{$category['_id']}}"><i
-                                                            class="fa fa-btn fa-trash"></i>
-                                                        Xoá
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </td>
+                                <th style="text-align: center">Tên danh mục</th>
+                                <th>Mô tả</th>
+                                <th class="text-center">Hành động</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                            @foreach($categories as $category)
+                                <tr>
+                                    <td style="text-align: center">{{$category->name}}</td>
+                                    <td>{{$category->description}}</td>
+
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a style="color: #546E7A"
+                                                           href="{{ route('categories.edit',$category['_id']) }}"
+                                                           type="submit">
+                                                            <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                                        </a></li>
+                                                    <li data-id="{{$category['_id']}}" class="delete-card"><a
+                                                            style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #F4511E"
+                                                        ><i
+                                                                class="fa fa-btn fa-trash"></i>
+                                                            Xoá
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    <div style="display: flex; justify-content: center">
+                        <img style="width: 50%; height: 50%" src="backend/dist/img/social-default.jpg">
+                    </div>
+                    <h4 style="text-align: center; padding-bottom: 50px">Không có dữ liệu</h4>
+                @endif
             </div>
         </div>
     </div>

@@ -58,8 +58,14 @@
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!-- Core JS files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="{{ URL::to('assets/js/plugins/loaders/pace.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::to('assets/js/core/libraries/jquery.min.js') }}"></script>
+    {{--    <script type="text/javascript" src="{{ URL::to('assets/js/core/libraries/jquery.min.js') }}"></script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="{{ URL::to('assets/js/core/libraries/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('assets/js/plugins/loaders/blockui.min.js') }}"></script>
     <!-- /core JS files -->
@@ -71,7 +77,8 @@
     <script type="text/javascript" src="{{ URL::to('assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::to('assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ URL::to('assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('assets/js/plugins/ui/moment/moment.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 

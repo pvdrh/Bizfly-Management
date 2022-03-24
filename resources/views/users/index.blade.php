@@ -54,123 +54,122 @@
                         </form>
                     </div>
                 </div>
-                <div>
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Mã NV</th>
-                            <th>Họ tên</th>
-                            <th>Email</th>
-                            <th>SĐT</th>
-                            <th>Địa chỉ</th>
-                            <th>Chức vụ</th>
-                            <th class="text-center">Hành động</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($users as $user)
+                @if(count($users) > 0)
+                    <div>
+                        <table class="table table-hover">
+                            <thead>
                             <tr>
-                                @if($user->info)
-                                    <td style="font-weight: bold">{{$user->info->code}}</td>
-                                    <td>{{$user->info->name}}</td>
-                                @endif
-                                <td>{{$user->email}}</td>
-                                @if($user->info)
-                                    <td>{{$user->info->phone}}</td>
-                                    <td>{{$user->info->address}}</td>
-                                    @if($user->info->role == 1)
-                                        <td>Nhân viên</td>
-                                    @else
-                                        <td>Admin</td>
+                                <th>Mã NV</th>
+                                <th>Họ tên</th>
+                                <th>Email</th>
+                                <th>SĐT</th>
+                                <th>Địa chỉ</th>
+                                <th>Chức vụ</th>
+                                <th class="text-center">Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($users as $user)
+                                <tr>
+                                    @if($user->info)
+                                        <td style="font-weight: bold">{{$user->info->code}}</td>
+                                        <td>{{$user->info->name}}</td>
                                     @endif
-                                @endif
-                                <td class="text-center">
-                                    <ul class="icons-list">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="icon-menu9"></i>
-                                            </a>
-                                            <ul @if($user->info->is_protected) style="padding: 10px"
-                                                @endif class="dropdown-menu dropdown-menu-right">
-                                                @if(!$user->info->is_protected)
-                                                    <li><a style="color: #546E7A"
-                                                           href="{{ route('users.edit',$user['_id']) }}" type="submit">
-                                                            <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                                        </a></li>
-                                                    <li>
-                                                        @endif
-                                                        <a style="color: #1E88E5" data-toggle="modal" data-target="#myModal"><i
-                                                                class="fa fa-key"
-                                                                aria-hidden="true"></i>
-                                                            Đặt lại mật khẩu
-                                                        </a>
-                                                    </li>
-                                                    @if(!$user->info->is_protected)
-                                                        <li class="delete-card"><a
+                                    <td>{{$user->email}}</td>
+                                    @if($user->info)
+                                        <td>{{$user->info->phone}}</td>
+                                        <td>{{$user->info->address}}</td>
+                                        @if($user->info->role == 1)
+                                            <td>Nhân viên</td>
+                                        @else
+                                            <td>Admin</td>
+                                        @endif
+                                    @endif
+                                    @if(!$user->info->is_protected)
+                                        <td class="text-center">
+                                            <ul class="icons-list">
+                                                <li class="dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="icon-menu9"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li><a style="color: #546E7A"
+                                                               href="{{ route('users.edit',$user['_id']) }}"
+                                                               type="submit">
+                                                                <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                                            </a></li>
+                                                        <li data-id="{{$user['_id']}}" class="delete-card"><a
                                                                 style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #F4511E"
-                                                                data-id="{{$user['_id']}}"><i
+                                                            ><i
                                                                     class="fa fa-btn fa-trash"></i>
                                                                 Xoá
                                                             </a>
                                                         </li>
-                                                    @endif
+                                                    </ul>
+                                                </li>
                                             </ul>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                    <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 style="font-weight: bold;font-size: 18px" class="modal-title">Đặt lại mật
-                                        khẩu cho {{$user->info->name}}</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </td>
+                                    @endif
+
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 style="font-weight: bold;font-size: 18px" class="modal-title">Đặt lại mật
+                                            khẩu cho {{$user->info->name}}</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <form role="form" method="post" id="change-pass"
+                                          action="{{ route('users.changePass',$user->_id) }}">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="new_password">Mật khẩu mới<span
+                                                        style="color: red">*</span></label>
+                                                <input id="password-field" type="password" class="form-control"
+                                                       name="new_password">
+                                                <span toggle="#password-field"
+                                                      class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                                @error('new_password')
+                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="confirm_password">Xác nhận mật khẩu<span
+                                                        style="color: red">*</span></label>
+                                                <input id="password-fieldd" type="password"
+                                                       name="confirm_password"
+                                                       class="form-control">
+                                                <span toggle="#password-fieldd"
+                                                      class="fa fa-fw fa-eye field-icon toggle-passwordd"></span>
+                                                @error('confirm_password')
+                                                <span style="color: red; font-size: 14px">{{ $message }}</span>
+                                                @enderror
+                                                <span style="margin-top: 7px;color: red; font-size: 12px"
+                                                      id="CheckPasswordMatch"></span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng
+                                            </button>
+                                            <button id="btn-sub" type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <form role="form" method="post" id="change-pass"
-                                      action="{{ route('users.changePass',$user->_id) }}">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="new_password">Mật khẩu mới<span
-                                                    style="color: red">*</span></label>
-                                            <input id="password-field" type="password" class="form-control"
-                                                   name="new_password">
-                                            <span toggle="#password-field"
-                                                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                            @error('new_password')
-                                            <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="confirm_password">Xác nhận mật khẩu<span
-                                                    style="color: red">*</span></label>
-                                            <input id="password-fieldd" type="password"
-                                                   name="confirm_password"
-                                                   class="form-control">
-                                            <span toggle="#password-fieldd"
-                                                  class="fa fa-fw fa-eye field-icon toggle-passwordd"></span>
-                                            @error('confirm_password')
-                                            <span style="color: red; font-size: 14px">{{ $message }}</span>
-                                            @enderror
-                                            <span style="margin-top: 7px;color: red; font-size: 12px"
-                                                  id="CheckPasswordMatch"></span>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng
-                                        </button>
-                                        <button id="btn-sub" type="submit" class="btn btn-primary">Cập nhật</button>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
-                </div>
+                @else
+                    <div style="display: flex; justify-content: center">
+                        <img style="width: 50%; height: 50%" src="backend/dist/img/social-default.jpg">
+                    </div>
+                    <h4 style="text-align: center; padding-bottom: 50px">Không có dữ liệu</h4>
+                @endif
             </div>
         </div>
     </div>
