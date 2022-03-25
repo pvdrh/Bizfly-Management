@@ -258,16 +258,16 @@ class OrderController extends Controller
             if (count($orders)) {
                 foreach ($orders as $key => $order) {
                     $oldOrder = Order::where('code', $order[0])->count();
-                    if ($oldOrder == 0) {
+//                    if ($oldOrder == 0) {
                         if (strlen($order[3]) > 0) {
                             $customer = Customer::find($order[3]);
                             if ($customer) {
                                 $newOrder = new Order();
-                                if (strlen($order[0]) < 6) {
+//                                if (strlen($order[0]) < 6) {
                                     $newOrder->code = 'DH' . rand(1000, 9999);
-                                } else {
-                                    $newOrder->code = $order[0];
-                                }
+//                                } else {
+//                                    $newOrder->code = $order[0];
+//                                }
                                 if (empty($order[1])) {
                                     $newOrder->status = Order::STATUS['0'];
                                 } else {
@@ -285,9 +285,9 @@ class OrderController extends Controller
                         } else {
                             Session::flash('error', 'Mã khách hàng không được để trống!');
                         }
-                    } else {
-                        Session::flash('error', 'Mã đơn hàng đã tồn tại!');
-                    }
+//                    } else {
+//                        Session::flash('error', 'Mã đơn hàng đã tồn tại!');
+//                    }
                 }
             }
         } catch (Exception $e) {

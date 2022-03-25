@@ -6,13 +6,6 @@
 
 @section('content')
     <div class="page-header">
-        <div class="page-header-content">
-            <div class="page-title">
-                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard
-                </h4>
-            </div>
-        </div>
-
         <div class="breadcrumb-line">
             <ul class="breadcrumb">
                 <li><a href="{{route('users.index')}}"><i class="icon-home2 position-left"></i> Quản lý nhân viên</a>
@@ -129,7 +122,7 @@
                                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                         <i class="icon-menu9"></i>
                                                     </a>
-                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                    <ul class="dropdown-menu">
                                                         <li><a style="color: #546E7A"
                                                                href="{{ route('users.edit',$user['_id']) }}"
                                                                type="submit">

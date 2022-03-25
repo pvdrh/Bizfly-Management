@@ -250,7 +250,7 @@ class CustomerController extends Controller
                 foreach ($customers as $key => $customer) {
                     $query = User::query();
                     $cus = (string)$customer[8];
-                    if (($cus) && strlen($cus) > 1) {
+//                    if (($cus) && strlen($cus) > 1) {
                         if (is_array($customer[8])) {
                             if (!empty($cus) && count($cus) > 0) {
                                 $query->whereHas('info', function ($qr) use ($cus) {
@@ -282,9 +282,9 @@ class CustomerController extends Controller
                         } else {
                             Session::flash('error', 'Mã nhân viên không tồn tại!');
                         }
-                    } else {
-                        Session::flash('error', 'Mã nhân viên không được để trống!');
-                    }
+//                    } else {
+//                        Session::flash('error', 'Mã nhân viên không được để trống!');
+//                    }
                 }
             }
         } catch (Exception $e) {
