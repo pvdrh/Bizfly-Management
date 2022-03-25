@@ -24,7 +24,7 @@
     <div style="margin-left: 25px;margin-right: 25px;margin-bottom: 50px" class="card">
         <!-- /.card-header -->
         <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-            <div class="card-header">
+            <div style="padding: 20px" class="card-header">
                 <a href="{{route('customers.get-list-orders', $customer->_id)}}" type="submit"
                    style="text-decoration: none; color: white"
                    class="btn btn-success">Đơn hàng</a>
