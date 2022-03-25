@@ -248,4 +248,24 @@ class UserController extends Controller
             return redirect()->route('dashboard');
         }
     }
+
+    public function deleteAll(Request $request)
+    {
+        try {
+            $ids = $request->ids;
+            UserInfo::whereIn('user_id', explode(",", $ids))->delete();
+            User::whereIn('_id', explode(",", $ids))->delete();
+
+            Session::flash('success', 'Xóa thành công!');
+        } catch (Exception $e) {
+            Log::error('Error delete all user', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__
+            ]);
+
+            Session::flash('error', 'Xóa thất bại!');
+        }
+        return redirect()->route('categories.index');
+    }
 }

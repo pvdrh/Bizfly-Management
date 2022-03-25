@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('users.create');
         Route::post('/store', [UserController::class, 'store'])
             ->name('users.store');
+        Route::post('/deleteAll', [UserController::class, 'deleteAll'])
+            ->name('users.deleteAll');
         Route::get('/export-excel', [UserController::class, 'exportExcel'])
             ->name('users.export');
         Route::post('/change-password/{id}', [UserController::class, 'changePassword'])
