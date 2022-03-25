@@ -37,6 +37,17 @@
                        data-target="#exampleModalCenter">
                         Nhập excel
                     </a>
+                    <div class="btn-group">
+                        <a style="text-decoration: none; margin-bottom: 5px; color: white; font-size: 16px; background: #666666; padding: 7px 10px 7px 10px;"
+                           type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+                            Tùy chọn
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button class="dropdown-item delete-all">Xóa bản ghi đã chọn</button>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="heading-elements">
                         <form class="heading-form" action="#">
                             <div class="form-group">
@@ -64,6 +75,7 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
+                                <th><input type="checkbox" id="check_all"></th>
                                 <th>ID</th>
                                 <th>Họ tên</th>
                                 <th>Email</th>
@@ -76,6 +88,8 @@
                             <tbody>
                             @foreach($customers as $customer)
                                 <tr>
+                                    <td><input type="checkbox" name="customer_id[]" class="checkbox"
+                                               data-id="{{$customer->_id}}"></td>
                                     <td>{{$customer->_id}}</td>
                                     <td><span
                                             class="d-inline-block" tabindex="0" data-bs-toggle="tooltip"
@@ -209,7 +223,48 @@
                         swal.close();
                     }
                 });
-            })
+            });
+            $('#check_all').on('click', function (e) {
+                if ($(this).is(':checked', true)) {
+                    $(".checkbox").prop('checked', true);
+                } else {
+                    $(".checkbox").prop('checked', false);
+                }
+            });
+            $('.delete-all').on('click', function (e) {
+                var idsArr = [];
+                $(".checkbox:checked").each(function () {
+                    idsArr.push($(this).attr('data-id'));
+                });
+                if (idsArr.length <= 0) {
+                    alert("Vui lòng chọn bản ghi bạn muốn xóa");
+                } else {
+                    var idss = idsArr.length;
+                    if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {
+                        var strIds = idsArr.join(",");
+                        $.ajax({
+                            url: "{{route('customers.deleteAll')}}",
+                            type: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: 'ids=' + strIds,
+                            success: function () {
+                                swal("Xoá thành công!", "", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function () {
+                                swal("Xoá thất bại!", "", "error");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            }
+                        });
+                    }
+                }
+            });
         });
     </script>
     <script>

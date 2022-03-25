@@ -28,11 +28,23 @@
                     <a href="{{route('products.create')}}"
                        style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 7px 10px 7px 10px;"
                     >Thêm mới</a>
+                    <div class="btn-group">
+                        <a style="text-decoration: none; margin-bottom: 5px; color: white; font-size: 16px; background: #666666; padding: 7px 10px 7px 10px;"
+                           type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+                            Tùy chọn
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button class="dropdown-item delete-all">Xóa bản ghi đã chọn</button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="table-responsive"> @if(count($products) > 0)
                         <table class="table table-hover">
                             <thead>
                             <tr style="border-bottom: 1px black solid">
+                                <th><input type="checkbox" id="check_all"></th>
                                 <th style="text-align: center">Tên sản phẩm</th>
                                 <th style="text-align: center">Ảnh</th>
                                 <th>Danh mục</th>
@@ -45,6 +57,8 @@
                             <tbody>
                             @foreach($products as $product)
                                 <tr>
+                                    <td><input type="checkbox" name="product_id[]" class="checkbox"
+                                               data-id="{{$product->_id}}"></td>
                                     <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width: 200px;text-align: center; @if($product->quantity <= 0) color:orangered; font-weight: bold @endif">{{ $product->name }}</td>
                                     <td style="text-align: center">
                                         @if($product->image)
@@ -103,7 +117,6 @@
         $(document).ready(function () {
             $('.delete-card').on('click', function () {
                 let seq = $(this).data('id')
-                console.log(seq)
                 swal({
                     title: "Chú Ý",
                     text: "Bạn có chắc chắn muốn xóa?",
@@ -137,7 +150,48 @@
                         swal.close();
                     }
                 });
-            })
+            });
+            $('#check_all').on('click', function (e) {
+                if ($(this).is(':checked', true)) {
+                    $(".checkbox").prop('checked', true);
+                } else {
+                    $(".checkbox").prop('checked', false);
+                }
+            });
+            $('.delete-all').on('click', function (e) {
+                var idsArr = [];
+                $(".checkbox:checked").each(function () {
+                    idsArr.push($(this).attr('data-id'));
+                });
+                if (idsArr.length <= 0) {
+                    alert("Vui lòng chọn bản ghi bạn muốn xóa");
+                } else {
+                    var idss = idsArr.length;
+                    if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {
+                        var strIds = idsArr.join(",");
+                        $.ajax({
+                            url: "{{route('products.deleteAll')}}",
+                            type: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: 'ids=' + strIds,
+                            success: function () {
+                                swal("Xoá thành công!", "", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function () {
+                                swal("Xoá thất bại!", "", "error");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            }
+                        });
+                    }
+                }
+            });
         });
     </script>
     <script>

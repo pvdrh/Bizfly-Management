@@ -76,7 +76,7 @@
                             <tbody>
                             @foreach($companies as $company)
                                 <tr>
-                                    <td><input type="checkbox" name="category_id[]" class="checkbox"
+                                    <td><input type="checkbox" name="company_id[]" class="checkbox"
                                                data-id="{{$company->_id}}"></td>
                                     <td style="text-align: center">{{$company->name}}</td>
                                     <td>{{$company->phone}}</td>

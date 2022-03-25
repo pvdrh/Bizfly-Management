@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('products.create');
         Route::post('/store', [ProductController::class, 'store'])
             ->name('products.store');
+        Route::post('/deleteAll', [ProductController::class, 'deleteAll'])
+            ->name('products.deleteAll');
         Route::get('/update/{id}', [ProductController::class, 'edit'])
             ->name('products.edit');
         Route::post('/update/{id}', [ProductController::class, 'update'])
@@ -117,6 +119,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('customers.import');
         Route::post('/store', [CustomerController::class, 'store'])
             ->name('customers.store');
+        Route::post('/deleteAll', [CustomerController::class, 'deleteAll'])
+            ->name('customers.deleteAll');
         Route::get('/show/{id}', [CustomerController::class, 'show'])
             ->name('customers.show')->middleware('checkRole');
         Route::get('/edit/{id}', [CustomerController::class, 'edit'])
@@ -135,6 +139,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('orders.create');
         Route::post('/store', [OrderController::class, 'store'])
             ->name('orders.store');
+        Route::post('/deleteAll', [OrderController::class, 'deleteAll'])
+            ->name('orders.deleteAll');
         Route::get('/export-excel', [OrderController::class, 'exportExcel'])
             ->name('orders.export');
         Route::get('/export-excel-sample', [OrderController::class, 'exportExcelSample'])
