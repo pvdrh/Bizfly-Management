@@ -103,9 +103,9 @@
                                     style="color: red">*</span></label>
                             <div class="col-lg-9">
                                 <select  name="employee_code[]" multiple="multiple"
-                                        data-placeholder="Chọn nhân viên hỗ trợ" class="select-xs">
+                                        data-placeholder="Chọn nhân viên hỗ trợ" class="select-icons">
                                     @foreach($users as $user)
-                                        <option class="select-xs" value="{{$user->info->code}}" @if(isset($customer->employee_code)) {{in_array($user->info->code, $customer->employee_code) ? "selected" : ''}} @endif >{{$user->info->name}}</option>
+                                        <option value="{{$user->info->code}}" @if(isset($customer->employee_code)) {{in_array($user->info->code, $customer->employee_code) ? "selected" : ''}} @endif >{{$user->info->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('employee_code')

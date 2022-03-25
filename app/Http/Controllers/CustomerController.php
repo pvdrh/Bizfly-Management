@@ -249,39 +249,39 @@ class CustomerController extends Controller
             if (count($customers)) {
                 foreach ($customers as $key => $customer) {
                     $query = User::query();
-                    $cus = (string)$customer[8];
+//                    $cus = (string)$customer[8];
 //                    if (($cus) && strlen($cus) > 1) {
-                        if (is_array($customer[8])) {
-                            if (!empty($cus) && count($cus) > 0) {
-                                $query->whereHas('info', function ($qr) use ($cus) {
-                                    $qr->whereIn('code', $cus);
-                                });
-                            }
-                        } else {
-                            if ($cus) {
-                                $query->whereHas('info', function ($qr) use ($cus) {
-                                    $qr->where(['code' => $cus]);
-                                });
-                            }
-                        }
-                        $user = $query->get();
-                        if (count($user) > 0) {
-                            $newCustomer = new Customer();
-                            $newCustomer->name = $customer[0];
-                            $newCustomer->email = $customer[1];
-                            $newCustomer->phone = $customer[2];
-                            $newCustomer->age = $customer[3];
-                            $newCustomer->job = $customer[4];
-                            $newCustomer->address = $customer[5];
-                            $newCustomer->gender = $customer[6];
-                            $newCustomer->customer_type = $customer[7];
-                            $newCustomer->employee_code = (string)$customer[8];
-                            $newCustomer->save();
+//                        if (is_array($customer[8])) {
+//                            if (!empty($cus) && count($cus) > 0) {
+//                                $query->whereHas('info', function ($qr) use ($cus) {
+//                                    $qr->whereIn('code', $cus);
+//                                });
+//                            }
+//                        } else {
+//                            if ($cus) {
+//                                $query->whereHas('info', function ($qr) use ($cus) {
+//                                    $qr->where(['code' => $cus]);
+//                                });
+//                            }
+//                        }
+                    $user = $query->get();
+//                        if (count($user) > 0) {
+                    $newCustomer = new Customer();
+                    $newCustomer->name = $customer[0];
+                    $newCustomer->email = $customer[1];
+                    $newCustomer->phone = $customer[2];
+                    $newCustomer->age = $customer[3];
+                    $newCustomer->job = $customer[4];
+                    $newCustomer->address = $customer[5];
+                    $newCustomer->gender = $customer[6];
+                    $newCustomer->customer_type = $customer[7];
+//                            $newCustomer->employee_code = (string)$customer[8];
+                    $newCustomer->save();
 
-                            Session::flash('success', 'Thêm mới thành công!');
-                        } else {
-                            Session::flash('error', 'Mã nhân viên không tồn tại!');
-                        }
+                    Session::flash('success', 'Thêm mới thành công!');
+//                        } else {
+//                            Session::flash('error', 'Mã nhân viên không tồn tại!');
+//                        }
 //                    } else {
 //                        Session::flash('error', 'Mã nhân viên không được để trống!');
 //                    }

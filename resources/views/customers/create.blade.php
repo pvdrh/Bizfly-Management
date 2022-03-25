@@ -105,7 +105,7 @@
                                 <select name="employee_code[]" multiple="multiple"
                                         data-placeholder="Chọn nhân viên hỗ trợ" class="select-icons">
                                     @foreach($users as $user)
-                                        <option class="select-xs" value="{{$user->info->code}}">{{$user->info->name}}</option>
+                                        <option value="{{$user->info->code}}">{{$user->info->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('employee_code')

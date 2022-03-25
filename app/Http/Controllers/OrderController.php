@@ -259,8 +259,8 @@ class OrderController extends Controller
                 foreach ($orders as $key => $order) {
                     $oldOrder = Order::where('code', $order[0])->count();
 //                    if ($oldOrder == 0) {
-                        if (strlen($order[3]) > 0) {
-                            $customer = Customer::find($order[3]);
+                        if (strlen($order[2]) > 0) {
+                            $customer = Customer::find($order[2]);
                             if ($customer) {
                                 $newOrder = new Order();
 //                                if (strlen($order[0]) < 6) {
@@ -268,14 +268,14 @@ class OrderController extends Controller
 //                                } else {
 //                                    $newOrder->code = $order[0];
 //                                }
-                                if (empty($order[1])) {
+                                if (empty($order[0])) {
                                     $newOrder->status = Order::STATUS['0'];
                                 } else {
-                                    $newOrder->status = $order[1];
+                                    $newOrder->status = $order[0];
                                 }
-                                $newOrder->note = $order[2] ? $order[2] : '';
-                                $newOrder->customer_id = $order[3];
-                                $newOrder->total = $order[4];
+                                $newOrder->note = $order[1] ? $order[1] : '';
+                                $newOrder->customer_id = $order[2];
+                                $newOrder->total = $order[3];
                                 $newOrder->save();
 
                                 Session::flash('success', 'Thêm mới thành công!');
