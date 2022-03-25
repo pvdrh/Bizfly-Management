@@ -20,7 +20,7 @@
             <div style="margin-left: 25px;margin-right: 25px;margin-bottom: 50px"
                  class="panel panel-flat">
                 @if(count($orders) > 0)
-                    <div class="table-responsive">
+                    <div>
                         <table class="table table-hover">
                             <thead>
                             <tr>

@@ -105,7 +105,7 @@
                                 <select name="employee_code[]" multiple="multiple"
                                         data-placeholder="Chọn nhân viên hỗ trợ" class="select-icons">
                                     @foreach($users as $user)
-                                        <option value="{{$user->info->code}}">{{$user->info->name}}</option>
+                                        <option class="select-xs" value="{{$user->info->code}}">{{$user->info->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('employee_code')
@@ -122,6 +122,11 @@
             </form>
         </div>
     </div>
+    <style>
+        .icon-undefined{
+            display: none;
+        }
+    </style>
 @section('script')
     <script>
         (function ($) {

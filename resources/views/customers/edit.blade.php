@@ -102,10 +102,10 @@
                             <label class="col-lg-3 control-label">Nhân viên hỗ trợ:<span
                                     style="color: red">*</span></label>
                             <div class="col-lg-9">
-                                <select name="employee_code[]" multiple="multiple"
-                                        data-placeholder="Chọn nhân viên hỗ trợ" class="select-icons">
+                                <select  name="employee_code[]" multiple="multiple"
+                                        data-placeholder="Chọn nhân viên hỗ trợ" class="select-xs">
                                     @foreach($users as $user)
-                                        <option value="{{$user->info->code}}" @if(isset($customer->employee_code)) {{in_array($user->info->code, $customer->employee_code) ? "selected" : ''}} @endif >{{$user->info->name}}</option>
+                                        <option class="select-xs" value="{{$user->info->code}}" @if(isset($customer->employee_code)) {{in_array($user->info->code, $customer->employee_code) ? "selected" : ''}} @endif >{{$user->info->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('employee_code')
@@ -122,6 +122,11 @@
             </form>
         </div>
     </div>
+    <style>
+        .icon-undefined{
+            display: none;
+        }
+    </style>
 @section('script')
     <script>
         (function ($) {
