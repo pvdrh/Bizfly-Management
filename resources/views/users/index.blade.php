@@ -136,7 +136,6 @@
                                                         </li>
                                                         <li>
                                                             <a data-toggle="modal" data-target="#exampleModal"
-                                                               style="color: #039BE5"
                                                                type="submit">
                                                                 <i class="fa fa-btn fa-key"></i>Đặt lại mật khẩu
                                                             </a>
