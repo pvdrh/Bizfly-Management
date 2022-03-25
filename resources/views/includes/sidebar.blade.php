@@ -63,14 +63,16 @@
                             <li><a href="{{route('companies.create')}}">Thêm mới</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#"><i class="icon-user"></i> <span>Nhân Viên</span></a>
-                        <ul>
-                            <li><a href="{{route('users.index')}}">Danh sách</a></li>
-                            <li><a href="{{route('users.create')}}">Thêm mới</a></li>
-                        </ul>
-                    </li>
-                    <!-- /main -->
+                    @if(\Illuminate\Support\Facades\Auth::user()->info->role == \App\Models\UserInfo::ROLE['admin'])
+                        <li>
+                            <a href="#"><i class="icon-user"></i> <span>Nhân Viên</span></a>
+                            <ul>
+                                <li><a href="{{route('users.index')}}">Danh sách</a></li>
+                                <li><a href="{{route('users.create')}}">Thêm mới</a></li>
+                            </ul>
+                        </li>
+                @endif
+                <!-- /main -->
                 </ul>
             </div>
         </div>
