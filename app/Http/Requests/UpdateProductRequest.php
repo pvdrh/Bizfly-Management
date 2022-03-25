@@ -25,10 +25,9 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name' => 'nullable|max:100',
-            'price' => 'required',
             'quantity' => 'nullable|numeric|gte:0',
             'description' => 'max:5000|nullable',
-            'image' => 'nullable|mimes:jpeg,png,jpg,gif|max:2000',
+            'image' => 'nullable',
         ];
     }
 

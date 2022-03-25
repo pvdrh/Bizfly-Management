@@ -122,10 +122,6 @@ class ProductController extends Controller
             $product->quantity = (int)$request->quantity;
             $product->description = $request->description;
             $product->total_sold = 0;
-            if ($request->hasFile('image')) {
-                $path = Storage::disk('public')->putFile('images/products', $request->file('image'));
-                $product->image = $path;
-            }
             $product->save();
 
             Session::flash('success', 'Cập nhật thành công!');

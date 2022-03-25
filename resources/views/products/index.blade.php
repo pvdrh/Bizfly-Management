@@ -62,7 +62,6 @@
                             <tr style="border-bottom: 1px black solid">
                                 <th><input type="checkbox" id="check_all"></th>
                                 <th style="text-align: center">Tên sản phẩm</th>
-                                <th style="text-align: center">Ảnh</th>
                                 <th>Danh mục</th>
                                 <th>Giá bán</th>
                                 <th style="text-align: center">Số lượng</th>
@@ -76,16 +75,6 @@
                                     <td><input type="checkbox" name="product_id[]" class="checkbox"
                                                data-id="{{$product->_id}}"></td>
                                     <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width: 200px;text-align: center; @if($product->quantity <= 0) color:orangered; font-weight: bold @endif">{{ $product->name }}</td>
-                                    <td style="text-align: center">
-                                        @if($product->image)
-                                            <img
-                                                style="width: 150px; height: 150px; object-fit: cover"
-                                                src="storage/{{ $product->image }}">
-                                        @else
-                                            <img style="width: 150px; height: 150px; object-fit: cover"
-                                                 src="/backend/dist/img/default.jpg">
-                                        @endif
-                                    </td>
                                     <td>{{ $product->categories ? $product->categories->name : "Đang cập nhật" }}</td>
                                     <td>{{ number_format($product->price) }} VND</td>
                                     <td style="text-align: center">{!! $product->quantity !!}</td>

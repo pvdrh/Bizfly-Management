@@ -76,20 +76,6 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-lg-2" for="exampleInputFile">Hình ảnh sản phẩm:</label>
-                            <div class="input-group">
-                                <div class="custom-file col-lg-10">
-                                    <input name="image" accept="image/*" type='file' id="imgInp"/>
-                                </div>
-                            </div>
-                            <div class="col-lg-2">
-                            </div>
-                            <div style="margin-top: 20px" class="col-lg-10">
-                                <img style="width: 150px; height: 150px; object-fit: cover" id="blah"
-                                     src="/backend/dist/img/default.jpg" alt="your image"/>
-                            </div>
-                        </div>
                     </fieldset>
                     <div style="float: right">
                         <a style="text-decoration: none; color: white; font-size: 16px; background: #E53935; padding: 7px 12px 7px 12px;" href="{{ route('products.index') }}">Huỷ bỏ</a>
