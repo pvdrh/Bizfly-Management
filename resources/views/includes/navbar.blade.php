@@ -20,7 +20,9 @@
 
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
-                    <span>{{\Illuminate\Support\Facades\Auth::user()->info->name}}</span>
+                    <svg style="display: inline" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg> <span>{{\Illuminate\Support\Facades\Auth::user()->info->name}}</span>
                     <i class="caret"></i>
                 </a>
 
@@ -28,7 +30,7 @@
                     <li>
                         <form role="form" class="row" action="{{ route('logout') }}" method="post">
                             @csrf
-                            <button style="display: flex; margin: 0 auto"><i class="icon-switch2"></i> Đăng xuất</button>
+                            <button style="display: flex; margin: 0 auto">Đăng xuất</button>
                         </form>
                     </li>
                 </ul>

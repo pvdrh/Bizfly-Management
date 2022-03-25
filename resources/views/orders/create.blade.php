@@ -35,7 +35,6 @@
                             <div class="col-lg-10">
                                 <select class="form-control"
                                         name="customer_id">
-                                    <option>---Chọn khách hàng---</option>
                                     @foreach($customers as $customer)
                                         <option value="{{$customer->_id}}">{{$customer->name}}</option>
                                     @endforeach
@@ -46,7 +45,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Chọn sản phẩm</label>
+                            <label class="control-label col-lg-2">Chọn sản phẩm: <span style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <select name="product_id[]" multiple="multiple"
                                         data-placeholder="Chọn sản phẩm" class="select-icons">
@@ -54,7 +53,7 @@
                                         <option value="{{$product->_id}}">{{$product->name}}</option>
                                     @endforeach
                                 </select>
-                                @error('employee_code')
+                                @error('product_id')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
