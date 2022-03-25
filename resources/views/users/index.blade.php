@@ -152,7 +152,6 @@
                                             </ul>
                                         </td>
                                     @endif
-
                                 </tr>
                             @endforeach
                             </tbody>

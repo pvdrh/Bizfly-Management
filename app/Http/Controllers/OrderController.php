@@ -38,7 +38,7 @@ class OrderController extends Controller
                 $customer_id[] = $customer->_id;
             }
             $orders = Order::whereIn('customer_id', $customer_id);
-            $orders = $orders->paginate(10);
+            $orders = $orders->get();
         }
         return view('orders.index')->with([
             'orders' => $orders

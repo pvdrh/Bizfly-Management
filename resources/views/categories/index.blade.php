@@ -119,8 +119,10 @@
                                 </tr>
                             @endforeach
                             </tbody>
+
                         </table>
                     </div>
+
                 @else
                     <div style="display: flex; justify-content: center">
                         <img style="width: 50%; height: 50%" src="backend/dist/img/social-default.jpg">
@@ -130,6 +132,7 @@
             </div>
         </div>
     </div>
+
 @section('script')
     <script>
         $(document).ready(function () {
