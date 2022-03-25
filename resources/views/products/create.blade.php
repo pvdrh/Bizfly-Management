@@ -31,7 +31,7 @@
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Tên sản phẩm<span style="color: red">*</span>:</label>
+                            <label class="control-label col-lg-2">Tên sản phẩm:<span style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <input value="{{old('name')}}" type="text" name="name" class="form-control"
                                        placeholder="Nhập tên sản phẩm">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Giá bán<span style="color: red">*</span>:</label>
+                            <label class="col-lg-2 control-label">Giá bán:<span style="color: red">*</span></label>
                             <div class="col-lg-3">
                                 <input type="text" value="{{old('price')}}" name="price" min="1"
                                        class="form-control input-element"
@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-lg-2">
                             </div>
-                            <label class="col-lg-2 control-label">Số lượng<span style="color: red">*</span>:</label>
+                            <label class="col-lg-2 control-label">Số lượng:<span style="color: red">*</span></label>
                             <div class="col-lg-3">
                                 <input value="{{old('quantity')}}" type="number" name="quantity" min="1"
                                        class="form-control"

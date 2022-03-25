@@ -31,7 +31,7 @@
                 <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Tên khách hàng<span style="color: red">*</span>:</label>
+                            <label class="col-lg-3 control-label">Tên khách hàng:<span style="color: red">*</span></label>
                             <div class="col-lg-9">
                                 <input value="{{old('name')}}" type="text" name="name" class="form-control" placeholder="Nhập tên khách hàng">
                                 @error('name')
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Số điện thoại<span style="color: red">*</span>:</label>
+                            <label class="col-lg-3 control-label">Số điện thoại:<span style="color: red">*</span></label>
                             <div class="col-lg-9">
                                 <input value="{{old('phone')}}" type="text" name="phone" class="form-control" placeholder="Nhập số điện thoại khách hàng">
                                 @error('phone')
@@ -106,8 +106,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Nhân viên hỗ trợ<span
-                                    style="color: red"> *</span>:</label>
+                            <label class="col-lg-3 control-label">Nhân viên hỗ trợ:<span
+                                    style="color: red">*</span></label>
                             <div class="col-lg-9">
                                 <select name="employee_code[]" multiple="multiple"
                                         data-placeholder="Chọn nhân viên hỗ trợ" class="select-icons">

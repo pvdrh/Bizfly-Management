@@ -31,10 +31,11 @@
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Khách hàng<span style="color: red">*</span></label>
+                            <label class="control-label col-lg-2">Khách hàng:<span style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <select class="form-control"
                                         name="customer_id">
+                                    <option>---Chọn khách hàng---</option>
                                     @foreach($customers as $customer)
                                         <option value="{{$customer->_id}}">{{$customer->name}}</option>
                                     @endforeach

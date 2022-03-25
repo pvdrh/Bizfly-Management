@@ -31,7 +31,7 @@
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Mã nhân viên<span style="color: red">*</span>:</label>
+                            <label class="control-label col-lg-2">Mã nhân viên:<span style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <input disabled value="{{$user->info->code}}" type="text" name="name" class="form-control" placeholder="Nhập tên nhân viên">
                                 @error('name')
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Email<span style="color: red">*</span>:</label>
+                            <label class="control-label col-lg-2">Email:<span style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <input disabled value="{{$user->email}}" type="email" name="email" class="form-control" placeholder="Email">
                                 @error('email')
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Tên nhân viên<span style="color: red">*</span>:</label>
+                            <label class="control-label col-lg-2">Tên nhân viên:<span style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <input value="{{$user->info->name}}" type="text" name="name" class="form-control" placeholder="Nhập tên nhân viên">
                                 @error('name')
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Chức vụ<span style="color: red">*</span>:</label>
+                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Chức vụ:<span style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <select name="role" class="form-control select2" style="width: 100%;">
                                     <option value="0" @if(0 == $user->info->role) selected @endif>Admin</option>
