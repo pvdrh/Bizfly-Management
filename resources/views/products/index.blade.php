@@ -85,7 +85,7 @@
                                                             <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
                                                         </a></li>
                                                     <li class="delete-card" data-id="{{$product['_id']}}"><a
-                                                            style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #F4511E"
+                                                            style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #E53935"
                                                         ><i
                                                                 class="fa fa-btn fa-trash"></i>
                                                             Xoá

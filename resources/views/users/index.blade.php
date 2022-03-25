@@ -21,10 +21,14 @@
                     <div class="btn-group">
                         <a style="text-decoration: none; margin-bottom: 5px; color: white; font-size: 16px; background: #546E7A; padding: 7px 10px 7px 10px;"
                            type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
-                            <svg style="display: inline" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-                                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-                                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-                            </svg> Tùy chọn
+                            <svg style="display: inline" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                <path
+                                    d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                            </svg>
+                            Tùy chọn
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -123,13 +127,22 @@
                                                         <i class="icon-menu9"></i>
                                                     </a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a style="color: #546E7A"
+                                                        <li>
+                                                            <a style="color: #546E7A"
                                                                href="{{ route('users.edit',$user['_id']) }}"
                                                                type="submit">
                                                                 <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                                            </a></li>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-toggle="modal" data-target="#exampleModal"
+                                                               style="color: #039BE5"
+                                                               type="submit">
+                                                                <i class="fa fa-btn fa-key"></i>Đặt lại mật khẩu
+                                                            </a>
+                                                        </li>
                                                         <li data-id="{{$user['_id']}}" class="delete-card"><a
-                                                                style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #F4511E"
+                                                                style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #E53935"
                                                             ><i
                                                                     class="fa fa-btn fa-trash"></i>
                                                                 Xoá
@@ -145,7 +158,8 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <!-- Modal content-->
                                 <div class="modal-content">
@@ -154,17 +168,14 @@
                                             khẩu cho {{$user->info->name}}</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
-                                    <form role="form" method="post" id="change-pass"
+                                    <form role="form" method="post"
                                           action="{{ route('users.changePass',$user->_id) }}">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="new_password">Mật khẩu mới<span
+                                                <label for="new_password">Mật khẩu mới:<span
                                                         style="color: red">*</span></label>
-                                                <input id="password-field" type="password" class="form-control"
-                                                       name="new_password">
-                                                <span toggle="#password-field"
-                                                      class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                                <input name="password" id="password" class="form-control" required type="password"
                                                 @error('new_password')
                                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                                 @enderror
@@ -172,11 +183,10 @@
                                             <div class="form-group">
                                                 <label for="confirm_password">Xác nhận mật khẩu<span
                                                         style="color: red">*</span></label>
-                                                <input id="password-fieldd" type="password"
+                                                <input id="confirm_password" type="password" required
                                                        name="confirm_password"
                                                        class="form-control">
-                                                <span toggle="#password-fieldd"
-                                                      class="fa fa-fw fa-eye field-icon toggle-passwordd"></span>
+                                                <span id="message" style="color:red"> </span> <br><br>
                                                 @error('confirm_password')
                                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                                 @enderror
@@ -185,9 +195,9 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng
-                                            </button>
-                                            <button id="btn-sub" type="submit" class="btn btn-primary">Cập nhật</button>
+                                            <a type="button" style="text-decoration: none; color: white; font-size: 16px; background: #E53935; padding: 7px 12px 7px 12px;" data-dismiss="modal">Đóng
+                                            </a>
+                                            <button id="btn-sub" type="submit" style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 6px 10px 6px 10px;">Cập nhật</button>
                                         </div>
                                     </form>
                                 </div>
@@ -204,6 +214,21 @@
         </div>
     </div>
 @section('script')
+    <script>
+        var password = document.getElementById("password")
+            , confirm_password = document.getElementById("confirm_password");
+
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Mật khẩu không trùng nhau.");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    </script>
     <script>
         $(document).ready(function () {
             $('.delete-card').on('click', function () {
