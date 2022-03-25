@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 @if(count($companies) > 0)
-                    <div class="table-responsive">
+                    <div>
                         <table class="table table-hover">
                             <thead>
                             <tr>

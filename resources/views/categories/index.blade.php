@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 @if(count($categories) > 0)
-                    <div class="table-responsive">
+                    <div>
                         <table class="table table-hover">
                             <thead>
                             <tr>

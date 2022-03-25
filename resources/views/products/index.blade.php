@@ -49,7 +49,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="table-responsive"> @if(count($products) > 0)
+                <div> @if(count($products) > 0)
                         <table class="table table-hover">
                             <thead>
                             <tr style="border-bottom: 1px black solid">
