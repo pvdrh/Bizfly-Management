@@ -17,16 +17,14 @@
     </div>
     <div class="col-lg-12">
         <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
-            {{--            <div class="panel-heading">--}}
-            {{--                <h5 class="panel-title">Thông tin nhân viên</h5>--}}
-            {{--            </div>--}}
             <div class="panel-body">
                 <form class="form-horizontal" role="form" method="post"
                       action="{{route('categories.update',$category->id)}}">
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Tên danh mục:<span style="color: red">*</span></label>
+                            <label style="width: 14.5%;" class="control-label col-lg-2">Tên danh mục:<span
+                                    style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <input value="{{$category->name}}" type="text" name="name" class="form-control"
                                        placeholder="Nhập tên danh mục">
@@ -36,7 +34,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Mô tả:</label>
+                            <label style="width: 14.5%;" class="control-label col-lg-2">Mô tả:</label>
                             <div class="col-lg-10">
                                 <input value="{{$category->description}}" type="text" name="description"
                                        class="form-control"
@@ -48,8 +46,12 @@
                         </div>
                     </fieldset>
                     <div style="float: right">
-                        <a style="text-decoration: none; color: white; font-size: 16px; background: #E53935; padding: 7px 12px 7px 12px;" href="{{ route('categories.index') }}">Huỷ bỏ</a>
-                        <button style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 6px 10px 6px 10px;" type="submit" >Cập nhật</button>
+                        <a style="text-decoration: none; color: white; font-size: 16px; background: #E53935; padding: 7px 12px 7px 12px;"
+                           href="{{ route('categories.index') }}">Huỷ bỏ</a>
+                        <button
+                            style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 6px 10px 6px 10px;"
+                            type="submit">Cập nhật
+                        </button>
                     </div>
                 </form>
             </div>

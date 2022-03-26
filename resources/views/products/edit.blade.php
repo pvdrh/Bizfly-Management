@@ -16,16 +16,13 @@
     </div>
     <div class="col-lg-12">
         <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
-            {{--            <div class="panel-heading">--}}
-            {{--                <h5 class="panel-title">Thông tin nhân viên</h5>--}}
-            {{--            </div>--}}
             <div class="panel-body">
                 <form class="form-horizontal" role="form" method="post"
                       action="{{ route('products.update', $product->_id) }}">
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Tên sản phẩm:<span style="color: red">*</span></label>
+                            <label style="width: 14.5%" class="control-label col-lg-2">Tên sản phẩm:<span style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <input value="{{$product->name}}" type="text" name="name" class="form-control"
                                        placeholder="Nhập tên sản phẩm">
@@ -35,7 +32,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Danh mục:</label>
+                            <label style="width: 14.5%" class="col-lg-2 control-label">Danh mục:</label>
                             <div class="col-lg-10">
                                 <select class="form-control select2" name="category_id" style="width: 100%;">
                                     <option>---Chọn danh mục---</option>
@@ -50,7 +47,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Giá bán:<span style="color: red">*</span></label>
+                            <label style="width: 14.5%" class="col-lg-2 control-label">Giá bán:<span style="color: red">*</span></label>
                             <div class="col-lg-3">
                                 <input type="text" value="{{$product->price}}" name="price" min="1"
                                        class="form-control input-element"

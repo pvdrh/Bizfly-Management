@@ -16,16 +16,13 @@
     </div>
     <div class="col-lg-12">
         <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
-            {{--            <div class="panel-heading">--}}
-            {{--                <h5 class="panel-title">Thông tin nhân viên</h5>--}}
-            {{--            </div>--}}
             <div class="panel-body">
                 <form class="form-horizontal" role="form" method="post"
                       action="{{route('companies.store')}}">
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Tên công ty<span style="color: red">*</span>:</label>
+                            <label style="width: 14%" class="control-label col-lg-2">Tên công ty<span style="color: red">*</span>:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('name')}}" type="text" name="name" class="form-control"
                                        placeholder="Nhập tên công ty">
@@ -35,7 +32,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Số điện thoại:</label>
+                            <label style="width: 14%" class="control-label col-lg-2">Số điện thoại:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('phone')}}" type="text" name="phone"
                                        class="form-control"
@@ -46,7 +43,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Địa chỉ:</label>
+                            <label style="width: 14%" class="control-label col-lg-2">Địa chỉ:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('address')}}" type="text" name="address"
                                        class="form-control"

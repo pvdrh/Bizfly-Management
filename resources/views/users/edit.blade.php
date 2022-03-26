@@ -24,36 +24,43 @@
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Mã nhân viên:<span style="color: red">*</span></label>
+                            <label style="width: 14.5%" class="control-label col-lg-2">Mã nhân viên:<span
+                                    style="color: red">*</span></label>
                             <div class="col-lg-10">
-                                <input disabled value="{{$user->info->code}}" type="text" name="name" class="form-control" placeholder="Nhập tên nhân viên">
+                                <input disabled value="{{$user->info->code}}" type="text" name="name"
+                                       class="form-control" placeholder="Nhập tên nhân viên">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Email:<span style="color: red">*</span></label>
+                            <label style="width: 14.5%" class="control-label col-lg-2">Email:<span
+                                    style="color: red">*</span></label>
                             <div class="col-lg-10">
-                                <input disabled value="{{$user->email}}" type="email" name="email" class="form-control" placeholder="Email">
+                                <input disabled value="{{$user->email}}" type="email" name="email" class="form-control"
+                                       placeholder="Email">
                                 @error('email')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Tên nhân viên:<span style="color: red">*</span></label>
+                            <label style="width: 14.5%" class="control-label col-lg-2">Tên nhân viên:<span
+                                    style="color: red">*</span></label>
                             <div class="col-lg-10">
-                                <input value="{{$user->info->name}}" type="text" name="name" class="form-control" placeholder="Nhập tên nhân viên">
+                                <input value="{{$user->info->name}}" type="text" name="name" class="form-control"
+                                       placeholder="Nhập tên nhân viên">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Số điện thoại:</label>
+                            <label style="width: 14.5%" class="control-label col-lg-2">Số điện thoại:</label>
                             <div class="col-lg-10">
-                                <input id="intTextBox" value="{{$user->info->phone}}" type="text" name="phone" placeholder="Nhập số điện thoại" class="form-control"
+                                <input id="intTextBox" value="{{$user->info->phone}}" type="text" name="phone"
+                                       placeholder="Nhập số điện thoại" class="form-control"
                                        placeholder="Enter your username...">
                                 @error('phone')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -61,16 +68,18 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Địa chỉ:</label>
+                            <label style="width: 14.5%" class="control-label col-lg-2">Địa chỉ:</label>
                             <div class="col-lg-10">
-                                <input value="{{$user->info->address}}" type="text" name="address" placeholder="Nhập địa chỉ" class="form-control">
+                                <input value="{{$user->info->address}}" type="text" name="address"
+                                       placeholder="Nhập địa chỉ" class="form-control">
                                 @error('address')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Giới tính:</label>
+                            <label style="width: 14.5%" class="control-label col-lg-2 cursor-pointer"
+                                   for="clickable-label">Giới tính:</label>
                             <div class="col-lg-10">
                                 <select name="gender" class="form-control select2" style="width: 100%;">
                                     <option value="1" @if($user->info->gender == 1) selected @endif>Nam</option>
@@ -82,7 +91,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Chức vụ:<span style="color: red">*</span></label>
+                            <label style="width: 14.5%" class="control-label col-lg-2 cursor-pointer"
+                                   for="clickable-label">Chức vụ:<span style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <select name="role" class="form-control select2" style="width: 100%;">
                                     <option value="0" @if(0 == $user->info->role) selected @endif>Admin</option>
@@ -95,8 +105,12 @@
                         </div>
                     </fieldset>
                     <div style="float: right">
-                        <a style="text-decoration: none; color: white; font-size: 16px; background: #E53935; padding: 7px 12px 7px 12px;" href="{{ route('users.index') }}">Huỷ bỏ</a>
-                        <button style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 6px 10px 6px 10px;" type="submit" >Cập nhật</button>
+                        <a style="text-decoration: none; color: white; font-size: 16px; background: #E53935; padding: 7px 12px 7px 12px;"
+                           href="{{ route('users.index') }}">Huỷ bỏ</a>
+                        <button
+                            style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 6px 10px 6px 10px;"
+                            type="submit">Cập nhật
+                        </button>
                     </div>
                 </form>
             </div>

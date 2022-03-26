@@ -24,8 +24,8 @@
                 <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Tên khách hàng:<span style="color: red">*</span></label>
-                            <div class="col-lg-9">
+                            <label style="width: 15.5%" class="col-lg-2 control-label">Tên khách hàng:<span style="color: red">*</span></label>
+                            <div class="col-lg-10">
                                 <input value="{{$customer->name}}" type="text" name="name" class="form-control" placeholder="Nhập tên khách hàng">
                                 @error('name')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -33,8 +33,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Email:</label>
-                            <div class="col-lg-9">
+                            <label style="width: 15.5%" class="col-lg-2 control-label">Email:</label>
+                            <div class="col-lg-10">
                                 <input value="{{$customer->email}}" name="email" type="email" class="form-control" placeholder="Nhập email khách hàng">
                                 @error('email')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -42,8 +42,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Số điện thoại:<span style="color: red">*</span></label>
-                            <div class="col-lg-9">
+                            <label style="width: 15.5%" class="col-lg-2 control-label">Số điện thoại:<span style="color: red">*</span></label>
+                            <div class="col-lg-10">
                                 <input value="{{$customer->phone}}" type="text" name="phone" class="form-control" placeholder="Nhập số điện thoại khách hàng">
                                 @error('phone')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -51,8 +51,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Phân loại:</label>
-                            <div class="col-lg-9">
+                            <label style="width: 15.5%" class="col-lg-2 control-label">Phân loại:</label>
+                            <div class="col-lg-10">
                                 <input value="{{$customer->customer_type}}" name="customer_type" type="text" class="form-control">
                                 @error('customer_type')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -60,8 +60,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Tuổi:</label>
-                            <div class="col-lg-9">
+                            <label style="width: 15.5%" class="col-lg-2 control-label">Tuổi:</label>
+                            <div class="col-lg-10">
                                 <input value="{{$customer->age}}" name="age" type="number" class="form-control">
                                 @error('age')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -69,8 +69,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Nghề nghiệp:</label>
-                            <div class="col-lg-9">
+                            <label style="width: 15.5%" class="col-lg-2 control-label">Nghề nghiệp:</label>
+                            <div class="col-lg-10">
                                 <input value="{{$customer->job}}" placeholder="Nhập nghề nghiệp" name="job" type="text" class="form-control">
                                 @error('job')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -78,8 +78,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Địa chỉ:</label>
-                            <div class="col-lg-9">
+                            <label style="width: 15.5%" class="col-lg-2 control-label">Địa chỉ:</label>
+                            <div class="col-lg-10">
                                 <input value="{{$customer->address}}" placeholder="Nhập địa chỉ" name="address" type="text" class="form-control">
                                 @error('address')
                                 <span style="color: red; font-size: 14px">{{ $message }}</span>
@@ -87,8 +87,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Giới tính:</label>
-                            <div class="col-lg-9">
+                            <label style="width: 15.5%" class="col-lg-2 control-label">Giới tính:</label>
+                            <div class="col-lg-10">
                                 <select name="gender" class="form-control select2" style="width: 100%;">
                                     <option value="1" @if($customer->gender == 1) selected @endif>Nam</option>
                                     <option value="0" @if($customer->gender == 0) selected @endif>Nữ</option>
@@ -99,9 +99,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Nhân viên hỗ trợ:<span
+                            <label style="width: 15.5%" class="col-lg-2 control-label">Nhân viên hỗ trợ:<span
                                     style="color: red">*</span></label>
-                            <div class="col-lg-9">
+                            <div class="col-lg-10">
                                 <select  name="employee_code[]" multiple="multiple"
                                         data-placeholder="Chọn nhân viên hỗ trợ" class="select-icons">
                                     @foreach($users as $user)

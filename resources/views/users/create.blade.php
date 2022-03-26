@@ -24,7 +24,8 @@
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Tên nhân viên:<span style="color: red">*</span></label>
+                            <label style="width: 15%" class="control-label col-lg-2">Tên nhân viên:<span
+                                    style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <input value="{{old('name')}}" type="text" name="name" class="form-control"
                                        placeholder="Nhập tên nhân viên">
@@ -34,7 +35,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Email:<span style="color: red">*</span></label>
+                            <label style="width: 15%" class="control-label col-lg-2">Email:<span
+                                    style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <input value="{{old('email')}}" type="email" name="email" class="form-control"
                                        placeholder="Email">
@@ -44,7 +46,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Mật khẩu:<span style="color: red">*</span></label>
+                            <label style="width: 15%" class="control-label col-lg-2">Mật khẩu:<span
+                                    style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
                                 @error('password')
@@ -53,7 +56,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Số điện thoại:</label>
+                            <label style="width: 15%" class="control-label col-lg-2">Số điện thoại:</label>
                             <div class="col-lg-10">
                                 <input id="intTextBox" value="{{old('phone')}}" type="text" name="phone"
                                        placeholder="Nhập số điện thoại" class="form-control"
@@ -64,7 +67,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Địa chỉ:</label>
+                            <label style="width: 15%" class="control-label col-lg-2">Địa chỉ:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('address')}}" type="text" name="address" placeholder="Nhập địa chỉ"
                                        class="form-control">
@@ -74,7 +77,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Giới tính<span
+                            <label style="width: 15%" class="control-label col-lg-2 cursor-pointer"
+                                   for="clickable-label">Giới tính<span
                                     style="color: red">*</span>:</label>
                             <div class="col-lg-10">
                                 <select name="gender" class="form-control select2" style="width: 100%;">
@@ -87,7 +91,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2 cursor-pointer" for="clickable-label">Chức vụ:<span
+                            <label style="width: 15%" class="control-label col-lg-2 cursor-pointer"
+                                   for="clickable-label">Chức vụ:<span
                                     style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <select name="role" class="form-control select2" style="width: 100%;">
@@ -101,8 +106,12 @@
                         </div>
                     </fieldset>
                     <div style="float: right">
-                        <a style="text-decoration: none; color: white; font-size: 16px; background: #E53935; padding: 7px 12px 7px 12px;" href="{{ route('users.index') }}">Huỷ bỏ</a>
-                        <button type="submit" style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 6px 10px 6px 10px;">Thêm mới</button>
+                        <a style="text-decoration: none; color: white; font-size: 16px; background: #E53935; padding: 7px 12px 7px 12px;"
+                           href="{{ route('users.index') }}">Huỷ bỏ</a>
+                        <button type="submit"
+                                style="text-decoration: none; color: white; font-size: 16px; background: #43A047; padding: 6px 10px 6px 10px;">
+                            Thêm mới
+                        </button>
                     </div>
                 </form>
             </div>

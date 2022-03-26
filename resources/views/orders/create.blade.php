@@ -16,15 +16,13 @@
     </div>
     <div class="col-lg-12">
         <div style="margin-left: 15px;margin-right: 15px;margin-bottom: 50px" class="panel panel-flat">
-            {{--            <div class="panel-heading">--}}
-            {{--                <h5 class="panel-title">Thông tin nhân viên</h5>--}}
-            {{--            </div>--}}
             <div class="panel-body">
                 <form class="form-horizontal" role="form" method="post" action="{{ route('orders.store') }}">
                     @csrf
                     <fieldset class="content-group">
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Khách hàng:<span style="color: red">*</span></label>
+                            <label style="width: 15%" class="control-label col-lg-2">Khách hàng:<span
+                                    style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <select class="form-control"
                                         name="customer_id">
@@ -38,7 +36,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-2">Chọn sản phẩm: <span
+                            <label style="width: 15%" class="control-label col-lg-2">Chọn sản phẩm: <span
                                     style="color: red">*</span></label>
                             <div class="col-lg-10">
                                 <select name="product_id[]" multiple="multiple"
@@ -53,7 +51,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Ghi chú:</label>
+                            <label style="width: 15%" class="col-lg-2 control-label">Ghi chú:</label>
                             <div class="col-lg-10">
                                 <input value="{{old('note')}}" type="text" name="note" class="form-control"
                                        placeholder="Nhập tên ghi chú">
