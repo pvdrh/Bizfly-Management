@@ -352,7 +352,6 @@
                 $(".checkbox:checked").each(function () {
                     idsArr.push($(this).attr('data-id'));
                 });
-                console.log(idsArr)
                 if (idsArr.length <= 0) {
                     alert("Vui lòng chọn bản ghi bạn muốn xuất");
                 } else {
@@ -366,8 +365,18 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             data: 'ids=' + strIds,
-                            success: function () {
-                                console.log("Ok")
+                            xhrFields:{
+                                responseType: 'blob'
+                            },
+                            success: function (response) {
+                                var blob = response;
+                                var downloadUrl = URL.createObjectURL(blob);
+                                var a = document.createElement("a");
+                                a.href = downloadUrl;
+                                a.download = "Danh sách khách hàng.xlsx";
+                                document.body.appendChild(a);
+                                a.click();
+                                location.reload();
                             },
                             error: function (data) {
                                 swal("Xuất excel thất bại!", "", "error");

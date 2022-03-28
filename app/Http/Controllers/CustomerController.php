@@ -232,8 +232,10 @@ class CustomerController extends Controller
 
     public function exportExcel(Request $request)
     {
-        $ids = $request->ids;
-        $idsArr = explode(",", $ids);
+        if ($request->ids) {
+            $ids = $request->ids;
+            $idsArr = explode(",", $ids);
+        }
         if (!empty($idsArr)) {
             $customers = Customer::whereIn('_id', $idsArr)->get();
         } else if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
