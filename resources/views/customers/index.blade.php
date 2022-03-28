@@ -271,6 +271,7 @@
 @section('script')
     <script>
         $(document).ready(function () {
+            var checkall = false
             $('.delete-card').on('click', function () {
                 swal({
                     title: "Chú Ý",
@@ -308,8 +309,10 @@
             });
             $('#check_all').on('click', function (e) {
                 if ($(this).is(':checked', true)) {
+                    checkall = true
                     $(".checkbox").prop('checked', true);
                 } else {
+                    checkall = false
                     $(".checkbox").prop('checked', false);
                 }
             });
@@ -322,28 +325,53 @@
                     alert("Vui lòng chọn bản ghi bạn muốn xóa");
                 } else {
                     var idss = idsArr.length;
-                    if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {
-                        var strIds = idsArr.join(",");
-                        $.ajax({
-                            url: "{{route('customers.deleteAll')}}",
-                            type: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            data: 'ids=' + strIds,
-                            success: function () {
-                                swal("Xoá thành công!", "", "success");
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1000);
-                            },
-                            error: function () {
-                                swal("Xoá thất bại!", "", "error");
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1000);
-                            }
-                        });
+                    if (checkall) {
+                        if (confirm('Bạn có chắc chắn muốn xóa tất cả bản ghi?')) {
+                            $.ajax({
+                                url: "{{route('customers.deleteAll')}}",
+                                type: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                success: function () {
+                                    swal("Xoá thành công!", "", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                },
+                                error: function () {
+                                    swal("Xoá thất bại!", "", "error");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                }
+                            });
+                        }
+                    } else {
+                        if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {
+                            console.log("Ok")
+                            var strIds = idsArr.join(",");
+                            $.ajax({
+                                url: "{{route('customers.deleteAll')}}",
+                                type: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                data: 'ids=' + strIds,
+                                success: function () {
+                                    swal("Xoá thành công!", "", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                },
+                                error: function () {
+                                    swal("Xoá thất bại!", "", "error");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                }
+                            });
+                        }
                     }
                 }
             });
@@ -356,7 +384,34 @@
                     alert("Vui lòng chọn bản ghi bạn muốn xuất");
                 } else {
                     var idss = idsArr.length;
-                    if (confirm('Bạn đồng ý xuất ' + idss + ' bản ghi đã chọn?')) {
+                    if (checkall) {
+                        $.ajax({
+                            url: "{{route('customers.export')}}",
+                            type: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            xhrFields: {
+                                responseType: 'blob'
+                            },
+                            success: function (response) {
+                                var blob = response;
+                                var downloadUrl = URL.createObjectURL(blob);
+                                var a = document.createElement("a");
+                                a.href = downloadUrl;
+                                a.download = "Danh sách khách hàng.xlsx";
+                                document.body.appendChild(a);
+                                a.click();
+                                location.reload();
+                            },
+                            error: function (data) {
+                                swal("Xuất excel thất bại!", "", "error");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            }
+                        });
+                    } else {
                         var strIds = idsArr.join(",");
                         $.ajax({
                             url: "{{route('customers.export')}}",
@@ -365,7 +420,7 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             data: 'ids=' + strIds,
-                            xhrFields:{
+                            xhrFields: {
                                 responseType: 'blob'
                             },
                             success: function (response) {
@@ -397,7 +452,6 @@
         toastr.error('{{ Session::get('error') }}');
         @endif
     </script>
-
     <script>
         var fileInput = document.getElementById('exampleInputFile');
         var listFile = document.getElementById('list_file');

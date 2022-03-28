@@ -121,7 +121,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('customers.import');
         Route::post('/store', [CustomerController::class, 'store'])
             ->name('customers.store');
-        Route::post('/deleteAll', [CustomerController::class, 'deleteAll'])
+        Route::any('/deleteAll', [CustomerController::class, 'deleteAll'])
             ->name('customers.deleteAll');
         Route::get('/show/{id}', [CustomerController::class, 'show'])
             ->name('customers.show')->middleware('checkRole');

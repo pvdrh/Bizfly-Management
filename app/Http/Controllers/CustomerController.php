@@ -306,8 +306,18 @@ class CustomerController extends Controller
     public function deleteAll(Request $request)
     {
         try {
-            $ids = $request->ids;
-            Customer::whereIn('_id', explode(",", $ids))->delete();
+            if ($request->ids) {
+                $ids = $request->ids;
+                $idsArr = explode(",", $ids);
+            }
+            if (!empty($idsArr)) {
+                Customer::whereIn('_id', $idsArr)->delete();
+            } else if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
+                Customer::query()->delete();
+            } else {
+                $user_code = Auth::user()->info->code;
+                Customer::where(['employee_code' => $user_code])->delete();
+            }
 
             Session::flash('success', 'Xóa thành công!');
         } catch (Exception $e) {
