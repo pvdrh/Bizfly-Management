@@ -152,6 +152,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        {!! $users->links() !!}
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -254,6 +255,23 @@
 
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
+        }
+
+        .sm\:hidden {
+            display: inline-block;
+            float: right;
+            padding: 20px;
+            font-size: 14px !important;
+        }
+
+        .flex {
+            position: relative;
+            float: right;
+        }
+
+        .relative {
+            font-size: 14px;
+
         }
     </style>
 @section('script')

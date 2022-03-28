@@ -98,14 +98,14 @@
                             @endforeach
                             </tbody>
                         </table>
-                    @else
-                        <div style="display: flex; justify-content: center">
-                            <img style="width: 50%; height: 50%" src="backend/dist/img/social-default.jpg">
-                        </div>
-                        <h4 style="text-align: center; padding-bottom: 50px">Không có dữ liệu</h4>
-                    @endif
                 </div>
-
+                {!! $products->links() !!}
+                @else
+                    <div style="display: flex; justify-content: center">
+                        <img style="width: 50%; height: 50%" src="backend/dist/img/social-default.jpg">
+                    </div>
+                    <h4 style="text-align: center; padding-bottom: 50px">Không có dữ liệu</h4>
+                @endif
             </div>
         </div>
     </div>
@@ -150,6 +150,23 @@
 
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
+        }
+
+        .sm\:hidden {
+            display: inline-block;
+            float: right;
+            padding: 20px;
+            font-size: 14px !important;
+        }
+
+        .flex {
+            position: relative;
+            float: right;
+        }
+
+        .relative {
+            font-size: 14px;
+
         }
     </style>
 @section('script')

@@ -26,7 +26,7 @@ class CategoryController extends Controller
             $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
             $cat = $request->input('search');
         }
-        $categories = $query->get();
+        $categories = $query->paginate(10);
         return view('categories.index')->with([
             'categories' => $categories,
             'cat' => $cat

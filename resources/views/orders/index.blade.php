@@ -181,6 +181,7 @@
                             </tbody>
                         </table>
                     </div>
+                    {!! $categories->links() !!}
                 @else
                     <div style="display: flex; justify-content: center">
                         <img style="width: 50%; height: 50%" src="backend/dist/img/social-default.jpg">
@@ -262,6 +263,23 @@
 
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
+        }
+
+        .sm\:hidden {
+            display: inline-block;
+            float: right;
+            padding: 20px;
+            font-size: 14px !important;
+        }
+
+        .flex {
+            position: relative;
+            float: right;
+        }
+
+        .relative {
+            font-size: 14px;
+
         }
     </style>
 @section('script')

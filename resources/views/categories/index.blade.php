@@ -70,60 +70,60 @@
                         </form>
                     </div>
                 </div>
-                @if(count($categories) > 0)
-                    <div>
-                        <table class="table table-hover">
-                            <thead>
+                {{--                @if(count($categories) > 0)--}}
+                <div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" id="check_all"></th>
+                            <th>Tên danh mục</th>
+                            <th>Mô tả</th>
+                            <th class="text-center">Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($categories as $category)
                             <tr>
-                                <th><input type="checkbox" id="check_all"></th>
-                                <th>Tên danh mục</th>
-                                <th>Mô tả</th>
-                                <th class="text-center">Hành động</th>
+                                <td><input type="checkbox" name="category_id[]" class="checkbox"
+                                           data-id="{{$category->_id}}"></td>
+                                <td>{{$category->name}}</td>
+                                <td>{{$category->description}}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu ">
+                                                <li><a style="color: #546E7A"
+                                                       href="{{ route('categories.edit',$category['_id']) }}"
+                                                       type="submit">
+                                                        <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                                    </a></li>
+                                                <li data-id="{{$category['_id']}}" class="delete-card"><a
+                                                        style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #E53935"
+                                                    ><i
+                                                            class="fa fa-btn fa-trash"></i>
+                                                        Xoá
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($categories as $category)
-                                <tr>
-                                    <td><input type="checkbox" name="category_id[]" class="checkbox"
-                                               data-id="{{$category->_id}}"></td>
-                                    <td>{{$category->name}}</td>
-                                    <td>{{$category->description}}</td>
-                                    <td class="text-center">
-                                        <ul class="icons-list">
-                                            <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="icon-menu9"></i>
-                                                </a>
-                                                <ul class="dropdown-menu ">
-                                                    <li><a style="color: #546E7A"
-                                                           href="{{ route('categories.edit',$category['_id']) }}"
-                                                           type="submit">
-                                                            <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                                        </a></li>
-                                                    <li data-id="{{$category['_id']}}" class="delete-card"><a
-                                                            style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #E53935"
-                                                        ><i
-                                                                class="fa fa-btn fa-trash"></i>
-                                                            Xoá
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                {!! $categories->links() !!}
 
-                        </table>
-                    </div>
-
-                @else
-                    <div style="display: flex; justify-content: center">
-                        <img style="width: 50%; height: 50%" src="backend/dist/img/social-default.jpg">
-                    </div>
-                    <h4 style="text-align: center; padding-bottom: 50px">Không có dữ liệu</h4>
-                @endif
+                {{--                @else--}}
+                {{--                    <div style="display: flex; justify-content: center">--}}
+                {{--                        <img style="width: 50%; height: 50%" src="backend/dist/img/social-default.jpg">--}}
+                {{--                    </div>--}}
+                {{--                    <h4 style="text-align: center; padding-bottom: 50px">Không có dữ liệu</h4>--}}
+                {{--                @endif--}}
             </div>
         </div>
     </div>
@@ -168,6 +168,23 @@
 
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
+        }
+
+        .sm\:hidden {
+            display: inline-block;
+            float: right;
+            padding: 20px;
+            font-size: 14px !important;
+        }
+
+        .flex {
+            position: relative;
+            float: right;
+        }
+
+        .relative {
+            font-size: 14px;
+
         }
     </style>
 @section('script')

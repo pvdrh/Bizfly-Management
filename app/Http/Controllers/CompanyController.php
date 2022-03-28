@@ -25,7 +25,7 @@ class CompanyController extends Controller
             $query->where('name', 'LIKE', "%" . $request->input('search') . "%");
             $com_name = $request->input('search');
         }
-        $companies = $query->get();
+        $companies = $query->paginate(10);
         return view('companies.index')->with([
             'companies' => $companies,
             'com_name' => $com_name
