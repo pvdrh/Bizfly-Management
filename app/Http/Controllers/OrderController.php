@@ -237,12 +237,7 @@ class OrderController extends Controller
             $orders = Order::get();
         } else {
             $user_code = Auth::user()->info->code;
-            $customers = Customer::where(['employee_code' => $user_code])->get();
-            $customer_id = [];
-            foreach ($customers as $customer) {
-                $customer_id[] = $customer->_id;
-            }
-            $orders = Order::whereIn('customer_id', $customer_id)->get();
+            $orders = Order::where(['employee_code' => $user_code])->get();
         }
         return Excel::download(new OrdersExport($orders), 'Danh sách đơn hàng.xlsx');
     }
@@ -318,8 +313,18 @@ class OrderController extends Controller
     public function deleteAll(Request $request)
     {
         try {
-            $ids = $request->ids;
-            Order::whereIn('_id', explode(",", $ids))->delete();
+            if ($request->ids) {
+                $ids = $request->ids;
+                $idsArr = explode(",", $ids);
+            }
+            if (!empty($idsArr)) {
+                Order::whereIn('_id', $idsArr)->delete();
+            } else if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
+                Order::query()->delete();
+            } else {
+                $user_code = Auth::user()->info->code;
+                Order::where(['employee_code' => $user_code])->delete();
+            }
 
             Session::flash('success', 'Xóa thành công!');
         } catch (Exception $e) {

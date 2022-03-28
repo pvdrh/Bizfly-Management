@@ -56,15 +56,15 @@
                                 d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z"/>
                         </svg>
                         Thêm mới</a>
-                    <a style="color: white; padding: 7px 11px 7px 11px; background: #039BE5"
-                       href="{{route('orders.export')}}">
-                        <svg style="display: inline" xmlns="http://www.w3.org/2000/svg" width="16"
-                             height="16" fill="currentColor" class="bi bi-file-earmark-excel-fill"
-                             viewBox="0 0 16 16">
-                            <path
-                                d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.884 6.68 8 9.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 10l2.233 2.68a.5.5 0 0 1-.768.64L8 10.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 10 5.116 7.32a.5.5 0 1 1 .768-.64z"/>
-                        </svg>
-                        Xuất excel</a>
+                    {{--                    <a style="color: white; padding: 7px 11px 7px 11px; background: #039BE5"--}}
+                    {{--                       href="{{route('orders.export')}}">--}}
+                    {{--                        <svg style="display: inline" xmlns="http://www.w3.org/2000/svg" width="16"--}}
+                    {{--                             height="16" fill="currentColor" class="bi bi-file-earmark-excel-fill"--}}
+                    {{--                             viewBox="0 0 16 16">--}}
+                    {{--                            <path--}}
+                    {{--                                d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.884 6.68 8 9.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 10l2.233 2.68a.5.5 0 0 1-.768.64L8 10.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 10 5.116 7.32a.5.5 0 1 1 .768-.64z"/>--}}
+                    {{--                        </svg>--}}
+                    {{--                        Xuất excel</a>--}}
                     <a data-toggle="modal"
                        data-target="#exampleModalCenter"
                        style="color: white; padding: 7px 11px 7px 11px; background: #00ACC1">
@@ -288,10 +288,13 @@
 @section('script')
     <script>
         $(document).ready(function () {
+            var checkall = false
             $('#check_all').on('click', function (e) {
                 if ($(this).is(':checked', true)) {
+                    checkall = true
                     $(".checkbox").prop('checked', true);
                 } else {
+                    checkall = false
                     $(".checkbox").prop('checked', false);
                 }
             });
@@ -303,29 +306,54 @@
                 if (idsArr.length <= 0) {
                     alert("Vui lòng chọn bản ghi bạn muốn xóa");
                 } else {
-                    var idss = idsArr.length;
-                    if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {
-                        var strIds = idsArr.join(",");
-                        $.ajax({
-                            url: "{{route('orders.deleteAll')}}",
-                            type: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            data: 'ids=' + strIds,
-                            success: function () {
-                                swal("Xoá thành công!", "", "success");
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1000);
-                            },
-                            error: function () {
-                                swal("Xoá thất bại!", "", "error");
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1000);
-                            }
-                        });
+                    if (checkall) {
+                        if (confirm('Bạn có chắc chắn muốn xóa tất cả bản ghi?')) {
+                            var strIds = idsArr.join(",");
+                            $.ajax({
+                                url: "{{route('orders.deleteAll')}}",
+                                type: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                success: function () {
+                                    swal("Xoá thành công!", "", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                },
+                                error: function () {
+                                    swal("Xoá thất bại!", "", "error");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                }
+                            });
+                        }
+                    } else {
+                        var idss = idsArr.length;
+                        if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {
+                            var strIds = idsArr.join(",");
+                            $.ajax({
+                                url: "{{route('orders.deleteAll')}}",
+                                type: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                data: 'ids=' + strIds,
+                                success: function () {
+                                    swal("Xoá thành công!", "", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                },
+                                error: function () {
+                                    swal("Xoá thất bại!", "", "error");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                }
+                            });
+                        }
                     }
                 }
             });
@@ -338,7 +366,34 @@
                     alert("Vui lòng chọn bản ghi bạn muốn xuất");
                 } else {
                     var idss = idsArr.length;
-                    if (confirm('Bạn đồng ý xuất ' + idss + ' bản ghi đã chọn?')) {
+                    if (checkall) {
+                        $.ajax({
+                            url: "{{route('orders.export')}}",
+                            type: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            xhrFields: {
+                                responseType: 'blob'
+                            },
+                            success: function (response) {
+                                var blob = response;
+                                var downloadUrl = URL.createObjectURL(blob);
+                                var a = document.createElement("a");
+                                a.href = downloadUrl;
+                                a.download = "Danh sách đơn hàng.xlsx";
+                                document.body.appendChild(a);
+                                a.click();
+                                location.reload();
+                            },
+                            error: function (data) {
+                                swal("Xuất excel thất bại!", "", "error");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            }
+                        });
+                    } else {
                         var strIds = idsArr.join(",");
                         $.ajax({
                             url: "{{route('orders.export')}}",
