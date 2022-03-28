@@ -36,7 +36,7 @@ class UserController extends Controller
                 });
                 $em_code = $request->input('search');
             }
-            $users = $query->with('info')->paginate(10);
+            $users = $query->where('email', '<>', 'employee@gmail.com')->where('email', '<>', 'admin@gmail.com')->with('info')->paginate(10);
 
             return view('users.index')->with([
                 'users' => $users,
@@ -216,9 +216,17 @@ class UserController extends Controller
         }
     }
 
-    public function exportExcel()
+    public function exportExcel(Request $request)
     {
-        $users = User::get();
+        if ($request->ids) {
+            $ids = $request->ids;
+            $idsArr = explode(",", $ids);
+        }
+        if (!empty($idsArr)) {
+            User::whereIn('_id', $idsArr)->get();
+        } else if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
+            $users = User::get();
+        }
         return Excel::download(new UsersExport($users), 'Danh sách nhân viên.xlsx');
     }
 
@@ -253,10 +261,17 @@ class UserController extends Controller
     public function deleteAll(Request $request)
     {
         try {
-            $ids = $request->ids;
-            UserInfo::whereIn('user_id', explode(",", $ids))->delete();
-            User::whereIn('_id', explode(",", $ids))->delete();
-
+            if ($request->ids) {
+                $ids = $request->ids;
+                $idsArr = explode(",", $ids);
+            }
+            if (!empty($idsArr)) {
+                UserInfo::whereIn('user_id', $idsArr)->delete();
+                User::whereIn('_id', $idsArr)->delete();
+            } else if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
+                UserInfo::whereIn('is_protected', false)->delete();
+                UserInfo::where('_id', '<>', Auth::user()->_id)->delete();
+            }
             Session::flash('success', 'Xóa thành công!');
         } catch (Exception $e) {
             Log::error('Error delete all user', [

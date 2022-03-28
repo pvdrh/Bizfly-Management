@@ -383,7 +383,6 @@
                 if (idsArr.length <= 0) {
                     alert("Vui lòng chọn bản ghi bạn muốn xuất");
                 } else {
-                    var idss = idsArr.length;
                     if (checkall) {
                         $.ajax({
                             url: "{{route('customers.export')}}",
@@ -395,9 +394,8 @@
                                 responseType: 'blob'
                             },
                             success: function (response) {
-                                var blob = response;
-                                var downloadUrl = URL.createObjectURL(blob);
-                                var a = document.createElement("a");
+                                let downloadUrl = URL.createObjectURL(response);
+                                let a = document.createElement("a");
                                 a.href = downloadUrl;
                                 a.download = "Danh sách khách hàng.xlsx";
                                 document.body.appendChild(a);
