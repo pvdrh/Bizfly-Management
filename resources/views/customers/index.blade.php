@@ -37,6 +37,14 @@
                                         d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                 </svg>
                                 Xóa bản ghi đã chọn</a>
+                            <a style="color: green" class="export-checkbox">
+                                <svg style="display: inline" xmlns="http://www.w3.org/2000/svg" width="16"
+                                     height="16" fill="currentColor" class="bi bi-file-earmark-excel-fill"
+                                     viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.884 6.68 8 9.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 10l2.233 2.68a.5.5 0 0 1-.768.64L8 10.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 10 5.116 7.32a.5.5 0 1 1 .768-.64z"/>
+                                </svg>
+                                Xuất bản ghi đã chọn</a>
                         </div>
                     </div>
                     <a style="color: white; padding: 7px 11px 7px 11px; background: #43A047"
@@ -164,7 +172,15 @@
                             </tbody>
                         </table>
                     </div>
-                    {!! $customers->links() !!}
+                    <div style="padding: 10px" class="card-footer clearfix">
+                        <div class="col-lg-3">
+                            <span
+                                style="font-size: 14px">Số bản ghi / trang: {{$customers->count()}}</span>
+                        </div>
+                        <div class="col-lg-9">
+                            {{ $customers->links('pagination::bootstrap-4') }}
+                        </div>
+                    </div>
                 @else
                     <div style="display: flex; justify-content: center">
                         <img style="width: 50%; height: 50%" src="backend/dist/img/social-default.jpg">
@@ -247,21 +263,9 @@
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
-        .sm\:hidden {
-            display: inline-block;
+
+        .pagination {
             float: right;
-            padding: 20px;
-            font-size: 14px !important;
-        }
-
-        .flex {
-            position: relative;
-            float: right;
-        }
-
-        .relative {
-            font-size: 14px;
-
         }
     </style>
 @section('script')
@@ -335,6 +339,38 @@
                             },
                             error: function () {
                                 swal("Xoá thất bại!", "", "error");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            }
+                        });
+                    }
+                }
+            });
+            $('.export-checkbox').on('click', function (e) {
+                var idsArr = [];
+                $(".checkbox:checked").each(function () {
+                    idsArr.push($(this).attr('data-id'));
+                });
+                console.log(idsArr)
+                if (idsArr.length <= 0) {
+                    alert("Vui lòng chọn bản ghi bạn muốn xuất");
+                } else {
+                    var idss = idsArr.length;
+                    if (confirm('Bạn đồng ý xuất ' + idss + ' bản ghi đã chọn?')) {
+                        var strIds = idsArr.join(",");
+                        $.ajax({
+                            url: "{{route('customers.export')}}",
+                            type: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: 'ids=' + strIds,
+                            success: function () {
+                                console.log("Ok")
+                            },
+                            error: function (data) {
+                                swal("Xuất excel thất bại!", "", "error");
                                 setTimeout(function () {
                                     location.reload();
                                 }, 1000);

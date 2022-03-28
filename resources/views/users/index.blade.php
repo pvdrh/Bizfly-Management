@@ -95,64 +95,73 @@
                             </thead>
                             <tbody>
                             @foreach($users as $user)
-                                <tr>
-                                    <td>@if(!$user->info->is_protected)
+                                @if(!$user->info->is_protected)
+                                    <tr>
+                                        <td>
                                             <input type="checkbox" name="user_id[]"
                                                    class="checkbox"
                                                    data-id="{{$user->_id}}">
-                                        @endif</td>
-                                    @if($user->info)
-                                        <td style="font-weight: bold">{{$user->info->code}}</td>
-                                        <td>{{$user->info->name}}</td>
-                                    @endif
-                                    <td>{{$user->email}}</td>
-                                    @if($user->info)
-                                        <td>{{$user->info->phone}}</td>
-                                        <td>{{$user->info->address}}</td>
-                                        @if($user->info->role == 1)
-                                            <td>Nhân viên</td>
-                                        @else
-                                            <td>Admin</td>
-                                        @endif
-                                    @endif
-                                    @if(!$user->info->is_protected)
-                                        <td class="text-center">
-                                            <ul class="icons-list">
-                                                <li class="dropdown">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                        <i class="icon-menu9"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li>
-                                                            <a style="color: #546E7A"
-                                                               href="{{ route('users.edit',$user['_id']) }}"
-                                                               type="submit">
-                                                                <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a data-toggle="modal" data-target="#exampleModal"
-                                                               type="submit">
-                                                                <i class="fa fa-btn fa-key"></i>Đặt lại mật khẩu
-                                                            </a>
-                                                        </li>
-                                                        <li data-id="{{$user['_id']}}" class="delete-card"><a
-                                                                style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #E53935"
-                                                            ><i
-                                                                    class="fa fa-btn fa-trash"></i>
-                                                                Xoá
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
                                         </td>
-                                    @endif
-                                </tr>
+                                        @if($user->info)
+                                            <td style="font-weight: bold">{{$user->info->code}}</td>
+                                            <td>{{$user->info->name}}</td>
+                                        @endif
+                                        <td>{{$user->email}}</td>
+                                        @if($user->info)
+                                            <td>{{$user->info->phone}}</td>
+                                            <td>{{$user->info->address}}</td>
+                                            @if($user->info->role == 1)
+                                                <td>Nhân viên</td>
+                                            @else
+                                                <td>Admin</td>
+                                            @endif
+                                        @endif
+                                        @if(!$user->info->is_protected)
+                                            <td class="text-center">
+                                                <ul class="icons-list">
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                            <i class="icon-menu9"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu">
+                                                            <li>
+                                                                <a style="color: #546E7A"
+                                                                   href="{{ route('users.edit',$user['_id']) }}"
+                                                                   type="submit">
+                                                                    <i class="fa fa-btn fa-edit"></i>Chỉnh Sửa
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-toggle="modal" data-target="#exampleModal"
+                                                                   type="submit">
+                                                                    <i class="fa fa-btn fa-key"></i>Đặt lại mật khẩu
+                                                                </a>
+                                                            </li>
+                                                            <li data-id="{{$user['_id']}}" class="delete-card"><a
+                                                                    style="padding-left: 15px;padding-bottom: 10px;padding-top: 5px; color: #E53935"
+                                                                ><i
+                                                                        class="fa fa-btn fa-trash"></i>
+                                                                    Xoá
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endif
                             @endforeach
                             </tbody>
                         </table>
-                        {!! $users->links() !!}
+                        <div style="padding: 10px" class="card-footer clearfix">
+                            <div class="col-lg-3">
+                                <span style="font-size: 14px">Số bản ghi / trang: {{$users->count()}}</span>
+                            </div>
+                            <div class="col-lg-9">
+                                {{ $users->links('pagination::bootstrap-4') }}
+                            </div>
+                        </div>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -257,21 +266,8 @@
             background-color: #3e8e41;
         }
 
-        .sm\:hidden {
-            display: inline-block;
+        .pagination {
             float: right;
-            padding: 20px;
-            font-size: 14px !important;
-        }
-
-        .flex {
-            position: relative;
-            float: right;
-        }
-
-        .relative {
-            font-size: 14px;
-
         }
     </style>
 @section('script')

@@ -230,9 +230,13 @@ class CustomerController extends Controller
         return redirect()->route('customers.index');
     }
 
-    public function exportExcel()
+    public function exportExcel(Request $request)
     {
-        if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
+        $ids = $request->ids;
+        $idsArr = explode(",", $ids);
+        if (!empty($idsArr)) {
+            $customers = Customer::whereIn('_id', $idsArr)->get();
+        } else if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
             $customers = Customer::get();
         } else {
             $user_code = Auth::user()->info->code;
@@ -248,43 +252,24 @@ class CustomerController extends Controller
             $customers = $customers[0];
             if (count($customers)) {
                 foreach ($customers as $key => $customer) {
-                    $query = User::query();
-//                    $cus = (string)$customer[8];
-//                    if (($cus) && strlen($cus) > 1) {
-//                        if (is_array($customer[8])) {
-//                            if (!empty($cus) && count($cus) > 0) {
-//                                $query->whereHas('info', function ($qr) use ($cus) {
-//                                    $qr->whereIn('code', $cus);
-//                                });
-//                            }
-//                        } else {
-//                            if ($cus) {
-//                                $query->whereHas('info', function ($qr) use ($cus) {
-//                                    $qr->where(['code' => $cus]);
-//                                });
-//                            }
-//                        }
-                    $user = $query->get();
-//                        if (count($user) > 0) {
-                    $newCustomer = new Customer();
-                    $newCustomer->name = $customer[0];
-                    $newCustomer->email = $customer[1];
-                    $newCustomer->phone = $customer[2];
-                    $newCustomer->age = $customer[3];
-                    $newCustomer->job = $customer[4];
-                    $newCustomer->address = $customer[5];
-                    $newCustomer->gender = $customer[6];
-                    $newCustomer->customer_type = $customer[7];
-//                            $newCustomer->employee_code = (string)$customer[8];
-                    $newCustomer->save();
+                    $email = (string)$customer[1];
+                    $phone = $customer[2];
+                    $emailCus = Customer::where('email', $email)->get();
+                    $phoneCus = Customer::where('phone', $phone)->get();
+                    if (!(count($emailCus) > 0 && strlen($phoneCus) > 0)) {
+                        $newCustomer = new Customer();
+                        $newCustomer->name = $customer[0];
+                        $newCustomer->email = $customer[1];
+                        $newCustomer->phone = $customer[2];
+                        $newCustomer->age = $customer[3];
+                        $newCustomer->job = $customer[4];
+                        $newCustomer->address = $customer[5];
+                        $newCustomer->gender = $customer[6];
+                        $newCustomer->customer_type = $customer[7];
+                        $newCustomer->save();
 
-                    Session::flash('success', 'Thêm mới thành công!');
-//                        } else {
-//                            Session::flash('error', 'Mã nhân viên không tồn tại!');
-//                        }
-//                    } else {
-//                        Session::flash('error', 'Mã nhân viên không được để trống!');
-//                    }
+                        Session::flash('success', 'Thêm mới thành công!');
+                    }
                 }
             }
         } catch (Exception $e) {

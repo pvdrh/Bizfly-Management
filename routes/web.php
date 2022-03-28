@@ -111,7 +111,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('customers.index');
         Route::get('/create', [CustomerController::class, 'create'])
             ->name('customers.create');
-        Route::get('/export-excel', [CustomerController::class, 'exportExcel'])
+        Route::any('/export-excel', [CustomerController::class, 'exportExcel'])
             ->name('customers.export');
         Route::get('/export-excel-sample', [CustomerController::class, 'exportExcelSample'])
             ->name('customers.export-sample');

@@ -37,6 +37,7 @@ class UserController extends Controller
                 $em_code = $request->input('search');
             }
             $users = $query->with('info')->paginate(10);
+
             return view('users.index')->with([
                 'users' => $users,
                 'em_code' => $em_code
