@@ -225,9 +225,15 @@ class OrderController extends Controller
         return redirect()->route('orders.index');
     }
 
-    public function exportExcel()
+    public function exportExcel(Request $request)
     {
-        if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
+        if ($request->ids) {
+            $ids = $request->ids;
+            $idsArr = explode(",", $ids);
+        }
+        if (!empty($idsArr)) {
+            $orders = Order::whereIn('_id', $idsArr)->get();
+        } else if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
             $orders = Order::get();
         } else {
             $user_code = Auth::user()->info->code;
@@ -259,32 +265,32 @@ class OrderController extends Controller
                 foreach ($orders as $key => $order) {
                     $oldOrder = Order::where('code', $order[0])->count();
 //                    if ($oldOrder == 0) {
-                        if (strlen($order[2]) > 0) {
-                            $customer = Customer::find($order[2]);
-                            if ($customer) {
-                                $newOrder = new Order();
+                    if (strlen($order[2]) > 0) {
+                        $customer = Customer::find($order[2]);
+                        if ($customer) {
+                            $newOrder = new Order();
 //                                if (strlen($order[0]) < 6) {
-                                    $newOrder->code = 'DH' . rand(1000, 9999);
+                            $newOrder->code = 'DH' . rand(1000, 9999);
 //                                } else {
 //                                    $newOrder->code = $order[0];
 //                                }
-                                if (empty($order[0])) {
-                                    $newOrder->status = Order::STATUS['0'];
-                                } else {
-                                    $newOrder->status = $order[0];
-                                }
-                                $newOrder->note = $order[1] ? $order[1] : '';
-                                $newOrder->customer_id = $order[2];
-                                $newOrder->total = $order[3];
-                                $newOrder->save();
-
-                                Session::flash('success', 'Thêm mới thành công!');
+                            if (empty($order[0])) {
+                                $newOrder->status = Order::STATUS['0'];
                             } else {
-                                Session::flash('error', 'Mã khách hàng không tồn tại!');
+                                $newOrder->status = $order[0];
                             }
+                            $newOrder->note = $order[1] ? $order[1] : '';
+                            $newOrder->customer_id = $order[2];
+                            $newOrder->total = $order[3];
+                            $newOrder->save();
+
+                            Session::flash('success', 'Thêm mới thành công!');
                         } else {
-                            Session::flash('error', 'Mã khách hàng không được để trống!');
+                            Session::flash('error', 'Mã khách hàng không tồn tại!');
                         }
+                    } else {
+                        Session::flash('error', 'Mã khách hàng không được để trống!');
+                    }
 //                    } else {
 //                        Session::flash('error', 'Mã đơn hàng đã tồn tại!');
 //                    }

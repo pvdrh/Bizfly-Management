@@ -143,7 +143,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('orders.store');
         Route::post('/deleteAll', [OrderController::class, 'deleteAll'])
             ->name('orders.deleteAll');
-        Route::get('/export-excel', [OrderController::class, 'exportExcel'])
+        Route::any('/export-excel', [OrderController::class, 'exportExcel'])
             ->name('orders.export');
         Route::get('/export-excel-sample', [OrderController::class, 'exportExcelSample'])
             ->name('orders.export-sample');
