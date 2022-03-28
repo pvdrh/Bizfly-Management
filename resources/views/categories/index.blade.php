@@ -269,6 +269,11 @@
         });
     </script>
     <script>
+        function myFunction() {
+            document.getElementsByClassName("example").innerHTML = "Xin chào JavaScript!";
+        }
+    </script>
+    <script>
         @if(Session::has('success'))
         toastr.success('{{ Session::get('success') }}');
         @elseif(Session::has('error'))

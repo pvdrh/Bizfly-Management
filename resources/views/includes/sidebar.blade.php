@@ -49,7 +49,7 @@
                             <li class="{{ request()->is('categories/create') ? 'active' : '' }}"><a
                                     href="{{route('categories.create')}}" id="layout1">Thêm mới</a></li>
                             <li style="display: none"
-                                class="{{ request()->is('categories/update/*') ? 'active' : '' }}"><a
+                                class="{{ request()->is('categories/edit/*') ? 'active' : '' }}"><a
                                 >Thêm mới</a></li>
                         </ul>
                     </li>
@@ -69,7 +69,7 @@
                                     href="{{route('customers.index')}}">Danh sách</a></li>
                             <li class="{{ request()->is('customers/create') ? 'active' : '' }}"><a
                                     href="{{route('customers.create')}}">Thêm mới</a></li>
-                            <li style="display: none" class="{{ request()->is('customers/update/*') ? 'active' : '' }}">
+                            <li style="display: none" class="{{ request()->is('customers/edit/*') ? 'active' : '' }}">
                                 <a
                                 >Thêm mới</a></li>
                             <li style="display: none" class="{{ request()->is('customers/show/*') ? 'active' : '' }}"><a
@@ -86,7 +86,7 @@
                                     href="{{route('companies.index')}}">Danh sách</a></li>
                             <li class="{{ request()->is('companies/create') ? 'active' : '' }}"><a
                                     href="{{route('companies.create')}}">Thêm mới</a></li>
-                            <li style="display: none" class="{{ request()->is('companies/update/*') ? 'active' : '' }}">
+                            <li style="display: none" class="{{ request()->is('companies/edit/*') ? 'active' : '' }}">
                                 <a
                                 >Thêm mới</a></li>
                         </ul>
