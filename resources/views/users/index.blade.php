@@ -347,7 +347,7 @@
             var checkAll = false;
             $('#check_all').on('click', function (e) {
                 if ($(this).is(':checked', true)) {
-                   checkAll = true;
+                    checkAll = true;
                     $(".checkbox").prop('checked', true);
                 } else {
                     checkAll = false;
@@ -461,9 +461,8 @@
                                 responseType: 'blob'
                             },
                             success: function (response) {
-                                var blob = response;
-                                var downloadUrl = URL.createObjectURL(blob);
-                                var a = document.createElement("a");
+                                let downloadUrl = URL.createObjectURL(response);
+                                let a = document.createElement("a");
                                 a.href = downloadUrl;
                                 a.download = "Danh sách nhân viên.xlsx";
                                 document.body.appendChild(a);
