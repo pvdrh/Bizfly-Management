@@ -104,8 +104,10 @@
                                     >Thêm mới</a></li>
                             </ul>
                         </li>
-                @endif
-                <!-- /main -->
+                    @endif
+                    <li class="{{ request()->is('support') ? 'active' : '' }}"><a href="{{route('support')}}"><i
+                                class="icon-lifebuoy"></i> <span>Hướng dẫn sử dụng</span></a></li>
+                    <!-- /main -->
                 </ul>
             </div>
         </div>

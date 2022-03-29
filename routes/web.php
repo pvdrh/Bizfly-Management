@@ -28,6 +28,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/support', [DashboardController::class, 'support'])->name('support');
 
     //Quản lý sản phẩm
     Route::group(['prefix' => 'products'], function () {

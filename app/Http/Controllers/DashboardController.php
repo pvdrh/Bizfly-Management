@@ -36,4 +36,8 @@ class DashboardController extends Controller
             'customers' => $customers
         ]);
     }
+
+    public function support(){
+        return view('support');
+    }
 }
