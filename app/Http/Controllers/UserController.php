@@ -223,9 +223,9 @@ class UserController extends Controller
             $idsArr = explode(",", $ids);
         }
         if (!empty($idsArr)) {
-            User::whereIn('_id', $idsArr)->get();
+            $users = User::whereIn('_id', $idsArr)->get();
         } else if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
-            $users = User::get();
+            $users = User::where('email', '<>', 'admin@gmail.com')->where('email', '<>', 'employee@gmail.com')->get();
         }
         return Excel::download(new UsersExport($users), 'Danh sách nhân viên.xlsx');
     }

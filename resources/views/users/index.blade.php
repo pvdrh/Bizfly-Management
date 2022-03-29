@@ -421,7 +421,6 @@
                     alert("Vui lòng chọn bản ghi bạn muốn xuất");
                 } else {
                     if (checkAll) {
-                        console.log("abbbb")
                         $.ajax({
                             url: "{{route('users.export')}}",
                             type: 'POST',
@@ -448,8 +447,7 @@
                             }
                         });
                     } else {
-                        let strIds = idsArr.join(",");
-                        console.log(strIds)
+                        var strIds = idsArr.join(",");
                         $.ajax({
                             url: "{{route('users.export')}}",
                             type: 'POST',
@@ -464,12 +462,13 @@
                                 let downloadUrl = URL.createObjectURL(response);
                                 let a = document.createElement("a");
                                 a.href = downloadUrl;
-                                a.download = "Danh sách nhân viên.xlsx";
+                                a.download = "Danh sách đơn hàng.xlsx";
                                 document.body.appendChild(a);
                                 a.click();
                                 location.reload();
                             },
                             error: function (data) {
+                                console.log("ERROR")
                                 swal("Xuất excel thất bại!", "", "error");
                                 setTimeout(function () {
                                     location.reload();
