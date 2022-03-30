@@ -38,13 +38,6 @@
                             ye friends is exposed equally in. Ignorant had too strictly followed. Astonished as
                             travelling assistance or unreserved oh pianoforte ye. Five with seen put need tore add neat.
                         </div>
-
-                        <div class="panel-footer panel-footer-transparent">
-                            <ul>
-                                <li class="text-muted">Latest update: May 25, 2015</li>
-                            </ul>
-
-                        </div>
                     </div>
                 </div>
 
@@ -64,12 +57,6 @@
                             the merit. In it do continual consulted no listening. Devonshire sir sex motionless
                             travelling six themselves. So colonel as greatly shewing herself observe ashamed.
                         </div>
-
-                        <div class="panel-footer panel-footer-transparent">
-                            <ul>
-                                <li class="text-muted">Latest update: May 22, 2015</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
 
@@ -88,12 +75,6 @@
                             hold an want as he bred of. Was dashwood landlord cheerful husbands two. Estate why theirs
                             indeed him polite old settle though she. In as at regard easily narrow roused adieus.
                             Parlors visited noisier how explain pleased his see suppose. He oppose at thrown desire.
-                        </div>
-
-                        <div class="panel-footer panel-footer-transparent">
-                            <ul>
-                                <li class="text-muted">Latest update: May 12, 2015</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
