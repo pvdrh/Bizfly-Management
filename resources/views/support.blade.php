@@ -33,10 +33,30 @@
 
                     <div id="question1" class="panel-collapse collapse">
                         <div class="panel-body">
-                            She exposed painted fifteen are noisier mistake led waiting. Surprise not wandered speedily
-                            husbands although yet end. Are court tiled cease young built fat one man taken. We highest
-                            ye friends is exposed equally in. Ignorant had too strictly followed. Astonished as
-                            travelling assistance or unreserved oh pianoforte ye. Five with seen put need tore add neat.
+                            <h4 style="font-weight: bold">Trạng thái đơn hàng</h4>
+                            <div style="padding: 20px">
+                                <img src="{{ URL::to('assets/images/pending.png') }}">
+                                <p><span style="font-weight: bold">Chờ duyệt:</span> đơn hàng vừa tạo có thể duyệt đơn hoặc hủy đơn.</p>
+                            </div>
+                            <hr>
+                            <div style="padding: 20px">
+                                <img src="{{ URL::to('assets/images/cancel.png') }}">
+                                <p><span style="font-weight: bold">Đã hủy:</span> đơn hàng ở trạng thái đang chờ đã bị hủy. Đơn hàng đã hủy không thể thay đổi trạng thái.</p>
+                            </div>
+                            <hr>
+                            <div style="padding: 20px">
+                                <img src="{{ URL::to('assets/images/approve.png') }}">
+                                <p><span style="font-weight: bold">Đã duyệt:</span> đơn hàng ở trạng thái đang chờ đã được duyệt. Đơn hàng đã duyệt có thể chuyển sang trạng thái hoàn đơn.</p>
+                            </div>
+                            <hr>
+                            <div style="padding: 20px">
+                                <img src="{{ URL::to('assets/images/return.png') }}">
+                                <p><span style="font-weight: bold">Đã hoàn:</span> đơn hàng từ trạng thái đã duyệt bị hoàn trả. Đơn hàng đã hoàn không thể thay đổi trạng thái.</p>
+                            </div>
+                            <br>
+                            <h4 style="font-weight: bold">Nhập file excel</h4>
+                            <p>File excel tải lên cần phải theo mẫu</p>
+                            <p style="font-size: 14px"><i>Lưu ý: Mã khách hàng không được để trống</i></p>
                         </div>
                     </div>
                 </div>

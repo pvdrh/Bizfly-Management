@@ -119,7 +119,7 @@
                                         {{--                                        Chuyển trạng thái đơn hàng--}}
                                         @if($order->status == 0)
                                             <td style="text-align: center">
-                                                <a style="width: 125px"
+                                                <a style="width: 125px; margin-bottom: 10px"
                                                    href="{{route('orders.accept', $order->_id)}}"
                                                    type="submit"
                                                    class="btn btn-success">
@@ -220,6 +220,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <hr>
                     <div class="modal-body">
                         <p>Tải file excel mẫu <a href="{{route('orders.export-sample')}}"><u style="color: #4974b4">tại
                                     đây</u></a></p>

@@ -60,7 +60,7 @@
                                         {{--                                        Chuyển trạng thái đơn hàng--}}
                                         @if($order->status == 0)
                                             <td style="text-align: center">
-                                                <a style="width: 125px"
+                                                <a style="width: 125px; margin-bottom: 10px"
                                                    href="{{route('orders.accept', $order->_id)}}"
                                                    type="submit"
                                                    class="btn btn-success">
