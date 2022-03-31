@@ -203,6 +203,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <hr>
                     <div class="modal-body">
                         <p>Tải file excel mẫu <a href="{{route('customers.export-sample')}}"><u
                                     style="color: #4974b4">tại đây</u></a></p>
@@ -212,6 +213,8 @@
                                 <div id="list_file"></div>
                             </div>
                         </div>
+                        <br>
+                        <p style="font-size: 14px"><i>Lưu ý: Nếu bản ghi có Email hoặc SĐT đã tồn tại trong hệ thống sẽ không được thêm mới.</i></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>

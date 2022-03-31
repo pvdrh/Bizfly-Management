@@ -230,6 +230,8 @@
                                 <div id="list_file"></div>
                             </div>
                         </div>
+                        <br>
+                        <p style="font-size: 14px"><i>Lưu ý: Mã khách hàng không được để trống</i></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
