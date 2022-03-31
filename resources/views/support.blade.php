@@ -36,46 +36,31 @@
                             <h4 style="font-weight: bold">Trạng thái đơn hàng</h4>
                             <div style="padding: 20px">
                                 <img src="{{ URL::to('assets/images/pending.png') }}">
-                                <p><span style="font-weight: bold">Chờ duyệt:</span> đơn hàng vừa tạo có thể duyệt đơn hoặc hủy đơn.</p>
+                                <p><span style="font-weight: bold">Chờ duyệt:</span> đơn hàng vừa tạo có thể duyệt đơn
+                                    hoặc hủy đơn.</p>
                             </div>
                             <hr>
                             <div style="padding: 20px">
                                 <img src="{{ URL::to('assets/images/cancel.png') }}">
-                                <p><span style="font-weight: bold">Đã hủy:</span> đơn hàng ở trạng thái đang chờ đã bị hủy. Đơn hàng đã hủy không thể thay đổi trạng thái.</p>
+                                <p><span style="font-weight: bold">Đã hủy:</span> đơn hàng ở trạng thái đang chờ đã bị
+                                    hủy. Đơn hàng đã hủy không thể thay đổi trạng thái.</p>
                             </div>
                             <hr>
                             <div style="padding: 20px">
                                 <img src="{{ URL::to('assets/images/approve.png') }}">
-                                <p><span style="font-weight: bold">Đã duyệt:</span> đơn hàng ở trạng thái đang chờ đã được duyệt. Đơn hàng đã duyệt có thể chuyển sang trạng thái hoàn đơn.</p>
+                                <p><span style="font-weight: bold">Đã duyệt:</span> đơn hàng ở trạng thái đang chờ đã
+                                    được duyệt. Đơn hàng đã duyệt có thể chuyển sang trạng thái hoàn đơn.</p>
                             </div>
                             <hr>
                             <div style="padding: 20px">
                                 <img src="{{ URL::to('assets/images/return.png') }}">
-                                <p><span style="font-weight: bold">Đã hoàn:</span> đơn hàng từ trạng thái đã duyệt bị hoàn trả. Đơn hàng đã hoàn không thể thay đổi trạng thái.</p>
+                                <p><span style="font-weight: bold">Đã hoàn:</span> đơn hàng từ trạng thái đã duyệt bị
+                                    hoàn trả. Đơn hàng đã hoàn không thể thay đổi trạng thái.</p>
                             </div>
                             <br>
                             <h4 style="font-weight: bold">Nhập file excel</h4>
-                            <p>File excel tải lên cần phải theo mẫu</p>
-                            <p style="font-size: 14px"><i>Lưu ý: Mã khách hàng không được để trống</i></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-white">
-                    <div class="panel-heading">
-                        <h6 class="panel-title">
-                            <a class="collapsed" data-toggle="collapse" href="#question2">
-                                <i class="icon-help position-left text-slate"></i> Chức Vụ
-                            </a>
-                        </h6>
-                    </div>
-
-                    <div id="question2" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            There worse by an of miles civil. Manner before lively wholly am mr indeed expect. Among
-                            every merry his yet has her. You mistress get dashwood children off. Met whose marry under
-                            the merit. In it do continual consulted no listening. Devonshire sir sex motionless
-                            travelling six themselves. So colonel as greatly shewing herself observe ashamed.
+                            <p>File excel tải lên cần phải theo mẫu.</p>
+                            <p style="font-size: 14px"><i>Lưu ý: Mã khách hàng không được để trống.</i></p>
                         </div>
                     </div>
                 </div>
@@ -91,14 +76,36 @@
 
                     <div id="question3" class="panel-collapse collapse">
                         <div class="panel-body">
-                            Do ashamed assured on related offence at equally totally. Use mile her whom they its. Kept
-                            hold an want as he bred of. Was dashwood landlord cheerful husbands two. Estate why theirs
-                            indeed him polite old settle though she. In as at regard easily narrow roused adieus.
-                            Parlors visited noisier how explain pleased his see suppose. He oppose at thrown desire.
+                            <h4 style="font-weight: bold">Nhập file excel</h4>
+                            <p>File excel tải lên cần phải theo mẫu.</p>
+                            <p style="font-size: 14px"><i>Lưu ý: Nếu email và số điện thoại đã tồn tại trong hệ thống sẽ không được thêm mới.</i></p>
                         </div>
                     </div>
                 </div>
 
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" href="#question2">
+                                <i class="icon-help position-left text-slate"></i> Chức Vụ
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="question2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul>
+                                <li><span style="font-weight: bold">Admin:</span> Có toàn quyền truy cập các chức năng,
+                                    xem thông tin tất cả khách hàng và đơn hàng.
+                                </li>
+                                <li><span style="font-weight: bold">Nhân viên:</span> Không có quyền truy cập các chức
+                                    năng Quản lý nhân viên, chỉ xem được thông tin khách hàng và đơn hàng mà mình hỗ
+                                    trợ.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
