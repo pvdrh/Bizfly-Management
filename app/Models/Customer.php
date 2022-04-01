@@ -15,6 +15,7 @@ class Customer extends Model
         'company_id',
         'job',
         'customer_type',
+        'employee_code',
         'user_id'
     ];
 
@@ -26,5 +27,10 @@ class Customer extends Model
     public function users()
     {
         $this->belongsToMany(User::class);
+    }
+
+    public function company()
+    {
+        return $this->hasOne(Company::class, 'company_id', '_id');
     }
 }

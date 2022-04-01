@@ -131,11 +131,61 @@
                         </table>
                     </div>
                 @else
+                    <div style="display: flex; justify-content: center">
+                        <img style="width: 50%; height: 50%" src="{{ URL::to('backend/dist/img/social-default.jpg') }}">
+                    </div>
                     <h4 style="text-align: center; padding-bottom: 50px">Không có dữ liệu</h4>
                 @endif
             </div>
         </div>
     </div>
+    <style>
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 180px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+        .pagination {
+            float: right;
+        }
+    </style>
 @section('script')
     <script>
         @if(Session::has('success'))

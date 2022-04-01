@@ -343,7 +343,6 @@
                         }
                     } else {
                         if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {
-                            console.log("Ok")
                             var strIds = idsArr.join(",");
                             $.ajax({
                                 url: "{{route('customers.deleteAll')}}",

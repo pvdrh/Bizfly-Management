@@ -19,8 +19,11 @@
         <div class="bg-white shadow overflow-hidden sm:rounded-lg">
             <div style="padding: 20px" class="card-header">
                 <a href="{{route('customers.get-list-orders', $customer->_id)}}" type="submit"
-                   style="text-decoration: none; color: white"
+                   style="text-decoration: none; color: white; font-size: 14px"
                    class="btn btn-success">Đơn hàng</a>
+                <a href="{{route('customers.history', $customer->_id)}}" type="submit"
+                   style="text-decoration: none; color: white; font-size: 14px"
+                   class="btn btn-success">Lịch sử chỉnh sửa</a>
             </div>
             <div class="border-t border-gray-200">
                 <dl>
@@ -55,12 +58,6 @@
                         <dd class="mt-1text-gray-900 sm:mt-0 sm:col-span-2">{{$customer->age}}
                         </dd>
                     </div>
-                    @if($company)
-                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-gray-500">Công ty</dt>
-                            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">{{$company->name}}</dd>
-                        </div>
-                    @endif
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-gray-500">Nghề nghiệp</dt>
                         <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">{{$customer->job}}</dd>

@@ -10,10 +10,12 @@ use App\Http\Requests\UpdateCustomerRequest;
 use App\Imports\CustomersImport;
 use App\Models\Company;
 use App\Models\Customer;
+use App\Models\CustomerHistory;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Illuminate\Support\Facades\Log;
@@ -89,6 +91,21 @@ class CustomerController extends Controller
             $customer->employee_code = $request->employee_code;
             $customer->save();
 
+            $customerHistory = new CustomerHistory();
+            $customerHistory->customer_id = $customer->_id;
+            $customerHistory->name = $customer->name;
+            $customerHistory->email = $customer->email;
+            $customerHistory->phone = $customer->phone;
+            $customerHistory->age = $customer->age;
+            $customerHistory->job = $customer->job;
+            $customerHistory->address = $customer->address;
+            $customerHistory->gender = $customer->gender;
+            $customerHistory->customer_type = $customer->customer_type;
+            $customerHistory->employee_code = $customer->employee_code;
+            $customerHistory->updatedBy = Auth::user()->_id;
+            $customerHistory->updatedTime = date_format(Carbon::now('Asia/Ho_Chi_Minh'), "H:i:s d/m/Y");
+            $customerHistory->save();
+
             Session::flash('success', 'Tạo mới thành công!');
         } catch (Exception $e) {
             Log::error('Error store customer', [
@@ -111,7 +128,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        $customer = Customer::find($id);
+        $customer = Customer::with('company')->find($id);
         $customer_employees = $customer->employee_code;
         $query = User::query();
         if (is_array($customer_employees)) {
@@ -128,10 +145,8 @@ class CustomerController extends Controller
             }
         }
         $users = $query->get();
-        $company = Company::find($customer->company_id);
         return view('customers.show')->with([
             'customer' => $customer,
-            'company' => $company,
             'users' => $users
         ]);
     }
@@ -179,6 +194,31 @@ class CustomerController extends Controller
         try {
             $customer = Customer::find($id);
 
+            $checkName = $customer->name == $request->name;
+            $checkEmail = $customer->email == $request->email;
+            $checkPhone = $customer->phone == $request->phone;
+            $checkAge = $customer->age == $request->age;
+            $checkJob = $customer->job == $request->job;
+            $checkAddress = $customer->address == $request->address;
+            $checkGender = $customer->gender == $request->gender;
+            $checkEmployee = $customer->employee_code == $request->employee_code;
+
+            if (!($checkName && $checkEmail && $checkPhone && $checkAge && $checkJob && $checkAddress && $checkGender && $checkEmployee)) {
+                $customerHistory = new CustomerHistory();
+                $customerHistory->customer_id = $customer->_id;
+                $customerHistory->name = $customer->name;
+                $customerHistory->email = $customer->email;
+                $customerHistory->phone = $customer->phone;
+                $customerHistory->age = $customer->age;
+                $customerHistory->job = $customer->job;
+                $customerHistory->address = $customer->address;
+                $customerHistory->gender = $customer->gender;
+                $customerHistory->customer_type = $customer->customer_type;
+                $customerHistory->employee_code = $customer->employee_code;
+                $customerHistory->updatedBy = Auth::user()->_id;
+                $customerHistory->updatedTime = date_format(Carbon::now('Asia/Ho_Chi_Minh'), "H:i:s d/m/Y");
+                $customerHistory->save();
+            }
             $customer->name = $request->name;
             $customer->email = $request->email;
             $customer->phone = $request->phone;
@@ -215,6 +255,7 @@ class CustomerController extends Controller
     {
         try {
             $customer = Customer::find($id);
+            CustomerHistory::where('customer_id', $customer->_id)->delete();
             $customer->delete();
 
             Session::flash('success', 'Xóa thành công!');
@@ -258,7 +299,7 @@ class CustomerController extends Controller
                     $phone = $customer[2];
                     $emailCus = Customer::where('email', $email)->get();
                     $phoneCus = Customer::where('phone', $phone)->get();
-                    if (!(count($emailCus) > 0 && strlen($phoneCus) > 0)) {
+                    if (!(count($emailCus) > 0) || !(count($phoneCus) > 0)) {
                         $newCustomer = new Customer();
                         $newCustomer->name = $customer[0];
                         $newCustomer->email = $customer[1];
@@ -269,6 +310,21 @@ class CustomerController extends Controller
                         $newCustomer->gender = $customer[6];
                         $newCustomer->customer_type = $customer[7];
                         $newCustomer->save();
+
+                        $customerHistory = new CustomerHistory();
+                        $customerHistory->customer_id = $newCustomer->_id;
+                        $customerHistory->name = $newCustomer->name;
+                        $customerHistory->email = $newCustomer->email;
+                        $customerHistory->phone = $newCustomer->phone;
+                        $customerHistory->age = $newCustomer->age;
+                        $customerHistory->job = $newCustomer->job;
+                        $customerHistory->address = $newCustomer->address;
+                        $customerHistory->gender = $newCustomer->gender;
+                        $customerHistory->customer_type = $newCustomer->customer_type;
+                        $customerHistory->employee_code = $newCustomer->employee_code;
+                        $customerHistory->updatedBy = Auth::user()->_id;
+                        $customerHistory->updatedTime = date_format(Carbon::now('Asia/Ho_Chi_Minh'), "H:i:s d/m/Y");
+                        $customerHistory->save();
 
                         Session::flash('success', 'Thêm mới thành công!');
                     }
@@ -312,16 +368,19 @@ class CustomerController extends Controller
             }
             if (!empty($idsArr)) {
                 Customer::whereIn('_id', $idsArr)->delete();
+                CustomerHistory::whereIn('customer_id', $idsArr)->delete();
             } else if (Auth::user()->info->role == UserInfo::ROLE['admin']) {
                 Customer::query()->delete();
+                CustomerHistory::query()->delete();
             } else {
                 $user_code = Auth::user()->info->code;
                 Customer::where(['employee_code' => $user_code])->delete();
+                CustomerHistory::whereIn('customer_id', Auth::user()->_id)->delete();
             }
 
             Session::flash('success', 'Xóa thành công!');
         } catch (Exception $e) {
-            Log::error('Error delete all category', [
+            Log::error('Error delete all customer', [
                 'method' => __METHOD__,
                 'message' => $e->getMessage(),
                 'line' => __LINE__
@@ -329,6 +388,29 @@ class CustomerController extends Controller
 
             Session::flash('error', 'Xóa thất bại!');
         }
-        return redirect()->route('categories.index');
+        return redirect()->route('customers.index');
+    }
+
+    public function getHistoryUpdate(Request $request, $id)
+    {
+        $histories = CustomerHistory::where('customer_id', $id)->with('users')->orderBy('updated_at', 'desc')->paginate(10);
+
+        return view('customers.history')->with([
+            'histories' => $histories
+        ]);
+    }
+
+    public function deleteAllHistory(Request $request)
+    {
+        if ($request->ids) {
+            $ids = $request->ids;
+            $idsArr = explode(",", $ids);
+        }
+
+        if (!empty($idsArr)) {
+            CustomerHistory::whereIn('_id', $idsArr)->delete();
+        } else {
+            CustomerHistory::query()->delete();
+        }
     }
 }

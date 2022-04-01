@@ -456,7 +456,7 @@
                             }
                         });
                     } else {
-                        var strIds = idsArr.join(",");
+                        let strIds = idsArr.join(",");
                         $.ajax({
                             url: "{{route('users.export')}}",
                             type: 'POST',
@@ -477,7 +477,6 @@
                                 location.reload();
                             },
                             error: function (data) {
-                                console.log("ERROR")
                                 swal("Xuất excel thất bại!", "", "error");
                                 setTimeout(function () {
                                     location.reload();
