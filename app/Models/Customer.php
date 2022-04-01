@@ -28,4 +28,9 @@ class Customer extends Model
     {
         $this->belongsToMany(User::class);
     }
+
+    public function company()
+    {
+        return $this->hasOne(Company::class, 'company_id', '_id');
+    }
 }

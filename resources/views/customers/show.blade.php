@@ -58,12 +58,6 @@
                         <dd class="mt-1text-gray-900 sm:mt-0 sm:col-span-2">{{$customer->age}}
                         </dd>
                     </div>
-                    @if($company)
-                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-gray-500">Công ty</dt>
-                            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">{{$company->name}}</dd>
-                        </div>
-                    @endif
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-gray-500">Nghề nghiệp</dt>
                         <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">{{$customer->job}}</dd>

@@ -50,7 +50,10 @@
                                 <th>Email</th>
                                 <th>Số điện thoại</th>
                                 <th>Địa chỉ</th>
+                                <th>Tuổi</th>
+                                <th>Giới tính</th>
                                 <th>Phân loại</th>
+                                <th>Nghề nghiệp</th>
                                 <th>Người cập nhật</th>
                                 <th>Thời gian</th>
                             </tr>
@@ -64,7 +67,10 @@
                                     <td>{{ $history->email }}</td>
                                     <td>{{ $history->phone }}</td>
                                     <td>{{ $history->address}}</td>
+                                    <td>{{ $history->age}}</td>
+                                    <td>{{ $history->gender ? "Name" : "Nữ"}}</td>
                                     <td>{{ $history->customer_type}}</td>
+                                    <td>{{ $history->job}}</td>
                                     <td>{{ $history->users ? $history->users->info->name : "Đang cập nhật"}}</td>
                                     <td>{{ $history->updatedTime}}</td>
                                 </tr>
