@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateCustomerRequest;
 use App\Imports\CustomersImport;
 use App\Models\Company;
 use App\Models\Customer;
+use App\Models\CustomerHistory;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\UserInfo;
@@ -179,6 +180,20 @@ class CustomerController extends Controller
         try {
             $customer = Customer::find($id);
 
+            $customerHistory = new CustomerHistory();
+            $customerHistory->customer_id = $customer->_id;
+            $customerHistory->name = $customer->name;
+            $customerHistory->email = $customer->email;
+            $customerHistory->phone = $customer->phone;
+            $customerHistory->age = $customer->age;
+            $customerHistory->job = $customer->job;
+            $customerHistory->address = $customer->address;
+            $customerHistory->gender = $customer->gender;
+            $customerHistory->customer_type = $customer->customer_type;
+            $customerHistory->employee_code = $customer->employee_code;
+            $customerHistory->updatedBy = Auth::user()->_id;
+            $customerHistory->save();
+
             $customer->name = $request->name;
             $customer->email = $request->email;
             $customer->phone = $request->phone;
@@ -258,7 +273,7 @@ class CustomerController extends Controller
                     $phone = $customer[2];
                     $emailCus = Customer::where('email', $email)->get();
                     $phoneCus = Customer::where('phone', $phone)->get();
-                    if (!(count($emailCus) > 0 && strlen($phoneCus) > 0)) {
+                    if (!(count($emailCus) > 0) || !(count($phoneCus) > 0)) {
                         $newCustomer = new Customer();
                         $newCustomer->name = $customer[0];
                         $newCustomer->email = $customer[1];
@@ -330,5 +345,14 @@ class CustomerController extends Controller
             Session::flash('error', 'Xóa thất bại!');
         }
         return redirect()->route('categories.index');
+    }
+
+    public function getHistoryUpdate(Request $request, $id)
+    {
+        $histories = CustomerHistory::where('customer_id', $id)->with('users')->paginate(10);
+
+        return view('customers.history')->with([
+            'histories' => $histories
+        ]);
     }
 }

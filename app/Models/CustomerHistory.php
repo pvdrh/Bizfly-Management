@@ -4,28 +4,29 @@ namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Customer extends Model
+class CustomerHistory extends Model
 {
     protected $fillable = [
+        'customer_id',
         'name',
-        'gender',
+        'email',
         'phone',
         'age',
-        'address',
-        'company_id',
         'job',
+        'address',
+        'gender',
         'customer_type',
         'employee_code',
-        'user_id'
+        'updatedBy',
     ];
 
-    public function orders()
+    public function customers()
     {
-        $this->hasMany(Order::class);
+        return $this->belongsToMany(Customer::class);
     }
 
     public function users()
     {
-        $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

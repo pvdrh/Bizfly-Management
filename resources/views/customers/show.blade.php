@@ -19,8 +19,11 @@
         <div class="bg-white shadow overflow-hidden sm:rounded-lg">
             <div style="padding: 20px" class="card-header">
                 <a href="{{route('customers.get-list-orders', $customer->_id)}}" type="submit"
-                   style="text-decoration: none; color: white"
+                   style="text-decoration: none; color: white; font-size: 14px"
                    class="btn btn-success">Đơn hàng</a>
+                <a href="{{route('customers.history', $customer->_id)}}" type="submit"
+                   style="text-decoration: none; color: white; font-size: 14px"
+                   class="btn btn-success">Lịch sử chỉnh sửa</a>
             </div>
             <div class="border-t border-gray-200">
                 <dl>
