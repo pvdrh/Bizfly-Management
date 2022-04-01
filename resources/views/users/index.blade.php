@@ -421,7 +421,6 @@
                     alert("Vui lòng chọn bản ghi bạn muốn xuất");
                 } else {
                     if (checkAll) {
-                        console.log("abbbb")
                         $.ajax({
                             url: "{{route('users.export')}}",
                             type: 'POST',
@@ -449,7 +448,6 @@
                         });
                     } else {
                         let strIds = idsArr.join(",");
-                        console.log(strIds)
                         $.ajax({
                             url: "{{route('users.export')}}",
                             type: 'POST',
