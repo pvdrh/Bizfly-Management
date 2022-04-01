@@ -119,6 +119,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('customers.get-list-orders');
         Route::get('/get-history/{id}', [CustomerController::class, 'getHistoryUpdate'])
             ->name('customers.history');
+        Route::any('/deleteAllHistory', [CustomerController::class, 'deleteAllHistory'])
+            ->name('customers.deleteAllHistory');
         Route::post('/import-excel', [CustomerController::class, 'importExcel'])
             ->name('customers.import');
         Route::post('/store', [CustomerController::class, 'store'])

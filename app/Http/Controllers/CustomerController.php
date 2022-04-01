@@ -15,6 +15,7 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Illuminate\Support\Facades\Log;
@@ -89,6 +90,21 @@ class CustomerController extends Controller
             $customer->company_id = $request->company_id;
             $customer->employee_code = $request->employee_code;
             $customer->save();
+
+            $customerHistory = new CustomerHistory();
+            $customerHistory->customer_id = $customer->_id;
+            $customerHistory->name = $customer->name;
+            $customerHistory->email = $customer->email;
+            $customerHistory->phone = $customer->phone;
+            $customerHistory->age = $customer->age;
+            $customerHistory->job = $customer->job;
+            $customerHistory->address = $customer->address;
+            $customerHistory->gender = $customer->gender;
+            $customerHistory->customer_type = $customer->customer_type;
+            $customerHistory->employee_code = $customer->employee_code;
+            $customerHistory->updatedBy = Auth::user()->_id;
+            $customerHistory->updatedTime = date_format(Carbon::now('Asia/Ho_Chi_Minh'), "H:i:s d/m/Y");
+            $customerHistory->save();
 
             Session::flash('success', 'Tạo mới thành công!');
         } catch (Exception $e) {
@@ -180,20 +196,31 @@ class CustomerController extends Controller
         try {
             $customer = Customer::find($id);
 
-            $customerHistory = new CustomerHistory();
-            $customerHistory->customer_id = $customer->_id;
-            $customerHistory->name = $customer->name;
-            $customerHistory->email = $customer->email;
-            $customerHistory->phone = $customer->phone;
-            $customerHistory->age = $customer->age;
-            $customerHistory->job = $customer->job;
-            $customerHistory->address = $customer->address;
-            $customerHistory->gender = $customer->gender;
-            $customerHistory->customer_type = $customer->customer_type;
-            $customerHistory->employee_code = $customer->employee_code;
-            $customerHistory->updatedBy = Auth::user()->_id;
-            $customerHistory->save();
+            $checkName = $customer->name == $request->name;
+            $checkEmail = $customer->email == $request->email;
+            $checkPhone = $customer->phone == $request->phone;
+            $checkAge = $customer->age == $request->age;
+            $checkJob = $customer->job == $request->job;
+            $checkAddress = $customer->address == $request->address;
+            $checkGender = $customer->gender == $request->gender;
+            $checkEmployee = $customer->employee_code == $request->employee_code;
 
+            if (!($checkName && $checkEmail && $checkPhone && $checkAge && $checkJob && $checkAddress && $checkGender && $checkEmployee)) {
+                $customerHistory = new CustomerHistory();
+                $customerHistory->customer_id = $customer->_id;
+                $customerHistory->name = $customer->name;
+                $customerHistory->email = $customer->email;
+                $customerHistory->phone = $customer->phone;
+                $customerHistory->age = $customer->age;
+                $customerHistory->job = $customer->job;
+                $customerHistory->address = $customer->address;
+                $customerHistory->gender = $customer->gender;
+                $customerHistory->customer_type = $customer->customer_type;
+                $customerHistory->employee_code = $customer->employee_code;
+                $customerHistory->updatedBy = Auth::user()->_id;
+                $customerHistory->updatedTime = date_format(Carbon::now('Asia/Ho_Chi_Minh'), "H:i:s d/m/Y");
+                $customerHistory->save();
+            }
             $customer->name = $request->name;
             $customer->email = $request->email;
             $customer->phone = $request->phone;
@@ -349,10 +376,24 @@ class CustomerController extends Controller
 
     public function getHistoryUpdate(Request $request, $id)
     {
-        $histories = CustomerHistory::where('customer_id', $id)->with('users')->paginate(10);
+        $histories = CustomerHistory::where('customer_id', $id)->with('users')->orderBy('updated_at', 'desc')->paginate(10);
 
         return view('customers.history')->with([
             'histories' => $histories
         ]);
+    }
+
+    public function deleteAllHistory(Request $request)
+    {
+        if ($request->ids) {
+            $ids = $request->ids;
+            $idsArr = explode(",", $ids);
+        }
+
+        if (!empty($idsArr)) {
+            CustomerHistory::whereIn('_id', $idsArr)->delete();
+        } else {
+            CustomerHistory::query()->delete();
+        }
     }
 }

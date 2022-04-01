@@ -45,6 +45,7 @@
                         <table class="table table-hover">
                             <thead>
                             <tr style="border-bottom: 1px black solid">
+                                <th><input type="checkbox" id="check_all"></th>
                                 <th>Tên khách hàng</th>
                                 <th>Email</th>
                                 <th>Số điện thoại</th>
@@ -57,13 +58,15 @@
                             <tbody>
                             @foreach($histories as $history)
                                 <tr>
+                                    <td><input type="checkbox" name="history_id[]" class="checkbox"
+                                               data-id="{{$history->_id}}"></td>
                                     <td>{{ $history->name }}</td>
                                     <td>{{ $history->email }}</td>
                                     <td>{{ $history->phone }}</td>
-                                    <td>{{$history->address}}</td>
-                                    <td>{{$history->customer_type}}</td>
-                                    <td>{{$history->users ? $history->users : "Đaang cập nhật"}}</td>
-                                    <td>{{$history->created_at}}</td>
+                                    <td>{{ $history->address}}</td>
+                                    <td>{{ $history->customer_type}}</td>
+                                    <td>{{ $history->users ? $history->users->info->name : "Đang cập nhật"}}</td>
+                                    <td>{{ $history->updatedTime}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -133,4 +136,78 @@
             float: right;
         }
     </style>
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('#check_all').on('click', function (e) {
+                if ($(this).is(':checked', true)) {
+                    checkall = true
+                    $(".checkbox").prop('checked', true);
+                } else {
+                    checkall = false
+                    $(".checkbox").prop('checked', false);
+                }
+            });
+            $('.delete-all').on('click', function (e) {
+                var idsArr = [];
+                $(".checkbox:checked").each(function () {
+                    idsArr.push($(this).attr('data-id'));
+                });
+                if (idsArr.length <= 0) {
+                    alert("Vui lòng chọn bản ghi bạn muốn xóa");
+                } else {
+                    var idss = idsArr.length;
+                    if (checkall) {
+                        if (confirm('Bạn có chắc chắn muốn xóa tất cả bản ghi?')) {
+                            $.ajax({
+                                url: "{{route('customers.deleteAllHistory')}}",
+                                type: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                success: function () {
+                                    swal("Xoá thành công!", "", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                },
+                                error: function () {
+                                    swal("Xoá thất bại!", "", "error");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                }
+                            });
+                        }
+                    } else {
+                        if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {
+                            var strIds = idsArr.join(",");
+                            $.ajax({
+                                url: "{{route('customers.deleteAllHistory')}}",
+                                type: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                data: 'ids=' + strIds,
+                                success: function () {
+                                    swal("Xoá thành công!", "", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                },
+                                error: function () {
+                                    swal("Xoá thất bại!", "", "error");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        })
+    </script>
+@endsection
 @endsection
