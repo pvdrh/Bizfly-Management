@@ -120,13 +120,13 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('customers.get-list-orders');
         Route::get('/get-history/{id}', [CustomerController::class, 'getHistoryUpdate'])
             ->name('customers.history');
-        Route::any('/deleteAllHistory', [CustomerController::class, 'deleteAllHistory'])
+        Route::post('/deleteAllHistory', [CustomerController::class, 'deleteAllHistory'])
             ->name('customers.deleteAllHistory');
         Route::post('/import-excel', [CustomerController::class, 'importExcel'])
             ->name('customers.import');
         Route::post('/store', [CustomerController::class, 'store'])
             ->name('customers.store');
-        Route::any('/deleteAll', [CustomerController::class, 'deleteAll'])
+        Route::post('/deleteAll', [CustomerController::class, 'deleteAll'])
             ->name('customers.deleteAll');
         Route::get('/show/{id}', [CustomerController::class, 'show'])
             ->name('customers.show')->middleware('checkRole');
@@ -134,7 +134,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('customers.edit')->middleware('checkRole');
         Route::post('/update/{id}', [CustomerController::class, 'update'])
             ->name('customers.update')->middleware('checkRole');
-        Route::any('/delete/{id}', [CustomerController::class, 'destroy'])
+        Route::post('/delete/{id}', [CustomerController::class, 'destroy'])
             ->name('customers.destroy')->middleware('checkRole');
     });
 

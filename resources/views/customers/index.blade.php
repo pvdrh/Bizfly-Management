@@ -341,7 +341,7 @@
                         if (confirm('Bạn có chắc chắn muốn xóa tất cả bản ghi?')) {
                             $.ajax({
                                 url: "{{route('customers.deleteAll')}}",
-                                type: 'POST',
+                                type: 'post',
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 },
@@ -364,7 +364,7 @@
                             var strIds = idsArr.join(",");
                             $.ajax({
                                 url: "{{route('customers.deleteAll')}}",
-                                type: 'POST',
+                                type: 'post',
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 },
