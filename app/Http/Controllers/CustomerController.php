@@ -174,6 +174,7 @@ class CustomerController extends Controller
         $user = $query->get();
         $companies = Company::get();
         $users = User::get();
+
         return view('customers.edit')->with([
             'customer' => $customer,
             'companies' => $companies,
