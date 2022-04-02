@@ -52,7 +52,7 @@
                             <h5 class="content-group">Đăng nhập vào tài khoản của bạn</h5>
                         </div>
                         <div class="form-group has-feedback has-feedback-left">
-                            <input name="email" type="email" class="form-control" placeholder="Email">
+                            <input autofocus name="email" type="email" class="form-control" placeholder="Email">
                             <div class="form-control-feedback">
                                 <i class="icon-user text-muted"></i>
                             </div>
@@ -86,9 +86,7 @@
         </div>
         <!-- /main content -->
         @if (Session::has('fail'))
-            <div style="top: 10px">
-                <p style="text-align: center;" class="text-danger">{{ Session('fail') }}</p>
-            </div>
+            <span class="text-danger">{{ Session('fail') }}</span>
         @endif
     </div>
     <!-- /page content -->
