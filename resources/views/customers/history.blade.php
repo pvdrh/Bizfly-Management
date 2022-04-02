@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Lịch sử chỉnh sửa
+    Lịch sử cập nhật
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
                         hàng</a>
                 </li>
                 <li>Chi tiết khách hàng</li>
-                <li class="active">Lịch sử chỉnh sửa</li>
+                <li class="active">Lịch sử cập nhật</li>
             </ul>
         </div>
     </div>

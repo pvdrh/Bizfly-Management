@@ -74,6 +74,8 @@
                                 >Thêm mới</a></li>
                             <li style="display: none" class="{{ request()->is('customers/show/*') ? 'active' : '' }}"><a
                                 >Thêm mới</a></li>
+                            <li style="display: none" class="{{ request()->is('customers/get-history/*') ? 'active' : '' }}"><a
+                                >Thêm mới</a></li>
                             <li style="display: none"
                                 class="{{ request()->is('customers/get-list-orders/*') ? 'active' : '' }}"><a
                                 >Thêm mới</a></li>

@@ -22,8 +22,8 @@
                    style="text-decoration: none; color: white; font-size: 14px"
                    class="btn btn-success">Đơn hàng</a>
                 <a href="{{route('customers.history', $customer->_id)}}" type="submit"
-                   style="text-decoration: none; color: white; font-size: 14px"
-                   class="btn btn-success">Lịch sử chỉnh sửa</a>
+                   style="text-decoration: none; color: white; font-size: 14px; background: gray"
+                   class="btn">Lịch sử cập nhật</a>
             </div>
             <div class="border-t border-gray-200">
                 <dl>
