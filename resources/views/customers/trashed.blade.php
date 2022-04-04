@@ -95,7 +95,7 @@
                                 style="font-size: 14px">Số bản ghi / trang: {{$customer->count()}}</span>
                         </div>
                         <div class="col-lg-9">
-                            {{ $customer->links('pagination::bootstrap-4') }}
+                            {{ $customers->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
                 @else
