@@ -30,13 +30,15 @@
                             </svg>
                             Tùy chọn</a>
                         <div style="font-size: 14px" class="dropdown-content">
-                            <a style="color: red" class="delete-all">
-                                <svg style="display: inline" xmlns="http://www.w3.org/2000/svg" width="16"
-                                     height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <a style="color: gray" class="delete-all">
+                                <svg style="display: inline" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                     fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
                                     <path
-                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                        d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
                                 </svg>
-                                Xóa bản ghi đã chọn</a>
+                                Khôi phục</a>
                         </div>
                     </div>
                     <div class="heading-elements">
@@ -92,7 +94,7 @@
                     <div style="padding: 10px" class="card-footer clearfix">
                         <div class="col-lg-3">
                             <span
-                                style="font-size: 14px">Số bản ghi / trang: {{$customer->count()}}</span>
+                                style="font-size: 14px">Số bản ghi / trang: {{$customers->count()}}</span>
                         </div>
                         <div class="col-lg-9">
                             {{ $customers->links('pagination::bootstrap-4') }}
@@ -173,28 +175,52 @@
                     alert("Vui lòng chọn bản ghi bạn muốn khôi phục");
                 } else {
                     var idss = idsArr.length;
-                    if (confirm('Bạn có chắc chắn muốn khôi phục ' + idss + ' bản ghi đã chọn?')) {
-                        var strIds = idsArr.join(",");
-                        $.ajax({
-                            url: "{{route('customers.restore')}}",
-                            type: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            data: 'ids=' + strIds,
-                            success: function () {
-                                swal("Khôi phục thành công!", "", "success");
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1000);
-                            },
-                            error: function () {
-                                swal("Khôi phục thất bại!", "", "error");
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1000);
-                            }
-                        });
+                    if (checkall) {
+                        if (confirm('Bạn có chắc chắn muốn khôi phục tất cả bản ghi?')) {
+                            $.ajax({
+                                url: "{{route('customers.restore')}}",
+                                type: 'post',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                success: function () {
+                                    swal("Khôi phục thành công!", "", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                },
+                                error: function () {
+                                    swal("Khôi phục thất bại!", "", "error");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                }
+                            });
+                        }
+                    } else {
+                        if (confirm('Bạn có chắc chắn muốn Khôi phục ' + idss + ' bản ghi đã chọn?')) {
+                            var strIds = idsArr.join(",");
+                            $.ajax({
+                                url: "{{route('customers.restore')}}",
+                                type: 'post',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                data: 'ids=' + strIds,
+                                success: function () {
+                                    swal("Khôi phục thành công!", "", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                },
+                                error: function () {
+                                    swal("Khôi phục thất bại!", "", "error");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                }
+                            });
+                        }
                     }
                 }
             });

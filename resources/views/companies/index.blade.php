@@ -237,28 +237,52 @@
                     alert("Vui lòng chọn bản ghi bạn muốn xóa");
                 } else {
                     var idss = idsArr.length;
-                    if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {
-                        var strIds = idsArr.join(",");
-                        $.ajax({
-                            url: "{{route('companies.deleteAll')}}",
-                            type: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            data: 'ids=' + strIds,
-                            success: function () {
-                                swal("Xoá thành công!", "", "success");
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1000);
-                            },
-                            error: function () {
-                                swal("Xoá thất bại!", "", "error");
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1000);
-                            }
-                        });
+                    if (checkall) {
+                        if (confirm('Bạn có chắc chắn muốn xóa tất cả bản ghi?')) {
+                            $.ajax({
+                                url: "{{route('companies.deleteAll')}}",
+                                type: 'post',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                success: function () {
+                                    swal("Xoá thành công!", "", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                },
+                                error: function () {
+                                    swal("Xoá thất bại!", "", "error");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                }
+                            });
+                        }
+                    } else {
+                        if (confirm('Bạn có chắc chắn muốn xóa ' + idss + ' bản ghi đã chọn?')) {
+                            var strIds = idsArr.join(",");
+                            $.ajax({
+                                url: "{{route('companies.deleteAll')}}",
+                                type: 'post',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                data: 'ids=' + strIds,
+                                success: function () {
+                                    swal("Xoá thành công!", "", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                },
+                                error: function () {
+                                    swal("Xoá thất bại!", "", "error");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
+                                }
+                            });
+                        }
                     }
                 }
             });

@@ -395,9 +395,11 @@ class CustomerController extends Controller
     public function getHistoryUpdate(Request $request, $id)
     {
         $histories = CustomerHistory::where('customer_id', $id)->with('users')->orderBy('updated_at', 'desc')->paginate(10);
+        $current = Customer::find($id);
 
         return view('customers.history')->with([
-            'histories' => $histories
+            'histories' => $histories,
+            'current' => $current
         ]);
     }
 
