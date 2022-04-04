@@ -37,5 +37,5 @@ $ php artisan config:clear
 $ php artisan serve
 ```
 
-- Login with default admin acount email: admin@gmail.com and password: 000000
-- Login with default employee acount email: employee@gmail.com and password: 000000
+- Login with default admin account email: admin@gmail.com and password: 000000
+- Login with default employee account email: employee@gmail.com and password: 000000
