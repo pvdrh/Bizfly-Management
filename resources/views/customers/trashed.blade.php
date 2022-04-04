@@ -175,52 +175,28 @@
                     alert("Vui lòng chọn bản ghi bạn muốn khôi phục");
                 } else {
                     var idss = idsArr.length;
-                    if (checkall) {
-                        if (confirm('Bạn có chắc chắn muốn khôi phục tất cả bản ghi?')) {
-                            $.ajax({
-                                url: "{{route('customers.restore')}}",
-                                type: 'post',
-                                headers: {
-                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                },
-                                success: function () {
-                                    swal("Khôi phục thành công!", "", "success");
-                                    setTimeout(function () {
-                                        location.reload();
-                                    }, 1000);
-                                },
-                                error: function () {
-                                    swal("Khôi phục thất bại!", "", "error");
-                                    setTimeout(function () {
-                                        location.reload();
-                                    }, 1000);
-                                }
-                            });
-                        }
-                    } else {
-                        if (confirm('Bạn có chắc chắn muốn Khôi phục ' + idss + ' bản ghi đã chọn?')) {
-                            var strIds = idsArr.join(",");
-                            $.ajax({
-                                url: "{{route('customers.restore')}}",
-                                type: 'post',
-                                headers: {
-                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                },
-                                data: 'ids=' + strIds,
-                                success: function () {
-                                    swal("Khôi phục thành công!", "", "success");
-                                    setTimeout(function () {
-                                        location.reload();
-                                    }, 1000);
-                                },
-                                error: function () {
-                                    swal("Khôi phục thất bại!", "", "error");
-                                    setTimeout(function () {
-                                        location.reload();
-                                    }, 1000);
-                                }
-                            });
-                        }
+                    if (confirm('Bạn có chắc chắn muốn khôi phục ' + idss + ' bản ghi đã chọn?')) {
+                        var strIds = idsArr.join(",");
+                        $.ajax({
+                            url: "{{route('customers.restore')}}",
+                            type: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: 'ids=' + strIds,
+                            success: function () {
+                                swal("Khôi phục thành công!", "", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function () {
+                                swal("Khôi phục thất bại!", "", "error");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            }
+                        });
                     }
                 }
             });
