@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('users.edit');
         Route::post('/update/{id}', [UserController::class, 'update'])
             ->name('users.update');
-        Route::any('/delete/{id}', [UserController::class, 'destroy'])
+        Route::post('/delete/{id}', [UserController::class, 'destroy'])
             ->name('users.destroy');
     });
 
@@ -112,6 +112,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('customers.index');
         Route::get('/create', [CustomerController::class, 'create'])
             ->name('customers.create');
+        Route::get('/trashed', [CustomerController::class, 'trashed'])
+            ->name('customers.trashed');
         Route::any('/export-excel', [CustomerController::class, 'exportExcel'])
             ->name('customers.export');
         Route::get('/export-excel-sample', [CustomerController::class, 'exportExcelSample'])
@@ -126,6 +128,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('customers.import');
         Route::post('/store', [CustomerController::class, 'store'])
             ->name('customers.store');
+        Route::post('/restore', [CustomerController::class, 'restore'])
+            ->name('customers.restore');
         Route::post('/deleteAll', [CustomerController::class, 'deleteAll'])
             ->name('customers.deleteAll');
         Route::get('/show/{id}', [CustomerController::class, 'show'])

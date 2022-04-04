@@ -414,4 +414,27 @@ class CustomerController extends Controller
             CustomerHistory::query()->delete();
         }
     }
+
+    public function trashed(Request $request)
+    {
+        $customers = Customer::onlyTrashed()->paginate(10);
+
+        return view('customers.trashed')->with([
+            'customers' => $customers
+        ]);
+    }
+
+    public function restore(Request $request)
+    {
+        if ($request->ids) {
+            $ids = $request->ids;
+            $idsArr = explode(",", $ids);
+        }
+
+        if (!empty($idsArr)) {
+            Customer::whereIn('_id', $idsArr)->restore();
+        } else {
+            CustomerHistory::query()->restore();
+        }
+    }
 }
